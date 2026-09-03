@@ -11,7 +11,30 @@
  * always show identical pricing/feature info.
  */
 import { Fragment, useRef } from "react";
+import { useTranslation } from "react-i18next";
 import "./NoticeboardPricingTable.css";
+
+// Maps the hardcoded English cell values below to stable translation keys
+// (translating by slug rather than by raw English text, so the lookup
+// survives future edits to the English copy).
+const CELL_KEY = {
+  "All subjects · all grades": "allSubjectsAllGrades",
+  "Grade 11–12 only": "gr1112Only",
+  "Unlimited": "unlimited",
+  "Unlimited (Gr 11–12)": "unlimitedGr1112",
+  "5 / day": "fiveDay",
+  "Included": "included",
+  "Basic": "basic",
+  "Full + alerts": "fullAlerts",
+  "Full + analytics": "fullAnalytics",
+  "Free forever": "freeForever",
+  "₹299 / month": "priceMonth299",
+  "₹499 / month": "priceMonth499",
+  "₹1,999 / year": "priceYear1999",
+  "—": "dash",
+  "Monthly": "monthly",
+  "Annual (Gr 11–12)": "annualGr1112",
+};
 
 export const NOTICEBOARD_PLANS = [
   { key: "free_tier",        name: "Free Tier",        price: "₹0",     period: "forever", note: "Get started",  color: "#64748b" },
@@ -54,11 +77,13 @@ export const NOTICEBOARD_GROUPS = [
   ]},
 ];
 
-function renderCell(v) {
+function renderCell(v, t) {
   if (v === true) return <span className="nbp-mark pass">✓</span>;
   if (v === false) return <span className="nbp-mark cross">✗</span>;
   const strong = /unlimited|all subjects|included/i.test(v);
-  return <span className={"nbp-cell-text" + (strong ? " strong" : "")}>{v}</span>;
+  const key = CELL_KEY[v];
+  const text = key ? t("cellValues." + key, v) : v;
+  return <span className={"nbp-cell-text" + (strong ? " strong" : "")}>{text}</span>;
 }
 
 /**
@@ -88,6 +113,7 @@ export default function NoticeboardPricingTable({
   groups = NOTICEBOARD_GROUPS,
   footnote,
 }) {
+  const { t } = useTranslation("pricing");
   const scrollRef = useRef(null);
   const colRefs = useRef({});
 
@@ -111,37 +137,37 @@ export default function NoticeboardPricingTable({
             style={{ borderColor: p.color }}
             onClick={() => jumpToPlan(p.key)}
           >
-            {p.name}
+            {t(`plans.${p.key}.name`, p.name)}
           </button>
         ))}
       </div>
-      <p className="nbp-swipe-hint">&#8596; Swipe or tap a plan above to compare</p>
+      <p className="nbp-swipe-hint">{t("swipeHint", "↔ Swipe or tap a plan above to compare")}</p>
       <div className="nbp-wrap" ref={scrollRef}>
         <table className="nbp-table">
           <colgroup><col className="nbp-feature-col" />{plans.map(p => <col key={p.key} />)}</colgroup>
           <thead>
             <tr>
-              <th className="nbp-feature-head">What&rsquo;s included</th>
+              <th className="nbp-feature-head">{t("header", "What’s included")}</th>
               {plans.map(p => (
                 <th key={p.key} ref={(el) => { colRefs.current[p.key] = el; }}>
                   <div className="nbp-plan-tab" style={{ background: p.color + "22" }}>
-                    {p.tag && <div className="nbp-washi" style={{ background: p.color }}>{p.tag}</div>}
-                    <div className="nbp-plan-name">{p.name}</div>
-                    <div className="nbp-plan-price">{p.price}<span> {p.period}</span></div>
-                    <div className="nbp-plan-note">{p.note}</div>
+                    {p.tag && <div className="nbp-washi" style={{ background: p.color }}>{t(`plans.${p.key}.tag`, p.tag)}</div>}
+                    <div className="nbp-plan-name">{t(`plans.${p.key}.name`, p.name)}</div>
+                    <div className="nbp-plan-price">{p.price}<span> {t(`plans.${p.key}.period`, p.period)}</span></div>
+                    <div className="nbp-plan-note">{t(`plans.${p.key}.note`, p.note)}</div>
                   </div>
                 </th>
               ))}
             </tr>
           </thead>
           <tbody>
-            {groups.map(g => (
+            {groups.map((g, gi) => (
               <Fragment key={g.title}>
-                <tr className="nbp-group-row"><td colSpan={plans.length + 1}>{g.title}</td></tr>
-                {g.rows.map(([label, ...vals]) => (
+                <tr className="nbp-group-row"><td colSpan={plans.length + 1}>{t(`groups.${gi}.title`, g.title)}</td></tr>
+                {g.rows.map(([label, ...vals], ri) => (
                   <tr key={label} className="nbp-feature-row">
-                    <td className="nbp-feature-label">{label}</td>
-                    {vals.map((v, i) => <td key={i} className="nbp-cell">{renderCell(v)}</td>)}
+                    <td className="nbp-feature-label">{t(`groups.${gi}.rows.${ri}`, label)}</td>
+                    {vals.map((v, i) => <td key={i} className="nbp-cell">{renderCell(v, t)}</td>)}
                   </tr>
                 ))}
               </Fragment>
@@ -150,19 +176,19 @@ export default function NoticeboardPricingTable({
         </table>
       </div>
       <div className="nbp-footnote">
-        <span>✓ marked present &nbsp;&nbsp; ✗ marked absent</span>
+        <span>{t("legend", "✓ marked present    ✗ marked absent")}</span>
         {footnote !== undefined ? footnote : (
-          <span>Prices in INR &middot; Family Premium fits 2 children &middot; Exam Prep Center (&#8377;1,999 / year) is a Grade 11&ndash;12 only add&#8209;on covering JEE, NEET, CUET, SAT, IELTS & TOEFL</span>
+          <span>{t("footnote", "Prices in INR · Family Premium fits 2 children · Exam Prep Center (₹1,999 / year) is a Grade 11–12 only add‑on covering JEE, NEET, CUET, SAT, IELTS & TOEFL")}</span>
         )}
       </div>
       {showCta && (
         <div className="nbp-cta-row">
           {showFreeCta && (
-            <button className="nbp-btn nbp-btn-outline" onClick={() => onChoosePlan?.("free_tier")}>Start Free</button>
+            <button className="nbp-btn nbp-btn-outline" onClick={() => onChoosePlan?.("free_tier")}>{t("cta.startFree", "Start Free")}</button>
           )}
-          <button className="nbp-btn nbp-btn-fill" onClick={() => onChoosePlan?.("starter")}>Choose Premium</button>
-          <button className="nbp-btn nbp-btn-outline" onClick={() => onChoosePlan?.("family_premium")}>Get Family Premium</button>
-          <button className="nbp-btn nbp-btn-outline" onClick={() => onChoosePlan?.("exam_prep_center")}>Get Exam Prep Center</button>
+          <button className="nbp-btn nbp-btn-fill" onClick={() => onChoosePlan?.("starter")}>{t("cta.choosePremium", "Choose Premium")}</button>
+          <button className="nbp-btn nbp-btn-outline" onClick={() => onChoosePlan?.("family_premium")}>{t("cta.getFamilyPremium", "Get Family Premium")}</button>
+          <button className="nbp-btn nbp-btn-outline" onClick={() => onChoosePlan?.("exam_prep_center")}>{t("cta.getExamPrepCenter", "Get Exam Prep Center")}</button>
         </div>
       )}
     </div>

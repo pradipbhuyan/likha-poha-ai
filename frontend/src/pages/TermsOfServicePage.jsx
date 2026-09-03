@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
+import { useTranslation, Trans } from "react-i18next";
 import logoImg from "../assets/AITutorLogo1.png";
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
 const FALLBACK_EMAIL = "likhapohaai@gmail.com";
+const LINK_STYLE = { color: "#93c5fd" };
 
 function Section({ title, children }) {
   return (
@@ -13,6 +15,17 @@ function Section({ title, children }) {
       <div style={{ color: "#cbd5e1", fontSize: ".93rem", lineHeight: 1.8, paddingLeft: 17 }}>
         {children}
       </div>
+    </div>
+  );
+}
+
+function LangSwitch({ i18n }) {
+  const active = { background: "linear-gradient(135deg,#4d41c5,#5a84e6)", color: "#fff" };
+  const base = { border: "none", background: "transparent", color: "#8b96a8", fontFamily: "inherit", fontSize: ".78rem", fontWeight: 700, padding: "6px 13px", borderRadius: 99, cursor: "pointer" };
+  return (
+    <div style={{ display: "flex", border: "1px solid #334155", borderRadius: 99, padding: 3, gap: 2, background: "#0b1220" }} role="group" aria-label="Language">
+      <button type="button" style={i18n.resolvedLanguage === "en" ? { ...base, ...active } : base} onClick={() => i18n.changeLanguage("en")}>EN</button>
+      <button type="button" style={i18n.resolvedLanguage === "hi" ? { ...base, ...active } : base} onClick={() => i18n.changeLanguage("hi")}>हिं</button>
     </div>
   );
 }
@@ -30,9 +43,17 @@ function Section({ title, children }) {
  *   • The governing jurisdiction, operator name, or contact changes
  *   • A mobile app is launched or removed
  * See also: RefundPolicyPage.jsx, PrivacyPolicyPage.jsx
+ *
+ * Bilingual (EN/HI) via react-i18next, namespace "legal" → key prefix "terms".
+ * Sentences with inline markup (bold, links) use <Trans>, whose children are
+ * placeholder elements referenced by position (<0>, <1>, ...) from the
+ * translation string in legal.json — the displayed text always comes from
+ * that string, not the placeholder's own content. Keep the placeholder
+ * count/order in sync with the tag numbers when editing copy.
  * ─────────────────────────────────────────────────────────────────────────
  */
 export default function TermsOfServicePage({ onBackToHome }) {
+  const { t, i18n } = useTranslation("legal");
   const [contactEmail, setContactEmail] = useState(FALLBACK_EMAIL);
 
   useEffect(() => {
@@ -42,189 +63,180 @@ export default function TermsOfServicePage({ onBackToHome }) {
       .catch(() => {});
   }, []);
 
+  const mailtoLink = <a href={`mailto:${contactEmail}`} style={LINK_STYLE} />;
+  const privacyLink = <a href="/privacy-policy" style={LINK_STYLE} />;
+  const refundLink = <a href="/refund-policy" style={LINK_STYLE} />;
+  const pricingLink = <a href="/#pricing" style={LINK_STYLE} />;
+
   return (
-    <div style={{ fontFamily: "Inter,sans-serif", background: "#0f172a", color: "#f8fafc", minHeight: "100vh", lineHeight: 1.7 }}>
+    <div style={{ fontFamily: "Inter,'Noto Sans Devanagari',sans-serif", background: "#0f172a", color: "#f8fafc", minHeight: "100vh", lineHeight: 1.7 }}>
       {/* Nav */}
-      <nav style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "14px 40px", background: "rgba(15,23,42,.96)", backdropFilter: "blur(16px)", borderBottom: "1px solid #334155", position: "sticky", top: 0, zIndex: 99 }}>
+      <nav style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "14px 40px", background: "rgba(15,23,42,.96)", backdropFilter: "blur(16px)", borderBottom: "1px solid #334155", position: "sticky", top: 0, zIndex: 99, flexWrap: "wrap", gap: 10 }}>
         <button onClick={onBackToHome} style={{ display: "flex", alignItems: "center", gap: "10px", background: "transparent", border: "none", color: "#f8fafc", cursor: "pointer", fontFamily: "inherit" }}>
           <img src={logoImg} alt="Likha Poha AI" style={{ width: 42, height: 42, borderRadius: 10, objectFit: "cover", background: "#fff" }} />
           <span style={{ fontSize: "1.08rem", fontWeight: 700 }}>Likha Poha AI</span>
         </button>
-        <button onClick={onBackToHome} style={{ background: "transparent", border: "1px solid #334155", color: "#93c5fd", padding: "8px 18px", borderRadius: 8, fontSize: ".88rem", cursor: "pointer", fontFamily: "inherit" }}>
-          ← Back to Home
-        </button>
+        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+          <LangSwitch i18n={i18n} />
+          <button onClick={onBackToHome} style={{ background: "transparent", border: "1px solid #334155", color: "#93c5fd", padding: "8px 18px", borderRadius: 8, fontSize: ".88rem", cursor: "pointer", fontFamily: "inherit" }}>
+            {t("common.backToHome")}
+          </button>
+        </div>
       </nav>
 
       {/* Content */}
       <div style={{ maxWidth: 800, margin: "0 auto", padding: "60px 24px 80px" }}>
         <div style={{ marginBottom: 40 }}>
-          <p style={{ fontSize: ".75rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: ".1em", color: "#93c5fd", marginBottom: 10 }}>Legal</p>
-          <h1 style={{ fontSize: "clamp(2rem,5vw,3rem)", fontWeight: 900, lineHeight: 1.1, marginBottom: 16 }}>Terms of Service</h1>
-          <p style={{ color: "#94a3b8", fontSize: ".9rem" }}>Last updated: July 2026 &nbsp;·&nbsp; Effective immediately</p>
+          <p style={{ fontSize: ".75rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: ".1em", color: "#93c5fd", marginBottom: 10 }}>{t("common.legalEyebrow")}</p>
+          <h1 style={{ fontSize: "clamp(2rem,5vw,3rem)", fontWeight: 900, lineHeight: 1.1, marginBottom: 16 }}>{t("terms.title")}</h1>
+          <p style={{ color: "#94a3b8", fontSize: ".9rem" }}>{t("common.lastUpdated")} &nbsp;·&nbsp; {t("common.effective")}</p>
         </div>
 
-        <Section title="1. Acceptance of Terms">
-          By accessing or using Likha Poha AI ("the Platform", "we", "us", or "our") at <strong>www.likhapoha.in</strong> or our mobile app, you agree to be bound by these Terms of Service ("Terms") and our{" "}
-          <a href="/privacy-policy" style={{ color: "#93c5fd" }}>Privacy Policy</a>. If you do not agree to these Terms, please do not use the Platform.
+        <Section title={t("terms.s1.title")}>
+          <Trans t={t} i18nKey="terms.s1.p1"><strong />{privacyLink}</Trans>
           <br /><br />
-          These Terms constitute a legally binding agreement between you (the user) and Likha Poha AI, India.
+          {t("terms.s1.p2")}
         </Section>
 
-        <Section title="2. Description of Service">
-          Likha Poha AI provides AI-powered educational tools for CBSE students in Grades 5–12, including:
+        <Section title={t("terms.s2.title")}>
+          {t("terms.s2.intro")}
           <ul style={{ paddingLeft: 24, marginTop: 8 }}>
-            <li style={{ marginBottom: 6 }}>AI-generated step-by-step lessons aligned to the NCERT curriculum</li>
-            <li style={{ marginBottom: 6 }}>Ask Doubt — conversational AI answers to student questions</li>
-            <li style={{ marginBottom: 6 }}>Mock Tests — customisable CBSE practice tests with 140,000+ questions</li>
-            <li style={{ marginBottom: 6 }}>Exemplar Research & Lessons — NCERT Exemplar-level deep-dive for Science and Maths</li>
-            <li style={{ marginBottom: 6 }}>Formula & Concepts library — chapter-wise formula sheets with worked examples</li>
-            <li style={{ marginBottom: 6 }}>Board Papers — 10 years of past CBSE board exam papers with full AI-generated answers</li>
-            <li style={{ marginBottom: 6 }}>Learn More — curated video resources per chapter</li>
-            <li style={{ marginBottom: 6 }}>Exam Prep Centre — preparation resources for JEE, NEET, CUET, SAT, IELTS, and TOEFL</li>
-            <li style={{ marginBottom: 6 }}>Parent Dashboard — progress monitoring, alerts, and family account management</li>
-            <li>Mobile app — companion Android and iOS app for on-the-go learning</li>
+            {t("terms.s2.items", { returnObjects: true }).map((item, i, arr) => (
+              <li style={i < arr.length - 1 ? { marginBottom: 6 } : undefined} key={i}>{item}</li>
+            ))}
           </ul>
-          We reserve the right to modify, suspend, or discontinue any feature of the Platform at any time with reasonable notice.
+          {t("terms.s2.closing")}
         </Section>
 
-        <Section title="3. Eligibility and Accounts">
-          <strong>3.1 Eligibility</strong>
+        <Section title={t("terms.s3.title")}>
+          <strong>{t("terms.s3.sub1Title")}</strong>
           <ul style={{ paddingLeft: 24, marginTop: 8, marginBottom: 16 }}>
-            <li style={{ marginBottom: 6 }}>The Platform is designed for students in Grades 5–12 (approximately ages 10–18).</li>
-            <li style={{ marginBottom: 6 }}>Users under 18 must have parental consent. Parents/guardians are responsible for their child's use of the Platform.</li>
-            <li>You must provide accurate and complete information when creating an account.</li>
+            {t("terms.s3.items1", { returnObjects: true }).map((item, i, arr) => (
+              <li style={i < arr.length - 1 ? { marginBottom: 6 } : undefined} key={i}>{item}</li>
+            ))}
           </ul>
 
-          <strong>3.2 Account Security</strong>
+          <strong>{t("terms.s3.sub2Title")}</strong>
           <ul style={{ paddingLeft: 24, marginTop: 8, marginBottom: 16 }}>
-            <li style={{ marginBottom: 6 }}>You are responsible for maintaining the confidentiality of your login credentials.</li>
-            <li style={{ marginBottom: 6 }}>You must notify us immediately at{" "}<a href={`mailto:${contactEmail}`} style={{ color: "#93c5fd" }}>{contactEmail}</a> if you suspect unauthorised access to your account.</li>
-            <li>Sharing your account credentials with others is not permitted.</li>
+            <li style={{ marginBottom: 6 }}>{t("terms.s3.item2_0")}</li>
+            <li style={{ marginBottom: 6 }}><Trans t={t} i18nKey="terms.s3.item2_1" values={{ email: contactEmail }}>{mailtoLink}</Trans></li>
+            <li>{t("terms.s3.item2_2")}</li>
           </ul>
 
-          <strong>3.3 One Account Per User</strong>
+          <strong>{t("terms.s3.sub3Title")}</strong>
           <br />
-          Each person may maintain only one active account. Creating multiple accounts to circumvent usage limits or subscription restrictions is prohibited.
+          {t("terms.s3.sub3Body")}
         </Section>
 
-        <Section title="4. Subscriptions and Payments">
-          <strong>4.1 Plans</strong>
+        <Section title={t("terms.s4.title")}>
+          <strong>{t("terms.s4.sub1Title")}</strong>
           <br />
-          Likha Poha AI offers a free tier and the following paid plans: <strong>Premium</strong> (₹299/month, single student) and <strong>Family Premium</strong> (₹499/month, up to 2 students). Extended 6-month and annual plans are available through special offer codes. The Free Tier provides limited access at no cost. Full plan details are on the{" "}
-          <a href="/#pricing" style={{ color: "#93c5fd" }}>Pricing page</a>.
+          <Trans t={t} i18nKey="terms.s4.sub1Body"><strong /><strong />{pricingLink}</Trans>
 
           <br /><br />
-          <strong>4.2 Billing</strong>
+          <strong>{t("terms.s4.sub2Title")}</strong>
           <ul style={{ paddingLeft: 24, marginTop: 8, marginBottom: 16 }}>
-            <li style={{ marginBottom: 6 }}>Payments are processed by Razorpay, a PCI-DSS compliant payment gateway.</li>
-            <li style={{ marginBottom: 6 }}>All amounts are in Indian Rupees (INR) and inclusive of applicable taxes.</li>
-            <li>Subscriptions do not auto-renew — you choose to extend when your plan expires.</li>
+            {t("terms.s4.items2", { returnObjects: true }).map((item, i, arr) => (
+              <li style={i < arr.length - 1 ? { marginBottom: 6 } : undefined} key={i}>{item}</li>
+            ))}
           </ul>
 
-          <strong>4.3 Refunds</strong>
+          <strong>{t("terms.s4.sub3Title")}</strong>
           <br />
-          Please refer to our{" "}
-          <a href="/refund-policy" style={{ color: "#93c5fd" }}>Refund Policy</a> for details on eligibility, timelines, and the refund process.
+          <Trans t={t} i18nKey="terms.s4.sub3Body">{refundLink}</Trans>
         </Section>
 
-        <Section title="5. Acceptable Use">
-          You agree to use the Platform only for lawful educational purposes and in accordance with these Terms. You must not:
+        <Section title={t("terms.s5.title")}>
+          {t("terms.s5.intro")}
           <ul style={{ paddingLeft: 24, marginTop: 8 }}>
-            <li style={{ marginBottom: 6 }}>Use the Platform to generate, store, or share content that is harmful, abusive, defamatory, or illegal.</li>
-            <li style={{ marginBottom: 6 }}>Attempt to reverse-engineer, copy, scrape, or harvest content, lesson data, or question banks from the Platform.</li>
-            <li style={{ marginBottom: 6 }}>Use automated scripts, bots, or crawlers to access the Platform without our written permission.</li>
-            <li style={{ marginBottom: 6 }}>Attempt to bypass subscription limits, rate limits, or access controls.</li>
-            <li style={{ marginBottom: 6 }}>Upload or transmit malicious code, viruses, or any software designed to disrupt the Platform.</li>
-            <li style={{ marginBottom: 6 }}>Impersonate another user, teacher, or administrator.</li>
-            <li>Use the Platform for commercial tutoring services or reselling AI-generated content without our written consent.</li>
+            {t("terms.s5.items", { returnObjects: true }).map((item, i, arr) => (
+              <li style={i < arr.length - 1 ? { marginBottom: 6 } : undefined} key={i}>{item}</li>
+            ))}
           </ul>
-          Violation of these rules may result in immediate account suspension without refund.
+          {t("terms.s5.closing")}
         </Section>
 
-        <Section title="6. AI-Generated Content Disclaimer">
-          Likha Poha AI uses large language models to generate educational content. While we work to ensure quality and curriculum alignment:
+        <Section title={t("terms.s6.title")}>
+          {t("terms.s6.intro")}
           <ul style={{ paddingLeft: 24, marginTop: 8 }}>
-            <li style={{ marginBottom: 6 }}>AI-generated lessons, answers, and explanations may occasionally contain errors, inaccuracies, or outdated information.</li>
-            <li style={{ marginBottom: 6 }}>Content should be used as a <strong>supplementary learning aid</strong>, not as a substitute for verified textbooks, teachers, or official NCERT materials.</li>
-            <li style={{ marginBottom: 6 }}>For competitive exams (JEE, NEET, CUET, SAT, IELTS, TOEFL) or high-stakes assessments, always verify answers with authoritative sources.</li>
-            <li>We continuously improve content quality through human review and AI model upgrades.</li>
+            <li style={{ marginBottom: 6 }}>{t("terms.s6.item0")}</li>
+            <li style={{ marginBottom: 6 }}><Trans t={t} i18nKey="terms.s6.item1"><strong /></Trans></li>
+            <li style={{ marginBottom: 6 }}>{t("terms.s6.item2")}</li>
+            <li>{t("terms.s6.item3")}</li>
           </ul>
         </Section>
 
-        <Section title="7. Intellectual Property">
-          <strong>7.1 Our Content</strong>
+        <Section title={t("terms.s7.title")}>
+          <strong>{t("terms.s7.sub1Title")}</strong>
           <br />
-          All platform design, code, branding, lesson templates, question banks, and AI model configurations are the intellectual property of Likha Poha AI. You may not reproduce, distribute, or create derivative works from our content without prior written permission.
+          {t("terms.s7.sub1Body")}
 
           <br /><br />
-          <strong>7.2 NCERT Curriculum</strong>
+          <strong>{t("terms.s7.sub2Title")}</strong>
           <br />
-          Lesson topics and chapter names are based on the publicly available NCERT curriculum published by the Government of India. We acknowledge NCERT's role in shaping the Indian educational framework.
+          {t("terms.s7.sub2Body")}
 
           <br /><br />
-          <strong>7.3 Your Content</strong>
+          <strong>{t("terms.s7.sub3Title")}</strong>
           <br />
-          Any content you submit (e.g. doubt questions, feedback) grants us a non-exclusive, royalty-free licence to use it to improve the Platform. We will not identify you personally in any such use.
+          {t("terms.s7.sub3Body")}
         </Section>
 
-        <Section title="8. Privacy">
-          Your use of the Platform is also governed by our{" "}
-          <a href="/privacy-policy" style={{ color: "#93c5fd" }}>Privacy Policy</a>, which is incorporated into these Terms by reference. By using the Platform, you consent to the data practices described therein.
+        <Section title={t("terms.s8.title")}>
+          <Trans t={t} i18nKey="terms.s8.body">{privacyLink}</Trans>
         </Section>
 
-        <Section title="9. Limitation of Liability">
-          To the maximum extent permitted by applicable law:
+        <Section title={t("terms.s9.title")}>
+          {t("terms.s9.intro")}
           <ul style={{ paddingLeft: 24, marginTop: 8 }}>
-            <li style={{ marginBottom: 6 }}>Likha Poha AI is provided "as is" without warranties of any kind, express or implied.</li>
-            <li style={{ marginBottom: 6 }}>We do not guarantee that the Platform will be error-free, uninterrupted, or always available.</li>
-            <li style={{ marginBottom: 6 }}>We are not liable for any loss of data, academic performance outcomes, or indirect, incidental, or consequential damages arising from use of the Platform.</li>
-            <li>Our total liability to you in any circumstances shall not exceed the amount paid by you in the 30 days preceding the claim.</li>
+            {t("terms.s9.items", { returnObjects: true }).map((item, i, arr) => (
+              <li style={i < arr.length - 1 ? { marginBottom: 6 } : undefined} key={i}>{item}</li>
+            ))}
           </ul>
         </Section>
 
-        <Section title="10. Indemnification">
-          You agree to indemnify and hold harmless Likha Poha AI, its operators, employees, and partners from any claims, damages, or expenses (including legal fees) arising from:
+        <Section title={t("terms.s10.title")}>
+          {t("terms.s10.intro")}
           <ul style={{ paddingLeft: 24, marginTop: 8 }}>
-            <li style={{ marginBottom: 6 }}>Your violation of these Terms</li>
-            <li style={{ marginBottom: 6 }}>Your misuse of the Platform</li>
-            <li>Any content you submit to the Platform</li>
+            {t("terms.s10.items", { returnObjects: true }).map((item, i, arr) => (
+              <li style={i < arr.length - 1 ? { marginBottom: 6 } : undefined} key={i}>{item}</li>
+            ))}
           </ul>
         </Section>
 
-        <Section title="11. Termination">
-          We may suspend or terminate your account at any time if:
+        <Section title={t("terms.s11.title")}>
+          {t("terms.s11.intro")}
           <ul style={{ paddingLeft: 24, marginTop: 8 }}>
-            <li style={{ marginBottom: 6 }}>You violate these Terms or our Acceptable Use policy.</li>
-            <li style={{ marginBottom: 6 }}>We detect fraudulent activity or abuse of platform resources.</li>
-            <li>You request account deletion.</li>
+            {t("terms.s11.items", { returnObjects: true }).map((item, i, arr) => (
+              <li style={i < arr.length - 1 ? { marginBottom: 6 } : undefined} key={i}>{item}</li>
+            ))}
           </ul>
-          Upon termination, your right to access the Platform ceases immediately. Provisions of these Terms that by their nature should survive termination (including intellectual property, limitation of liability, and governing law) will continue to apply.
+          {t("terms.s11.closing")}
         </Section>
 
-        <Section title="12. Governing Law and Disputes">
-          These Terms are governed by the laws of India. Any disputes arising under these Terms shall be subject to the exclusive jurisdiction of the courts of Assam, India.
+        <Section title={t("terms.s12.title")}>
+          {t("terms.s12.p1")}
           <br /><br />
-          Before initiating formal legal proceedings, we encourage you to contact us at{" "}
-          <a href={`mailto:${contactEmail}`} style={{ color: "#93c5fd" }}>{contactEmail}</a> to resolve the matter amicably.
+          <Trans t={t} i18nKey="terms.s12.p2" values={{ email: contactEmail }}>{mailtoLink}</Trans>
         </Section>
 
-        <Section title="13. Changes to Terms">
-          We reserve the right to modify these Terms at any time. Updated Terms will be posted on this page with a new "Last updated" date. For material changes, we will notify registered users via email at least 7 days before the changes take effect. Continued use of the Platform after the effective date constitutes your acceptance of the updated Terms.
+        <Section title={t("terms.s13.title")}>
+          {t("terms.s13.body")}
         </Section>
 
-        <Section title="14. Contact">
-          If you have questions about these Terms of Service:
+        <Section title={t("terms.s14.title")}>
+          {t("terms.s14.intro")}
           <br /><br />
-          <strong>Likha Poha AI</strong><br />
-          Email:{" "}<a href={`mailto:${contactEmail}`} style={{ color: "#93c5fd" }}>{contactEmail}</a><br />
-          Website: <a href="https://www.likhapoha.in" style={{ color: "#93c5fd" }}>www.likhapoha.in</a>
+          <strong>{t("common.brand")}</strong><br />
+          {t("common.emailLabel")}{" "}<a href={`mailto:${contactEmail}`} style={LINK_STYLE}>{contactEmail}</a><br />
+          {t("common.websiteLabel")} <a href="https://www.likhapoha.in" style={LINK_STYLE}>www.likhapoha.in</a>
         </Section>
 
         {/* Footer */}
         <div style={{ borderTop: "1px solid #334155", paddingTop: 32, marginTop: 24, display: "flex", gap: 24, flexWrap: "wrap" }}>
-          <a href="/privacy-policy" style={{ color: "#93c5fd", fontSize: ".88rem" }}>Privacy Policy</a>
-          <a href="/refund-policy" style={{ color: "#93c5fd", fontSize: ".88rem" }}>Refund Policy</a>
-          <a href="/" style={{ color: "#93c5fd", fontSize: ".88rem" }}>Home</a>
+          <a href="/privacy-policy" style={{ color: "#93c5fd", fontSize: ".88rem" }}>{t("common.footerPrivacy")}</a>
+          <a href="/refund-policy" style={{ color: "#93c5fd", fontSize: ".88rem" }}>{t("common.footerRefund")}</a>
+          <a href="/" style={{ color: "#93c5fd", fontSize: ".88rem" }}>{t("common.footerHome")}</a>
         </div>
       </div>
     </div>

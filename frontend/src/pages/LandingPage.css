@@ -1,5 +1,5 @@
 .lp *,.lp *::before,.lp *::after{box-sizing:border-box;margin:0;padding:0}
-.lp{font-family:Inter,sans-serif;background:#0f172a;color:#f8fafc;line-height:1.6;min-height:100vh}
+.lp{font-family:Inter,'Noto Sans Devanagari',sans-serif;background:#0f172a;color:#f8fafc;line-height:1.6;min-height:100vh}
 .lp a{text-decoration:none;color:inherit}
 .lp-nav{position:sticky;top:0;z-index:99;display:flex;align-items:center;justify-content:space-between;padding:14px 40px;background:rgba(15,23,42,.96);backdrop-filter:blur(16px);border-bottom:1px solid #334155}
 .lp-logo{display:flex;align-items:center;gap:10px}
@@ -8,6 +8,10 @@
 .lp-nav-links{display:flex;gap:28px;font-size:.85rem;font-weight:600;color:#cbd5e1}
 .lp-nav-links a:hover{color:#5a84e6}
 .lp-nav-r{display:flex;gap:10px;align-items:center}
+.lp-langswitch{display:flex;border:1px solid #334155;border-radius:99px;padding:3px;gap:2px;background:#0b1220}
+.lp-langswitch button{border:none;background:transparent;color:#8b96a8;font-family:inherit;font-size:.78rem;font-weight:700;padding:6px 13px;border-radius:99px;cursor:pointer;transition:background .15s,color .15s}
+.lp-langswitch button.active{background:linear-gradient(135deg,#4d41c5,#5a84e6);color:#fff}
+.lp-langswitch button:focus-visible{outline:2px solid #5a84e6;outline-offset:2px}
 .lp-btn-ghost{background:transparent;border:1px solid #334155;color:#5a84e6;padding:8px 18px;border-radius:8px;font-size:.88rem;cursor:pointer;font-family:inherit}
 .lp-btn-cta{background:linear-gradient(135deg,#4d41c5,#5a84e6);color:#fff;border:none;padding:9px 20px;border-radius:8px;font-size:.88rem;font-weight:600;cursor:pointer;font-family:inherit}
 .lp-hero{text-align:center;padding:100px 20px 72px;background:radial-gradient(ellipse 90% 60% at 50% -10%,rgba(124,58,237,.28) 0%,rgba(14,165,233,.12) 40%,transparent 70%),linear-gradient(135deg,#0f172a 0%,#111827 100%)}

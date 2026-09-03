@@ -1,0 +1,175 @@
+{
+  "nav": {
+    "features": "Features",
+    "pricing": "Pricing",
+    "faq": "FAQ",
+    "login": "Login",
+    "cta": "Try for Free"
+  },
+  "hero": {
+    "badge": "🇮🇳 Built for India · Grade 5–12 · CBSE · JEE · NEET · CUET · SAT · IELTS · TOEFL",
+    "titleLine1": "Every Child Deserves a",
+    "titleAccent": "Personal AI Tutor",
+    "subtitle": "NCERT-grounded lessons, instant doubt solving, Grade 11–12 competitive exam prep, and real-time parent insights — Grade 5 to Grade 12, anytime, anywhere.",
+    "ctaPrimary": "Try for Free",
+    "ctaSecondary": "See Features →",
+    "stats": [
+      { "n": "900+", "l": "Chapters (Gr 5–12)" },
+      { "n": "8", "l": "Grades (5–12)" },
+      { "n": "12+", "l": "Subjects" },
+      { "n": "140,000+", "l": "Practice Questions" }
+    ]
+  },
+  "mission": {
+    "eyebrow": "Our Mission",
+    "title": "AI for Good — Bridging India's Education Gap",
+    "descPre": "Quality education should not depend on how much a family can afford. LikhaPoha AI uses ",
+    "descStrong": "responsible AI",
+    "descPost": " to give every Indian student — from Class 5 to Class 12 — personalised, textbook-grounded learning previously available only to students who could afford private tutors.",
+    "cards": [
+      { "t": "Strictly NCERT-grounded", "d": "No hallucinations — only textbook facts" },
+      { "t": "Safe for children", "d": "Academic guardrail blocks off-topic content" },
+      { "t": "Free to start", "d": "Core platform is free. Upgrade to Premium anytime for full access." },
+      { "t": "All grades covered", "d": "Grade 5 through 12 + JEE, NEET, CUET, SAT, IELTS, TOEFL" }
+    ]
+  },
+  "problem": {
+    "eyebrow": "The Real Problem",
+    "title": "Why Students Struggle at Home",
+    "label": "The Problem",
+    "items": [
+      "Tuition is expensive — ₹2,000–8,000/month per subject",
+      "Parents cannot track what the child actually studied",
+      "Generic YouTube videos do not follow the CBSE syllabus",
+      "No personalised feedback on weak areas",
+      "Practice questions often do not match actual exam patterns",
+      "Students lose motivation when they don't understand concepts immediately",
+      "Teachers cannot provide one-on-one attention to every child"
+    ]
+  },
+  "solution": {
+    "label": "LikhaPoha AI Solution",
+    "items": [
+      "AI lesson for every chapter — instant and accessible",
+      "Parent dashboard shows daily progress and weak areas",
+      "Lessons grounded in uploaded NCERT textbooks",
+      "Smart evaluation automatically identifies revision topics",
+      "Personalised learning path based on each student's performance",
+      "CBSE-aligned practice questions and mock tests",
+      "Available 24×7 — learn anytime, anywhere",
+      "Instant doubt-solving with AI tutor support"
+    ]
+  },
+  "results": {
+    "eyebrow": "Results for Students & Parents",
+    "items": [
+      { "pre": "Better exam preparation through ", "strong": "targeted revision", "post": "" },
+      { "pre": "Faster improvement in ", "strong": "weak subjects", "post": "" },
+      { "pre": "Increased learning ", "strong": "confidence and engagement", "post": "" },
+      { "pre": "Reduced dependence on ", "strong": "costly tuition classes", "post": "" },
+      { "pre": "Complete visibility for parents on ", "strong": "learning progress", "post": "" },
+      { "pre": "", "strong": "Personalised", "post": " learning experience for every child" }
+    ]
+  },
+  "closing": {
+    "pre": "“Every child deserves a personal tutor. ",
+    "strong": "LikhaPoha AI makes high-quality, syllabus-aligned learning accessible to every student",
+    "post": " — anytime, anywhere, at minimal cost.”"
+  },
+  "demo": {
+    "eyebrow": "See It In Action",
+    "title": "A Glimpse of What Students Experience Daily",
+    "subtitle": "Everything works on phone — no app download needed",
+    "lesson": { "label": "AI LESSON", "caption": "Step-wise chapter lesson grounded in your NCERT textbook" },
+    "mocktest": { "label": "MOCK TEST", "caption": "CBSE mock tests with instant scoring and AI explanations" },
+    "parent": { "label": "PARENT DASHBOARD", "caption": "Real-time progress, score trends and weak area alerts for parents" }
+  },
+  "features": {
+    "eyebrow": "Everything You Need",
+    "title": "Complete Study Toolkit for CBSE",
+    "subtitle": "Powerful AI tools designed for Indian students",
+    "cards": [
+      { "title": "Step-wise AI Lessons", "desc": "4–6 focused steps per chapter — Concept intro, Core explanation, Worked examples, Exam-style problems, Revision." },
+      { "title": "Instant Doubt Solving", "desc": "Ask any chapter question. AI answers from your actual NCERT textbook — not generic internet content." },
+      { "title": "Mock Tests and Question Bank", "desc": "CBSE class tests, mid-terms and full mock tests across all grades. 140,000+ practice questions — Grade 5 to Grade 12." },
+      { "title": "Parent Dashboard", "desc": "Track daily study time, test scores, weak area alerts, and AI usage. Two children per family account." },
+      { "title": "Direct Chat — Students, Parents & Teachers", "desc": "Message teachers and parents right inside the platform, with file and voice attachments. Free for every student, parent and teacher on every plan." }
+    ],
+    "doubtLabel": "INSTANT DOUBT SOLVING",
+    "analyticsLabel": "STUDENT ANALYTICS"
+  },
+  "gamified": {
+    "eyebrow": "Kids Love It",
+    "title": "Gamified Learning Dashboard",
+    "subtitle": "Badges, leaderboards and achievement streaks keep students motivated every day",
+    "achievementsLabel": "ACHIEVEMENTS AND BADGES",
+    "leaderboardLabel": "CLASS LEADERBOARD"
+  },
+  "examPrep": {
+    "eyebrow": "Grade 11 & 12 — New!",
+    "title": "Exam Prep Center",
+    "subtitle": "JEE Main, NEET UG, CUET UG, SAT, IELTS & TOEFL iBT — curated question banks and exam-authentic simulators for Indian competitive exams and global study-abroad tests, all in one place.",
+    "cards": [
+      { "title": "JEE Main Simulator", "desc": "NTA-style interface — one question at a time, floating countdown timer, question palette, Mark & Next, basic calculator. Physics, Chemistry, Mathematics." },
+      { "title": "NEET UG Prep", "desc": "Physics, Chemistry, Biology with NCERT-exact terminology. Subject-wise topic priority cards showing weightage and key subtopics." },
+      { "title": "CUET UG Prep", "desc": "All streams — Science, Commerce, Humanities. English, General Test, and domain subjects with curated practice questions." },
+      { "title": "Digital SAT Prep", "desc": "Adaptive-format practice for Reading & Writing and Math. Accepted by 1,900+ US universities. No negative marking." },
+      { "title": "IELTS Academic Prep", "desc": "Listening, Reading, Writing & Speaking practice with band-score guidance for university admissions worldwide." },
+      { "title": "TOEFL iBT Prep", "desc": "Authentic academic passages and lecture-style listening practice for US and global university admissions." }
+    ]
+  },
+  "realExam": {
+    "eyebrow": "Real Exam Practice",
+    "title": "Practice Exactly What Gets Asked",
+    "subtitle": "A decade of official board papers, and an exam-authentic JEE simulator for Grade 11–12",
+    "boardPapersLabel": "BOARD PAPERS",
+    "boardPapersCaption": "A decade of real CBSE board papers (2015–2026), every one with official answers",
+    "jeeLabel": "JEE MAIN SIMULATOR",
+    "jeeCaption": "NTA-style exam interface — live countdown timer, subject-wise tabs, and a full question palette"
+  },
+  "pricingSection": {
+    "eyebrow": "Class Noticeboard",
+    "title": "This term's learning plans",
+    "subtitle": "Pinned up for parents & students — what each plan gets you, subject by subject."
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "items": [
+      { "q": "Which classes and boards are supported?", "a": "LikhaPoha AI supports Grade 5 to Grade 12 for CBSE. Grade 5–10 covers Science, Maths, English, Social Science, and Hindi. Grade 11–12 adds Physics, Chemistry, Mathematics, Biology, Accountancy, Economics, and Business Studies — plus an Exam Prep Center for JEE Main, NEET UG, CUET UG, SAT, IELTS, and TOEFL iBT." },
+      { "q": "What is the Exam Prep Center for Grade 11 & 12?", "a": "The Exam Prep Center covers six exams: JEE Main, NEET UG, and CUET UG with an NTA-style simulator, curated MCQ question bank, subject-wise topic priorities, and simulated full-length tests with a floating countdown timer and question palette — exactly like the real exam interface. It also covers SAT, IELTS, and TOEFL iBT for students planning to study abroad, with exam-authentic practice for each format. Exam Prep Center is a separate ₹1,999 / year plan for Grade 11–12 students — Premium and Family Premium do not include it, but Exam Prep Center in turn includes full CBSE Grade 11–12 lessons, doubts, and mock tests alongside all six exams." },
+      { "q": "Does the AI use real textbooks or make things up?", "a": "Every lesson and doubt answer is grounded in uploaded NCERT textbooks using RAG technology. The AI cannot hallucinate chapter content — it is strictly textbook-aligned." },
+      { "q": "How many practice questions are available?", "a": "LikhaPoha AI has 140,000+ practice questions covering all chapters from Grade 5 to Grade 12 across CBSE subjects — including question banks for JEE Main, NEET UG, CUET UG, SAT, IELTS, and TOEFL iBT for Grade 11 & 12." },
+      { "q": "Is there a mobile app?", "a": "LikhaPoha AI is a mobile-first progressive web app. It works perfectly on any phone browser — no app download needed. Add it to your home screen for an app-like experience." },
+      { "q": "Can I manage multiple children on the Parent Dashboard?", "a": "Yes — the Parent Dashboard includes a Family Learning Center where you can manage multiple children from one unified dashboard. Simply click the '+ Add Child' button to add another child and track their progress, test performance, and weak areas separately." },
+      { "q": "What does the Parent Dashboard show?", "a": "The Parent Dashboard acts as a central Family Learning Center. It provides real-time tracking of daily learning progress, mock test scores and score trends, AI usage, and automatic weak-area alerts when a child is struggling. It also lets parents add children and manage subscription plans." },
+      { "q": "How do I add a child to my account?", "a": "Adding a child takes less than 2 minutes. Step 1 — Log in as a Parent at likhapoha.in. Step 2 — Click Parent Dashboard in the left sidebar. Step 3 — In the Your Children section, click '+ Add Child'. Step 4 — Fill in the details: child's name (required), email (optional — leave blank if they have no email), child's class (Grade 5–12 — Grade 11/12 also asks for their stream: Science PCM/PCB/PCMB, Commerce, or Humanities), and a password you will share with them. Step 5 — Click 'Add Child' to create the account. A confirmation screen will show the username and password you can share directly with your child. Your child can then log in at likhapoha.in using their username or email + password. You can add up to 2 children under one Family Premium plan." },
+      { "q": "How do I manage multiple children on one account?", "a": "With the Family Premium plan, you can manage up to 2 children from a single Parent Dashboard. Add each child by clicking '+ Add Child' in your dashboard. Each child gets their own profile, progress tracking, and weak area reports visible to you." },
+      { "q": "How does the AI identify a child's weak areas?", "a": "After each mock test, LikhaPoha AI evaluates the student's performance chapter by chapter. Chapters where a student is struggling are flagged as weak areas and shown as alerts on both the Student Dashboard and the Parent Dashboard, so revision time goes to the topics that need it most." },
+      { "q": "How do students use the Analytics Dashboard for revision?", "a": "The Analytics Dashboard turns past test results into a targeted revision plan. Score trend graphs show whether performance is improving over time. Subject performance heatmaps highlight which subjects need more focus. Automatic weak area alerts are combined to show students exactly what to study next — removing the guesswork from daily revision." },
+      { "q": "How do score trend graphs help with revision?", "a": "Score trend graphs show a visual timeline of your mock test performance over time, making it easy to see at a glance whether your average scores are improving with practice. This helps you gauge if your current revision is working or if you need to shift focus to different subjects." },
+      { "q": "Are the AI lessons based on specific NCERT chapters?", "a": "Yes — every AI lesson is explicitly grounded in uploaded NCERT textbooks, not generic internet content. Students select their grade, subject, and exact chapter, and the AI breaks it into a multi-step learning path (concept introduction, core explanation, worked examples, exam problems, revision) strictly following the CBSE textbook." },
+      { "q": "What types of tests can students create with Mock Tests?", "a": "Students can create highly customizable CBSE practice tests including class tests, mid-terms, and full mock tests. They can set the subject, chapter, difficulty, number of questions, time limit, and toggle negative marking — simulating real exam conditions. Completed tests provide instant scoring and a guided revision plan." },
+      { "q": "What resources are in the Learn More library?", "a": "The Learn More library offers curated free resources hand-picked for each specific chapter — including NCERT articles, topic-specific YouTube video links, and open references. Students select their grade, subject, and chapter to discover materials tailored exactly to what they are studying." },
+      { "q": "Is the AI safe for children? Can students ask anything they want?", "a": "LikhaPoha AI includes a built-in Academic Guardrail that keeps conversations focused on CBSE curriculum topics. It automatically detects and blocks questions about current politics, news, election results, live sports scores, and stock or market prices — instantly redirecting the student back to their studies. Parents can be confident that doubt-solving and lessons stay focused on academics, not current-affairs or off-topic chatter." }
+    ]
+  },
+  "cta": {
+    "title": "Start Your Child's AI Learning Journey Today",
+    "subtitle": "NCERT-grounded lessons, doubt solving any hour, and chapter-level progress for parents",
+    "button": "Try for Free",
+    "footnote": "Free to start · Upgrade anytime"
+  },
+  "footer": {
+    "tagline": "AI-Powered Tutor for CBSE · Grade 5–12 · JEE · NEET · CUET · SAT · IELTS · TOEFL",
+    "home": "Home",
+    "features": "Features",
+    "pricing": "Pricing",
+    "blog": "Blog",
+    "contact": "Contact",
+    "refund": "Refund Policy",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "madeInPre": "Made with",
+    "madeInPost": "in India"
+  }
+}

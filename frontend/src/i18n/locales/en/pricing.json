@@ -1,0 +1,43 @@
+{
+  "header": "What's included",
+  "swipeHint": "↔ Swipe or tap a plan above to compare",
+  "legend": "✓ marked present    ✗ marked absent",
+  "footnote": "Prices in INR · Family Premium fits 2 children · Exam Prep Center (₹1,999 / year) is a Grade 11–12 only add-on covering JEE, NEET, CUET, SAT, IELTS & TOEFL",
+  "cta": {
+    "startFree": "Start Free",
+    "choosePremium": "Choose Premium",
+    "getFamilyPremium": "Get Family Premium",
+    "getExamPrepCenter": "Get Exam Prep Center"
+  },
+  "plans": {
+    "free_tier": { "name": "Free Tier", "note": "Get started", "period": "forever" },
+    "starter": { "name": "Premium", "note": "Most popular", "period": "/ month", "tag": "Popular" },
+    "family_premium": { "name": "Family Premium", "note": "Up to 2 kids", "period": "/ month", "tag": "Best value" },
+    "exam_prep_center": { "name": "Exam Prep Center", "note": "Gr 11–12 · JEE · NEET · CUET · SAT · IELTS · TOEFL", "period": "/ year", "tag": "New" }
+  },
+  "groups": [
+    { "title": "Learning Core", "rows": ["CBSE Curriculum Coverage", "AI-Powered Lessons", "Ask-a-Doubt (AI)", "Mock Tests"] },
+    { "title": "Exam Prep & Enrichment", "rows": ["Exemplar Research (Science & Maths)", "Formula & Concepts Library", "10 Years of Board Papers, with Answers", "Learn More Video Library"] },
+    { "title": "Competitive & Global Exams (Exam Prep Center)", "rows": ["JEE — Study Plan + Test Simulation", "NEET — Study Plan + Test Simulation", "CUET — Study Plan + Test Simulation", "SAT — Study Plan + Test Simulation", "IELTS — Study Plan + Test Simulation", "TOEFL — Study Plan + Test Simulation"] },
+    { "title": "Family & Parents", "rows": ["Child Profiles", "Parent Dashboard", "Family Learning Management", "Direct Chat (Students, Parents & Teachers)"] },
+    { "title": "Plan & Support", "rows": ["Priority Support", "Billing", "Plan Duration"] }
+  ],
+  "cellValues": {
+    "allSubjectsAllGrades": "All subjects · all grades",
+    "gr1112Only": "Grade 11–12 only",
+    "unlimited": "Unlimited",
+    "unlimitedGr1112": "Unlimited (Gr 11–12)",
+    "fiveDay": "5 / day",
+    "included": "Included",
+    "basic": "Basic",
+    "fullAlerts": "Full + alerts",
+    "fullAnalytics": "Full + analytics",
+    "freeForever": "Free forever",
+    "priceMonth299": "₹299 / month",
+    "priceMonth499": "₹499 / month",
+    "priceYear1999": "₹1,999 / year",
+    "dash": "—",
+    "monthly": "Monthly",
+    "annualGr1112": "Annual (Gr 11–12)"
+  }
+}
