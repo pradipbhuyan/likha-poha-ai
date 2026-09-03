@@ -46,7 +46,7 @@ describe("subjectAccess", () => {
     };
 
     expect(
-      filterAllowedSubjects(user, ["English", "Maths", "Science"], "ICSE")
+      filterAllowedSubjects(user, ["English", "Maths", "Science"], "SOF")
     ).toEqual(["English", "Maths", "Science"]);
   });
 

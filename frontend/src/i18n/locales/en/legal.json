@@ -214,7 +214,7 @@
     "s2": {
       "title": "2. Information We Collect",
       "sub1Title": "2.1 Account Information",
-      "items1": ["Name / username", "Email address", "Password (stored as a bcrypt hash — we never store plain-text passwords)", "Grade, board (CBSE/ICSE/State), and subjects", "Role (student, parent, teacher)"],
+      "items1": ["Name / username", "Email address", "Password (stored as a bcrypt hash — we never store plain-text passwords)", "Grade, board (CBSE), and subjects", "Role (student, parent, teacher)"],
       "sub2Title": "2.2 Usage Data",
       "items2": ["Lessons generated (grade, subject, chapter, step)", "Doubts asked and AI responses", "Mock tests taken and scores", "Token consumption per session", "Page views and feature interactions"],
       "sub3Title": "2.3 Payment Data",

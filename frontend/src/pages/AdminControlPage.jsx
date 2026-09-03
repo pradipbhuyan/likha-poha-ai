@@ -58,7 +58,7 @@ const STUDENT_GRADE_OPTIONS = Array.from(
   (_, index) => `Grade ${index + 1}`
 );
 
-const STUDENT_BOARD_OPTIONS = ["CBSE", "ICSE", "State Board"];
+const STUDENT_BOARD_OPTIONS = ["CBSE", "State Board"];
 
 const AI_MODEL_OPTIONS = [
   {
