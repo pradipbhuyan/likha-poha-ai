@@ -85,6 +85,16 @@ def clear_user_test_history(username, profile_id=None):
     return response.data
 
 
+# Minimum test count a student's average needs before the leaderboard trusts
+# it at face value. Below this, ranking blends the student's own average
+# with the platform-wide mean (weighted by how few tests they've taken) —
+# a standard Bayesian/"IMDb-style" adjustment. Without it, one lucky test at
+# 100% outranks fifty consistent tests at 85%, which is exactly the "trust"
+# problem this exists to fix. `average_score` shown to students is always
+# their real, unadjusted average — only the sort order is weighted.
+_LEADERBOARD_CONFIDENCE_TESTS = 5
+
+
 def get_leaderboard():
     """Build leaderboard rows from each student's best and average scores."""
     history = get_all_history()
@@ -111,21 +121,34 @@ def get_leaderboard():
         )
         scores[user]["total_score"] += percent
 
-    leaderboard = []
+    total_tests = sum(data["tests"] for data in scores.values())
+    platform_mean = (
+        sum(data["total_score"] for data in scores.values()) / total_tests
+        if total_tests
+        else 0
+    )
 
-    for username, data in scores.items():
-        leaderboard.append({
-            "username": username,
-            "tests": data["tests"],
-            "best_score": data["best_score"],
-            "average_score": round(
-                data["total_score"] / data["tests"],
-                2,
-            ),
-        })
+    def weighted_score(data):
+        tests = data["tests"]
+        return (
+            data["total_score"] + platform_mean * _LEADERBOARD_CONFIDENCE_TESTS
+        ) / (tests + _LEADERBOARD_CONFIDENCE_TESTS)
 
-    return sorted(
-        leaderboard,
-        key=lambda x: x["average_score"],
+    ranked_usernames = sorted(
+        scores.keys(),
+        key=lambda u: weighted_score(scores[u]),
         reverse=True,
     )
+
+    return [
+        {
+            "username": username,
+            "tests": scores[username]["tests"],
+            "best_score": scores[username]["best_score"],
+            "average_score": round(
+                scores[username]["total_score"] / scores[username]["tests"],
+                2,
+            ),
+        }
+        for username in ranked_usernames
+    ]

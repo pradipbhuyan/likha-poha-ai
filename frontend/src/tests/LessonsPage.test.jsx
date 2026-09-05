@@ -408,6 +408,69 @@ describe("LessonsPage — refresh lesson control", () => {
   });
 });
 
+// ── initialTarget (targeted practice from Weak Topics) ──────────────────────
+
+describe("LessonsPage — initialTarget", () => {
+  test("opens the requested subject+chapter instead of the default", async () => {
+    await renderPage({ initialTarget: { subject: "Maths", chapter: "Number Systems" } });
+
+    const [, subjectSelect, chapterSelect] = selects();
+    expect(subjectSelect.value).toBe("Maths");
+    expect(chapterSelect.value).toBe("Number Systems");
+    await waitFor(() =>
+      expect(getChapterDoc).toHaveBeenCalledWith(
+        expect.objectContaining({ subject: "Maths", chapter: "Number Systems" })
+      )
+    );
+  });
+
+  test("calls onInitialTargetConsumed once the target has been applied", async () => {
+    const onInitialTargetConsumed = vi.fn();
+    await renderPage({
+      initialTarget: { subject: "Maths", chapter: "Number Systems" },
+      onInitialTargetConsumed,
+    });
+
+    expect(onInitialTargetConsumed).toHaveBeenCalledTimes(1);
+  });
+
+  test("falls back to the default selection when the target chapter doesn't exist", async () => {
+    await renderPage({ initialTarget: { subject: "Maths", chapter: "Not A Real Chapter" } });
+
+    const [, subjectSelect, chapterSelect] = selects();
+    // Falls back to the ordinary default (first subject, first chapter) —
+    // never a blank/broken selection.
+    expect(subjectSelect.value).toBe("Science");
+    expect(chapterSelect.value).toBe("Tissues");
+  });
+
+  test("falls back to the default selection when the target subject isn't allowed", async () => {
+    await renderPage({
+      user: student({ cbseSubjects: ["Science"] }),
+      initialTarget: { subject: "Maths", chapter: "Number Systems" },
+    });
+
+    const [, subjectSelect] = selects();
+    expect(subjectSelect.value).toBe("Science");
+  });
+
+  test("ignores an incomplete target (missing chapter) and uses the default", async () => {
+    await renderPage({ initialTarget: { subject: "Maths" } });
+
+    const [, subjectSelect] = selects();
+    expect(subjectSelect.value).toBe("Science");
+  });
+
+  test("does nothing when no initialTarget is passed", async () => {
+    const onInitialTargetConsumed = vi.fn();
+    await renderPage({ onInitialTargetConsumed });
+
+    expect(onInitialTargetConsumed).not.toHaveBeenCalled();
+    const [, subjectSelect] = selects();
+    expect(subjectSelect.value).toBe("Science");
+  });
+});
+
 // ── Grade 11/12 profile sync ─────────────────────────────────────────────────
 
 describe("LessonsPage — Grade 11/12 profile sync", () => {

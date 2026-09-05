@@ -408,6 +408,10 @@ function App() {
   const [showSignup, setShowSignup] = useState(false);
   const [signupInitialPlan, setSignupInitialPlan] = useState("free");
   const [activePage, setActivePage] = useState("dashboard");
+  // One-shot subject/chapter target for the next Lessons page mount — set by
+  // openLessonForTopic(), read once by LessonsPage, then cleared. See
+  // openLessonForTopic() below.
+  const [pendingLessonTarget, setPendingLessonTarget] = useState(null);
   const [reportBugOpen, setReportBugOpen] = useState(false);
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const [accountMenuOpen, setAccountMenuOpen] = useState(false);
@@ -1235,6 +1239,18 @@ function App() {
     localStorage.setItem("tutor_active_page", page);
   }
 
+  function openLessonForTopic(subject, chapter) {
+    /**
+     * Navigate to Lessons pre-targeted at one subject/chapter — used by the
+     * Dashboard's Weak Topics "Practice ->" button so it lands the student on
+     * that chapter instead of Lessons' generic default. LessonsPage clears
+     * this via onInitialTargetConsumed once read, so a later, ordinary visit
+     * to Lessons (via the sidebar) never reuses a stale target.
+     */
+    setPendingLessonTarget({ subject, chapter });
+    handlePageChange("lessons");
+  }
+
   if (routePath === "/reset-password") {
     return (
       <ResetPasswordPage
@@ -1874,7 +1890,13 @@ function App() {
     if (isPageBlockedForRole(activePage, user?.role)) return null;
     switch (activePage) {
       case "dashboard":
-        return <StudentDashboardPage user={user} setActivePage={handlePageChange} />;
+        return (
+          <StudentDashboardPage
+            user={user}
+            setActivePage={handlePageChange}
+            onPracticeTopic={openLessonForTopic}
+          />
+        );
       case "formulaSheet":
         return <FormulaSheetPage user={user} setActivePage={handlePageChange} />;
       case "adminControl":
@@ -1890,7 +1912,14 @@ function App() {
       case "adminTechDebt":
         return <AdminTechDebtPage user={user} setActivePage={handlePageChange} />;
       case "lessons":
-        return <LessonsPage user={user} setActivePage={handlePageChange} />;
+        return (
+          <LessonsPage
+            user={user}
+            setActivePage={handlePageChange}
+            initialTarget={pendingLessonTarget}
+            onInitialTargetConsumed={() => setPendingLessonTarget(null)}
+          />
+        );
       case "doubt":
         return <DoubtPage user={user} setActivePage={handlePageChange} />;
       case "mockTest":

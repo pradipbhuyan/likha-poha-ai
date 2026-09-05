@@ -179,6 +179,27 @@ describe("StudentDashboardPage — redesigned", () => {
     expect(document.body.textContent).toContain("Fractions");
   });
 
+  test("Weak Topics Practice button opens that exact subject+chapter when onPracticeTopic is wired", async () => {
+    const onPracticeTopic = vi.fn();
+    render(<StudentDashboardPage user={USER} setActivePage={vi.fn()} onPracticeTopic={onPracticeTopic} />);
+    await screen.findByTestId("weak-topics-card");
+
+    // First weak topic in the mocked summary is { subject: "Maths", chapter: "Fractions" }
+    screen.getAllByText("Practice →")[0].click();
+
+    expect(onPracticeTopic).toHaveBeenCalledWith("Maths", "Fractions");
+  });
+
+  test("Weak Topics Practice button falls back to a plain page switch when onPracticeTopic isn't wired", async () => {
+    const navFn = vi.fn();
+    render(<StudentDashboardPage user={USER} setActivePage={navFn} />);
+    await screen.findByTestId("weak-topics-card");
+
+    screen.getAllByText("Practice →")[0].click();
+
+    expect(navFn).toHaveBeenCalledWith("lessons");
+  });
+
   test("renders Achievements card", async () => {
     render(<StudentDashboardPage user={USER} setActivePage={vi.fn()} />);
     expect(await screen.findByTestId("achievements-card")).toBeInTheDocument();

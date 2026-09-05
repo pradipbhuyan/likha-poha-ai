@@ -38,7 +38,7 @@ const _selectStyle = {
   fontFamily: "inherit",
 };
 
-function LessonsPage({ user, setActivePage }) {
+function LessonsPage({ user, setActivePage, initialTarget, onInitialTargetConsumed }) {
   /** Student lesson workspace — Chapter Journey view with grade/subject/chapter selector. */
 
   // ── Effective user: syncs stream/cbseSubjects from backend for Grade 11/12 ──
@@ -181,10 +181,35 @@ function LessonsPage({ user, setActivePage }) {
               selectedMode
             )[0] || "";
         }
-        const selectedChapter =
+        let selectedChapter =
           selectedSubject === defaultSubject
             ? defaultChapter
             : data.syllabus[defaultGrade]?.[selectedMode]?.[selectedSubject]?.[0] || "";
+
+        // A weak-topic/practice link from another page (e.g. the Dashboard's
+        // Weak Topics card) can request a specific subject+chapter. Only
+        // honor it if that combination is genuinely reachable for this
+        // student — an allowed subject with a real chapter in the syllabus —
+        // otherwise silently keep the computed default rather than risk
+        // landing on a blank or inaccessible selection.
+        if (initialTarget?.subject && initialTarget?.chapter) {
+          const allowedSubjectsForSelectedMode = filterAllowedSubjects(
+            user,
+            Object.keys(data.syllabus[defaultGrade]?.[selectedMode] || {}),
+            selectedMode
+          );
+          const targetChapters =
+            data.syllabus[defaultGrade]?.[selectedMode]?.[initialTarget.subject] || [];
+
+          if (
+            allowedSubjectsForSelectedMode.includes(initialTarget.subject) &&
+            targetChapters.includes(initialTarget.chapter)
+          ) {
+            selectedSubject = initialTarget.subject;
+            selectedChapter = initialTarget.chapter;
+          }
+          onInitialTargetConsumed?.();
+        }
 
         setGrade(defaultGrade);
         setMode(selectedMode);

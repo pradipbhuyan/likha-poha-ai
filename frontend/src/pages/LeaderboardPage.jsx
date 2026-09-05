@@ -48,6 +48,10 @@ function LeaderboardPage() {
   }
 
   const topThree = leaderboard.slice(0, 3);
+  // Pinned so the viewer can find their own standing without scrolling
+  // through the full list — previously the only "you" signal was a
+  // highlighted row wherever it happened to fall in the ranking.
+  const you = leaderboard.find((item) => item.is_you);
 
   return (
     <div className="leaderboard-page premium-page premium-leaderboard-page">
@@ -66,6 +70,25 @@ function LeaderboardPage() {
           Keep improving your mock test scores to climb the rankings
         </span>
       </div>
+
+      {you && (
+        <div
+          data-testid="your-rank-pinned"
+          style={{
+            display: "flex", alignItems: "center", gap: 14, flexWrap: "wrap",
+            padding: "10px 16px", margin: "8px 0 4px", borderRadius: 12,
+            border: "1px solid rgba(99,102,241,0.35)",
+            background: "rgba(99,102,241,0.08)",
+          }}
+        >
+          <span style={{ fontWeight: 700, fontSize: "0.85rem", color: "var(--text, #e5e7eb)" }}>
+            Your rank: #{you.rank}
+          </span>
+          <span style={{ fontSize: "0.8rem", color: "var(--muted)" }}>
+            {you.average_score}% average · Best {you.best_score}% · {you.tests} tests taken
+          </span>
+        </div>
+      )}
 
       {leaderboard.length === 0 ? (
         <section className="premium-section premium-empty-leaderboard">

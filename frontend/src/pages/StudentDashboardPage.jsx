@@ -71,7 +71,7 @@ function Skel(){
 // ─────────────────────────────────────────────────────────────────────────────
 // Main component
 // ─────────────────────────────────────────────────────────────────────────────
-export default function StudentDashboardPage({ user, setActivePage }) {
+export default function StudentDashboardPage({ user, setActivePage, onPracticeTopic }) {
   const [data, setData]     = useState(null);
   const [loading, setLoading] = useState(true);
   const [exams, setExams]     = useState([]);
@@ -176,6 +176,10 @@ export default function StudentDashboardPage({ user, setActivePage }) {
   }
 
   function nav(page){if(setActivePage)setActivePage(page);}
+  // Sends the student straight to that weak topic's chapter in Lessons when
+  // the caller wired onPracticeTopic (App.jsx); falls back to a plain page
+  // switch otherwise so this card still works wherever it's rendered without it.
+  function practiceTopic(t){if(onPracticeTopic)onPracticeTopic(t.subject,t.chapter);else nav("lessons");}
 
   if(loading) return <Skel/>;
   if(!data||!data.success) return(
@@ -450,7 +454,7 @@ export default function StudentDashboardPage({ user, setActivePage }) {
                   <div style={{fontSize:".78rem",fontWeight:600}}>{t.chapter}</div>
                   <div style={{fontSize:".68rem",color:"var(--text-muted,#94a3b8)"}}>{t.subject}</div>
                 </div>
-                <SdBtn small outline onClick={function(){nav("lessons");}}>Practice →</SdBtn>
+                <SdBtn small outline onClick={function(){practiceTopic(t);}}>Practice →</SdBtn>
               </div>
             );}
           ))}
