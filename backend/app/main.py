@@ -148,6 +148,10 @@ allowed_origins = [
     # GitHub Pages from the likha-poha-promo-assets repo.
     "https://pradipbhuyan.github.io",
 
+    # Capacitor WebView origins (Android/iOS native app shell wrapping frontend/)
+    "https://localhost",
+    "capacitor://localhost",
+
     frontend_url,
 ]
 
