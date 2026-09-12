@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getAdminPaymentLogs } from "../api/adminControl";
+import { saveOrShareBlob } from "../utils/nativeSave";
 
 const PLAN_LABELS = {
   free: "Premium Nano ₹99",
@@ -82,11 +83,7 @@ export default function AdminPaymentsPage({ user }) {
       .map(r => r.map(v => `"${String(v || "").replace(/"/g, '""')}"`).join(","))
       .join("\r\n");
     const blob = new Blob(["\uFEFF" + csv], {type:"text/csv;charset=utf-8;"});
-    const a = document.createElement("a");
-    a.href = URL.createObjectURL(blob);
-    a.download = `payment-logs-${new Date().toISOString().slice(0,10)}.csv`;
-    a.click();
-    URL.revokeObjectURL(a.href);
+    saveOrShareBlob(blob, `payment-logs-${new Date().toISOString().slice(0,10)}.csv`).catch(() => {});
   }
 
   const summary = data?.summary || {};

@@ -7,6 +7,7 @@ import { useState } from "react";
 import { Eye, EyeOff, Atom, Microscope, FlaskConical, Briefcase, Landmark, Sparkles, Check } from "lucide-react";
 import logo from "../assets/AITutorLogo1.png";
 import { supabase } from "../api/supabaseClient";
+import { isNativePlatform, signInWithGoogleNative } from "../api/capacitorAuth";
 import { STREAM_SUBJECTS } from "../utils/subjectAccess";
 import "./SignupPage.css";
 
@@ -430,6 +431,10 @@ export default function SignupPage({ onBack, onBackToLogin, initialPlan }) {
               <button
                 type="button"
                 onClick={async () => {
+                  if (isNativePlatform()) {
+                    await signInWithGoogleNative();
+                    return;
+                  }
                   await supabase.auth.signInWithOAuth({
                     provider: "google",
                     options: {

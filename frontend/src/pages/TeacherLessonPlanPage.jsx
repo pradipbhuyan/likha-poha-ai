@@ -199,7 +199,9 @@ export default function TeacherLessonPlanPage({ user }) {
 
   function handleDownloadPdf() {
     if (!plan) return;
-    generateLessonPlanPdf(plan, planMeta);
+    generateLessonPlanPdf(plan, planMeta).catch((err) =>
+      console.error("Failed to save lesson plan PDF", err)
+    );
   }
 
   function handleStartEdit() {

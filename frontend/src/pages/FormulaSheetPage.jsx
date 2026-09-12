@@ -117,9 +117,17 @@ function MathExpr({ tex, display = false, chem = false }) {
     );
   }
 
-  // Math formula — render with KaTeX
+  // Math formula — render with KaTeX. Long formulas can be wider than the
+  // card on narrow screens; scroll them horizontally within their own box
+  // instead of letting them overflow the page or get clipped.
   return (
-    <span ref={ref} style={{ fontFamily: "monospace", fontSize: display ? "1rem" : ".95rem" }}>
+    <span
+      ref={ref}
+      style={{
+        fontFamily: "monospace", fontSize: display ? "1rem" : ".95rem",
+        display: display ? "block" : "inline-block", overflowX: "auto", maxWidth: "100%",
+      }}
+    >
       {tex}
     </span>
   );

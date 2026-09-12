@@ -4,12 +4,17 @@ import logo from "../assets/AITutorLogo1.png";
 import { BookOpen, Brain, ClipboardList, BarChart3, AtSign, Lock, Eye, EyeOff } from "lucide-react";
 
 import { supabase } from "../api/supabaseClient";
+import { isNativePlatform, signInWithGoogleNative } from "../api/capacitorAuth";
 
 const API_BASE_URL =
   import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
 
 /** Initiates Google OAuth redirect via Supabase. */
 async function signInWithGoogle() {
+  if (isNativePlatform()) {
+    await signInWithGoogleNative();
+    return;
+  }
   await supabase.auth.signInWithOAuth({
     provider: "google",
     options: {

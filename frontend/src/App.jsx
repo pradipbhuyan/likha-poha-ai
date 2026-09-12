@@ -32,7 +32,12 @@ import LoginPage from "./pages/LoginPage";
 import Sidebar from "./components/Sidebar";
 import { ToastProvider } from "./context/ToastContext";
 import { supabase } from "./api/supabaseClient";
+import { registerNativeAuthListener } from "./api/capacitorAuth";
 import logo from "./assets/AITutorLogo1.png"; // eslint-disable-line no-unused-vars
+
+// Capacitor-only: catches the Google OAuth deep-link callback (see capacitorAuth.js).
+// No-op on web.
+registerNativeAuthListener();
 import {
   STAGES, STATUS,
   clearOAuthSession,

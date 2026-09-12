@@ -284,7 +284,7 @@ function LessonsPage({ user, setActivePage, initialTarget, onInitialTargetConsum
   const isExemplarLocked = isExemplarChapter && !hasPaidAccessForLessons;
 
   const topBarControls = (
-    <div style={{
+    <div className="lesson-topbar-controls" style={{
       display: "flex",
       alignItems: "center",
       gap: 8,

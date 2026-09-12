@@ -385,7 +385,11 @@ function QuickCheckFlipCard({ mcq, colours }) {
           </p>
           {mcq.explanation && (
             <div className="quick-check-explanation">
-              <ReactMarkdown remarkPlugins={[remarkGfm, remarkMath]} rehypePlugins={[rehypeKatex]}>
+              <ReactMarkdown
+                remarkPlugins={[remarkGfm, remarkMath]}
+                rehypePlugins={[rehypeKatex]}
+                components={{ table: LessonMarkdownTable, img: LessonMarkdownImg }}
+              >
                 {mcq.explanation}
               </ReactMarkdown>
             </div>
@@ -405,6 +409,21 @@ function LessonMarkdownTable({ children }) {
         {children}
       </table>
     </div>
+  );
+}
+
+// ── Shared ReactMarkdown image renderer — scaled to fit on mobile ─────────────
+// Plain markdown images (e.g. an embedded NCERT textbook page scan) get no
+// sizing from ReactMarkdown by default. A scan's natural width (often 800px+)
+// forces the whole lesson column wider than the viewport instead of scaling
+// down, cutting off surrounding text and tables at the right edge.
+function LessonMarkdownImg({ src, alt }) {
+  return (
+    <img
+      src={src}
+      alt={alt || ""}
+      style={{ maxWidth: "100%", height: "auto", display: "block" }}
+    />
   );
 }
 
@@ -568,7 +587,7 @@ function CardFeedSection({
           <ReactMarkdown
             remarkPlugins={[remarkGfm, remarkMath]}
             rehypePlugins={[rehypeKatex]}
-            components={{ code: LessonMarkdownCode, pre: LessonMarkdownPre, table: LessonMarkdownTable }}
+            components={{ code: LessonMarkdownCode, pre: LessonMarkdownPre, table: LessonMarkdownTable, img: LessonMarkdownImg }}
           >
             {fixInlineDisplayMath(renderableContent)}
           </ReactMarkdown>
@@ -764,7 +783,7 @@ function WorkbookSection({
           <ReactMarkdown
             remarkPlugins={[remarkGfm, remarkMath]}
             rehypePlugins={[rehypeKatex]}
-            components={{ code: LessonMarkdownCode, pre: LessonMarkdownPre, table: LessonMarkdownTable }}
+            components={{ code: LessonMarkdownCode, pre: LessonMarkdownPre, table: LessonMarkdownTable, img: LessonMarkdownImg }}
           >
             {fixInlineDisplayMath(renderableContent)}
           </ReactMarkdown>
@@ -777,7 +796,11 @@ function WorkbookSection({
           <div>
             <p className="lesson-inline-question-label">Want to try this question?</p>
             <div className="lesson-inline-question-text">
-              <ReactMarkdown remarkPlugins={[remarkGfm, remarkMath]} rehypePlugins={[rehypeKatex]}>
+              <ReactMarkdown
+                remarkPlugins={[remarkGfm, remarkMath]}
+                rehypePlugins={[rehypeKatex]}
+                components={{ table: LessonMarkdownTable, img: LessonMarkdownImg }}
+              >
                 {formatMcqPrompt(questionPrompt)}
               </ReactMarkdown>
             </div>
@@ -819,7 +842,11 @@ function WorkbookSection({
               </button>
               {feedback && (
                 <div className="lesson-inline-feedback" ref={feedbackRef}>
-                  <ReactMarkdown remarkPlugins={[remarkGfm, remarkMath]} rehypePlugins={[rehypeKatex]}>
+                  <ReactMarkdown
+                    remarkPlugins={[remarkGfm, remarkMath]}
+                    rehypePlugins={[rehypeKatex]}
+                    components={{ table: LessonMarkdownTable, img: LessonMarkdownImg }}
+                  >
                     {feedback}
                   </ReactMarkdown>
                 </div>
@@ -1050,7 +1077,7 @@ function LessonSections({ lesson, onEvaluateQuestion, subject, grade, cardStyle 
                   <ReactMarkdown
                     remarkPlugins={[remarkGfm, remarkMath]}
                     rehypePlugins={[rehypeKatex]}
-                    components={{ code: LessonMarkdownCode, pre: LessonMarkdownPre, table: LessonMarkdownTable }}
+                    components={{ code: LessonMarkdownCode, pre: LessonMarkdownPre, table: LessonMarkdownTable, img: LessonMarkdownImg }}
                   >
                     {renderableContent}
                   </ReactMarkdown>
@@ -1061,7 +1088,11 @@ function LessonSections({ lesson, onEvaluateQuestion, subject, grade, cardStyle 
                     <div>
                       <p className="lesson-inline-question-label">Want to try this question?</p>
                       <div className="lesson-inline-question-text">
-                        <ReactMarkdown remarkPlugins={[remarkGfm, remarkMath]} rehypePlugins={[rehypeKatex]}>
+                        <ReactMarkdown
+                          remarkPlugins={[remarkGfm, remarkMath]}
+                          rehypePlugins={[rehypeKatex]}
+                          components={{ table: LessonMarkdownTable, img: LessonMarkdownImg }}
+                        >
                           {formatMcqPrompt(questionPrompt)}
                         </ReactMarkdown>
                       </div>
@@ -1105,7 +1136,11 @@ function LessonSections({ lesson, onEvaluateQuestion, subject, grade, cardStyle 
                         </button>
                         {feedback && (
                           <div className="lesson-inline-feedback">
-                            <ReactMarkdown remarkPlugins={[remarkGfm, remarkMath]} rehypePlugins={[rehypeKatex]}>
+                            <ReactMarkdown
+                              remarkPlugins={[remarkGfm, remarkMath]}
+                              rehypePlugins={[rehypeKatex]}
+                              components={{ table: LessonMarkdownTable, img: LessonMarkdownImg }}
+                            >
                               {feedback}
                             </ReactMarkdown>
                           </div>

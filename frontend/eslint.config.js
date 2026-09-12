@@ -6,7 +6,10 @@ import { defineConfig, globalIgnores } from 'eslint/config'
 
 export default defineConfig([
   // Ignore build output and generated directories
-  globalIgnores(['dist', 'coverage', '.vitest-cache']),
+  // 'android' holds the native Capacitor project — app/src/main/assets/public
+  // is a copy of dist/ that `cap sync` writes there, so it's generated build
+  // output too, not source to lint.
+  globalIgnores(['dist', 'coverage', '.vitest-cache', 'android']),
 
   // ── Main source files ─────────────────────────────────────────────────────
   {

@@ -531,7 +531,16 @@ function StudyRenderer({ doc, quizAnswers, onQuickCheckAnswer, activeMilestone, 
       </nav>
 
       {/* Document */}
-      <div style={{ flex: 1, minWidth: 0 }}>
+      {/* width: 100% is required here, not just flex:1 — the outer flex
+          container uses alignItems:"flex-start" (so the sidebar nav doesn't
+          stretch to document height), which means flex children size via
+          fit-content instead of stretching to the container's width. A
+          textbook_image block's <img> has real intrinsic pixel dimensions
+          (a full page scan), so without an explicit width this div sizes
+          itself to fit that image at full size — and the image's own
+          width:100% is circular at that point, since it's a percentage of
+          this already-too-wide box. */}
+      <div style={{ flex: 1, minWidth: 0, width: "100%" }}>
         {doc.milestones.map((milestone, mi) => (
           <section key={mi} id={`study-milestone-${mi}`} style={{
             scrollMarginTop: 90,

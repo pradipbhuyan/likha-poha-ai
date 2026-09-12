@@ -13,6 +13,7 @@
  *   plain paragraphs
  */
 import { jsPDF } from "jspdf";
+import { saveOrSharePdf } from "./nativeSave";
 
 var MARGIN_LEFT = 14;
 var MARGIN_RIGHT = 14;
@@ -108,7 +109,7 @@ export function buildLessonPlanFileName(chapter) {
  * @param {{grade:string, subject:string, chapter:string}} meta
  * @returns {string} filename that was saved
  */
-export function generateLessonPlanPdf(markdown, meta) {
+export async function generateLessonPlanPdf(markdown, meta) {
   if (!markdown) return null;
   meta = meta || {};
 
@@ -230,6 +231,6 @@ export function generateLessonPlanPdf(markdown, meta) {
   }
 
   var filename = buildLessonPlanFileName(meta.chapter);
-  doc.save(filename);
+  await saveOrSharePdf(doc, filename);
   return filename;
 }

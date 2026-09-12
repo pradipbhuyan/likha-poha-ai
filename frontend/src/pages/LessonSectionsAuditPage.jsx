@@ -5,6 +5,7 @@
  */
 import { useCallback, useEffect, useRef, useState } from "react";
 import { authFetch } from "../api/authClient";
+import { saveOrShareBlob } from "../utils/nativeSave";
 
 const CANONICAL_SECTIONS = [
   "introduction", "what you will learn", "simple explanation",
@@ -89,8 +90,7 @@ export default function LessonSectionsAuditPage({ setActivePage: _setActivePage 
     authFetch(`/api/admin/qa/lesson-sections/report?format=${fmt}`)
       .then(text => {
         const blob = new Blob([typeof text === "string" ? text : JSON.stringify(text, null, 2)]);
-        const a = document.createElement("a"); a.href = URL.createObjectURL(blob);
-        a.download = `lesson_sections_report.${fmt}`; a.click();
+        return saveOrShareBlob(blob, `lesson_sections_report.${fmt}`);
       }).catch(() => {});
   }
 

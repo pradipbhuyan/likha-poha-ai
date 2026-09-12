@@ -69,8 +69,22 @@ function JourneyTable({ children }) {
   );
 }
 
+// Plain markdown images (e.g. an embedded NCERT textbook page scan) have no
+// React-applied sizing at all by default — ReactMarkdown just passes the
+// raw <img> through. A scan's natural width (often 800px+) can force the
+// whole lesson column wider than the viewport instead of scaling down.
+function JourneyImg({ src, alt }) {
+  return (
+    <img
+      src={src}
+      alt={alt || ""}
+      style={{ maxWidth: "100%", height: "auto", display: "block" }}
+    />
+  );
+}
+
 function LessonMarkdown({ children, unwrapParagraph = false }) {
-  const components = { code: JourneyCode, pre: JourneyPre, table: JourneyTable };
+  const components = { code: JourneyCode, pre: JourneyPre, table: JourneyTable, img: JourneyImg };
   if (unwrapParagraph) {
     components.p = ({ children: inner }) => <>{inner}</>;
   }

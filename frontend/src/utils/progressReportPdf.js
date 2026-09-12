@@ -12,6 +12,7 @@
  */
 import { jsPDF } from "jspdf";
 import autoTable from "jspdf-autotable";
+import { saveOrSharePdf } from "./nativeSave";
 import { NOTO_SANS_DEVANAGARI_BASE64 } from "./notoSansDevanagariFont";
 import { REPORT_LOGO_PNG_BASE64 } from "./reportLogoImage";
 
@@ -256,6 +257,11 @@ export function generateProgressReportPdf(report){
   doc.setTextColor(0);
 
   var filename = buildProgressReportFileName(report);
-  doc.save(filename);
+  // Not awaited: on web this calls doc.save() synchronously (unchanged
+  // behavior/tests); on native it saves to device storage + shares in the
+  // background. Callers don't depend on completion before returning filename.
+  saveOrSharePdf(doc, filename).catch(function (err) {
+    console.error("Failed to save progress report PDF", err);
+  });
   return filename;
 }

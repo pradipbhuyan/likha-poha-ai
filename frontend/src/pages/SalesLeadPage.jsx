@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getLeadClaims, getAdminCommissionSummary, batchPayCommissions, manualConfirmClaim } from "../api/sales";
 import SalesLeadForm from "../components/SalesLeadForm";
+import { saveOrShareBlob } from "../utils/nativeSave";
 
 // Status config — coloured backgrounds/borders work in both light and dark mode
 const SC = {
@@ -82,9 +83,7 @@ export default function SalesLeadPage({ user }) {
     ]);
     const csv = [headers,...rows].map(r=>r.map(v=>`"${String(v).replace(/"/g,'""')}"`).join(",")).join("\r\n");
     const blob = new Blob(["\uFEFF"+csv],{type:"text/csv;charset=utf-8;"});
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a"); a.href=url; a.download=`lead_claims_${new Date().toISOString().slice(0,10)}.csv`; a.click();
-    URL.revokeObjectURL(url);
+    saveOrShareBlob(blob, `lead_claims_${new Date().toISOString().slice(0,10)}.csv`).catch(() => {});
   }
 
   const confirmed = claims.filter(c => c.status === "confirmed");

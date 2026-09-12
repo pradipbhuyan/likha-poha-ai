@@ -58,6 +58,7 @@ body {
   color: var(--text);
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   overflow-x: hidden;
+  overscroll-behavior-x: none;
 }
 
 .app-shell {
@@ -1267,6 +1268,45 @@ textarea:focus {
   overflow-x: hidden;
   word-break: break-word;
   overflow-wrap: break-word;
+}
+
+/* KaTeX renders math with fixed internal widths that don't shrink to fit a
+   narrow container — wrap it so long formulas scroll within their own box
+   instead of getting clipped by an ancestor's overflow-x: hidden.
+   .katex-display (block/centered equations) is already block-level via
+   KaTeX's own stylesheet; .katex alone also covers inline formulas, so it
+   keeps inline-block display rather than being forced onto its own line. */
+.katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+}
+
+.katex {
+  display: inline-block;
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
+}
+
+/* KaTeX renders \sqrt by scaling a deliberately oversized internal SVG (up
+   to several thousand px) back down to size via a CSS transform, clipped by
+   its own .hide-tail wrapper's overflow:hidden. On some Android WebView
+   versions that clip doesn't get composited correctly and the full-size SVG
+   renders visually outside its bounds (confirmed via a real-device repro:
+   a <path> measuring ~7500px wide, class "mord sqrt" > "hide-tail" > svg).
+   Force a new compositing layer with contain + transform so the WebView is
+   coerced into applying the clip properly, and belt-and-suspenders the
+   clip/width directly on the wrapper and svg itself. */
+.katex .sqrt > .hide-tail {
+  overflow: hidden !important;
+  contain: paint;
+  transform: translateZ(0);
+}
+
+.katex .sqrt > .hide-tail > svg {
+  overflow: hidden !important;
+  max-width: none;
 }
 
 .lesson-section-body * {
@@ -5974,6 +6014,17 @@ body:not(.dark-mode) .profile-progress-item small {
 
 .premium-page {
   display: grid;
+  /* Without an explicit column, the implicit grid track auto-sizes to the
+     max-content width of whatever it contains — a CSS Grid item does NOT
+     automatically shrink to fit its container the way people expect
+     (the block/flexbox equivalent of this bug is missing min-width:0).
+     Confirmed via live device inspection: a single wide descendant deep in
+     the tree (a KaTeX \sqrt SVG, a textbook page-scan image) was enough to
+     stretch this track — and everything else sharing it — past the
+     viewport on chapters that happened to include one, while chapters
+     without such content never exposed the bug. minmax(0, 1fr) caps the
+     track at the container's own available width regardless of content. */
+  grid-template-columns: minmax(0, 1fr);
   gap: 28px;
 }
 
@@ -14989,6 +15040,46 @@ body.dark-mode .toast {
   .exemplar-expl-panel {
     position: static;   /* no sticky on mobile — explanation sits below cards */
     order: 2;           /* always after the card grid */
+  }
+}
+
+/* ── Lessons — mobile filter row ─────────────────────────────────────────────
+   flex-wrap + minWidth:0 on the three <select>s doesn't reliably shrink them
+   on Android WebView (native <select> boxes keep a UA-enforced minimum
+   width in practice), so the row can overflow instead of wrapping. Stack
+   the selects below 640px instead of relying on flex-shrink.
+──────────────────────────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .lesson-topbar-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .lesson-topbar-controls select {
+    width: 100%;
+  }
+}
+
+/* ── Formula Sheet — mobile layout ───────────────────────────────────────────
+   The chapter sidebar (190px) plus the formula-card grid (270px minimum
+   column) add up to more than a phone viewport, so the row overflows
+   instead of wrapping — flex-wrap can't help because the grid's own
+   minmax(270px,...) track refuses to shrink. Stack sidebar above content
+   below 640px instead.
+──────────────────────────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  [data-testid="formula-sheet-content"] {
+    flex-direction: column;
+    /* The inline style sets align-items:flex-start (needed in row mode so
+       the sidebar doesn't stretch to content height). In column mode that
+       same setting stops children from stretching to the container's
+       width — they size to fit their own widest content instead. Wide
+       formulas (dimensional formulas, multi-term equations — common in
+       Physics) then force this div wider than the viewport, the same
+       fit-content trap as the textbook-image bug in StudyRenderer.jsx. */
+    align-items: stretch !important;
+  }
+  [data-testid="chapter-sidebar"] {
+    width: 100% !important;
   }
 }
 

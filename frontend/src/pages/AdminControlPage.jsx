@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { saveOrShareBlob } from "../utils/nativeSave";
 import {
   LayoutDashboard, UserCircle, Users, Link2, Tag,
   Settings2, Monitor, Zap, BarChart2, LifeBuoy,
@@ -1501,12 +1502,7 @@ function AdminControlPage({ user }) {
       .join("\r\n");
 
     const blob = new Blob(["\uFEFF" + csv], { type: "text/csv;charset=utf-8;" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `users_${new Date().toISOString().slice(0, 10)}.csv`;
-    a.click();
-    URL.revokeObjectURL(url);
+    saveOrShareBlob(blob, `users_${new Date().toISOString().slice(0, 10)}.csv`).catch(() => {});
   }
 
   // Egress health banner colours
@@ -2531,10 +2527,7 @@ GITHUB_REPO=pradipbhuyan/likha-poha-ai`}
                                   ...oc.enrollments.map(e => `"${e.username}","${e.email}","${e.grade}","${e.board}","${e.enrolled_at}","${e.access_until}"`)
                                 ].join("\r\n");
                                 const blob = new Blob(["\uFEFF"+csv], {type:"text/csv;charset=utf-8;"});
-                                const a = document.createElement("a");
-                                a.href = URL.createObjectURL(blob);
-                                a.download = `enrollments-${oc.code}-${new Date().toISOString().slice(0,10)}.csv`;
-                                a.click();
+                                saveOrShareBlob(blob, `enrollments-${oc.code}-${new Date().toISOString().slice(0,10)}.csv`).catch(() => {});
                               }}
                               style={{background:"var(--panel)",border:"1px solid var(--border)",borderRadius:6,padding:"3px 10px",cursor:"pointer",fontFamily:"inherit",fontSize:".78rem",fontWeight:700}}>
                               📥 Export CSV

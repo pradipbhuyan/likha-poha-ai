@@ -6,6 +6,7 @@
  */
 import { useCallback, useEffect, useRef, useState } from "react";
 import { authFetch } from "../api/authClient";
+import { saveOrShareBlob } from "../utils/nativeSave";
 
 const SEV_COLOR = { critical:"#ef4444", high:"#f59e0b", pass:"#22c55e", info:"#6366f1" };
 
@@ -110,10 +111,7 @@ export default function FeatureAuthAuditPage({ user: _user }) {
     authFetch(`/api/admin/qa/feature-authorization/report?format=${fmt}`)
       .then(text => {
         const blob = new Blob([typeof text==="string" ? text : JSON.stringify(text,null,2)]);
-        const a = document.createElement("a");
-        a.href = URL.createObjectURL(blob);
-        a.download = `feature_authorization_report.${fmt}`;
-        a.click();
+        return saveOrShareBlob(blob, `feature_authorization_report.${fmt}`);
       }).catch(() => {});
   }
 

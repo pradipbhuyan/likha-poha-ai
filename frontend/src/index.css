@@ -6,6 +6,10 @@ html {
   /* Force high-quality text rendering on HiDPI/Retina displays */
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
+  /* Prevent horizontal rubber-band/overscroll bounce revealing the native
+     WebView background on a right/left swipe (Capacitor Android). */
+  overflow-x: hidden;
+  overscroll-behavior-x: none;
 }
 
 body {

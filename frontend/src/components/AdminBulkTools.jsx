@@ -12,6 +12,7 @@
  */
 
 import { useState } from "react";
+import { saveOrShareBlob } from "../utils/nativeSave";
 
 const API = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
 
@@ -169,12 +170,7 @@ export default function AdminBulkTools({ accessToken, allStudents = [], allTeach
     });
     if (r.ok) {
       const blob = await r.blob();
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = `bulk_export_${new Date().toISOString().slice(0,10)}.csv`;
-      a.click();
-      URL.revokeObjectURL(url);
+      await saveOrShareBlob(blob, `bulk_export_${new Date().toISOString().slice(0,10)}.csv`);
       setResult({ success: true, message: `Exported ${selectedUsers.size} user(s).` });
     }
     setLoading(false);

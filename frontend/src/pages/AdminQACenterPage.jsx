@@ -5,6 +5,7 @@
  */
 import { useCallback, useEffect, useRef, useState } from "react";
 import { authFetch } from "../api/authClient";
+import { saveOrShareBlob } from "../utils/nativeSave";
 import FeatureAuthAuditPage from "./FeatureAuthAuditPage";
 import LessonSectionsAuditPage from "./LessonSectionsAuditPage";
 
@@ -135,8 +136,7 @@ export default function AdminQACenterPage({ user: _user, setActivePage }) {
     authFetch(`/api/admin/qa/lesson-quality/report?format=${fmt}`)
       .then(text => {
         const blob = new Blob([typeof text === "string" ? text : JSON.stringify(text, null, 2)]);
-        const a = document.createElement("a");
-        a.href = URL.createObjectURL(blob); a.download = `lesson_quality_report.${fmt}`; a.click();
+        return saveOrShareBlob(blob, `lesson_quality_report.${fmt}`);
       }).catch(() => {});
   }
 
