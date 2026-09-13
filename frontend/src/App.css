@@ -12600,34 +12600,6 @@ body.dark-mode .selected-child-badge {
   color: var(--primary);
 }
 
-.subscription-table-wrap {
-  overflow-x: auto;
-}
-
-.subscription-compare table {
-  width: 100%;
-  min-width: 660px;
-  border-collapse: collapse;
-}
-
-.subscription-compare th,
-.subscription-compare td {
-  padding: 13px 12px;
-  border-bottom: 1px solid var(--border);
-  text-align: left;
-}
-
-.subscription-compare th:not(:first-child),
-.subscription-compare td:not(:first-child) {
-  text-align: center;
-}
-
-.subscription-compare th {
-  color: var(--muted);
-  font-size: 0.76rem;
-  text-transform: uppercase;
-}
-
 .subscription-payment-panel {
   position: sticky;
   top: 24px;
