@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 11",
+  "subject": "Biology",
+  "chapter": "Mineral Nutrition",
+  "topic": "Mineral Nutrition — Essential Elements",
+  "questions": [
+    {
+      "q": "Deficiency symptoms appear first in the youngest leaves of a plant. Which conclusion and example are most consistent with the Exemplar?",
+      "options": [
+        "A) The deficient element is relatively immobile; sulphur is an example that can show this pattern",
+        "B) The deficient element is highly mobile; nitrogen is the best example",
+        "C) The element must be carbon because all carbon comes from soil",
+        "D) The element must be potassium because potassium cannot be remobilised"
+      ],
+      "answer": "A) The deficient element is relatively immobile; sulphur is an example that can show this pattern",
+      "explanation": "The Exemplar states that deficiency appearing first in young leaves indicates a relatively immobile element. Among the listed choices, sulphur is the element associated with this pattern, whereas nitrogen, magnesium and potassium are more mobile. Immobile nutrients cannot be readily shifted from old tissues to support new growth."
+    },
+    {
+      "q": "Which description best captures how a legume root nodule protects and uses the nitrogen-fixing system?",
+      "options": [
+        "A) Nitrogenase is an oxygen-requiring enzyme and leghemoglobin supplies it with abundant oxygen",
+        "B) Nitrogenase is a Mo-Fe protein that reduces N2 to ammonia, while leghemoglobin helps maintain conditions compatible with its oxygen sensitivity",
+        "C) Nitrogenase converts nitrate directly to atmospheric N2 and leghemoglobin transports nitrate",
+        "D) Nitrogenase is a chlorophyll protein and functions only in illuminated nodules"
+      ],
+      "answer": "B) Nitrogenase is a Mo-Fe protein that reduces N2 to ammonia, while leghemoglobin helps maintain conditions compatible with its oxygen sensitivity",
+      "explanation": "The Exemplar identifies nitrogenase as a Mo-Fe protein and states that it converts atmospheric nitrogen to ammonia. It also highlights the special pink pigment leghemoglobin in root nodules and asks about its importance. Together these facts point to protection of the oxygen-sensitive nitrogen-fixing machinery while permitting nodule metabolism."
+    },
+    {
+      "q": "Ammonia is first oxidised to nitrite and nitrite is then oxidised to nitrate in soil. Which pairing is correct for these two nitrification steps?",
+      "options": [
+        "A) Nitrobacter performs both steps and is a photoautotroph",
+        "B) Rhizobium performs the first step and Frankia the second",
+        "C) Nitrosomonas or Nitrococcus performs the first step, Nitrobacter the second, and both steps are nitrification",
+        "D) Cyanobacteria perform both steps only in light"
+      ],
+      "answer": "C) Nitrosomonas or Nitrococcus performs the first step, Nitrobacter the second, and both steps are nitrification",
+      "explanation": "The Exemplar explicitly matches the first oxidation step with Nitrosomonas or Nitrococcus and the second with Nitrobacter. It states that both reactions are parts of nitrification. It also rejects the claim that these bacteria are usually photoautotrophs."
+    },
+    {
+      "q": "A farmer keeps adding Ca, Mg and Fe, yet plants continue to show deficiencies of all three after excessive manganese accumulates in the soil. Which explanation best fits the Exemplar?",
+      "options": [
+        "A) Manganese toxicity cannot affect other mineral deficiencies",
+        "B) The three elements become unnecessary whenever manganese is abundant",
+        "C) Excess manganese causes only nitrogen deficiency, not Ca, Mg or Fe deficiency",
+        "D) Excess manganese can interfere with availability or uptake of Ca, Mg and Fe, so correcting the manganese excess is necessary"
+      ],
+      "answer": "D) Excess manganese can interfere with availability or uptake of Ca, Mg and Fe, so correcting the manganese excess is necessary",
+      "explanation": "The Exemplar states that excess manganese in soil can lead to deficiencies of calcium, magnesium and iron. This shows that supplying a nutrient does not guarantee its effective uptake when another element is present at toxic levels. The underlying problem must therefore include reducing or correcting manganese excess, not merely adding more Ca, Mg and Fe."
+    }
+  ]
+}

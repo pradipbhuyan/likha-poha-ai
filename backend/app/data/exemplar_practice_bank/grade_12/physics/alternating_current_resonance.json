@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 12",
+  "subject": "Physics",
+  "chapter": "Alternating Current",
+  "topic": "Alternating Current — Resonance",
+  "questions": [
+    {
+      "q": "A series LCR circuit is to be modified so that its resonance frequency decreases, with the inductor left unchanged. Which change achieves this?",
+      "options": [
+        "A) Add another capacitor in parallel with the existing capacitor.",
+        "B) Remove the dielectric from the capacitor.",
+        "C) Remove the iron core from the inductor.",
+        "D) Increase the driving frequency without changing L or C."
+      ],
+      "answer": "A) Add another capacitor in parallel with the existing capacitor.",
+      "explanation": "The resonance frequency is f0 = 1/(2 pi sqrt(LC)). Adding a capacitor in parallel increases the equivalent capacitance C while leaving L unchanged. A larger LC product makes f0 smaller, so the resonance frequency decreases."
+    },
+    {
+      "q": "Four series LCR circuits are proposed for sharp tuning: (1) R=20 ohm, L=1.5 H, C=35 microF; (2) R=15 ohm, L=3.5 H, C=30 microF; (3) R=25 ohm, L=2.5 H, C=45 microF; (4) R=25 ohm, L=1.5 H, C=45 microF. Which has the largest quality factor Q = (1/R)sqrt(L/C)?",
+      "options": [
+        "A) Circuit (1)",
+        "B) Circuit (2)",
+        "C) Circuit (3)",
+        "D) Circuit (4)"
+      ],
+      "answer": "B) Circuit (2)",
+      "explanation": "For sharp tuning, compare sqrt(L/C)/R for the four choices. Circuit (2) has the largest L, the smallest C among the high-L choices, and also the smallest resistance, giving Q about sqrt(3.5/30e-6)/15, which is much larger than the others. Therefore circuit (2) gives the best tuning."
+    },
+    {
+      "q": "An inductor with reactance 1 ohm and a resistor of 2 ohm are in series across a 6 V rms source. What average power is dissipated?",
+      "options": [
+        "A) 8 W",
+        "B) 12 W",
+        "C) 14.4 W",
+        "D) 18 W"
+      ],
+      "answer": "C) 14.4 W",
+      "explanation": "The impedance magnitude is sqrt(R^2 + XL^2) = sqrt(4 + 1) = sqrt(5) ohm. The rms current is 6/sqrt(5) A, and only the resistor dissipates average power. Thus P = I^2 R = (36/5)(2) = 14.4 W."
+    },
+    {
+      "q": "In a series LCR circuit, define phi as the phase by which the supply voltage leads the current. As the driving frequency is increased from very low values through resonance to very high values, how does phi change?",
+      "options": [
+        "A) Positive to zero to negative",
+        "B) Always zero",
+        "C) Always positive",
+        "D) Negative to zero to positive"
+      ],
+      "answer": "D) Negative to zero to positive",
+      "explanation": "At very low frequency the capacitive reactance dominates, so current leads voltage and the voltage-leading-current phase phi is negative. At resonance XL = XC and the circuit is purely resistive, so phi = 0. At high frequency the inductive reactance dominates, so voltage leads current and phi becomes positive."
+    }
+  ]
+}

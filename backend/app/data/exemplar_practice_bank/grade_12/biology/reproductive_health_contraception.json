@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 12",
+  "subject": "Biology",
+  "chapter": "Reproductive Health",
+  "topic": "Reproductive Health — Contraception",
+  "questions": [
+    {
+      "q": "A couple wants a temporary method that also lowers the risk of sexually transmitted infections. Which choice best satisfies both goals according to the Exemplar?",
+      "options": [
+        "A) Condoms, because they act as barriers to insemination and also reduce STD risk",
+        "B) Vasectomy, because it is easily reversible and prevents all STDs",
+        "C) MTP, because it is a routine contraceptive method after every coitus",
+        "D) ZIFT, because it blocks sperm entry into the cervix"
+      ],
+      "answer": "A) Condoms, because they act as barriers to insemination and also reduce STD risk",
+      "explanation": "The Exemplar lists condoms as effective barriers for insemination and also states that they help reduce the risk of sexually transmitted diseases. Vasectomy is a surgical sterilisation method and is treated as almost irreversible, while MTP is not a routine contraceptive method. ZIFT is an assisted reproductive technique, not a barrier contraceptive."
+    },
+    {
+      "q": "A mother is intensely lactating and temporarily does not conceive. Which endocrine explanation and contraceptive principle are most consistent with this condition?",
+      "options": [
+        "A) Hypersecretion of gonadotropins causes repeated ovulation",
+        "B) Suppression of gonadotropins can produce lactational amenorrhoea and reduce the chance of ovulation",
+        "C) Suppression of fertilisation occurs because the fallopian tubes are surgically blocked",
+        "D) Increased gamete transport prevents implantation"
+      ],
+      "answer": "B) Suppression of gonadotropins can produce lactational amenorrhoea and reduce the chance of ovulation",
+      "explanation": "The Exemplar directly associates intense lactation with suppression of gonadotropins. Reduced gonadotropin activity can suppress ovulation and produce lactational amenorrhoea. This is why lactational amenorrhoea can function as a natural contraceptive method for a limited period."
+    },
+    {
+      "q": "A copper-releasing IUD is compared with a non-medicated IUD. Which explanation best accounts for the higher contraceptive efficiency of the copper-releasing device?",
+      "options": [
+        "A) It permanently destroys the ovaries",
+        "B) It suppresses all gametogenesis in both partners",
+        "C) It combines the uterine foreign-body response, including increased phagocytosis, with an additional copper-mediated reduction in sperm effectiveness",
+        "D) It is inserted into the uterus by the user without medical assistance"
+      ],
+      "answer": "C) It combines the uterine foreign-body response, including increased phagocytosis, with an additional copper-mediated reduction in sperm effectiveness",
+      "explanation": "The Exemplar states that IUDs increase phagocytosis in the uterus and separately asks why copper-releasing IUDs are more efficient than non-medicated devices. The higher efficiency follows because copper adds a sperm-inhibitory effect to the basic uterine response. The other choices contradict the source because IUDs do not destroy ovaries, suppress all gametogenesis, or require self-insertion."
+    },
+    {
+      "q": "Which assisted reproductive procedure is correctly identified for directly injecting a sperm into an ovum?",
+      "options": [
+        "A) GIFT",
+        "B) ZIFT",
+        "C) ET",
+        "D) ICSI"
+      ],
+      "answer": "D) ICSI",
+      "explanation": "The Exemplar explicitly identifies intracytoplasmic sperm injection as the technique in which a sperm is directly injected into an ovum. GIFT involves transfer of gametes to the fallopian tube, while ZIFT involves transfer of a zygote. ET is a broader embryo-transfer procedure, so ICSI is the precise answer."
+    }
+  ]
+}

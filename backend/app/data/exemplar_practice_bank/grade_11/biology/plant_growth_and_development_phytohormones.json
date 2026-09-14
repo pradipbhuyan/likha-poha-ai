@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 11",
+  "subject": "Biology",
+  "chapter": "Plant Growth and Development",
+  "topic": "Plant Growth and Development — Phytohormones",
+  "questions": [
+    {
+      "q": "A gardener wants a pruned shrub to become bushier by releasing lateral buds from apical dominance. Which treatment best matches the Exemplar?",
+      "options": [
+        "A) Remove the apical influence and favour cytokinin action on lateral bud growth",
+        "B) Increase auxin concentration at the shoot tip to strengthen apical dominance",
+        "C) Apply ABA to suppress all lateral growth permanently",
+        "D) Wrap the plant to prevent ethylene formation"
+      ],
+      "answer": "A) Remove the apical influence and favour cytokinin action on lateral bud growth",
+      "explanation": "The Exemplar states that apical dominance can be overcome by cytokinin and asks why regular trimming makes plants bushy. Removing the apical bud reduces the dominant auxin influence from the shoot tip. This allows lateral buds to grow more strongly, an effect promoted by cytokinins."
+    },
+    {
+      "q": "A farmer wants both a higher sugar yield in sugarcane and a greater proportion of female flowers in cucumber. Which pair of plant growth regulators best fits the Exemplar?",
+      "options": [
+        "A) Auxin for sugarcane and ABA for cucumber",
+        "B) Gibberellin for sugarcane and ethylene for cucumber",
+        "C) Cytokinin for sugarcane and auxin for cucumber",
+        "D) ABA for sugarcane and gibberellin for cucumber"
+      ],
+      "answer": "B) Gibberellin for sugarcane and ethylene for cucumber",
+      "explanation": "The Exemplar asks which plant growth substance increases sugarcane yield and identifies gibberellin in that context. It also asks which regulator increases the number of female flowers in cucumber, pointing to ethylene. Therefore the two agricultural goals require different hormones: gibberellin and ethylene."
+    },
+    {
+      "q": "Which set of effects best fits abscisic acid according to the Exemplar?",
+      "options": [
+        "A) Promotes fruit ripening and strongly stimulates stem elongation",
+        "B) Promotes apical dominance and induces female flowers in cucumber",
+        "C) Antagonises gibberellin, can inhibit seed germination, and is associated with stomatal closure",
+        "D) Is the principal hormone in coconut water and always promotes cell division"
+      ],
+      "answer": "C) Antagonises gibberellin, can inhibit seed germination, and is associated with stomatal closure",
+      "explanation": "The Exemplar states that ABA acts antagonistically to gibberellic acid. It also lists inhibition of seed germination as an ABA use and associates ABA with stomatal closure. Taken together, these are consistent with its role as a growth-inhibitory and stress-related regulator."
+    },
+    {
+      "q": "Which statement correctly combines two Exemplar facts about ethylene and cytokinins?",
+      "options": [
+        "A) Ethylene is non-gaseous and slows fruit ripening; cytokinins are absent from coconut water",
+        "B) Ethylene is mainly responsible for apical dominance; cytokinins induce dormancy",
+        "C) Ethylene is the hormone that replaces cold treatment in winter wheat; cytokinins induce fruit ripening",
+        "D) Ethylene is gaseous and hastens fruit ripening, while coconut water is a source associated with cytokinins"
+      ],
+      "answer": "D) Ethylene is gaseous and hastens fruit ripening, while coconut water is a source associated with cytokinins",
+      "explanation": "The Exemplar identifies ethylene as the regulator used to hasten fruit ripening and later asks for the hormone that is gaseous in nature. It also states that coconut water contains cytokinin. These two facts together support the final option."
+    }
+  ]
+}

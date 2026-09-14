@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 11",
+  "subject": "Biology",
+  "chapter": "Animal Kingdom",
+  "topic": "Animal Kingdom — Basis of Classification",
+  "questions": [
+    {
+      "q": "An animal shows tissue-level organisation rather than organ-level organisation, and its body plan is radially symmetrical. Which Exemplar example best fits this combination?",
+      "options": [
+        "A) Obelia",
+        "B) Pheretima",
+        "C) Fasciola",
+        "D) Cockroach"
+      ],
+      "answer": "A) Obelia",
+      "explanation": "The Exemplar matching exercise places Obelia at the tissue level of organisation. Cnidarians such as Obelia also exhibit radial symmetry, another classification criterion emphasized in the chapter. Pheretima and cockroach have organ-system organisation, while Fasciola is placed at organ level."
+    },
+    {
+      "q": "A zoology answer describes Fasciola as a pseudocoelomate because its body cavity is not lined by mesoderm. Which correction is most appropriate?",
+      "options": [
+        "A) Keep the statement unchanged because all flatworms are pseudocoelomates",
+        "B) Fasciola is not a pseudocoelomate; the Exemplar flags that statement as incorrect, while pseudocoelomates have a cavity not fully lined by mesoderm",
+        "C) Fasciola should be called a coelomate because all triploblastic animals possess a true coelom",
+        "D) Fasciola is diploblastic and therefore has no germ layers"
+      ],
+      "answer": "B) Fasciola is not a pseudocoelomate; the Exemplar flags that statement as incorrect, while pseudocoelomates have a cavity not fully lined by mesoderm",
+      "explanation": "The Exemplar explicitly lists “Fasciola is a pseudocoelomate animal” as an incorrect statement. It separately defines pseudocoelomates as animals whose body cavity is not lined by mesoderm. Thus the definition is valid, but applying it to Fasciola is not."
+    },
+    {
+      "q": "Which vertebrate set simultaneously fits the Exemplar facts that all members have four-chambered hearts, while two of the three groups are characteristically warm-blooded?",
+      "options": [
+        "A) Amphibians, reptiles and birds",
+        "B) Lizards, turtles and mammals",
+        "C) Crocodiles, birds and mammals",
+        "D) Fishes, amphibians and mammals"
+      ],
+      "answer": "C) Crocodiles, birds and mammals",
+      "explanation": "The Exemplar identifies crocodiles, birds and mammals as the set sharing a four-chambered heart. It also states that birds and mammals share warm-bloodedness. Combining the two facts makes this the only option satisfying both conditions."
+    },
+    {
+      "q": "Which sequence correctly matches four animal groups with their characteristic structures used in classification?",
+      "options": [
+        "A) Porifera-water vascular system; Annelida-jointed appendages; Arthropoda-metamere; Echinodermata-canal system",
+        "B) Porifera-malpighian tubules; Annelida-comb plates; Arthropoda-radula; Echinodermata-flame cells",
+        "C) Porifera-metamere; Annelida-canal system; Arthropoda-water vascular system; Echinodermata-jointed appendages",
+        "D) Porifera-canal system; Annelida-metameres; Arthropoda-jointed appendages; Echinodermata-water vascular system"
+      ],
+      "answer": "D) Porifera-canal system; Annelida-metameres; Arthropoda-jointed appendages; Echinodermata-water vascular system",
+      "explanation": "The Exemplar matching question pairs Porifera with a canal system, Annelida with metameres, Arthropoda with jointed appendages and Echinodermata with a water-vascular system. Each structure is a major diagnostic feature used in animal classification. Therefore only the final sequence preserves all four correct matches."
+    }
+  ]
+}

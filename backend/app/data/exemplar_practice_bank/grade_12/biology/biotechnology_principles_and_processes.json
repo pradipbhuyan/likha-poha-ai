@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 12",
+  "subject": "Biology",
+  "chapter": "Biotechnology: Principles and Processes",
+  "topic": "Biotechnology — Principles and Processes",
+  "questions": [
+    {
+      "q": "A circular plasmid and a linear DNA molecule are the same size and each has exactly one recognition site for the same restriction endonuclease. After complete digestion, how many DNA fragments should each produce?",
+      "options": [
+        "A) Plasmid: 1 fragment; linear DNA: 2 fragments",
+        "B) Plasmid: 2 fragments; linear DNA: 1 fragment",
+        "C) Both: 2 fragments",
+        "D) Both: 1 fragment"
+      ],
+      "answer": "A) Plasmid: 1 fragment; linear DNA: 2 fragments",
+      "explanation": "The Exemplar asks this exact comparison. A single cut opens a circular plasmid into one linear fragment, so only one DNA band is expected from that molecule. A single cut in an already linear DNA molecule separates it into two fragments, producing two bands if the fragments are distinguishable."
+    },
+    {
+      "q": "During PCR, the denaturation step is accidentally omitted while the other reagents, including Taq polymerase and primers, are present. What is the most direct effect?",
+      "options": [
+        "A) Primers anneal more efficiently to intact double-stranded DNA",
+        "B) The template strands fail to separate adequately, so efficient primer annealing and amplification are severely impaired",
+        "C) Taq polymerase becomes a restriction enzyme",
+        "D) DNA fragments separate by size without electrophoresis"
+      ],
+      "answer": "B) The template strands fail to separate adequately, so efficient primer annealing and amplification are severely impaired",
+      "explanation": "PCR requires repeated separation of the two template strands so that primers can bind to complementary sequences. The Exemplar asks what happens when denaturation is missed, pointing directly to failure of normal amplification. Without adequate strand separation, primer annealing and subsequent extension cannot proceed efficiently."
+    },
+    {
+      "q": "A recombinant plasmid is accidentally exposed to an exonuclease before bacterial transformation. Why is this especially damaging?",
+      "options": [
+        "A) Exonuclease only stains DNA and prevents UV visualisation",
+        "B) Exonuclease converts all bases into RNA",
+        "C) Exonuclease removes nucleotides from DNA ends and can damage the recombinant molecule needed for transformation",
+        "D) Exonuclease increases plasmid copy number uncontrollably"
+      ],
+      "answer": "C) Exonuclease removes nucleotides from DNA ends and can damage the recombinant molecule needed for transformation",
+      "explanation": "The Exemplar defines exonucleases as enzymes that remove nucleotides from DNA ends and asks about the consequence of accidentally adding one to recombinant DNA. Damage to DNA ends can compromise the integrity of the recombinant plasmid. A damaged recombinant molecule is less likely to transform bacteria successfully or retain the intended insert."
+    },
+    {
+      "q": "A human gene is inserted into bacteria, but the transformed cells fail to produce the desired human protein. Which source-grounded explanation is the most plausible?",
+      "options": [
+        "A) Human and bacterial genetic codes use completely different codons for every amino acid",
+        "B) Bacteria cannot replicate plasmids that carry human DNA",
+        "C) Taq polymerase must be present continuously inside the bacterial cell",
+        "D) The human gene may contain introns that bacteria cannot process correctly"
+      ],
+      "answer": "D) The human gene may contain introns that bacteria cannot process correctly",
+      "explanation": "The Exemplar gives intron processing as a reason transformed bacteria may fail to produce a desired human protein. Bacteria generally cannot perform the eukaryotic RNA splicing required to remove introns from a genomic human gene. Therefore the transcript may not yield the correct protein even though the recombinant DNA entered the cell."
+    }
+  ]
+}

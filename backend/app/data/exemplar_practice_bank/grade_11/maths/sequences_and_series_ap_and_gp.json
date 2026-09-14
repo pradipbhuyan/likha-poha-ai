@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 11",
+  "subject": "Maths",
+  "chapter": "Sequences and Series",
+  "topic": "Sequences and Series — AP and GP",
+  "questions": [
+    {
+      "q": "A machine loses 20% of its value at the end of each year. If its initial value is Rs 1250, what is its value at the end of 5 years?",
+      "options": [
+        "A) Rs 409.60",
+        "B) Rs 512.00",
+        "C) Rs 400.00",
+        "D) Rs 640.00"
+      ],
+      "answer": "A) Rs 409.60",
+      "explanation": "Each year the machine retains 80% of the previous value, so the values form a GP with ratio 0.8. After five depreciations the value is 1250*(0.8)^5. This equals Rs 409.60."
+    },
+    {
+      "q": "In an AP with 24 terms, a1+a5+a10+a15+a20+a24 = 225. What is S24?",
+      "options": [
+        "A) 450",
+        "B) 900",
+        "C) 1800",
+        "D) 2250"
+      ],
+      "answer": "B) 900",
+      "explanation": "Terms equidistant from the beginning and end have the same sum: a1+a24 = a5+a20 = a10+a15. The given six-term sum is therefore 3(a1+a24)=225, so a1+a24=75. Hence S24 = 24/2 * 75 = 900."
+    },
+    {
+      "q": "Three numbers are in AP, their product is 224, and the largest is 7 times the smallest. Which triple is correct?",
+      "options": [
+        "A) 1,8,15",
+        "B) 2,7,12",
+        "C) 2,8,14",
+        "D) 4,8,12"
+      ],
+      "answer": "C) 2,8,14",
+      "explanation": "Write the numbers as a-d, a, a+d. The ratio condition gives a+d = 7(a-d), so d=3a/4. Substitution into a(a^2-d^2)=224 gives a=8 and d=6, yielding 2, 8, 14."
+    },
+    {
+      "q": "In a GP of positive terms, one term equals the sum of the next two terms. What is the common ratio?",
+      "options": [
+        "A) cos18 degrees",
+        "B) 2cos18 degrees",
+        "C) sin18 degrees",
+        "D) 2sin18 degrees"
+      ],
+      "answer": "D) 2sin18 degrees",
+      "explanation": "If t_n = t_(n+1) + t_(n+2), divide by t_n to obtain 1 = r + r^2. The positive root is (sqrt(5)-1)/2. The Exemplar identifies this value as 2sin18 degrees."
+    }
+  ]
+}

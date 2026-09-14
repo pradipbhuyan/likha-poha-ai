@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 12",
+  "subject": "Maths",
+  "chapter": "Application of Integrals",
+  "topic": "Applications of Integrals — Area",
+  "questions": [
+    {
+      "q": "The parabola y^2=2x and the line x-y=4 intersect at (2,-2) and (8,4). What is the area enclosed between them?",
+      "options": [
+        "A) 18 square units",
+        "B) 12 square units",
+        "C) 24 square units",
+        "D) 36 square units"
+      ],
+      "answer": "A) 18 square units",
+      "explanation": "Write the line as x=y+4 and the parabola as x=y^2/2. Over -2<=y<=4, the line lies to the right of the parabola. Integrating (y+4-y^2/2) with respect to y from -2 to 4 gives 18 square units."
+    },
+    {
+      "q": "The parabolas y^2=6x and x^2=6y meet at (0,0) and (6,6). What is the area of the region enclosed by them in the first quadrant?",
+      "options": [
+        "A) 6 square units",
+        "B) 12 square units",
+        "C) 18 square units",
+        "D) 24 square units"
+      ],
+      "answer": "B) 12 square units",
+      "explanation": "For 0<=x<=6, the upper curve is y=sqrt(6x) and the lower curve is y=x^2/6. The enclosed area is integral from 0 to 6 of [sqrt(6x)-x^2/6] dx. Evaluating gives 24-12=12 square units."
+    },
+    {
+      "q": "The parametric curve x=3cos t, y=2sin t is an ellipse. What area does it enclose?",
+      "options": [
+        "A) 5pi square units",
+        "B) 12 square units",
+        "C) 6pi square units",
+        "D) 12pi square units"
+      ],
+      "answer": "C) 6pi square units",
+      "explanation": "Eliminating t gives x^2/9+y^2/4=1, so the semi-axes are 3 and 2. The area of the ellipse obtained by the integration in the source is pi times the product of these semi-axes. Hence the enclosed area is 6pi square units."
+    },
+    {
+      "q": "For the circle x^2+y^2=a^2, a chord is cut by the line x=a/2. What is the area of the minor segment on the side x>=a/2?",
+      "options": [
+        "A) a^2(pi-3sqrt(3))/6",
+        "B) a^2(2pi-3sqrt(3))/12",
+        "C) a^2(pi-sqrt(3))/4",
+        "D) a^2(4pi-3sqrt(3))/12"
+      ],
+      "answer": "D) a^2(4pi-3sqrt(3))/12",
+      "explanation": "The segment area is 2 times the integral of sqrt(a^2-x^2) from x=a/2 to x=a. Using the standard antiderivative produces the circular-sector contribution together with the triangular subtraction. Simplification gives a^2(4pi-3sqrt(3))/12."
+    }
+  ]
+}

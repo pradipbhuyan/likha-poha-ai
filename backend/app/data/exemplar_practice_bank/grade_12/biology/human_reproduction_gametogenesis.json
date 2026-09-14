@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 12",
+  "subject": "Biology",
+  "chapter": "Human Reproduction",
+  "topic": "Human Reproduction — Gametogenesis",
+  "questions": [
+    {
+      "q": "A secondary spermatocyte completes the division that directly produces spermatids. What combination of chromosome number and division is correct?",
+      "options": [
+        "A) 23 chromosomes; second meiotic division",
+        "B) 46 chromosomes; mitosis",
+        "C) 46 chromosomes; first meiotic division",
+        "D) 23 chromosomes; mitosis"
+      ],
+      "answer": "A) 23 chromosomes; second meiotic division",
+      "explanation": "The Exemplar identifies secondary spermatocytes as haploid cells with 23 chromosomes. These cells undergo the second meiotic division to form spermatids. Thus the chromosome number is already reduced before meiosis II, and the division producing spermatids is meiotic rather than mitotic."
+    },
+    {
+      "q": "In a healthy menstrual cycle, a mature Graafian follicle is present around the middle of the cycle and ovulation follows an LH surge. Which hormonal state is most consistent with the period after ovulation?",
+      "options": [
+        "A) Persistently high FSH with no ovarian steroid secretion",
+        "B) High progesterone associated with the post-ovulatory phase",
+        "C) High hCG secreted by the pituitary before fertilisation",
+        "D) Complete suppression of ovarian hormones during the luteal phase"
+      ],
+      "answer": "B) High progesterone associated with the post-ovulatory phase",
+      "explanation": "The Exemplar places the mature Graafian follicle around days 11-17 and highlights the importance of the LH surge for ovulation. After ovulation, the corpus luteum becomes the dominant ovarian structure. Progesterone is therefore high in the post-ovulatory phase, making option B consistent with the sequence."
+    },
+    {
+      "q": "A sperm reaches the usual site of human fertilisation and contacts the ovum. Which pair of events is correctly linked to successful monospermic fertilisation?",
+      "options": [
+        "A) Fertilisation occurs in the uterus and the corona radiata permanently blocks all sperm",
+        "B) Fertilisation occurs in the cervix and the acrosome prevents implantation",
+        "C) Fertilisation occurs near the ampullary-isthmic junction, and zona pellucida changes help prevent polyspermy",
+        "D) Fertilisation occurs in the ovary and the trophoblast prevents polyspermy"
+      ],
+      "answer": "C) Fertilisation occurs near the ampullary-isthmic junction, and zona pellucida changes help prevent polyspermy",
+      "explanation": "The Exemplar specifically asks the significance of the ampullary-isthmic junction and the role of the zona pellucida in preventing polyspermy. Sperm-ovum interaction at the zona triggers events that allow fertilisation while subsequently blocking additional sperm entry. Therefore the site and the anti-polyspermy mechanism are correctly paired in option C."
+    },
+    {
+      "q": "Which sequence correctly orders major events from gamete formation to establishment of pregnancy in humans?",
+      "options": [
+        "A) Fertilisation -> gametogenesis -> implantation -> insemination",
+        "B) Insemination -> implantation -> fertilisation -> gametogenesis",
+        "C) Gametogenesis -> implantation -> insemination -> fertilisation",
+        "D) Gametogenesis -> insemination -> fertilisation -> implantation"
+      ],
+      "answer": "D) Gametogenesis -> insemination -> fertilisation -> implantation",
+      "explanation": "The Exemplar asks students to arrange these reproductive events in their correct sequence. Gametes must first be produced, after which insemination places sperm in the female tract. Fertilisation forms the zygote, and implantation occurs later after early embryonic divisions, so option D is the only biologically ordered sequence."
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 11",
+  "subject": "Maths",
+  "chapter": "Permutations and Combinations",
+  "topic": "Permutations and Combinations",
+  "questions": [
+    {
+      "q": "There are 4 bus routes from A to B and 3 from B to C. A traveller makes a round trip A-B-C-B-A without using any bus route more than once. How many round trips are possible?",
+      "options": [
+        "A) 72",
+        "B) 144",
+        "C) 24",
+        "D) 12"
+      ],
+      "answer": "A) 72",
+      "explanation": "There are 4*3=12 choices for the outward trip. On the return, one of the 3 B-C routes has been used, leaving 2, and one of the 4 A-B routes has been used, leaving 3. Thus the total is 12*2*3 = 72."
+    },
+    {
+      "q": "How many committees consisting of 3 men and 2 women can be chosen from 7 men and 5 women?",
+      "options": [
+        "A) 210",
+        "B) 350",
+        "C) 420",
+        "D) 700"
+      ],
+      "answer": "B) 350",
+      "explanation": "Choose the men and women independently. There are 7C3 ways to choose the men and 5C2 ways to choose the women. Their product is 35*10 = 350."
+    },
+    {
+      "q": "All letters of EAMCOT are distinct. How many arrangements have no two vowels adjacent?",
+      "options": [
+        "A) 72",
+        "B) 120",
+        "C) 144",
+        "D) 360"
+      ],
+      "answer": "C) 144",
+      "explanation": "Arrange the three consonants first in 3! ways, creating four gaps around them. Choose and order three of those four gaps for the three vowels in 4P3 ways. Therefore the total is 3!*4P3 = 6*24 = 144."
+    },
+    {
+      "q": "Six flags of different colours are available. How many distinct signals can be made by taking one or more flags at a time when order matters?",
+      "options": [
+        "A) 720",
+        "B) 63",
+        "C) 1950",
+        "D) 1956"
+      ],
+      "answer": "D) 1956",
+      "explanation": "For r flags, the number of signals is 6Pr. Add these for r=1 through 6: 6 + 30 + 120 + 360 + 720 + 720. The sum is 1956."
+    }
+  ]
+}

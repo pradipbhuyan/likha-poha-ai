@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 12",
+  "subject": "Maths",
+  "chapter": "Linear Programming",
+  "topic": "Linear Programming — Corner Point Method",
+  "questions": [
+    {
+      "q": "A company makes black-and-white and colour TV sets with constraints x+y<=300, 2x+3y<=720, x>=0, y>=0, and profit Z=510x+675y. Which production plan gives the maximum profit?",
+      "options": [
+        "A) x=180, y=120 with Z=172800",
+        "B) x=300, y=0 with Z=162000",
+        "C) x=0, y=240 with Z=153000",
+        "D) x=120, y=180 with Z=182700"
+      ],
+      "answer": "A) x=180, y=120 with Z=172800",
+      "explanation": "The feasible corner points are (0,0), (300,0), (180,120) and (0,240). Evaluating Z gives 0, 153000, 172800 and 162000, respectively. The largest value is 172800 at (180,120)."
+    },
+    {
+      "q": "Minimise Z=3x+5y subject to x+2y>=10, x+y>=6, 3x+y>=8, x>=0, y>=0. What is the minimum?",
+      "options": [
+        "A) 20 at (0,4)",
+        "B) 26 at (2,4)",
+        "C) 28 at (1,5)",
+        "D) No minimum exists because the feasible region is unbounded"
+      ],
+      "answer": "B) 26 at (2,4)",
+      "explanation": "The relevant corner values from the feasible region are 40, 28, 26 and 30. Although the region is unbounded, the open half-plane 3x+5y<26 has no common point with the feasible region. Therefore 26 at (2,4) is the true minimum."
+    },
+    {
+      "q": "The corner points are (0,10), (5,5), (15,15) and (0,20), and Z=px+qy with p,q>0. If the maximum occurs at both (15,15) and (0,20), what relation must hold?",
+      "options": [
+        "A) p=q",
+        "B) p=2q",
+        "C) q=3p",
+        "D) q=2p"
+      ],
+      "answer": "C) q=3p",
+      "explanation": "Equal optimal values at the two specified points require 15p+15q=20q. Rearranging gives 15p=5q. Hence q=3p."
+    },
+    {
+      "q": "An LPP has corner points (0,2), (3,0), (6,0), (6,8) and (0,5), with objective F=4x+6y. Where does the minimum occur?",
+      "options": [
+        "A) Only at (0,2)",
+        "B) Only at (3,0)",
+        "C) Only at the midpoint of (0,2) and (3,0)",
+        "D) At every point on the line segment joining (0,2) and (3,0)"
+      ],
+      "answer": "D) At every point on the line segment joining (0,2) and (3,0)",
+      "explanation": "At (0,2), F=12, and at (3,0), F=12; the other listed corner values are larger. When two corner points have the same optimal value, every point on the segment joining them is also optimal. Therefore the whole segment joining (0,2) and (3,0) consists of minimum points."
+    }
+  ]
+}

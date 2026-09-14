@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 12",
+  "subject": "Physics",
+  "chapter": "Electromagnetic Induction",
+  "topic": "Electromagnetic Induction — Faraday's Laws",
+  "questions": [
+    {
+      "q": "A square loop of side L lies in the x-y plane in a uniform field B = B0(2 i + 3 j + 4 k). What is the magnitude of magnetic flux through the square?",
+      "options": [
+        "A) 4 B0 L^2",
+        "B) 3 B0 L^2",
+        "C) 2 B0 L^2",
+        "D) sqrt(29) B0 L^2"
+      ],
+      "answer": "A) 4 B0 L^2",
+      "explanation": "The area vector of a loop in the x-y plane is along the z direction. Only the k-component of B contributes to B dot A, so the relevant field component is 4B0. Multiplying by area L^2 gives flux magnitude 4 B0 L^2."
+    },
+    {
+      "q": "For two nearby coils, consider these statements about mutual inductance: (i) bringing the coils nearer can increase it, (ii) it depends on the instantaneous current in the coils, (iii) M12 and M21 can be different for the same pair, (iv) M12 = M21. Which combination is correct?",
+      "options": [
+        "A) (ii) and (iii) only",
+        "B) (i) and (iv) only",
+        "C) (i), (ii) and (iv) only",
+        "D) (ii) only"
+      ],
+      "answer": "B) (i) and (iv) only",
+      "explanation": "Mutual inductance depends on geometry, orientation, spacing and magnetic environment, not on the instantaneous current for linear media. Bringing coils nearer generally increases the flux linkage and therefore can increase M. Reciprocity gives M12 = M21 for the same pair of coils, so statements (i) and (iv) are correct."
+    },
+    {
+      "q": "A circular conducting loop expands radially while it is in a magnetic field, yet no emf is induced. Which condition can make this happen even when the field has a nonzero component perpendicular to the loop?",
+      "options": [
+        "A) The perpendicular magnetic field stays constant as the area increases.",
+        "B) The loop resistance becomes very large.",
+        "C) The perpendicular component of the magnetic field decreases so that magnetic flux through the loop remains constant.",
+        "D) The magnetic field is made stronger in exact proportion to the area."
+      ],
+      "answer": "C) The perpendicular component of the magnetic field decreases so that magnetic flux through the loop remains constant.",
+      "explanation": "Faraday's law depends on the time rate of change of magnetic flux, not on area change by itself. If the loop area increases while the perpendicular component of B decreases in just the right way, the product B_perpendicular A can remain constant. Then dPhi/dt is zero and no induced emf appears."
+    },
+    {
+      "q": "A coil A carries a counterclockwise current and is moved toward a nearby stationary coil B. Current appears in B only while A is moving and disappears when A stops. What can be inferred about the current in A?",
+      "options": [
+        "A) It must be a constant clockwise current.",
+        "B) It must vary continuously in magnitude.",
+        "C) It must be zero when A stops.",
+        "D) It can be a constant counterclockwise current; changing mutual flux due to motion is sufficient to induce the current in B."
+      ],
+      "answer": "D) It can be a constant counterclockwise current; changing mutual flux due to motion is sufficient to induce the current in B.",
+      "explanation": "The flux linked with B is proportional to the mutual inductance times the current in A. Even if the current in A is constant, moving the coils changes their mutual inductance and hence changes the linked flux. Once the motion stops, the geometry and flux become constant, so the induced current in B disappears."
+    }
+  ]
+}

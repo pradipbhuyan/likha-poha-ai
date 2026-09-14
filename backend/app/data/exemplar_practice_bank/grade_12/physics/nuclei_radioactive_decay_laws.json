@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 12",
+  "subject": "Physics",
+  "chapter": "Nuclei",
+  "topic": "Nuclei — Radioactive Decay Laws",
+  "questions": [
+    {
+      "q": "Living wood has a carbon-14 activity of 16 disintegrations per minute per gram, while an ancient sample has 12. If the half-life is 5760 years, approximately how long ago did the tree die?",
+      "options": [
+        "A) 2.39 x 10^3 years",
+        "B) 4.15 x 10^3 years",
+        "C) 5.76 x 10^3 years",
+        "D) 8.30 x 10^3 years"
+      ],
+      "answer": "A) 2.39 x 10^3 years",
+      "explanation": "Activity is proportional to the number of undecayed nuclei, so A/A0 = 12/16 = 0.75. Using A/A0 = 2^(-t/T_half), we get t = T_half log2(4/3). With T_half = 5760 years, t is about 2.39 x 10^3 years."
+    },
+    {
+      "q": "The activity of a radioactive sample is measured hourly as 100, 35.36, 12.51, 4.42 and 1.56 MBq. What is its half-life?",
+      "options": [
+        "A) 20 min",
+        "B) 40 min",
+        "C) 1 h",
+        "D) 2 h"
+      ],
+      "answer": "B) 40 min",
+      "explanation": "The activity ratio after one hour is 35.36/100 = 0.3536, which is very nearly 2^(-3/2). Thus one hour corresponds to 1.5 half-lives. The half-life is therefore 1/1.5 hour = 2/3 hour = 40 minutes."
+    },
+    {
+      "q": "Let Mx and My be the atomic masses of parent and daughter atoms. Which Q-value expressions are correct for beta-minus and beta-plus decay respectively?",
+      "options": [
+        "A) Q_minus = (Mx-My-2me)c^2 and Q_plus = (Mx-My)c^2",
+        "B) Q_minus = (Mx-My+2me)c^2 and Q_plus = (Mx-My+2me)c^2",
+        "C) Q_minus = (Mx-My)c^2 and Q_plus = (Mx-My-2me)c^2",
+        "D) Q_minus = (Mx-My)c^2 and Q_plus = (Mx-My)c^2"
+      ],
+      "answer": "C) Q_minus = (Mx-My)c^2 and Q_plus = (Mx-My-2me)c^2",
+      "explanation": "When atomic masses are used for beta-minus decay, the electron bookkeeping is already included, giving Q_minus = (Mx - My)c^2. In beta-plus decay, the final atom has one fewer bound electron and a positron is emitted, leading to the subtraction of 2me. Therefore Q_plus = (Mx - My - 2me)c^2."
+    },
+    {
+      "q": "Many identical containers each initially hold 10,000 atoms of a radioactive isotope with half-life 1 year. After one year, what should be expected?",
+      "options": [
+        "A) Every container has exactly 5000 atoms left.",
+        "B) No container can have more than 5000 atoms left.",
+        "C) Every container has the same number left, though not exactly 5000.",
+        "D) Individual containers generally have different numbers left, but the average over many containers is close to 5000."
+      ],
+      "answer": "D) Individual containers generally have different numbers left, but the average over many containers is close to 5000.",
+      "explanation": "Radioactive decay is a random process for individual nuclei. The half-life predicts the expected fraction remaining in a large ensemble, not an exact count in every finite sample. Thus different containers fluctuate around the expectation, while the average count after one half-life approaches 5000."
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 12",
+  "subject": "Biology",
+  "chapter": "Principles of Inheritance and Variation",
+  "topic": "Principles of Inheritance — Mendel's Laws",
+  "questions": [
+    {
+      "q": "Two tall pea plants produce a few dwarf offspring. Assuming simple Mendelian dominance of tallness, which parental cross best explains the result?",
+      "options": [
+        "A) Tt x Tt",
+        "B) TT x Tt",
+        "C) TT x TT",
+        "D) Tt x tt"
+      ],
+      "answer": "A) Tt x Tt",
+      "explanation": "A dwarf offspring must receive the recessive allele from both parents and therefore have genotype tt. Each tall parent must consequently carry a hidden recessive allele while still expressing the dominant tall phenotype. The only listed cross satisfying those conditions is Tt x Tt."
+    },
+    {
+      "q": "A dihybrid F2 shows the classic phenotypic ratio 9:3:3:1. What is the strongest inference about the two gene pairs?",
+      "options": [
+        "A) They show complete linkage and never recombine",
+        "B) Their alleles segregate independently, as expected for independently assorting genes",
+        "C) They are multiple alleles of the same gene",
+        "D) One gene completely suppresses the other"
+      ],
+      "answer": "B) Their alleles segregate independently, as expected for independently assorting genes",
+      "explanation": "The Exemplar directly links the 9:3:3:1 dihybrid ratio with independent segregation of the two gene pairs. Such a ratio is the expected outcome when the combinations of alleles assort independently into gametes. Complete linkage or strong gene interaction would alter the classic Mendelian ratio."
+    },
+    {
+      "q": "A test cross of a dihybrid gives four offspring classes in nearly equal numbers: 138 tall-red, 132 tall-white, 136 dwarf-red and 128 dwarf-white. Which parental interpretation best fits these data?",
+      "options": [
+        "A) Both parents were homozygous dominant for both genes",
+        "B) The tall-red parent was homozygous dominant and the other parent was heterozygous",
+        "C) The tall-red parent was heterozygous for both genes and was crossed with a double-recessive tester",
+        "D) Both parents were double recessive"
+      ],
+      "answer": "C) The tall-red parent was heterozygous for both genes and was crossed with a double-recessive tester",
+      "explanation": "The four phenotypic classes occur in approximately equal numbers, which is the hallmark of a 1:1:1:1 test-cross expectation for two independently assorting heterozygous gene pairs. The Exemplar provides essentially these four counts and asks for the parental genotypes. Therefore the tall-red parent must be heterozygous for both traits and the tester must be recessive for both."
+    },
+    {
+      "q": "A child has blood group O, while the mother has blood group A and the father has blood group B. Which parental genotypes are required for this to be possible?",
+      "options": [
+        "A) IAIA and IBIB",
+        "B) IAIA and IBi",
+        "C) IAi and IBIB",
+        "D) IAi and IBi"
+      ],
+      "answer": "D) IAi and IBi",
+      "explanation": "Blood group O requires genotype ii, so the child must receive one i allele from each parent. A phenotypically A parent can supply i only if heterozygous IAi, and a phenotypically B parent can supply i only if heterozygous IBi. Hence both parents must be heterozygous as shown in option D."
+    }
+  ]
+}

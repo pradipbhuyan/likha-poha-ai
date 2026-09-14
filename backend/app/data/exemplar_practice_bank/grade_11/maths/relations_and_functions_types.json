@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 11",
+  "subject": "Maths",
+  "chapter": "Relations and Functions",
+  "topic": "Relations and Functions — Types",
+  "questions": [
+    {
+      "q": "If n(A)=m and n(B)=n, how many non-empty relations can be defined from A to B?",
+      "options": [
+        "A) 2^(mn) - 1",
+        "B) mn - 1",
+        "C) m^n - 1",
+        "D) n^m - 1"
+      ],
+      "answer": "A) 2^(mn) - 1",
+      "explanation": "A relation from A to B is any subset of A x B. Since A x B has mn ordered pairs, it has 2^(mn) subsets in total. Excluding the empty subset leaves 2^(mn) - 1 non-empty relations."
+    },
+    {
+      "q": "Consider h = {(4,6), (3,9), (-11,6), (3,11)}. Which conclusion is correct?",
+      "options": [
+        "A) h is a function because every second component is real",
+        "B) h is not a function because 3 has two different images",
+        "C) h is a constant function",
+        "D) h is an identity function"
+      ],
+      "answer": "B) h is not a function because 3 has two different images",
+      "explanation": "For a relation to be a function, each first component must have exactly one image. Here the input 3 occurs in both (3,9) and (3,11), giving two different images. Therefore h is not a function."
+    },
+    {
+      "q": "Let f={(2,4),(5,6),(8,-1),(10,-3)} and g={(2,5),(7,1),(8,4),(10,13),(11,-5)}. What is the domain of f+g?",
+      "options": [
+        "A) {2,5,7,8,10,11}",
+        "B) {5,7,11}",
+        "C) {2,8,10}",
+        "D) {2,5,8,10}"
+      ],
+      "answer": "C) {2,8,10}",
+      "explanation": "The sum f+g is defined only where both functions are defined. The domain of f is {2,5,8,10} and the domain of g is {2,7,8,10,11}. Their intersection is {2,8,10}, which is therefore the domain of f+g."
+    },
+    {
+      "q": "For which real x are f(x)=3x^2-1 and g(x)=x+3 equal?",
+      "options": [
+        "A) x=1 and x=-4/3",
+        "B) x=4/3 only",
+        "C) x=-1 only",
+        "D) x=4/3 and x=-1"
+      ],
+      "answer": "D) x=4/3 and x=-1",
+      "explanation": "Set the function values equal: 3x^2 - 1 = x + 3. This gives 3x^2 - x - 4 = 0, which factors as (3x - 4)(x + 1)=0. Hence x = 4/3 or x = -1."
+    }
+  ]
+}

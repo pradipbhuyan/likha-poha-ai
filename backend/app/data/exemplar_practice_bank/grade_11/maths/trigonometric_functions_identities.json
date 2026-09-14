@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 11",
+  "subject": "Maths",
+  "chapter": "Trigonometric Functions",
+  "topic": "Trigonometric Functions — Identities",
+  "questions": [
+    {
+      "q": "Solve 2tan^2 x + sec^2 x = 2 for 0 <= x <= 2pi.",
+      "options": [
+        "A) x = pi/6, 5pi/6, 7pi/6, 11pi/6",
+        "B) x = pi/3, 2pi/3, 4pi/3, 5pi/3",
+        "C) x = pi/6, 7pi/6 only",
+        "D) x = 5pi/6, 11pi/6 only"
+      ],
+      "answer": "A) x = pi/6, 5pi/6, 7pi/6, 11pi/6",
+      "explanation": "Use sec^2 x = 1 + tan^2 x. The equation becomes 3tan^2 x + 1 = 2, so tan x = plus or minus 1/sqrt(3). In the interval from 0 to 2pi this gives pi/6, 5pi/6, 7pi/6 and 11pi/6."
+    },
+    {
+      "q": "Evaluate tan 9 degrees - tan 27 degrees - tan 63 degrees + tan 81 degrees.",
+      "options": [
+        "A) 2",
+        "B) 4",
+        "C) sqrt(3)",
+        "D) 0"
+      ],
+      "answer": "B) 4",
+      "explanation": "Pair complementary angles: tan81 = cot9 and tan63 = cot27. Then the expression becomes (tan9 + cot9) - (tan27 + cot27), and tan t + cot t = 2/sin 2t. Using the exact values linked with sin18 and cos36 gives the value 4."
+    },
+    {
+      "q": "The equation sin theta + sin 3theta + sin 5theta = 0 has which general solution?",
+      "options": [
+        "A) theta = 2npi/3",
+        "B) theta = npi/2",
+        "C) theta = npi/3",
+        "D) theta = npi"
+      ],
+      "answer": "C) theta = npi/3",
+      "explanation": "Combine sin theta and sin 5theta to obtain 2 sin 3theta cos 2theta. The equation becomes sin 3theta(2 cos 2theta + 1)=0, and the solutions from both factors are contained in theta = npi/3. Hence the complete general solution is theta = npi/3."
+    },
+    {
+      "q": "What are the maximum and minimum values of 5 cos theta + 12 sin theta?",
+      "options": [
+        "A) 12 and -12",
+        "B) 17 and -17",
+        "C) 5 and -5",
+        "D) 13 and -13"
+      ],
+      "answer": "D) 13 and -13",
+      "explanation": "For A cos theta + B sin theta, the extreme magnitude is sqrt(A^2+B^2). Here sqrt(5^2+12^2) = sqrt(169) = 13. Therefore the maximum is 13 and the minimum is -13."
+    }
+  ]
+}

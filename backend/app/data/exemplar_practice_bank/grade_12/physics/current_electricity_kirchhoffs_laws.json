@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 12",
+  "subject": "Physics",
+  "chapter": "Current Electricity",
+  "topic": "Current Electricity — Kirchhoff's Laws",
+  "questions": [
+    {
+      "q": "At a steady-current junction, three branch currents are related by Kirchhoff's junction rule. Which physical statement is the strongest reason the algebraic sum of currents at the junction must be zero?",
+      "options": [
+        "A) Charge cannot continuously accumulate at the junction, so rate of charge inflow must equal rate of charge outflow.",
+        "B) The vector sum of electron momenta is conserved at the junction.",
+        "C) Every branch must have the same current density.",
+        "D) The emf of every closed loop through the junction must be zero."
+      ],
+      "answer": "A) Charge cannot continuously accumulate at the junction, so rate of charge inflow must equal rate of charge outflow.",
+      "explanation": "Current is the rate of flow of charge. If more charge entered a junction than left it in steady state, charge would accumulate there and the electric conditions would keep changing. Kirchhoff's junction rule is therefore a direct consequence of conservation of charge together with the steady-state condition."
+    },
+    {
+      "q": "In a meter bridge an unknown resistance R is compared with S = 100 ohm and the balance point is only 2.9 cm from one end. Which change most improves sensitivity, and why?",
+      "options": [
+        "A) Replace S by 1000 ohm so the balance point moves even closer to the same end.",
+        "B) Replace S by about 3 ohm so the balance point moves near the middle of the wire.",
+        "C) Keep S = 100 ohm and only use a finer ruler.",
+        "D) Replace S by zero resistance so the bridge current is maximum."
+      ],
+      "answer": "B) Replace S by about 3 ohm so the balance point moves near the middle of the wire.",
+      "explanation": "For a meter bridge, R/S = l/(100-l). With S = 100 ohm and l = 2.9 cm, R is about 3 ohm, so choosing a standard resistance of the same order makes the two ratio arms comparable. That shifts the null point toward the middle of the wire, where a given length error produces a smaller fractional error in the resistance ratio."
+    },
+    {
+      "q": "Two cells of approximately 5 V and 10 V are to be compared on a 400 cm potentiometer. Which operating choice is suitable for obtaining a null point for both cells?",
+      "options": [
+        "A) Use an 8 V driving source because it lies between the two emfs.",
+        "B) Arrange a 10 V drop over the first 50 cm of wire.",
+        "C) Use a driving source such as 15 V and adjust the series resistance so the drop over the full potentiometer wire is only slightly above 10 V.",
+        "D) Use any driving voltage because a potentiometer compares only resistances."
+      ],
+      "answer": "C) Use a driving source such as 15 V and adjust the series resistance so the drop over the full potentiometer wire is only slightly above 10 V.",
+      "explanation": "A potentiometer can balance a test emf only if the maximum potential drop available along its wire exceeds that emf. The 10 V cell therefore requires a total drop a little greater than 10 V, while an 8 V driving source cannot provide it. A 15 V source with series resistance adjusted to give a wire drop just above 10 V gives both range and good sensitivity."
+    },
+    {
+      "q": "A 6 V cell of internal resistance 2 ohm is connected in opposition to a 4 V cell of internal resistance 8 ohm in a single loop with no other resistance. What is the magnitude of the terminal potential difference across either cell?",
+      "options": [
+        "A) 2.0 V",
+        "B) 4.0 V",
+        "C) 6.0 V",
+        "D) 5.6 V"
+      ],
+      "answer": "D) 5.6 V",
+      "explanation": "The opposing emfs give a net emf of 6 - 4 = 2 V and total internal resistance 2 + 8 = 10 ohm. The current is therefore 0.2 A, flowing out of the 6 V cell and charging the 4 V cell. The terminal voltage is 6 - 0.2(2) = 5.6 V, which also equals 4 + 0.2(8) = 5.6 V for the other cell."
+    }
+  ]
+}

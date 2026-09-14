@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 12",
+  "subject": "Maths",
+  "chapter": "Relations and Functions",
+  "topic": "Relations and Functions — Inverse and Composition",
+  "questions": [
+    {
+      "q": "Let f(x) = |x| + x and g(x) = |x| - x for real x. Which description of the two compositions is correct?",
+      "options": [
+        "A) (g o f)(x) = 0 for every real x, while (f o g)(x) = 0 for x >= 0 and -4x for x < 0",
+        "B) (f o g)(x) = 0 for every real x, while (g o f)(x) = 0 for x >= 0 and -4x for x < 0",
+        "C) Both compositions equal 2x for x >= 0 and -2x for x < 0",
+        "D) The two compositions are identical to the identity function on R"
+      ],
+      "answer": "A) (g o f)(x) = 0 for every real x, while (f o g)(x) = 0 for x >= 0 and -4x for x < 0",
+      "explanation": "For x >= 0, f(x)=2x and g(x)=0, so g(f(x))=0 and f(g(x))=0. For x<0, f(x)=0 while g(x)=-2x>0, hence g(f(x))=0 but f(g(x))=2(-2x)=-4x. Therefore the source functions give the first stated piecewise pair of compositions."
+    },
+    {
+      "q": "For f:R->R defined by f(x)=3x-4, which candidate inverse also passes both composition checks f(f^-1(x))=x and f^-1(f(x))=x?",
+      "options": [
+        "A) f^-1(x)=(x-4)/3",
+        "B) f^-1(x)=(x+4)/3",
+        "C) f^-1(x)=3x+4",
+        "D) f^-1(x)=1/(3x-4)"
+      ],
+      "answer": "B) f^-1(x)=(x+4)/3",
+      "explanation": "Set y=3x-4 and solve for x to get x=(y+4)/3, so the inverse candidate is (x+4)/3. Substitution gives f((x+4)/3)=x and f^-1(3x-4)=x. Since both compositions are identity maps, the function is invertible with the stated inverse."
+    },
+    {
+      "q": "Let f:A->B and g:B->C. Suppose g o f is injective and also g o f is surjective. What is forced by these two facts even though the converses of the basic composition results need not hold?",
+      "options": [
+        "A) g must be injective and f must be surjective",
+        "B) Both f and g must be bijective",
+        "C) f must be injective and g must be surjective",
+        "D) Only f must be surjective"
+      ],
+      "answer": "C) f must be injective and g must be surjective",
+      "explanation": "If g o f is one-one, equality f(x1)=f(x2) would force (g o f)(x1)=(g o f)(x2), so x1=x2 and f must be injective. If g o f is onto C, every element of C is hit by g at a value coming from f, so g must be surjective. These conclusions do not by themselves force g to be injective or f to be surjective."
+    },
+    {
+      "q": "On R define a*b=a+b-ab. The identity is 0. Which statement about inverses with respect to * is correct?",
+      "options": [
+        "A) Every real a has inverse -a",
+        "B) Every nonzero real a has inverse 1/a",
+        "C) Only a=0 has an inverse",
+        "D) Every a except 1 has inverse a/(a-1), while a=1 has no inverse"
+      ],
+      "answer": "D) Every a except 1 has inverse a/(a-1), while a=1 has no inverse",
+      "explanation": "An inverse b of a must satisfy a*b=0, so a+b-ab=0. Rearranging gives b(1-a)=-a, hence b=a/(a-1) when a is not 1. For a=1, 1*b=1 for every b, so it can never equal the identity 0."
+    }
+  ]
+}

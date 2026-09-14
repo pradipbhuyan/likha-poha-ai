@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 11",
+  "subject": "Maths",
+  "chapter": "Conic Sections",
+  "topic": "Conic Sections — Parabola, Ellipse, Hyperbola",
+  "questions": [
+    {
+      "q": "For the parabola x^2=-8y, which set of features is correct?",
+      "options": [
+        "A) Focus (0,-2), directrix y=2, latus rectum length 8",
+        "B) Focus (0,2), directrix y=-2, latus rectum length 8",
+        "C) Focus (-2,0), directrix x=2, latus rectum length 4",
+        "D) Focus (0,-4), directrix y=4, latus rectum length 16"
+      ],
+      "answer": "A) Focus (0,-2), directrix y=2, latus rectum length 8",
+      "explanation": "Compare x^2=-8y with x^2=-4ay, giving a=2. Therefore the focus is (0,-2), the directrix is y=2, and the latus rectum has length 4a=8. All three features match option A."
+    },
+    {
+      "q": "For the ellipse 9x^2+25y^2=225, which statement is correct?",
+      "options": [
+        "A) e=3/5 and foci are (plus or minus 3,0)",
+        "B) e=4/5 and foci are (plus or minus 4,0)",
+        "C) e=4/5 and foci are (0,plus or minus 4)",
+        "D) e=5/4 and foci are (plus or minus 4,0)"
+      ],
+      "answer": "B) e=4/5 and foci are (plus or minus 4,0)",
+      "explanation": "Divide by 225 to get x^2/25 + y^2/9 = 1, so a=5 and b=3. Then e=sqrt(1-b^2/a^2)=sqrt(1-9/25)=4/5. Since the major axis is the x-axis, the foci are (plus or minus ae,0)=(plus or minus 4,0)."
+    },
+    {
+      "q": "For the hyperbola 9x^2-16y^2=144, which description is correct?",
+      "options": [
+        "A) Vertices (plus or minus 3,0), foci (plus or minus 5,0), e=5/3",
+        "B) Vertices (0,plus or minus 4), foci (0,plus or minus 5), e=5/4",
+        "C) Vertices (plus or minus 4,0), foci (plus or minus 5,0), e=5/4",
+        "D) Vertices (plus or minus 4,0), foci (plus or minus 3,0), e=3/4"
+      ],
+      "answer": "C) Vertices (plus or minus 4,0), foci (plus or minus 5,0), e=5/4",
+      "explanation": "The equation becomes x^2/16 - y^2/9 = 1, so a=4 and b=3. Using b^2=a^2(e^2-1) gives e=5/4 and ae=5. Thus the vertices are (plus or minus 4,0) and the foci are (plus or minus 5,0)."
+    },
+    {
+      "q": "An ellipse is centred at the origin, has its major axis on the x-axis, passes through (-3,1), and has e^2 = 2/5. Which equation fits?",
+      "options": [
+        "A) 5x^2+3y^2=32",
+        "B) 3x^2-5y^2=32",
+        "C) 3x^2+5y^2=25",
+        "D) 3x^2+5y^2=32"
+      ],
+      "answer": "D) 3x^2+5y^2=32",
+      "explanation": "Use x^2/a^2 + y^2/b^2 =1 with b^2=a^2(1-e^2). Substituting e^2=2/5 and the point (-3,1) gives a^2=32/3 and b^2=32/5. Multiplying the standard equation by 32 yields 3x^2+5y^2=32."
+    }
+  ]
+}

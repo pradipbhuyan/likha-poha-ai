@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 11",
+  "subject": "Biology",
+  "chapter": "Cell Cycle and Cell Division",
+  "topic": "Cell Division — Mitosis and Meiosis",
+  "questions": [
+    {
+      "q": "A meiotic bivalent is observed just before homologous chromosomes separate in meiosis I. Which description is correct?",
+      "options": [
+        "A) It contains four chromatids and two centromeres, and the homologous chromosomes separate during anaphase I",
+        "B) It contains two chromatids and one centromere, and sister chromatids separate during anaphase I",
+        "C) It contains four chromatids and four centromeres, and non-homologous chromosomes separate during anaphase I",
+        "D) It contains two chromatids and two centromeres, and crossing over occurs during mitotic anaphase"
+      ],
+      "answer": "A) It contains four chromatids and two centromeres, and the homologous chromosomes separate during anaphase I",
+      "explanation": "The Exemplar defines a bivalent in meiosis I as two homologous chromosomes, each with two chromatids, giving four chromatids and two centromeres. It also states that homologous chromosomes separate during anaphase I. Sister chromatids remain associated until meiosis II."
+    },
+    {
+      "q": "A student claims that meiosis includes two rounds of DNA replication because it has two nuclear divisions. Which response best corrects the claim?",
+      "options": [
+        "A) Correct; DNA replicates before both meiosis I and meiosis II",
+        "B) Incorrect; the Exemplar identifies two cycles of DNA replication as a wrong statement about meiosis",
+        "C) Correct only in gamete-producing tissues",
+        "D) Incorrect because meiosis involves no DNA replication at all"
+      ],
+      "answer": "B) Incorrect; the Exemplar identifies two cycles of DNA replication as a wrong statement about meiosis",
+      "explanation": "The Exemplar specifically marks “two cycle of DNA replication occurs” as an incorrect statement about meiosis. DNA is replicated before meiosis I, but there is no second S phase before meiosis II. Thus two divisions occur after a single premeiotic replication."
+    },
+    {
+      "q": "An anther ultimately contains 1200 pollen grains. Assuming each pollen mother cell completes normal meiosis, how many pollen mother cells were required?",
+      "options": [
+        "A) 1200",
+        "B) 600",
+        "C) 300",
+        "D) 150"
+      ],
+      "answer": "C) 300",
+      "explanation": "A single pollen mother cell undergoes meiosis to produce four haploid products that develop into pollen grains. Therefore the number of mother cells is the number of pollen grains divided by four. 1200 / 4 = 300 pollen mother cells."
+    },
+    {
+      "q": "Starting from one parental cell, repeated mitotic divisions produce 1024 cells. How many complete mitotic cycles occurred along each lineage?",
+      "options": [
+        "A) 8",
+        "B) 9",
+        "C) 11",
+        "D) 10"
+      ],
+      "answer": "D) 10",
+      "explanation": "Each complete mitotic cycle doubles the number of cells. Starting with one cell gives 2^n cells after n cycles, so we solve 2^n = 1024. Since 1024 = 2^10, ten cycles are required."
+    }
+  ]
+}

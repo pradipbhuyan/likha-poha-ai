@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 12",
+  "subject": "Biology",
+  "chapter": "Evolution",
+  "topic": "Evolution — Darwinism and Speciation",
+  "questions": [
+    {
+      "q": "In an MN blood-group population, allele frequencies are M = 0.7 and N = 0.3. Under Hardy-Weinberg equilibrium, what percentage of individuals is expected to be MN?",
+      "options": [
+        "A) 42%",
+        "B) 49%",
+        "C) 9%",
+        "D) 58%"
+      ],
+      "answer": "A) 42%",
+      "explanation": "For two alleles with frequencies p and q, the heterozygote frequency under Hardy-Weinberg equilibrium is 2pq. Substituting 0.7 and 0.3 gives 2 x 0.7 x 0.3 = 0.42. Therefore 42% of the population is expected to show the MN genotype."
+    },
+    {
+      "q": "Industrial melanism in the peppered moth is best interpreted as which type of selection?",
+      "options": [
+        "A) Stabilising selection",
+        "B) Directional selection",
+        "C) Disruptive selection",
+        "D) Artificial selection"
+      ],
+      "answer": "B) Directional selection",
+      "explanation": "The Exemplar identifies industrial melanism in Biston betularia as an example of directional selection. Environmental change favoured one end of the phenotypic range over the other. As the favoured phenotype increased in frequency, the population shifted in a particular direction."
+    },
+    {
+      "q": "A bacterial population becomes dominated by antibiotic-resistant cells after antibiotic exposure. Which explanation is most consistent with the Exemplar view?",
+      "options": [
+        "A) The antibiotic deliberately creates useful resistance mutations in every bacterium",
+        "B) Resistance appears because all bacteria undergo adaptive radiation",
+        "C) Resistant variants already present in the population are favoured and increase in frequency",
+        "D) The antibiotic converts analogous organs into homologous organs"
+      ],
+      "answer": "C) Resistant variants already present in the population are favoured and increase in frequency",
+      "explanation": "The Exemplar presents antibiotic resistance as an example of pre-existing variation in a population. The antibiotic acts as a selective pressure rather than as a purposeful generator of resistance. Resistant individuals survive and reproduce more successfully, increasing the frequency of the resistance trait."
+    },
+    {
+      "q": "The forelimb bones of whale, bat, cheetah and humans share the same basic structural plan but perform different functions. What evolutionary interpretation best fits this evidence?",
+      "options": [
+        "A) They are analogous structures produced by convergent evolution",
+        "B) They prove that all four species occupy the same habitat",
+        "C) They arose independently and therefore show no common ancestry",
+        "D) They are homologous structures indicating common ancestry and divergent evolution"
+      ],
+      "answer": "D) They are homologous structures indicating common ancestry and divergent evolution",
+      "explanation": "The Exemplar cites these forelimbs as similar in structure because the organisms share a common ancestor. A shared structural plan modified for different functions is the defining pattern of homology. Such modification from a common ancestral structure is evidence of divergent evolution."
+    }
+  ]
+}

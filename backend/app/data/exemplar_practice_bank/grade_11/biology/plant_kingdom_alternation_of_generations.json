@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 11",
+  "subject": "Biology",
+  "chapter": "Plant Kingdom",
+  "topic": "Plant Kingdom — Alternation of Generations",
+  "questions": [
+    {
+      "q": "A small plant has a thalloid body with rhizoids, is predominantly haploid, and requires water for motile male gametes to reach the female sex organ. Which group and life-cycle feature best fit these observations?",
+      "options": [
+        "A) Bryophytes, with a dominant gametophytic phase",
+        "B) Gymnosperms, with an independent dominant gametophyte",
+        "C) Angiosperms, with a free-living haploid plant body",
+        "D) Pteridophytes, with no need for water during fertilisation"
+      ],
+      "answer": "A) Bryophytes, with a dominant gametophytic phase",
+      "explanation": "The Exemplar describes a haploid thalloid plant with rhizoids and water-dependent motile male gametes as a bryophyte. It also states that the gametophyte is the dominant phase in the bryophyte life cycle. These two clues together identify both the group and the life-cycle emphasis."
+    },
+    {
+      "q": "Which observation most strongly links certain pteridophytes with the evolutionary origin of seed habit?",
+      "options": [
+        "A) Their sporophyte is always replaced by a free-living gametophyte",
+        "B) They form two kinds of spores, microspores and megaspores, a condition that foreshadows the seed habit",
+        "C) Their gametophytes are always enclosed inside flowers",
+        "D) They produce endosperm by triple fusion"
+      ],
+      "answer": "B) They form two kinds of spores, microspores and megaspores, a condition that foreshadows the seed habit",
+      "explanation": "The Exemplar highlights heterospory, the production of microspores and megaspores, in a few pteridophytes and all spermatophytes. It specifically asks about the evolutionary significance of this feature and how it acts as a precursor to seed habit. Hence heterospory provides the relevant evolutionary bridge."
+    },
+    {
+      "q": "A flowering plant has a diploid chromosome number of 36. If double fertilisation proceeds normally, what chromosome number should be expected in its endosperm?",
+      "options": [
+        "A) 18",
+        "B) 36",
+        "C) 54",
+        "D) 72"
+      ],
+      "answer": "C) 54",
+      "explanation": "A plant with 2n = 36 forms haploid gametic nuclei with n = 18. In angiosperms, the endosperm is formed by fusion involving three haploid nuclear sets, giving 3n. Therefore the endosperm chromosome number is 3 x 18 = 54."
+    },
+    {
+      "q": "A tall seed plant is diploid, bears sporophylls in compact cones, and is well adapted to extreme conditions. Which additional observation is most consistent with the same group?",
+      "options": [
+        "A) Its dominant plant body is a free-living prothallus",
+        "B) Its embryo sac is always the only visible plant body",
+        "C) It must be a bryophyte because cones are haploid gametophytes",
+        "D) It belongs to gymnosperms, the same broad group that includes Sequoia"
+      ],
+      "answer": "D) It belongs to gymnosperms, the same broad group that includes Sequoia",
+      "explanation": "The Exemplar uses diploidy, adaptation to extreme conditions and cone-bearing sporophylls to identify gymnosperms. It separately identifies the giant redwood Sequoia as a gymnosperm. These clues are consistent with the same plant group rather than bryophytes or pteridophytes."
+    }
+  ]
+}

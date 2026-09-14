@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 11",
+  "subject": "Maths",
+  "chapter": "Introduction to Three Dimensional Geometry",
+  "topic": "Introduction to 3D Geometry",
+  "questions": [
+    {
+      "q": "Which point is equidistant from O(0,0,0), A(l,0,0), B(0,m,0) and C(0,0,n)?",
+      "options": [
+        "A) (l/2,m/2,n/2)",
+        "B) (l,m,n)",
+        "C) (l/3,m/3,n/3)",
+        "D) (2l,2m,2n)"
+      ],
+      "answer": "A) (l/2,m/2,n/2)",
+      "explanation": "Let the point be (x,y,z) and equate its squared distance from O with its squared distance from A. This gives x=l/2; similarly comparison with B and C gives y=m/2 and z=n/2. Hence the required point is (l/2,m/2,n/2)."
+    },
+    {
+      "q": "Find the point on the x-axis that is equidistant from A(3,2,2) and B(5,5,4).",
+      "options": [
+        "A) (25/4,0,0)",
+        "B) (49/4,0,0)",
+        "C) (12,0,0)",
+        "D) (7,0,0)"
+      ],
+      "answer": "B) (49/4,0,0)",
+      "explanation": "A point on the x-axis has the form P(x,0,0). Equating PA^2 and PB^2 gives (x-3)^2+4+4=(x-5)^2+25+16. Simplification yields 4x=49, so P=(49/4,0,0)."
+    },
+    {
+      "q": "In what ratio does the xz-plane divide the line segment joining P(2,4,5) and Q(3,5,-4)?",
+      "options": [
+        "A) Internally in 4:5",
+        "B) Internally in 5:4",
+        "C) Externally in 4:5",
+        "D) Externally in 5:4"
+      ],
+      "answer": "C) Externally in 4:5",
+      "explanation": "Let the dividing ratio be k:1 and apply the section formula to the y-coordinate. Because every point on the xz-plane has y=0, (5k+4)/(k+1)=0, giving k=-4/5. The negative sign indicates external division, with magnitude ratio 4:5."
+    },
+    {
+      "q": "In triangle ABC, A=(3,2,0), B=(5,3,2), C=(-9,6,-3). The internal angle bisector from A meets BC at D. What are the coordinates of D?",
+      "options": [
+        "A) (19/16,57/8,17/16)",
+        "B) (19/8,57/16,-17/16)",
+        "C) (19/8,57/8,17/16)",
+        "D) (19/8,57/16,17/16)"
+      ],
+      "answer": "D) (19/8,57/16,17/16)",
+      "explanation": "First compute AB=3 and AC=13. By the angle-bisector theorem, D divides BC internally in the ratio BD:DC=3:13. Applying the 3D section formula gives D=(19/8,57/16,17/16)."
+    }
+  ]
+}

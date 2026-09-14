@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 12",
+  "subject": "Biology",
+  "chapter": "Ecosystem",
+  "topic": "Ecosystem — Productivity and Energy Flow",
+  "questions": [
+    {
+      "q": "A food-chain statement says that 10 kg of deer meat is energetically equivalent to about 1 kg of lion flesh. What ecological principle is being illustrated?",
+      "options": [
+        "A) Only a small fraction of energy is transferred to the next trophic level, so higher trophic levels contain less available energy",
+        "B) Energy is completely recycled from carnivores back to herbivores",
+        "C) Biomass and energy always increase at each trophic level",
+        "D) Carnivores convert all ingested biomass into new tissue"
+      ],
+      "answer": "A) Only a small fraction of energy is transferred to the next trophic level, so higher trophic levels contain less available energy",
+      "explanation": "The Exemplar uses this deer-to-lion comparison to illustrate energy transfer across trophic levels. A substantial amount of energy is lost in metabolism at each transfer, so only a fraction becomes biomass at the next level. Consequently higher trophic levels support less biomass and available energy."
+    },
+    {
+      "q": "Which ecosystem-productivity statement is most consistent with the Exemplar?",
+      "options": [
+        "A) Deserts have the highest net primary productivity among the listed ecosystems",
+        "B) Tropical rain forests are among the most productive ecosystems in terms of net primary production",
+        "C) Oceans always have the highest productivity per unit area",
+        "D) Net primary productivity is unrelated to ecosystem type"
+      ],
+      "answer": "B) Tropical rain forests are among the most productive ecosystems in terms of net primary production",
+      "explanation": "The Exemplar asks which listed ecosystem is most productive in terms of net primary production and identifies tropical rain forests among the options. It also notes that primary productivity varies among ecosystems. Therefore productivity is ecosystem-dependent, and tropical rain forests represent a high-productivity system in this comparison."
+    },
+    {
+      "q": "Why is decomposition expected to proceed faster in a tropical rain forest than in an Antarctic or dry arid region?",
+      "options": [
+        "A) Tropical forests lack decomposers, so detritus breaks down chemically",
+        "B) Decomposition is independent of temperature and moisture",
+        "C) Warm, moist conditions generally favour microbial activity and decomposition",
+        "D) Low oxygen and freezing conditions always speed mineralisation"
+      ],
+      "answer": "C) Warm, moist conditions generally favour microbial activity and decomposition",
+      "explanation": "The Exemplar identifies tropical rain forest as the setting where decomposition would be fastest and separately notes that temperature, oxygen and other abiotic factors affect decomposition rate. Warm and moist conditions favour decomposer activity much more than freezing or very dry conditions. Thus the tropical environment supports more rapid breakdown of detritus."
+    },
+    {
+      "q": "Why does secondary succession usually reach a climax community faster than primary succession?",
+      "options": [
+        "A) Secondary succession begins without any soil or biological legacy",
+        "B) Primary succession always starts with mature trees",
+        "C) Secondary succession avoids all competition among species",
+        "D) Secondary succession begins where a previous community existed, so soil and biological remnants can accelerate recovery"
+      ],
+      "answer": "D) Secondary succession begins where a previous community existed, so soil and biological remnants can accelerate recovery",
+      "explanation": "The Exemplar asks directly why climax is achieved faster in secondary succession. Secondary succession starts after disturbance in an area that previously supported life, so soil and other biological legacies are already present. Primary succession begins on a much more barren substrate and therefore requires more stages before a mature community develops."
+    }
+  ]
+}

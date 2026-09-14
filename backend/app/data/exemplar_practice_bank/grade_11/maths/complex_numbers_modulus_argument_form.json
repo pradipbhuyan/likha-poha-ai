@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 11",
+  "subject": "Maths",
+  "chapter": "Complex Numbers and Quadratic Equations",
+  "topic": "Complex Numbers — Modulus-Argument Form",
+  "questions": [
+    {
+      "q": "A complex number z has |z|=2 and principal argument pi/4. Which rectangular form is correct?",
+      "options": [
+        "A) sqrt(2) + i sqrt(2)",
+        "B) 1 + i",
+        "C) 2 + 2i",
+        "D) sqrt(2) - i sqrt(2)"
+      ],
+      "answer": "A) sqrt(2) + i sqrt(2)",
+      "explanation": "The polar form is z = r(cos theta + i sin theta). With r=2 and theta=pi/4, both cosine and sine are 1/sqrt(2). Therefore z = sqrt(2) + i sqrt(2)."
+    },
+    {
+      "q": "If z1 + i z2 = 0 and arg(z1 z2)=pi, what is arg(z1) as obtained in the Exemplar example?",
+      "options": [
+        "A) pi/4",
+        "B) 3pi/4",
+        "C) -pi/4",
+        "D) pi"
+      ],
+      "answer": "A) pi/4",
+      "explanation": "From z1 + i z2 = 0, we get z2 = -z1/i. Since 1/i = -i, this gives z2 = -z1 x (-i) = i z1, so z2 = i z1. Therefore arg(z1 z2) = arg(z1) + arg(z2) = 2 arg(z1) + arg(i) = 2 arg(z1) + pi/2. Setting this equal to pi gives 2 arg(z1) = pi/2, so arg(z1) = pi/4."
+    },
+    {
+      "q": "A complex number z lies inside or on the circle of radius 3 centred at (-4,0). What are the greatest and least possible values of |z+1|?",
+      "options": [
+        "A) Greatest 7, least 1",
+        "B) Greatest 6, least 1",
+        "C) Greatest 6, least 0",
+        "D) Greatest 3, least 0"
+      ],
+      "answer": "C) Greatest 6, least 0",
+      "explanation": "The condition is |z+4| <= 3. By the triangle inequality, |z+1| = |(z+4)-3| can be at most |z+4|+3 <= 6, and this bound is attainable. The point z=-1 lies in the given disk, so the least possible value is 0."
+    },
+    {
+      "q": "If a non-real complex number lies in the third quadrant of the Argand plane, where does its conjugate lie?",
+      "options": [
+        "A) First quadrant",
+        "B) Third quadrant",
+        "C) Fourth quadrant",
+        "D) Second quadrant"
+      ],
+      "answer": "D) Second quadrant",
+      "explanation": "A point in the third quadrant has negative real part and negative imaginary part. Conjugation keeps the real part unchanged and reverses the sign of the imaginary part. The resulting point therefore has negative real part and positive imaginary part, which is the second quadrant."
+    }
+  ]
+}

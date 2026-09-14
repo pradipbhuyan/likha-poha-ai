@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 12",
+  "subject": "Maths",
+  "chapter": "Continuity and Differentiability",
+  "topic": "Continuity and Differentiability",
+  "questions": [
+    {
+      "q": "Define f(0)=k and, for x!=0, f(x)=(1-cos(4x))/(8x^2). What value of k makes f continuous at 0?",
+      "options": [
+        "A) 1",
+        "B) 1/2",
+        "C) 2",
+        "D) 0"
+      ],
+      "answer": "A) 1",
+      "explanation": "Use 1-cos(4x)=2sin^2(2x). Then f(x)=(sin(2x)/(2x))^2 for x!=0, whose limit at 0 is 1. Continuity requires f(0) to equal that limit, so k=1."
+    },
+    {
+      "q": "Let f(x)=1/(x-1). For the composite h(x)=f(f(x)), which pair gives all real points where h is discontinuous?",
+      "options": [
+        "A) x=0 and x=1",
+        "B) x=1 and x=2",
+        "C) x=-1 and x=2",
+        "D) x=2 only"
+      ],
+      "answer": "B) x=1 and x=2",
+      "explanation": "The inner function f(x) is undefined at x=1, so the composite is already undefined there. For x!=1, h(x)=1/(1/(x-1)-1)=(x-1)/(2-x), which is additionally undefined at x=2. Therefore the composite has discontinuities at both x=1 and x=2."
+    },
+    {
+      "q": "If y=tan(x+y), what is dy/dx after implicit differentiation and simplification?",
+      "options": [
+        "A) sec^2(x+y)",
+        "B) -tan^2(x+y)",
+        "C) -cosec^2(x+y)",
+        "D) cot^2(x+y)"
+      ],
+      "answer": "C) -cosec^2(x+y)",
+      "explanation": "Differentiate to get y'=sec^2(x+y)(1+y'). Rearranging gives y'(1-sec^2(x+y))=sec^2(x+y). Since 1-sec^2 u=-tan^2 u, the quotient becomes -sec^2 u/tan^2 u=-cosec^2 u."
+    },
+    {
+      "q": "For f(x)=sin(2x) on [0,pi/2], which value of c is guaranteed by Rolle's theorem and satisfies f'(c)=0?",
+      "options": [
+        "A) 0",
+        "B) pi/2",
+        "C) pi/6",
+        "D) pi/4"
+      ],
+      "answer": "D) pi/4",
+      "explanation": "The sine function is continuous on the closed interval and differentiable inside it. Also f(0)=0=f(pi/2), so Rolle's theorem applies. Solving f'(c)=2cos(2c)=0 within (0,pi/2) gives c=pi/4."
+    }
+  ]
+}

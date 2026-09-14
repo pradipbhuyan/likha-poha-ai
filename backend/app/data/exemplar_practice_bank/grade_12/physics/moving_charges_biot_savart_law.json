@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 12",
+  "subject": "Physics",
+  "chapter": "Moving Charges and Magnetism",
+  "topic": "Moving Charges — Biot-Savart Law",
+  "questions": [
+    {
+      "q": "A circular current loop of radius R initially lies in the x-y plane. The half with x > 0 is bent so that it lies in the y-z plane while the other half remains in the x-y plane. If the original magnetic moment magnitude was M, what is the new magnitude?",
+      "options": [
+        "A) M/sqrt(2)",
+        "B) M",
+        "C) sqrt(2)M",
+        "D) M/2"
+      ],
+      "answer": "A) M/sqrt(2)",
+      "explanation": "Each semicircle contributes an area vector of magnitude pi R^2/2. After bending, the two semicircular area vectors are perpendicular, one normal to the x-y plane and the other normal to the y-z plane. Their resultant area is sqrt(2)(pi R^2/2) = pi R^2/sqrt(2), so the magnetic moment becomes M/sqrt(2)."
+    },
+    {
+      "q": "An electron is projected exactly along the axis of a long current-carrying solenoid. Neglecting edge effects, what happens to its motion inside the solenoid?",
+      "options": [
+        "A) It moves in a circle because the magnetic field is uniform.",
+        "B) It continues with uniform velocity along the axis because v is parallel to B and the magnetic force is zero.",
+        "C) It accelerates along the axis because magnetic force adds kinetic energy.",
+        "D) It follows a helix of pitch increasing with time."
+      ],
+      "answer": "B) It continues with uniform velocity along the axis because v is parallel to B and the magnetic force is zero.",
+      "explanation": "Inside a long solenoid the magnetic field is directed along its axis. For a particle moving exactly parallel to B, the magnetic force q(v x B) is zero because the cross product vanishes. With no magnetic force and no other field specified, the electron continues with constant velocity along the axis."
+    },
+    {
+      "q": "Two long parallel wires carry equal currents of 25 A in opposite directions. The upper 1 m wire has mass 2.5 g and is free to move vertically above the lower wire. Approximately how high above the lower wire can magnetic repulsion balance its weight? Take g = 9.8 m/s^2.",
+      "options": [
+        "A) 0.51 mm",
+        "B) 51 mm",
+        "C) 5.1 mm",
+        "D) 0.51 m"
+      ],
+      "answer": "C) 5.1 mm",
+      "explanation": "For opposite currents the parallel wires repel, with force per length mu0 I^2/(2 pi h). For a 1 m wire, set mu0 I^2/(2 pi h) = mg, giving h = (2 x 10^-7)(25^2)/(0.0025 x 9.8). This is about 5.1 x 10^-3 m, or 5.1 mm."
+    },
+    {
+      "q": "A current loop with magnetic moment M is placed in a uniform magnetic field B. The loop is rotated through 30 degrees about an axis perpendicular to the plane of the loop, passing through its centre. What work is done against the magnetic torque?",
+      "options": [
+        "A) MB",
+        "B) MB/2",
+        "C) sqrt(3)MB/2",
+        "D) 0"
+      ],
+      "answer": "D) 0",
+      "explanation": "The magnetic moment vector is perpendicular to the plane of the loop. Rotating the loop about this same perpendicular axis does not change the direction of the magnetic moment relative to the external field. Since the magnetic potential energy -M dot B is unchanged, the work required is zero."
+    }
+  ]
+}

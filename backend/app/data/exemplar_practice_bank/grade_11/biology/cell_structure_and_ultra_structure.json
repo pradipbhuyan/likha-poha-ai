@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 11",
+  "subject": "Biology",
+  "chapter": "Cell: The Unit of Life",
+  "topic": "Cell — Structure and Ultra-structure",
+  "questions": [
+    {
+      "q": "A cell is identified as Anabaena rather than Euglena, Spirogyra or Agaricus. Which structural inference best follows from that identification?",
+      "options": [
+        "A) It is prokaryotic and lacks the membrane-bound organisation typical of eukaryotic cells",
+        "B) It must possess a membrane-bound nucleus because all four organisms are eukaryotes",
+        "C) It must possess 80S cytoplasmic ribosomes only and no prokaryotic features",
+        "D) It is a fungus because Anabaena and Agaricus belong to the same kingdom"
+      ],
+      "answer": "A) It is prokaryotic and lacks the membrane-bound organisation typical of eukaryotic cells",
+      "explanation": "The Exemplar singles out Anabaena as the one organism in the list that is not eukaryotic. Prokaryotes lack a nuclear membrane and membrane-bound subcellular organelles. Hence identifying the organism as Anabaena implies prokaryotic cell organisation."
+    },
+    {
+      "q": "A cell is specialised for intense protein secretion. Which organelle profile best agrees with the Exemplar?",
+      "options": [
+        "A) Rough ER absent and only smooth ER present",
+        "B) Rough ER prominently developed, with the secretory pathway organelles expected to be active",
+        "C) Golgi apparatus absent because secretion occurs directly from the nucleus",
+        "D) Ribosomes absent because secretory proteins are synthesized in vacuoles"
+      ],
+      "answer": "B) Rough ER prominently developed, with the secretory pathway organelles expected to be active",
+      "explanation": "The Exemplar states that rough endoplasmic reticulum is easily observed in a secretory cell. RER is associated with ribosomes and supports synthesis of proteins destined for secretion. Therefore a cell with strong secretory activity should show prominent RER rather than its absence."
+    },
+    {
+      "q": "Which observation most directly supports the fluid mosaic view of the plasma membrane described in the Exemplar?",
+      "options": [
+        "A) The membrane is made only of proteins arranged in a rigid sheet",
+        "B) The membrane contains a single layer of lipids with no proteins",
+        "C) Lipids form a bilayer, while proteins may be integrated into it or loosely associated with it",
+        "D) Carbohydrates are never associated with the plasma membrane"
+      ],
+      "answer": "C) Lipids form a bilayer, while proteins may be integrated into it or loosely associated with it",
+      "explanation": "The Exemplar states that plasma-membrane lipids are arranged as a bilayer. It also notes that proteins can be integrated in the bilayer or loosely associated with it, and identifies Singer and Nicolson with the fluid mosaic model. This combination of a lipid bilayer and variably associated proteins is the defining structural idea."
+    },
+    {
+      "q": "Mitochondria and plastids share several features, so which feature is the clearest Exemplar basis for distinguishing a plastid from a mitochondrion?",
+      "options": [
+        "A) Presence of DNA, because mitochondria lack DNA",
+        "B) Presence of ribosomes, because mitochondria lack ribosomes",
+        "C) A double membrane, because mitochondria have only one membrane",
+        "D) Presence of thylakoids, which is characteristic of plastids rather than mitochondria"
+      ],
+      "answer": "D) Presence of thylakoids, which is characteristic of plastids rather than mitochondria",
+      "explanation": "The Exemplar notes that both plastids and mitochondria can possess DNA, ribosomes and double membranes. It identifies thylakoids as the distinguishing feature among the listed choices. Therefore thylakoids separate plastids from mitochondria more reliably than the other shared features."
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 11",
+  "subject": "Maths",
+  "chapter": "Linear Inequalities",
+  "topic": "Linear Inequalities — Graphical Method",
+  "questions": [
+    {
+      "q": "Solve |x+1| + |x| > 3.",
+      "options": [
+        "A) x in (-infinity,-2) union (1,infinity)",
+        "B) x in [-2,1]",
+        "C) x in (-2,1)",
+        "D) x in (-infinity,-1) union (0,infinity)"
+      ],
+      "answer": "A) x in (-infinity,-2) union (1,infinity)",
+      "explanation": "The critical points are -1 and 0, so solve separately on the three intervals they determine. The middle interval gives no solutions, while the outer intervals give x<-2 and x>1. Combining them yields (-infinity,-2) union (1,infinity)."
+    },
+    {
+      "q": "For the system x/(2x+1) >= 1/4 and 6x/(4x-1) < 1/2, what is the common solution set?",
+      "options": [
+        "A) (-1/8,1/4)",
+        "B) Empty set",
+        "C) [1/2,infinity)",
+        "D) (-infinity,-1/2)"
+      ],
+      "answer": "B) Empty set",
+      "explanation": "The first inequality gives x in (-infinity,-1/2) union [1/2,infinity). The second gives x in (-1/8,1/4). These sets do not overlap, so the system has no common solution."
+    },
+    {
+      "q": "Consider x + 2y <= 3, 3x + 4y >= 12, x >= 0 and y >= 1. Which statement is correct?",
+      "options": [
+        "A) The feasible region is a bounded triangle",
+        "B) The feasible region is unbounded",
+        "C) The system has no solution",
+        "D) Every point in the first quadrant is feasible"
+      ],
+      "answer": "C) The system has no solution",
+      "explanation": "From y>=1 and x>=0, the first inequality forces x+2y<=3, so only a narrow region near the y-axis is possible. But in that region 3x+4y cannot reach 12 while the first inequality remains satisfied. Therefore the half-planes have no common feasible point."
+    },
+    {
+      "q": "What best describes the solution set of 2x+y >= 8, x+2y >= 10, x>=0, y>=0?",
+      "options": [
+        "A) Empty",
+        "B) A single point",
+        "C) Bounded",
+        "D) Unbounded"
+      ],
+      "answer": "D) Unbounded",
+      "explanation": "Each inequality selects a half-plane in the first quadrant on or above its boundary line. Their common region continues indefinitely toward larger positive x and y. Hence the feasible region is unbounded."
+    }
+  ]
+}

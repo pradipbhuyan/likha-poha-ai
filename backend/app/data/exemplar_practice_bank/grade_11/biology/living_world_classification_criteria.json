@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 11",
+  "subject": "Biology",
+  "chapter": "The Living World",
+  "topic": "Living World — Classification Criteria",
+  "questions": [
+    {
+      "q": "A taxonomist moves from species to genus, family, order and finally kingdom while classifying a set of organisms. Which combined trend is most consistent with the taxonomic hierarchy described in the Exemplar?",
+      "options": [
+        "A) The number of shared characters generally decreases, while the number of organisms included generally increases",
+        "B) The number of shared characters and the number of organisms included both decrease",
+        "C) The number of shared characters increases, while the number of organisms included decreases",
+        "D) Both shared characters and number of organisms remain essentially unchanged"
+      ],
+      "answer": "A) The number of shared characters generally decreases, while the number of organisms included generally increases",
+      "explanation": "Species is the lowest of the major categories listed here and contains organisms sharing the most specific set of characters. As one moves upward toward kingdom, increasingly diverse organisms are grouped together, so the common characters become fewer. At the same time, each higher category contains more organisms than the category below it."
+    },
+    {
+      "q": "A preserved specimen is labelled Brassica campestris Linn. Which interpretation best uses the nomenclatural clues in that name?",
+      "options": [
+        "A) Brassica is the species name, campestris is the family name, and Linn indicates the collection site",
+        "B) Brassica is the genus, campestris is the specific epithet, and Linn indicates the authority associated with the name",
+        "C) Brassica and campestris are both family-level names and Linn is the kingdom",
+        "D) campestris is the genus, Brassica is the order, and Linn is the species"
+      ],
+      "answer": "B) Brassica is the genus, campestris is the specific epithet, and Linn indicates the authority associated with the name",
+      "explanation": "In binomial nomenclature, the first word denotes the genus and the second word forms the species name with it. The Exemplar specifically asks what the first two parts of Brassica campestris denote and why they are written in italics. The final author abbreviation, Linn, records the naming authority rather than a taxonomic rank or locality."
+    },
+    {
+      "q": "Brinjal and potato are both placed in the genus Solanum but are treated as different species. What is the best taxonomic inference?",
+      "options": [
+        "A) They must have identical morphology because members of a genus are a single species",
+        "B) They cannot be closely related because different species never share a genus",
+        "C) They share enough important characters to be grouped in one genus, but they differ sufficiently to remain separate species",
+        "D) Their common genus name proves that common names are adequate for universal scientific identification"
+      ],
+      "answer": "C) They share enough important characters to be grouped in one genus, but they differ sufficiently to remain separate species",
+      "explanation": "A genus is a group of closely related species, so two organisms in Solanum are expected to share important characters. Species is a more specific category, and the Exemplar explicitly contrasts brinjal and potato as members of one genus but different species. Therefore similarity justifies the common genus, while meaningful differences justify separate species."
+    },
+    {
+      "q": "A survey records 20 plant species and 20 animal species in one habitat, and also notes that one plant was introduced from outside India while another is native and restricted to India. Which statement best combines the Exemplar concepts?",
+      "options": [
+        "A) The survey shows only vegetation, and both plants must be endemic",
+        "B) The survey shows only diversity, because biodiversity excludes animals",
+        "C) The introduced plant is endemic and the restricted native plant is exotic",
+        "D) The survey represents biodiversity; the introduced plant is exotic and the restricted native plant is endemic"
+      ],
+      "answer": "D) The survey represents biodiversity; the introduced plant is exotic and the restricted native plant is endemic",
+      "explanation": "Biodiversity refers to the variety of living organisms, so counting both plant and animal species in a habitat is a biodiversity observation. The Exemplar distinguishes exotic species as introduced from elsewhere and endemic species as native to a restricted region. Combining those definitions gives the stated classification."
+    }
+  ]
+}

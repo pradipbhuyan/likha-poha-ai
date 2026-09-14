@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 11",
+  "subject": "Biology",
+  "chapter": "Transport in Plants",
+  "topic": "Transport in Plants — Osmosis and Imbibition",
+  "questions": [
+    {
+      "q": "A water-purification system forces water across a semipermeable membrane by applying pressure greater than the osmotic pressure. Which description is correct?",
+      "options": [
+        "A) It is reverse osmosis and requires applied pressure, so it is not a passive process",
+        "B) It is ordinary osmosis and must occur without any external pressure",
+        "C) It is imbibition because only dry colloids can absorb water",
+        "D) It is facilitated diffusion because pressure is irrelevant"
+      ],
+      "answer": "A) It is reverse osmosis and requires applied pressure, so it is not a passive process",
+      "explanation": "The Exemplar states that reverse osmosis is used for water purification and requires pressure greater than osmotic pressure. It also identifies the statement that reverse osmosis is passive as incorrect. Therefore the process is pressure-driven reverse osmosis, not ordinary passive osmosis."
+    },
+    {
+      "q": "A well-watered potted plant receives a very large amount of urea and soon wilts. A leaf epidermal peel placed in concentrated salt solution shows a similar cellular response. What best explains both observations?",
+      "options": [
+        "A) Cells gain water because the outside solution is hypotonic",
+        "B) The outside solution becomes strongly hypertonic, water leaves the cells, and plasmolysis or loss of turgor can occur",
+        "C) Water potential outside rises above pure water and forces water into cells",
+        "D) Imbibition of the cell wall alone permanently increases turgor"
+      ],
+      "answer": "B) The outside solution becomes strongly hypertonic, water leaves the cells, and plasmolysis or loss of turgor can occur",
+      "explanation": "The Exemplar links excess solute around roots with plant death and separately describes plasmolysis in concentrated salt solution. A hypertonic external medium draws water out of cells by osmosis, reducing turgor and shrinking the protoplast. Returning plasmolysed cells to distilled water can reverse the effect if the cells remain viable."
+    },
+    {
+      "q": "Dry seeds swell after being placed in moist soil, and this swelling helps the seedling push through the soil. Which process and consequence are being linked?",
+      "options": [
+        "A) Translocation; it lowers pressure in the seed coat",
+        "B) Guttation; it removes excess xylem sap",
+        "C) Imbibition; water uptake by dry seed materials increases swelling and imbibitional pressure",
+        "D) Active transport; ATP-driven ion entry directly splits the seed coat"
+      ],
+      "answer": "C) Imbibition; water uptake by dry seed materials increases swelling and imbibitional pressure",
+      "explanation": "The Exemplar gives swelling of a seed placed in soil as an example of imbibition. It also states that water absorption by dry seeds increases pressure that helps seedlings emerge from the soil. Thus the physical uptake of water by dry seed materials generates the swelling force."
+    },
+    {
+      "q": "A tall tree continues to receive water at its crown even though root pressure alone is insufficient. Which explanation best matches the Exemplar emphasis?",
+      "options": [
+        "A) Water rises because phloem transport is always unidirectional",
+        "B) Water is pumped upward by ATP-driven xylem cells along the entire stem",
+        "C) Guttation is the main force operating whenever transpiration is high",
+        "D) Transpiration pull acting on a cohesive, adhesive water column is the major mechanism for ascent of sap"
+      ],
+      "answer": "D) Transpiration pull acting on a cohesive, adhesive water column is the major mechanism for ascent of sap",
+      "explanation": "The Exemplar identifies transpiration pull as the most important physiological phenomenon responsible for upward water movement in tall plants. It also asks whether ascent of sap could occur without cohesion and adhesion of water molecules. These properties maintain a continuous water column that can be pulled upward through xylem."
+    }
+  ]
+}

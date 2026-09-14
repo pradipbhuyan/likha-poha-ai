@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 12",
+  "subject": "Physics",
+  "chapter": "Electric Charges and Fields",
+  "topic": "Electrostatics — Gauss's Law",
+  "questions": [
+    {
+      "q": "A charge q is placed first at a corner of a cube, then at the midpoint of an edge, and finally at the centre of a face. Using symmetry together with Gauss's law, what is the ratio of total electric flux through that one cube in the three cases?",
+      "options": [
+        "A) 1 : 2 : 4",
+        "B) 1 : 4 : 8",
+        "C) 4 : 2 : 1",
+        "D) 1 : 1 : 1"
+      ],
+      "answer": "A) 1 : 2 : 4",
+      "explanation": "At a corner, eight identical cubes can be assembled around the charge, so the flux through one cube is q/(8 epsilon0). At an edge midpoint, four identical cubes share the charge symmetrically, giving q/(4 epsilon0), while at a face centre two cubes share it, giving q/(2 epsilon0). Therefore the ratio is 1/8 : 1/4 : 1/2 = 1 : 2 : 4."
+    },
+    {
+      "q": "A Gaussian surface encloses only charges q2 and q4, while other charges q1, q3 and q5 lie outside. Which statement correctly separates the sources of the electric field on the surface from the charge appearing in Gauss's law?",
+      "options": [
+        "A) Only q2 and q4 contribute to both the field and the enclosed charge term.",
+        "B) All five charges can contribute to the field on the surface, but only q2 and q4 contribute to the enclosed charge term.",
+        "C) Only the outside charges contribute to the field, while all five contribute to enclosed charge.",
+        "D) The outside charges contribute to the enclosed charge term if they are close enough to the surface."
+      ],
+      "answer": "B) All five charges can contribute to the field on the surface, but only q2 and q4 contribute to the enclosed charge term.",
+      "explanation": "The electric field at any point on the Gaussian surface is the vector sum of fields due to all charges, whether they are inside or outside. Gauss's law, however, relates the net flux only to the algebraic charge enclosed by the surface. Hence all five charges can affect E on the surface, but only q2 and q4 enter q_enclosed."
+    },
+    {
+      "q": "An arbitrary closed surface completely encloses an electric dipole consisting of +q and -q. Which conclusion follows from Gauss's law?",
+      "options": [
+        "A) The field must vanish at every point of the surface.",
+        "B) The field must be uniform on the surface.",
+        "C) The net electric flux is zero even though the electric field on the surface need not be zero.",
+        "D) The net electric flux equals 2q/epsilon0 because two charges are enclosed."
+      ],
+      "answer": "C) The net electric flux is zero even though the electric field on the surface need not be zero.",
+      "explanation": "The total enclosed charge of a dipole is +q - q = 0. Gauss's law therefore gives zero net flux through any closed surface that encloses both charges. Zero net flux does not mean zero field, because nonzero flux can enter some parts of the surface and leave through others with cancellation in the total."
+    },
+    {
+      "q": "Inside a sphere of radius R the volume charge density is rho(r) = k r, and rho = 0 outside. What radial dependence must the electric field have for r < R and for r > R?",
+      "options": [
+        "A) E is proportional to r inside and constant outside.",
+        "B) E is proportional to 1/r inside and 1/r^2 outside.",
+        "C) E is constant inside and proportional to 1/r outside.",
+        "D) E is proportional to r^2 inside and 1/r^2 outside."
+      ],
+      "answer": "D) E is proportional to r^2 inside and 1/r^2 outside.",
+      "explanation": "For a Gaussian sphere of radius r < R, the enclosed charge is the integral of k r' over volume, so q_enclosed is proportional to the integral of r'^3 dr' and hence to r^4. Gauss's law gives E(4 pi r^2) proportional to r^4, so E is proportional to r^2 inside. Outside the charged sphere the total enclosed charge is constant, so E falls as 1/r^2."
+    }
+  ]
+}

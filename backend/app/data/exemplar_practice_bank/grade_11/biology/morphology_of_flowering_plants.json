@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 11",
+  "subject": "Biology",
+  "chapter": "Morphology of Flowering Plants",
+  "topic": "Morphology of Flowering Plants",
+  "questions": [
+    {
+      "q": "Starting at the extreme tip of a young root and moving upward, which sequence best matches the zones listed in the Exemplar?",
+      "options": [
+        "A) Root cap -> meristematic zone -> elongation zone -> root hair zone -> maturation zone",
+        "B) Root hair zone -> meristematic zone -> root cap -> maturation zone -> elongation zone",
+        "C) Maturation zone -> elongation zone -> root hair zone -> root cap -> meristematic zone",
+        "D) Elongation zone -> maturation zone -> root cap -> meristematic zone -> root hair zone"
+      ],
+      "answer": "A) Root cap -> meristematic zone -> elongation zone -> root hair zone -> maturation zone",
+      "explanation": "The Exemplar gives the correct rearrangement as root cap, meristematic zone, elongation zone, root hair zone and maturation zone. This sequence follows the developmental progression from the root tip toward older tissue. Therefore the first option reproduces the required order."
+    },
+    {
+      "q": "A root develops from a stem rather than from the radicle, and a related plant growing in swampy soil develops aerial roots to obtain oxygen. Which terminology best describes these two observations?",
+      "options": [
+        "A) Both are tap roots because all roots arise from the radicle",
+        "B) The first is an adventitious root, while swamp plants may form specialised respiratory roots such as pneumatophores",
+        "C) The first is a fibrous root only, and the swamp root is a floral modification",
+        "D) Both are stem tendrils used for climbing"
+      ],
+      "answer": "B) The first is an adventitious root, while swamp plants may form specialised respiratory roots such as pneumatophores",
+      "explanation": "The Exemplar defines roots arising from plant parts other than the radicle as adventitious roots. It also asks how swamp plants obtain oxygen and refers to special roots in marshy areas. These respiratory roots project into air and are commonly described as pneumatophores."
+    },
+    {
+      "q": "Which pair is correctly identified as underground stem modifications rather than storage roots?",
+      "options": [
+        "A) Carrot and radish",
+        "B) Sweet potato and Dahlia",
+        "C) Potato and ginger",
+        "D) Carrot and sweet potato"
+      ],
+      "answer": "C) Potato and ginger",
+      "explanation": "The Exemplar asks students to identify the plant part modified for food storage in several examples, including potato and ginger. It also specifically asks why ginger, though underground, is a stem rather than a root. Potato is likewise a stem tuber, while carrot, radish and sweet potato are storage roots."
+    },
+    {
+      "q": "In a racemose inflorescence with flowers arranged in acropetal succession, where would the youngest floral bud be found, and what broader implication follows for a sunflower head?",
+      "options": [
+        "A) Proximally, and sunflower is a single enlarged flower",
+        "B) Intercalarily, and sunflower has no inflorescence",
+        "C) Anywhere on the axis, because flower age is random",
+        "D) Distally; and a sunflower head represents an inflorescence rather than one single flower"
+      ],
+      "answer": "D) Distally; and a sunflower head represents an inflorescence rather than one single flower",
+      "explanation": "The Exemplar states that in acropetal succession the youngest floral bud is distal on the floral axis. It also asks students to explain why sunflower is not a single flower, pointing to its composite inflorescence. Together these facts distinguish the position of young flowers and the nature of the sunflower head."
+    }
+  ]
+}

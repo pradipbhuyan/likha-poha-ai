@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 11",
+  "subject": "Biology",
+  "chapter": "Photosynthesis in Higher Plants",
+  "topic": "Photosynthesis — Light and Dark Reactions",
+  "questions": [
+    {
+      "q": "An electron begins in the light-reaction pathway at photosystem II and eventually helps reduce NADP. Which sequence is consistent with the Exemplar?",
+      "options": [
+        "A) PSII -> plastoquinone -> cytochromes -> PSI -> ferredoxin",
+        "B) PSI -> plastoquinone -> PSII -> cytochromes -> ferredoxin",
+        "C) PSII -> ferredoxin -> PSI -> plastoquinone -> cytochromes",
+        "D) PSI -> cytochromes -> plastoquinone -> PSII -> ferredoxin"
+      ],
+      "answer": "A) PSII -> plastoquinone -> cytochromes -> PSI -> ferredoxin",
+      "explanation": "The Exemplar provides this sequence for electron flow in the light reaction. PSII initiates the chain, followed by plastoquinone and cytochrome components, before electrons reach PSI and then ferredoxin. This ordering distinguishes the non-cyclic light-reaction pathway from alternative incorrect sequences."
+    },
+    {
+      "q": "The Calvin cycle equation in the Exemplar shows that fixation of 3 CO2 uses 9 ATP and 6 NADPH. What is the requirement per CO2 fixed?",
+      "options": [
+        "A) 1 ATP and 1 NADPH",
+        "B) 3 ATP and 2 NADPH",
+        "C) 6 ATP and 9 NADPH",
+        "D) 9 ATP and 6 NADPH"
+      ],
+      "answer": "B) 3 ATP and 2 NADPH",
+      "explanation": "The given stoichiometry is 9 ATP and 6 NADPH for 3 molecules of carbon dioxide. Dividing both energy requirements by three gives the amount needed per CO2 fixed. Therefore each CO2 requires 3 ATP and 2 NADPH in that accounting."
+    },
+    {
+      "q": "Which combined feature best identifies the C4 pathway described in the Exemplar?",
+      "options": [
+        "A) RuBP is the first CO2 acceptor and the first stable product is pyruvate",
+        "B) PEP is the first CO2 acceptor but the first stable product is phosphoglycerate",
+        "C) PEP is the primary CO2 acceptor, oxaloacetate is the first stable product, and Kranz anatomy helps reduce photorespiration",
+        "D) Photorespiration is the main ATP-producing pathway in bundle-sheath cells"
+      ],
+      "answer": "C) PEP is the primary CO2 acceptor, oxaloacetate is the first stable product, and Kranz anatomy helps reduce photorespiration",
+      "explanation": "The Exemplar states that PEP is the primary carbon dioxide acceptor in C4 plants and that oxaloacetate is the first stable product formed. It also links C4 plants with Kranz anatomy and asks why photorespiration does not occur in them. Combining these clues identifies the characteristic C4 strategy."
+    },
+    {
+      "q": "Why is the Calvin cycle often called the dark reaction even though it normally depends on products generated in the light reaction?",
+      "options": [
+        "A) It can occur only at night when chlorophyll is inactive",
+        "B) It directly uses photons but only of green light",
+        "C) It is independent of ATP and NADPH made by the light reaction",
+        "D) It does not directly require light, but it uses ATP and reducing power produced by the light reactions"
+      ],
+      "answer": "D) It does not directly require light, but it uses ATP and reducing power produced by the light reactions",
+      "explanation": "The Exemplar explains that the so-called dark reaction is named because it does not depend directly on light energy. It also asks which products of the light reaction drive the dark reaction, pointing to ATP and reducing power such as NADPH. Thus the process can be light-independent in its immediate chemistry while still depending on light-reaction products."
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 12",
+  "subject": "Physics",
+  "chapter": "Electromagnetic Waves",
+  "topic": "Electromagnetic Waves — Spectrum",
+  "questions": [
+    {
+      "q": "A carbon monoxide molecule requires 11 eV to dissociate. Using h = 4.14 x 10^-15 eV s, the minimum-frequency radiation is about 2.7 x 10^15 Hz. In which spectral region does this lie?",
+      "options": [
+        "A) Ultraviolet",
+        "B) Infrared",
+        "C) Microwave",
+        "D) Visible"
+      ],
+      "answer": "A) Ultraviolet",
+      "explanation": "The threshold frequency is nu = E/h = 11/(4.14 x 10^-15) Hz, which is about 2.7 x 10^15 Hz. This is well above visible-light frequencies and lies in the ultraviolet region. Therefore ultraviolet radiation is the minimum-frequency class capable of supplying 11 eV per photon."
+    },
+    {
+      "q": "Light of intensity 20 W/cm^2 falls normally on a perfectly absorbing surface of area 30 cm^2 for 30 minutes. What momentum is delivered to the surface? Take c = 3 x 10^8 m/s.",
+      "options": [
+        "A) 3.6 x 10^-4 kg m/s",
+        "B) 3.6 x 10^-3 kg m/s",
+        "C) 3.6 x 10^-2 kg m/s",
+        "D) 1.08 x 10^6 kg m/s"
+      ],
+      "answer": "B) 3.6 x 10^-3 kg m/s",
+      "explanation": "The incident power is 20 x 30 = 600 W, and in 30 minutes the energy delivered is 600 x 1800 = 1.08 x 10^6 J. For complete absorption, momentum delivered is energy divided by c. Hence p = 1.08 x 10^6/(3 x 10^8) = 3.6 x 10^-3 kg m/s."
+    },
+    {
+      "q": "A charge oscillates with frequency 10^9 Hz and radiates electromagnetic waves in vacuum. Which combined statement is correct?",
+      "options": [
+        "A) The radiation frequency is 2 x 10^9 Hz and wavelength 0.15 m.",
+        "B) The radiation frequency is 10^9 Hz but wavelength is 3 m.",
+        "C) The radiation frequency is 10^9 Hz, wavelength is 0.3 m, and it lies in the radio-wave region.",
+        "D) The radiation is infrared because accelerated charges radiate heat."
+      ],
+      "answer": "C) The radiation frequency is 10^9 Hz, wavelength is 0.3 m, and it lies in the radio-wave region.",
+      "explanation": "An oscillating charge radiates at the same frequency as its oscillation in this context, so nu = 10^9 Hz. The vacuum wavelength is c/nu = 3 x 10^8 / 10^9 = 0.3 m. A wavelength of this order belongs to the radio-wave part of the electromagnetic spectrum."
+    },
+    {
+      "q": "A plane electromagnetic wave travels in the +z direction with electric field E = (E1 i + E2 j) cos(kz - omega t). Which magnetic field has the correct direction and magnitude?",
+      "options": [
+        "A) B = (E1 i + E2 j) cos(kz - omega t)/c",
+        "B) B = (E2 i - E1 j) cos(kz - omega t)/c",
+        "C) B = (E1 j + E2 i) cos(kz - omega t)/c",
+        "D) B = (-E2 i + E1 j) cos(kz - omega t)/c"
+      ],
+      "answer": "D) B = (-E2 i + E1 j) cos(kz - omega t)/c",
+      "explanation": "For a plane wave in vacuum, B = (1/c)(k-hat x E). With propagation along +z, k-hat x i = j and k-hat x j = -i. Therefore B = (-E2 i + E1 j) cos(kz - omega t)/c, which is perpendicular to both E and the direction of propagation."
+    }
+  ]
+}

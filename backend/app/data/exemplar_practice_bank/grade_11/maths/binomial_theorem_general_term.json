@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 11",
+  "subject": "Maths",
+  "chapter": "Binomial Theorem",
+  "topic": "Binomial Theorem — General Term",
+  "questions": [
+    {
+      "q": "Find the coefficient of x^11 in the expansion of (x^3 - 2/x^2)^12.",
+      "options": [
+        "A) -25344",
+        "B) 25344",
+        "C) -7920",
+        "D) 7920"
+      ],
+      "answer": "A) -25344",
+      "explanation": "The general term is 12Cr * (-1)^r * 2^r * x^(36-5r). Set 36-5r=11, giving r=5. Hence the coefficient is 12C5*(-1)^5*2^5 = -25344."
+    },
+    {
+      "q": "Does the expansion of (x^2 - 2/x)^18 contain a term in x^10?",
+      "options": [
+        "A) Yes, it is the 9th term",
+        "B) No, because the required r is not an integer",
+        "C) Yes, it is the 10th term",
+        "D) No, because all powers are negative"
+      ],
+      "answer": "B) No, because the required r is not an integer",
+      "explanation": "The general power of x is 36-3r. Requiring x^10 gives 36-3r=10, so r=26/3. Since r must be an integer index in the binomial expansion, no x^10 term occurs."
+    },
+    {
+      "q": "What is the middle term in the expansion of (2ax - b/x^2)^12?",
+      "options": [
+        "A) -59136a^6b^6/x^6",
+        "B) 924a^6b^6/x^6",
+        "C) 59136a^6b^6/x^6",
+        "D) 59136a^6b^6x^6"
+      ],
+      "answer": "C) 59136a^6b^6/x^6",
+      "explanation": "Since the exponent 12 is even, there are 13 terms and the 7th term is the unique middle term. Substituting r=6 in the general term gives 12C6*(2ax)^6*(-b/x^2)^6. This simplifies to 59136a^6b^6/x^6."
+    },
+    {
+      "q": "If the coefficients of x^7 and x^8 in (2 + x/3)^n are equal, what is n?",
+      "options": [
+        "A) 45",
+        "B) 54",
+        "C) 56",
+        "D) 55"
+      ],
+      "answer": "D) 55",
+      "explanation": "Equate the coefficients nC7*2^(n-7)/3^7 and nC8*2^(n-8)/3^8. Simplifying the ratio of successive binomial coefficients gives 8/(n-7)=1/6. Therefore n=55."
+    }
+  ]
+}

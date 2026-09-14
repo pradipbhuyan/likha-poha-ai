@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 12",
+  "subject": "Physics",
+  "chapter": "Magnetism and Matter",
+  "topic": "Magnetism — Diamagnetic, Paramagnetic",
+  "questions": [
+    {
+      "q": "A paramagnetic sample has magnetisation 8 A/m in a field of 0.6 T at 4 K. Assuming Curie's law applies, what magnetisation is expected in a field of 0.2 T at 16 K?",
+      "options": [
+        "A) 2/3 A/m",
+        "B) 8/3 A/m",
+        "C) 6 A/m",
+        "D) 2.4 A/m"
+      ],
+      "answer": "A) 2/3 A/m",
+      "explanation": "For a paramagnet obeying Curie's law, susceptibility is proportional to 1/T, so magnetisation M is proportional to B/T for the same material. The ratio is M2/M1 = (0.2/0.6)(4/16) = 1/12. Thus M2 = 8/12 = 2/3 A/m."
+    },
+    {
+      "q": "A long solenoid carries a fixed current and contains a soft-iron core of relative permeability about 1000. The core is heated above its Curie temperature while the current is maintained. Which change is expected?",
+      "options": [
+        "A) Both H and B increase by about a factor of 1000.",
+        "B) H stays nearly unchanged while B decreases drastically because the core loses ferromagnetic behaviour.",
+        "C) H reverses direction while B stays unchanged.",
+        "D) Both H and B become exactly zero."
+      ],
+      "answer": "B) H stays nearly unchanged while B decreases drastically because the core loses ferromagnetic behaviour.",
+      "explanation": "For a long solenoid, the magnetising field H is set mainly by turns per unit length and current, both of which are unchanged. Heating the core above the Curie temperature destroys the strong ferromagnetic alignment and greatly reduces its effective permeability. Therefore B, which depends strongly on the material response, drops drastically while H remains nearly the same."
+    },
+    {
+      "q": "A small ball of superconducting material is cooled and placed near a bar magnet. Which behaviour is consistent with perfect diamagnetism?",
+      "options": [
+        "A) It is attracted and develops a magnetic moment parallel to the applied field.",
+        "B) It remains stationary because a superconductor cannot have a magnetic moment.",
+        "C) It is repelled and develops an induced magnetic moment opposite to the applied field.",
+        "D) It is attracted only if the magnet's north pole faces it."
+      ],
+      "answer": "C) It is repelled and develops an induced magnetic moment opposite to the applied field.",
+      "explanation": "A superconducting sample in the diamagnetic state expels magnetic flux from its interior. The induced currents create a magnetic moment opposing the applied field, corresponding to strong diamagnetic response. In a nonuniform field near a bar magnet this produces repulsion away from the stronger-field region."
+    },
+    {
+      "q": "Which temperature dependence best distinguishes the three common magnetic responses discussed in the Exemplar problems?",
+      "options": [
+        "A) Diamagnetic susceptibility varies as 1/T, while paramagnetic and ferromagnetic susceptibilities are temperature independent.",
+        "B) All three susceptibilities are essentially temperature independent.",
+        "C) Paramagnetic susceptibility is temperature independent, while diamagnetic susceptibility diverges at the Curie temperature.",
+        "D) Diamagnetic susceptibility is nearly temperature independent, paramagnetic susceptibility decreases roughly as 1/T, and ferromagnetic order changes strongly near the Curie temperature."
+      ],
+      "answer": "D) Diamagnetic susceptibility is nearly temperature independent, paramagnetic susceptibility decreases roughly as 1/T, and ferromagnetic order changes strongly near the Curie temperature.",
+      "explanation": "Diamagnetism arises from induced orbital response and is usually only weakly dependent on temperature. Paramagnetism follows Curie-type behaviour in the simple model, so its susceptibility decreases approximately as 1/T. Ferromagnets have collective domain ordering that changes dramatically around the Curie temperature, where ferromagnetic order is lost."
+    }
+  ]
+}

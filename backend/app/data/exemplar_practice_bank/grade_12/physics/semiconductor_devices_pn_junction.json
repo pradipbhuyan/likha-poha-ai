@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 12",
+  "subject": "Physics",
+  "chapter": "Semiconductor Electronics: Materials, Devices and Simple Circuits",
+  "topic": "Semiconductor Devices — PN Junction",
+  "questions": [
+    {
+      "q": "Which description of the depletion region of a p-n junction is correct after diffusion and recombination establish the junction?",
+      "options": [
+        "A) It contains essentially no mobile charge carriers but does contain immobile ionized donor and acceptor ions.",
+        "B) It contains equal mobile electron and hole densities, so no electric field exists.",
+        "C) It contains only mobile electrons because holes have all recombined.",
+        "D) It is electrically neutral at every microscopic point and therefore has no potential barrier."
+      ],
+      "answer": "A) It contains essentially no mobile charge carriers but does contain immobile ionized donor and acceptor ions.",
+      "explanation": "Near the junction, electrons and holes diffuse across and recombine, depleting the region of mobile carriers. The uncovered donor and acceptor atoms remain as fixed charged ions. These immobile ions create the internal electric field and potential barrier of the depletion region."
+    },
+    {
+      "q": "An npn transistor is operated with its base-emitter junction forward biased and collector-base junction reverse biased. Which carrier motions are consistent with active operation?",
+      "options": [
+        "A) Holes are injected from emitter to base and most enter the collector.",
+        "B) Electrons are injected from emitter into the base, and most of them continue across the thin base into the collector.",
+        "C) Electrons move from collector to emitter while the base current is zero.",
+        "D) Electrons entering the base must all recombine there and cannot reach the collector."
+      ],
+      "answer": "B) Electrons are injected from emitter into the base, and most of them continue across the thin base into the collector.",
+      "explanation": "Forward bias at the emitter-base junction injects majority-carrier electrons from the n-type emitter into the p-type base. The base is thin and lightly doped, so only a small fraction recombines there. Most electrons reach the reverse-biased collector-base junction and are swept into the collector."
+    },
+    {
+      "q": "In an npn transistor, the collector current is 10 mA and 95 percent of the electrons emitted by the emitter reach the collector. What are the emitter and base currents approximately?",
+      "options": [
+        "A) Ie = 8.0 mA and Ib = 2.0 mA",
+        "B) Ie = 10.0 mA and Ib = 0",
+        "C) Ie = 10.53 mA and Ib = 0.53 mA",
+        "D) Ie = 20 mA and Ib = 10 mA"
+      ],
+      "answer": "C) Ie = 10.53 mA and Ib = 0.53 mA",
+      "explanation": "The common-base current gain is alpha = Ic/Ie = 0.95. Hence Ie = 10/0.95 = 10.53 mA approximately. The base current is Ie - Ic = 10.53 - 10 = 0.53 mA."
+    },
+    {
+      "q": "During normal voltage regulation by a Zener diode with a series resistor, which changes are expected when the unregulated input varies within the regulating range?",
+      "options": [
+        "A) Zener current and Zener voltage both remain exactly fixed.",
+        "B) The series-resistor current remains fixed while the Zener voltage changes strongly.",
+        "C) The Zener behaves as a fixed ohmic resistance, so neither its current nor resistance changes.",
+        "D) The current through the series resistor changes, while the Zener's effective resistance adjusts so the voltage across it remains nearly constant."
+      ],
+      "answer": "D) The current through the series resistor changes, while the Zener's effective resistance adjusts so the voltage across it remains nearly constant.",
+      "explanation": "A Zener regulator operates in reverse breakdown, where its terminal voltage changes only slightly over a useful current range. Input-voltage changes mainly alter the current through the series resistor and the Zener current. The diode's effective dynamic resistance is not a fixed constant; it changes as operating current changes while the regulated voltage remains nearly constant."
+    }
+  ]
+}

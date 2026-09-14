@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 11",
+  "subject": "Biology",
+  "chapter": "Respiration in Plants",
+  "topic": "Respiration — Glycolysis and Krebs Cycle",
+  "questions": [
+    {
+      "q": "A glucose molecule enters glycolysis and its pyruvate then proceeds under aerobic conditions. Which sequence of facts is consistent with the Exemplar?",
+      "options": [
+        "A) Hexokinase phosphorylates glucose; pyruvate forms acetyl CoA plus CO2; the electron transport system is in the inner mitochondrial membrane",
+        "B) Phosphorylase phosphorylates glucose; pyruvate forms lactate; the electron transport system is in the outer membrane",
+        "C) Hexokinase phosphorylates glucose; pyruvate forms ethanol plus CO2; the electron transport system is in the matrix",
+        "D) Phosphoglucomutase phosphorylates glucose; pyruvate remains unchanged; the electron transport system is in the intermembrane space"
+      ],
+      "answer": "A) Hexokinase phosphorylates glucose; pyruvate forms acetyl CoA plus CO2; the electron transport system is in the inner mitochondrial membrane",
+      "explanation": "The Exemplar identifies hexokinase as the enzyme catalysing glucose phosphorylation in glycolysis. Under aerobic conditions, pyruvate is converted to acetyl CoA with release of carbon dioxide before entering the TCA pathway. It also locates the electron transport system on the inner mitochondrial membrane."
+    },
+    {
+      "q": "Oxygen is essential for aerobic respiration even though it enters the pathway at the end. What is the best explanation?",
+      "options": [
+        "A) Oxygen is needed to start glycolysis by phosphorylating glucose",
+        "B) Oxygen acts as the ultimate electron acceptor in the respiratory electron transport chain, allowing oxidative phosphorylation to continue",
+        "C) Oxygen is converted directly into acetyl CoA before the Krebs cycle",
+        "D) Oxygen is the substrate used in every step of glycolysis"
+      ],
+      "answer": "B) Oxygen acts as the ultimate electron acceptor in the respiratory electron transport chain, allowing oxidative phosphorylation to continue",
+      "explanation": "The Exemplar states that oxygen is the ultimate electron acceptor in aerobic respiration. It separately asks why oxygen is essential although it enters only at the end of the process. By accepting electrons at the terminal stage of the electron transport chain, oxygen permits electron flow and ATP synthesis to continue."
+    },
+    {
+      "q": "ATP can be generated both without and with the electron transport chain. Which statement correctly distinguishes the two mechanisms highlighted in the Exemplar?",
+      "options": [
+        "A) Glycolytic ATP is formed only by oxidative phosphorylation, while the TCA cycle never forms ATP directly",
+        "B) All ATP in respiration is formed only by substrate-level phosphorylation",
+        "C) Some ATP in glycolysis and one TCA step arise by substrate-level phosphorylation, whereas much aerobic ATP is formed by oxidative phosphorylation",
+        "D) Oxidative phosphorylation occurs in the cytosol and substrate-level phosphorylation occurs only in the inner mitochondrial membrane"
+      ],
+      "answer": "C) Some ATP in glycolysis and one TCA step arise by substrate-level phosphorylation, whereas much aerobic ATP is formed by oxidative phosphorylation",
+      "explanation": "The Exemplar explicitly notes that ATP produced during glycolysis can result from substrate-level phosphorylation and asks for the TCA step with the same mechanism. It also identifies oxidative phosphorylation as an ATP-producing process linked to the mitochondrial electron transport system. Therefore respiration uses both direct phosphate transfer and chemiosmotic ATP formation."
+    },
+    {
+      "q": "A mitochondrion has an intact electron transport chain but its ATP-synthesising F1 component cannot function. Which outcome best follows from the Exemplar description of oxidative phosphorylation?",
+      "options": [
+        "A) Glycolysis can no longer produce pyruvate at all",
+        "B) Oxygen can no longer serve as the terminal electron acceptor under any circumstance",
+        "C) The TCA cycle must move to the chloroplast",
+        "D) Oxidative phosphorylation cannot efficiently produce ATP even if electron transport establishes the proton gradient"
+      ],
+      "answer": "D) Oxidative phosphorylation cannot efficiently produce ATP even if electron transport establishes the proton gradient",
+      "explanation": "The Exemplar states that F1 particles participate in ATP synthesis and locates oxidative phosphorylation in the mitochondrial system. Electron transport creates the conditions that drive ATP synthase, but the F1 portion is required for ATP formation. If that component fails, the proton gradient cannot be effectively converted into ATP."
+    }
+  ]
+}

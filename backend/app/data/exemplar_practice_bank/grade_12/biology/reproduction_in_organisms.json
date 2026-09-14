@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 12",
+  "subject": "Biology",
+  "chapter": "Reproduction in Organisms",
+  "topic": "Reproduction in Organisms",
+  "questions": [
+    {
+      "q": "A rice plant has male gametes with 12 chromosomes. If fertilisation occurs normally, which chromosome-number sequence for female gamete, zygote and seedling cells is consistent with the Exemplar discussion?",
+      "options": [
+        "A) 12, 24, 24",
+        "B) 24, 12, 24",
+        "C) 12, 12, 24",
+        "D) 24, 24, 12"
+      ],
+      "answer": "A) 12, 24, 24",
+      "explanation": "Male and female gametes of the same species carry the haploid chromosome number, so the female gamete also has 12 chromosomes. Fusion of the two gametes restores the diploid number to 24 in the zygote. Mitotic growth of the seedling preserves this diploid number, so seedling cells also have 24 chromosomes."
+    },
+    {
+      "q": "Two offspring are compared: one arose by an asexual method and the other by sexual reproduction. Which observation most directly explains why only the first can properly be called a clone?",
+      "options": [
+        "A) It was formed more quickly than the sexual offspring",
+        "B) Its DNA is an exact copy of the single parent apart from rare variation, whereas sexual offspring combine genetically different gametes",
+        "C) It was formed without any cell division",
+        "D) It contains more DNA than the sexual offspring"
+      ],
+      "answer": "B) Its DNA is an exact copy of the single parent apart from rare variation, whereas sexual offspring combine genetically different gametes",
+      "explanation": "The Exemplar states that the term clone cannot be applied to sexually produced offspring because they do not possess exact copies of parental DNA. Sexual reproduction involves gametes with different genetic composition and therefore generates variation. Asexual reproduction from a single parent can produce morphologically and genetically identical offspring, which is why clone is the appropriate term there."
+    },
+    {
+      "q": "Sugarcane and ginger commonly produce vegetative propagules from nodes. Which inference best links this observation with the classification of vegetative propagation as asexual reproduction?",
+      "options": [
+        "A) Nodes are always underground and therefore escape fertilisation",
+        "B) Nodes contain non-photosynthetic cells that form gametes",
+        "C) Nodes contain meristematic cells that can generate a new individual without gametic fusion",
+        "D) Nodes reduce chromosome number before producing a new shoot"
+      ],
+      "answer": "C) Nodes contain meristematic cells that can generate a new individual without gametic fusion",
+      "explanation": "The Exemplar identifies meristematic cells at nodes as the key reason vegetative propagules arise from structures such as sugarcane and ginger. These cells can divide and form a new plant body directly. Because this process does not require fusion of gametes, it fits the logic of asexual reproduction."
+    },
+    {
+      "q": "An aquatic organism releases gametes into the surrounding water for external fertilisation. Which combination best explains why such organisms generally release very large numbers of gametes?",
+      "options": [
+        "A) External fertilisation always produces diploid gametes and most must be discarded",
+        "B) Water prevents simultaneous release of male and female gametes",
+        "C) External fertilisation guarantees higher survival than internal fertilisation, so surplus gametes are needed for growth",
+        "D) Gametes are exposed to the environment, fertilisation is uncertain, and many resulting young may not survive"
+      ],
+      "answer": "D) Gametes are exposed to the environment, fertilisation is uncertain, and many resulting young may not survive",
+      "explanation": "The Exemplar notes that water is the common medium for many organisms with external fertilisation and asks why large numbers of gametes are produced. When gametes are released outside the body, successful encounter and fusion are less certain. Producing many gametes compensates for these losses and the lower survival probability of externally formed offspring."
+    }
+  ]
+}

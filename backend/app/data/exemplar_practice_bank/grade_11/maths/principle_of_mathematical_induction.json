@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 11",
+  "subject": "Maths",
+  "chapter": "Principle of Mathematical Induction",
+  "topic": "Principle of Mathematical Induction",
+  "questions": [
+    {
+      "q": "For P(n): 2^n < 1 x 2 x 3 x ... x n, what is the smallest positive integer n for which P(n) is true?",
+      "options": [
+        "A) 4",
+        "B) 3",
+        "C) 5",
+        "D) 6"
+      ],
+      "answer": "A) 4",
+      "explanation": "Test the first few natural numbers as in the Exemplar objective problem. For n=1,2,3 the inequality is false, while for n=4, 16 < 24 is true. Therefore the smallest such n is 4."
+    },
+    {
+      "q": "A student proves P(5) is true and also proves that P(k) implies P(k+1) for every natural number k >= 5. What can be concluded?",
+      "options": [
+        "A) P(n) is true for all natural numbers",
+        "B) P(n) is true for all n >= 5",
+        "C) P(n) is true only for n > 5",
+        "D) Nothing can be concluded"
+      ],
+      "answer": "B) P(n) is true for all n >= 5",
+      "explanation": "Mathematical induction can begin at a fixed natural number other than 1. Since the base case P(5) is established and the implication works for every k >= 5, the chain proves P(6), P(7), and so on. Thus P(n) is true for every n >= 5."
+    },
+    {
+      "q": "If 2*4^(2n+1) + 3^(3n+1) is divisible by the same positive integer lambda for all n in N, what is lambda according to the Exemplar calculation?",
+      "options": [
+        "A) 7",
+        "B) 9",
+        "C) 11",
+        "D) 13"
+      ],
+      "answer": "C) 11",
+      "explanation": "Evaluate the expression for n=1 and n=2, obtaining 209 and 4235. Their HCF is 11, so 11 is the common divisor identified by the Exemplar. Hence lambda = 11."
+    },
+    {
+      "q": "For P(n): 49^n + 16^n + k is divisible by 64 for all n in N, what is the least negative integral value of k?",
+      "options": [
+        "A) -64",
+        "B) -16",
+        "C) -2",
+        "D) -1"
+      ],
+      "answer": "D) -1",
+      "explanation": "Use the first admissible value n=1. Then 49 + 16 + k = 65 + k must be divisible by 64. Choosing k = -1 gives 64, so the least negative integral value required is -1."
+    }
+  ]
+}

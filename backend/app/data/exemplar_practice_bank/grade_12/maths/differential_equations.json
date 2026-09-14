@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 12",
+  "subject": "Maths",
+  "chapter": "Differential Equations",
+  "topic": "Differential Equations",
+  "questions": [
+    {
+      "q": "Eliminating A and B from y=Ae^(2x)+Be^(-2x) gives which differential equation, and what are its order and degree?",
+      "options": [
+        "A) y''-4y=0; order 2, degree 1",
+        "B) y'+4y=0; order 1, degree 1",
+        "C) y''-2y'=0; order 2, degree 1",
+        "D) (y'')^2-4y=0; order 2, degree 2"
+      ],
+      "answer": "A) y''-4y=0; order 2, degree 1",
+      "explanation": "Differentiating twice gives y''=4Ae^(2x)+4Be^(-2x)=4y. Thus the arbitrary constants are eliminated by y''-4y=0. The highest derivative is second order and appears to the first power, so the order is 2 and the degree is 1."
+    },
+    {
+      "q": "Solve the linear differential equation dy/dx + y/x = x^2 for x!=0.",
+      "options": [
+        "A) y=x^2/3+C",
+        "B) y=x^3/4+C/x",
+        "C) y=x^4/4+Cx",
+        "D) y=x^3+C"
+      ],
+      "answer": "B) y=x^3/4+C/x",
+      "explanation": "Here P=1/x, so the integrating factor is e^(integral 1/x dx)=x on an interval where the sign of x is fixed. Multiplying by x gives d(xy)/dx=x^3. Hence xy=x^4/4+C and y=x^3/4+C/x."
+    },
+    {
+      "q": "A curve passes through (1,pi/4) and satisfies dy/dx = y/x - cos^2(y/x). Which implicit equation represents the required curve?",
+      "options": [
+        "A) tan(y/x)-log x=0",
+        "B) cot(y/x)+log x=1",
+        "C) tan(y/x)+log x=1",
+        "D) tan(x/y)+log y=1"
+      ],
+      "answer": "C) tan(y/x)+log x=1",
+      "explanation": "The equation is homogeneous, so put y=vx and dy/dx=v+x dv/dx. Substitution gives x dv/dx=-cos^2 v, hence sec^2 v dv=-dx/x and tan v=-log x+C. At (1,pi/4), v=pi/4 and C=1, giving tan(y/x)+log x=1."
+    },
+    {
+      "q": "For (x log x)dy/dx + y = 2log x with x>0, what integrating factor results after putting the equation in standard linear form?",
+      "options": [
+        "A) x",
+        "B) 1/x",
+        "C) log(log x)",
+        "D) log x"
+      ],
+      "answer": "D) log x",
+      "explanation": "Divide by x log x to obtain y' + [1/(x log x)]y=2/x. The integrating factor is exp(integral dx/(x log x)). Since that integral is log(log x), exponentiation gives log x."
+    }
+  ]
+}

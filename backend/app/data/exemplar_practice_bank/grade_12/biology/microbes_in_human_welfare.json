@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 12",
+  "subject": "Biology",
+  "chapter": "Microbes in Human Welfare",
+  "topic": "Microbes in Human Welfare",
+  "questions": [
+    {
+      "q": "In an aeration tank, oxygen supply to activated sludge flocs is sharply reduced. What is the most likely immediate consequence for sewage treatment?",
+      "options": [
+        "A) Degradation of organic matter slows and flocs may become anoxic and destabilise",
+        "B) Aerobic degradation accelerates because methanogens replace all floc bacteria",
+        "C) BOD instantly becomes zero",
+        "D) Protozoa alone convert all organic matter into methane"
+      ],
+      "answer": "A) Degradation of organic matter slows and flocs may become anoxic and destabilise",
+      "explanation": "The Exemplar asks what happens when oxygen availability to activated sludge flocs is reduced and identifies slowing of organic-matter degradation as a key consequence. The centre of flocs may become anoxic, causing bacterial death and eventual floc breakage. Thus oxygen is essential to maintain effective aerobic secondary treatment."
+    },
+    {
+      "q": "Which set correctly matches a bioactive microbial product with its major use?",
+      "options": [
+        "A) Statin - immunosuppression; Cyclosporin A - clot removal",
+        "B) Statin - lowering blood cholesterol; Cyclosporin A - immunosuppression",
+        "C) Streptokinase - detergent stain removal; Lipase - clot removal",
+        "D) Cyclosporin A - lowering cholesterol; Lipase - immunosuppression"
+      ],
+      "answer": "B) Statin - lowering blood cholesterol; Cyclosporin A - immunosuppression",
+      "explanation": "The Exemplar matching exercise pairs statins with lowering blood cholesterol and cyclosporin A with immunosuppression. It also pairs streptokinase with removal of clots and lipase with removal of oil stains. Therefore option B is the only pair in which both associations are correct."
+    },
+    {
+      "q": "A biogas plant digests cattle dung anaerobically. Which combination correctly describes the microbial group involved and the useful fate of the residue?",
+      "options": [
+        "A) Nitrifying bacteria; residue is discarded as toxic waste",
+        "B) Lactic acid bacteria; residue is distilled into alcohol",
+        "C) Methanogens; residue can be used as manure",
+        "D) Cyanobacteria; residue is used only in construction"
+      ],
+      "answer": "C) Methanogens; residue can be used as manure",
+      "explanation": "The Exemplar associates methane production from cattle dung with methanogenic microorganisms. It also states that the residue remaining after methane production is used as manure. Thus both the microbial process and the by-product use are correctly combined in option C."
+    },
+    {
+      "q": "Milk is converted into curd by lactic acid bacteria. Which nutritional change highlighted in the Exemplar accompanies this conversion?",
+      "options": [
+        "A) Vitamin C disappears completely",
+        "B) Vitamin D is converted to vitamin E",
+        "C) All vitamins are destroyed",
+        "D) Vitamin B12 content increases"
+      ],
+      "answer": "D) Vitamin B12 content increases",
+      "explanation": "The Exemplar specifically asks which vitamin increases when milk is converted to curd by lactic acid bacteria. The stated correct nutrient is vitamin B12. Therefore the fermentation process is linked with an increase in vitamin B12 content rather than a general loss of vitamins."
+    }
+  ]
+}

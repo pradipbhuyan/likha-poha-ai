@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 12",
+  "subject": "Physics",
+  "chapter": "Wave Optics",
+  "topic": "Wave Optics — Young's Double Slit",
+  "questions": [
+    {
+      "q": "In a Young's double-slit arrangement illuminated by white light, one slit is covered with a red filter and the other with a blue filter. What happens to the ordinary two-slit interference fringes?",
+      "options": [
+        "A) No stable interference fringes are formed because the two slits now emit different frequencies and are not mutually coherent.",
+        "B) Red and blue fringes alternate with equal spacing.",
+        "C) A red fringe pattern and a blue fringe pattern independently overlap.",
+        "D) The central fringe alone remains white and all others disappear."
+      ],
+      "answer": "A) No stable interference fringes are formed because the two slits now emit different frequencies and are not mutually coherent.",
+      "explanation": "Stable interference requires waves of the same frequency with a fixed phase relationship. The two filters make one slit transmit red light and the other blue light, so the two emerging waves have different frequencies. Their cross term does not give a stationary fringe pattern, so ordinary Young's fringes disappear."
+    },
+    {
+      "q": "For diffraction through a small pinhole, the pinhole diameter is increased while illumination is otherwise unchanged. What happens to the central diffraction pattern?",
+      "options": [
+        "A) It becomes wider and dimmer.",
+        "B) It becomes narrower and brighter.",
+        "C) Its size and intensity both remain unchanged.",
+        "D) It becomes wider and brighter."
+      ],
+      "answer": "B) It becomes narrower and brighter.",
+      "explanation": "Diffraction angles scale roughly as wavelength divided by aperture size, so increasing the aperture reduces the angular spread of the pattern. A larger opening also transmits more light, raising the intensity. Thus the diffraction pattern becomes smaller in size while becoming brighter."
+    },
+    {
+      "q": "Unpolarised light is incident on glass at Brewster's angle and the reflected beam is examined with a rotating polaroid. What observation confirms the polarization of the reflected beam?",
+      "options": [
+        "A) The observed intensity is independent of polaroid angle.",
+        "B) The intensity has four unequal maxima in one rotation.",
+        "C) There is an orientation of the polaroid for which the transmitted intensity becomes zero.",
+        "D) The intensity can never fall below half its maximum value."
+      ],
+      "answer": "C) There is an orientation of the polaroid for which the transmitted intensity becomes zero.",
+      "explanation": "At Brewster's angle, the reflected light is plane polarized. A second polarizer used as an analyser transmits intensity according to the relative orientation of its axis to the polarization direction. When the analyser axis is perpendicular to the polarization direction, the transmitted intensity becomes zero."
+    },
+    {
+      "q": "Light diverges from a point source in a uniform medium. Which pair of statements correctly describes the wavefront and intensity far from the source?",
+      "options": [
+        "A) Plane wavefront; intensity proportional to 1/r.",
+        "B) Cylindrical wavefront; intensity proportional to 1/r^2.",
+        "C) Spherical wavefront; intensity independent of r.",
+        "D) Spherical wavefront; intensity proportional to 1/r^2."
+      ],
+      "answer": "D) Spherical wavefront; intensity proportional to 1/r^2.",
+      "explanation": "A point source produces spherical wavefronts centred on the source. The same emitted power is distributed over a sphere whose area grows as 4 pi r^2. Therefore the intensity decreases as 1/r^2 while the wavefront remains spherical."
+    }
+  ]
+}

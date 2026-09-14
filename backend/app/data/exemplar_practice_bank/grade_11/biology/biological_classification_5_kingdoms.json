@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 11",
+  "subject": "Biology",
+  "chapter": "Biological Classification",
+  "topic": "Biological Classification — 5 Kingdoms",
+  "questions": [
+    {
+      "q": "An unknown microorganism is unicellular, has a well-defined nucleus, and possesses two flagella arranged in different directions. Which classification is most consistent with the Exemplar evidence?",
+      "options": [
+        "A) Protista, because it is a unicellular eukaryote with a defined nucleus",
+        "B) Monera, because all flagellated organisms are prokaryotic",
+        "C) Fungi, because all unicellular organisms with nuclei are fungi",
+        "D) Plantae, because a defined nucleus is restricted to plants"
+      ],
+      "answer": "A) Protista, because it is a unicellular eukaryote with a defined nucleus",
+      "explanation": "The Exemplar states that all eukaryotic unicellular organisms are placed in Protista. Its identification exercise also describes a unicellular organism with a well-defined nucleus and two differently oriented flagella. Those features together support classification under Protista rather than Monera or Fungi."
+    },
+    {
+      "q": "Cyanobacteria and heterotrophic bacteria can differ greatly in nutrition, yet Whittaker places both within Monera. Which reasoning best justifies this grouping?",
+      "options": [
+        "A) They are grouped together only because both are always photosynthetic",
+        "B) Their shared prokaryotic cellular organization is a more fundamental classification criterion than their nutritional difference",
+        "C) They are grouped together because both possess membrane-bound nuclei",
+        "D) They are grouped together because both are multicellular eukaryotes"
+      ],
+      "answer": "B) Their shared prokaryotic cellular organization is a more fundamental classification criterion than their nutritional difference",
+      "explanation": "The Exemplar explicitly asks why cyanobacteria and heterotrophic bacteria are grouped together in Eubacteria despite major differences. Their common prokaryotic organization provides the key unifying basis for placing them in Monera. Nutritional mode varies within the group and therefore does not override this fundamental cellular criterion."
+    },
+    {
+      "q": "A student confuses lichens with mycorrhiza. Which paired description correctly separates the two associations?",
+      "options": [
+        "A) Lichen is fungus plus plant root, while mycorrhiza is fungus plus alga",
+        "B) Both terms mean a fungus growing alone on dead matter",
+        "C) Lichen is an association of mycobiont and phycobiont, whereas mycorrhiza is an association between fungus and higher-plant roots",
+        "D) Lichen is a virus-fungus association, whereas mycorrhiza is a bacterium-root association"
+      ],
+      "answer": "C) Lichen is an association of mycobiont and phycobiont, whereas mycorrhiza is an association between fungus and higher-plant roots",
+      "explanation": "The Exemplar identifies the mycobiont-phycobiont association as a lichen. It separately defines mycorrhiza as the association between fungi and roots of higher plants. Distinguishing the partners in each association resolves the confusion directly."
+    },
+    {
+      "q": "In a fungal sexual cycle, two compatible haploid cells fuse their cytoplasm but their nuclei remain separate for a time. Which sequence and consequence are consistent with the Exemplar?",
+      "options": [
+        "A) Meiosis first, then plasmogamy, then karyogamy; the stage is diploid immediately",
+        "B) Karyogamy first, then plasmogamy, then meiosis; no dikaryotic condition can occur",
+        "C) Plasmogamy, then meiosis, then karyogamy; two diploid nuclei persist",
+        "D) Plasmogamy, then karyogamy, then meiosis; delayed nuclear fusion can produce a dikaryotic stage"
+      ],
+      "answer": "D) Plasmogamy, then karyogamy, then meiosis; delayed nuclear fusion can produce a dikaryotic stage",
+      "explanation": "The Exemplar gives the fungal sexual sequence as plasmogamy followed by karyogamy and then meiosis. It also states that a dikaryon forms when two haploid nuclei do not fuse immediately after cytoplasmic fusion. Therefore delayed karyogamy explains the temporary dikaryotic condition."
+    }
+  ]
+}

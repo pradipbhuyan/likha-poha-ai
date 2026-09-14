@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 12",
+  "subject": "Maths",
+  "chapter": "Application of Derivatives",
+  "topic": "Applications of Derivatives",
+  "questions": [
+    {
+      "q": "For y=5x-2x^3, x is increasing at 2 units per second. At x=3, how fast is the slope dy/dx changing?",
+      "options": [
+        "A) -72 units per second",
+        "B) -36 units per second",
+        "C) 36 units per second",
+        "D) 72 units per second"
+      ],
+      "answer": "A) -72 units per second",
+      "explanation": "The slope is m=dy/dx=5-6x^2. Differentiate with respect to time: dm/dt=-12x(dx/dt). At x=3 and dx/dt=2, dm/dt=-12(3)(2)=-72."
+    },
+    {
+      "q": "For f(x)=4x^3-18x^2+27x-7, the only critical point is x=3/2 because f'(x)=3(2x-3)^2. How should this critical point be classified?",
+      "options": [
+        "A) Local maximum",
+        "B) Neither a local maximum nor a local minimum",
+        "C) Local minimum",
+        "D) Absolute minimum"
+      ],
+      "answer": "B) Neither a local maximum nor a local minimum",
+      "explanation": "The derivative is nonnegative on both sides of x=3/2 and is zero only at that point. Because f' does not change from positive to negative or from negative to positive, the first derivative test gives neither a maximum nor a minimum. The source identifies this stationary point as a point of inflection."
+    },
+    {
+      "q": "A rectangle with sides parallel to the axes is inscribed in the ellipse x^2/a^2+y^2/b^2=1. What is its greatest possible area?",
+      "options": [
+        "A) ab",
+        "B) pi*ab",
+        "C) 2ab",
+        "D) 4ab"
+      ],
+      "answer": "C) 2ab",
+      "explanation": "If the first-quadrant vertex is (x,y), the rectangle has area A=4xy subject to x^2/a^2+y^2/b^2=1. Maximising A^2 gives x=a/sqrt(2) and y=b/sqrt(2). Substitution yields Amax=4(a/sqrt(2))(b/sqrt(2))=2ab."
+    },
+    {
+      "q": "For y=x+1/x, x!=0, which statement correctly compares the local extremum values?",
+      "options": [
+        "A) Local maximum is 2 and local minimum is -2",
+        "B) Both local extrema equal 0",
+        "C) Local maximum is -1 and local minimum is 1",
+        "D) Local maximum is -2 at x=-1, while local minimum is 2 at x=1"
+      ],
+      "answer": "D) Local maximum is -2 at x=-1, while local minimum is 2 at x=1",
+      "explanation": "Differentiating gives y'=1-1/x^2, so critical points occur at x=1 and x=-1. The second derivative is 2/x^3, which is negative at -1 and positive at 1, giving a local maximum at -1 and a local minimum at 1. Their values are -2 and 2, respectively, so the local maximum value is numerically less than the local minimum value."
+    }
+  ]
+}

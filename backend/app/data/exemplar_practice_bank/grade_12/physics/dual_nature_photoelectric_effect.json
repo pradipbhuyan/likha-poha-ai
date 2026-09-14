@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 12",
+  "subject": "Physics",
+  "chapter": "Dual Nature of Radiation and Matter",
+  "topic": "Dual Nature — Photoelectric Effect",
+  "questions": [
+    {
+      "q": "A metal illuminated by 600 nm light emits photoelectrons with maximum kinetic energy K. When 400 nm light is used, the maximum kinetic energy becomes 2K. Using hc = 1240 eV nm, what is the work function of the metal?",
+      "options": [
+        "A) About 1.03 eV",
+        "B) About 2.07 eV",
+        "C) About 3.10 eV",
+        "D) About 0.52 eV"
+      ],
+      "answer": "A) About 1.03 eV",
+      "explanation": "For 600 nm light, photon energy is 1240/600 = 2.067 eV, so K = 2.067 - phi. For 400 nm light, 3.10 - phi = 2K = 2(2.067 - phi). Solving gives phi about 1.03 eV."
+    },
+    {
+      "q": "A proton, neutron, electron and alpha particle all have the same nonrelativistic kinetic energy. Which ordering of de Broglie wavelengths is correct?",
+      "options": [
+        "A) lambda_alpha > lambda_p approximately lambda_n > lambda_e",
+        "B) lambda_e > lambda_p approximately lambda_n > lambda_alpha",
+        "C) lambda_p = lambda_n = lambda_e = lambda_alpha",
+        "D) lambda_alpha > lambda_e > lambda_p approximately lambda_n"
+      ],
+      "answer": "B) lambda_e > lambda_p approximately lambda_n > lambda_alpha",
+      "explanation": "For fixed kinetic energy E, momentum is p = sqrt(2mE), so de Broglie wavelength h/p is proportional to 1/sqrt(m). The electron has by far the smallest mass and therefore the largest wavelength. Proton and neutron masses are nearly equal, while the alpha particle is about four times heavier, so its wavelength is the smallest."
+    },
+    {
+      "q": "An electron moves with velocity v0 i in a uniform magnetic field B0 j. How does its de Broglie wavelength change with time?",
+      "options": [
+        "A) It increases because the electron accelerates.",
+        "B) It decreases because magnetic force increases momentum magnitude.",
+        "C) It remains constant because the magnetic force changes only the direction of momentum, not its magnitude.",
+        "D) It oscillates between zero and twice its initial value."
+      ],
+      "answer": "C) It remains constant because the magnetic force changes only the direction of momentum, not its magnitude.",
+      "explanation": "The magnetic force is always perpendicular to the instantaneous velocity. It can change the direction of the electron's momentum but does no work, so the speed and momentum magnitude remain constant. Since lambda = h/p, the de Broglie wavelength remains unchanged."
+    },
+    {
+      "q": "Two monochromatic beams have equal intensity. Beam A sends twice as many photons per second onto a screen as beam B. What must be the relation between their frequencies?",
+      "options": [
+        "A) nu_A = 2 nu_B",
+        "B) nu_A = nu_B",
+        "C) nu_A = 4 nu_B",
+        "D) nu_B = 2 nu_A"
+      ],
+      "answer": "D) nu_B = 2 nu_A",
+      "explanation": "For equal beam area and equal intensity, the energy arriving per second is the same. Photon power is N h nu, so 2N_B h nu_A = N_B h nu_B. Hence nu_B = 2 nu_A, meaning the beam with fewer photons must have twice the photon energy and frequency."
+    }
+  ]
+}

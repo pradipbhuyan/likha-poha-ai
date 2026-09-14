@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 12",
+  "subject": "Biology",
+  "chapter": "Human Health and Disease",
+  "topic": "Human Health and Disease — Immunity",
+  "questions": [
+    {
+      "q": "A transplanted organ is rejected even though no pathogen is involved. Which arm of acquired immunity is chiefly responsible?",
+      "options": [
+        "A) Cell-mediated immune response",
+        "B) Humoral response by IgA in colostrum",
+        "C) Innate acid barrier of the stomach",
+        "D) Interferon-mediated antiviral defence alone"
+      ],
+      "answer": "A) Cell-mediated immune response",
+      "explanation": "The Exemplar explicitly identifies cell-mediated immunity as the response responsible for tissue and organ graft rejection. T-cell recognition of non-self tissue drives this process. This differs from passive antibody protection such as maternal IgA and from innate barriers."
+    },
+    {
+      "q": "A newborn receives protection from antibodies in colostrum. Which description correctly combines the antibody class and type of immunity?",
+      "options": [
+        "A) IgE; active immunity",
+        "B) IgA; naturally acquired passive immunity",
+        "C) IgD; cell-mediated immunity",
+        "D) IgG; artificial active immunity"
+      ],
+      "answer": "B) IgA; naturally acquired passive immunity",
+      "explanation": "The Exemplar states that antibodies in colostrum protecting the newborn are of the IgA type. Because these antibodies are transferred from the mother rather than produced by the infant in response to an antigen, the protection is passive. Since the transfer occurs naturally through breastfeeding, it is naturally acquired passive immunity."
+    },
+    {
+      "q": "A patient with rheumatoid arthritis is said to have lost an important immune discrimination. Which change best explains the disorder?",
+      "options": [
+        "A) The body can distinguish self from non-self more accurately than normal",
+        "B) Only antibody production falls to zero",
+        "C) The immune system attacks self cells because self versus foreign recognition is impaired",
+        "D) The thymus begins producing digestive enzymes"
+      ],
+      "answer": "C) The immune system attacks self cells because self versus foreign recognition is impaired",
+      "explanation": "The Exemplar links rheumatoid arthritis with the body attacking its own cells and with loss of the ability to distinguish self from foreign molecules correctly. That is the defining logic of an autoimmune response. The problem is inappropriate immune targeting, not simply reduced antibody production."
+    },
+    {
+      "q": "A person bitten by a venomous snake is given antivenom for immediate protection. What does the antivenom principally contain?",
+      "options": [
+        "A) Live attenuated venom-producing microbes",
+        "B) Toxins that stimulate a slow primary immune response",
+        "C) Only interferons",
+        "D) Preformed antibodies that provide immediate passive protection"
+      ],
+      "answer": "D) Preformed antibodies that provide immediate passive protection",
+      "explanation": "The Exemplar states that antivenom contains antibodies. These antibodies can bind venom components immediately and therefore act faster than waiting for the patient to mount a primary immune response. Because the antibodies are supplied from outside the patient, the protection is passive rather than active."
+    }
+  ]
+}

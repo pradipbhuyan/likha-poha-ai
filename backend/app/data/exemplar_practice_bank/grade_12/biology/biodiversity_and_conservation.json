@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 12",
+  "subject": "Biology",
+  "chapter": "Biodiversity and Conservation",
+  "topic": "Biodiversity and Conservation",
+  "questions": [
+    {
+      "q": "Which group consists entirely of ex situ conservation approaches listed in the Exemplar?",
+      "options": [
+        "A) In vitro fertilisation, cryopreservation and tissue culture",
+        "B) Sacred groves, national parks and wildlife corridors",
+        "C) Hotspot protection, biosphere reserves and sacred groves",
+        "D) Habitat restoration, anti-poaching patrols and national parks"
+      ],
+      "answer": "A) In vitro fertilisation, cryopreservation and tissue culture",
+      "explanation": "The Exemplar explicitly groups in vitro fertilisation, cryopreservation and tissue culture as ex situ conservation methods. Ex situ conservation maintains genetic material or organisms outside their natural habitat. National parks, sacred groves and hotspot protection are in situ approaches because they conserve biodiversity within natural ecosystems."
+    },
+    {
+      "q": "Which feature would argue against designating a region as a biodiversity hotspot?",
+      "options": [
+        "A) High species richness",
+        "B) Predominant location in polar regions with little endemism",
+        "C) High endemism",
+        "D) Concentration of many threatened species in a limited area"
+      ],
+      "answer": "B) Predominant location in polar regions with little endemism",
+      "explanation": "The Exemplar lists large numbers of species and abundant endemic species as major hotspot characteristics and notes that hotspots are mostly located in the tropics. A predominantly polar region with little endemism therefore runs counter to those defining features. Protecting true hotspots is important because it can disproportionately reduce ongoing species loss."
+    },
+    {
+      "q": "Lantana, Eichhornia and African catfish are discussed together in the Exemplar. What conservation problem do they illustrate?",
+      "options": [
+        "A) They are all endemic Indian species threatened by habitat loss",
+        "B) They are all extinct species maintained only in zoos",
+        "C) They are non-indigenous invasive species that can threaten native biodiversity",
+        "D) They are all keystone pollinators required for forest stability"
+      ],
+      "answer": "C) They are non-indigenous invasive species that can threaten native biodiversity",
+      "explanation": "The Exemplar treats alien species invasion as one of the major causes of biodiversity loss and groups Lantana, Eichhornia and African catfish as non-indigenous examples. Invasive aliens can spread rapidly and displace or harm native species. Therefore they illustrate biodiversity loss driven by biological invasion."
+    },
+    {
+      "q": "The extinction of the passenger pigeon is used in the Exemplar as an example of which major biodiversity threat?",
+      "options": [
+        "A) Co-extinction caused by loss of a mutualist",
+        "B) Climate-driven polar migration",
+        "C) Invasive alien predation",
+        "D) Over-exploitation by humans"
+      ],
+      "answer": "D) Over-exploitation by humans",
+      "explanation": "The Exemplar explicitly attributes the passenger pigeon extinction to over-exploitation by humans. Overharvesting can remove individuals faster than populations can replace themselves. This makes over-exploitation one of the major anthropogenic causes of biodiversity loss."
+    }
+  ]
+}

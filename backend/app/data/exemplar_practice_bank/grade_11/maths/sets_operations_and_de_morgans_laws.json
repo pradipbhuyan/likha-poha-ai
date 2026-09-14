@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 11",
+  "subject": "Maths",
+  "chapter": "Sets",
+  "topic": "Sets — Operations and De Morgan's Laws",
+  "questions": [
+    {
+      "q": "For arbitrary sets A, B and C, simplify (A union B union C) intersection (A intersection B' intersection C')' intersection C'.",
+      "options": [
+        "A) B intersection C'",
+        "B) A intersection C'",
+        "C) B union C'",
+        "D) A intersection B'"
+      ],
+      "answer": "A) B intersection C'",
+      "explanation": "Apply De Morgan's law to the complemented intersection: (A intersection B' intersection C')' becomes A' union B union C. Intersecting this with A union B union C and then with C' removes the C-part, while the A and A' contributions collapse so that only elements in B but not in C remain. Hence the expression simplifies to B intersection C'."
+    },
+    {
+      "q": "In a group of 50 students, 37 passed Mathematics, 24 Physics and 43 Chemistry. At most 19 passed Mathematics and Physics, at most 29 Mathematics and Chemistry, and at most 20 Physics and Chemistry. What is the largest possible number who could have passed all three?",
+      "options": [
+        "A) 12",
+        "B) 14",
+        "C) 16",
+        "D) 18"
+      ],
+      "answer": "B) 14",
+      "explanation": "Use inclusion-exclusion for the three subjects. Substituting the largest allowed pairwise intersections gives 50 >= 37 + 24 + 43 - 19 - 29 - 20 + n(M intersection P intersection C). This yields the triple intersection at most 14, so the largest possible value is 14."
+    },
+    {
+      "q": "Two finite sets contain m and n elements. The first set has 56 more subsets than the second. Which pair (m,n) satisfies this condition?",
+      "options": [
+        "A) (7,6)",
+        "B) (5,1)",
+        "C) (6,3)",
+        "D) (8,7)"
+      ],
+      "answer": "C) (6,3)",
+      "explanation": "A set with r elements has 2^r subsets. Therefore 2^m - 2^n = 56, and checking the given pairs shows 2^6 - 2^3 = 64 - 8 = 56. Thus m = 6 and n = 3."
+    },
+    {
+      "q": "Which identity correctly combines set difference with De Morgan's law?",
+      "options": [
+        "A) A - (A intersection B) = A intersection B",
+        "B) A - (A intersection B) = A union B'",
+        "C) A - (A intersection B) = A' intersection B",
+        "D) A - (A intersection B) = A - B"
+      ],
+      "answer": "D) A - (A intersection B) = A - B",
+      "explanation": "Write set difference as intersection with a complement: A - (A intersection B) = A intersection (A intersection B)'. By De Morgan's law, (A intersection B)' = A' union B', so distributivity gives (A intersection A') union (A intersection B') = A intersection B'. This is exactly A - B."
+    }
+  ]
+}

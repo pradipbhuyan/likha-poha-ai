@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 12",
+  "subject": "Biology",
+  "chapter": "Biotechnology and Its Applications",
+  "topic": "Biotechnology and its Applications",
+  "questions": [
+    {
+      "q": "Bt toxin is produced by Bacillus thuringiensis as an inactive protoxin. What activates it in a susceptible insect?",
+      "options": [
+        "A) Alkaline pH of the insect gut",
+        "B) Acidic pH of the human stomach",
+        "C) High temperature during seed germination",
+        "D) Mechanical cutting by the insect mandibles alone"
+      ],
+      "answer": "A) Alkaline pH of the insect gut",
+      "explanation": "The Exemplar identifies the Bt product as an inactive protoxin and asks for the trigger that activates it. The trigger is the alkaline environment of the insect gut. Activation there allows the toxin to exert its insecticidal effect."
+    },
+    {
+      "q": "Which statement correctly distinguishes mature human insulin from proinsulin?",
+      "options": [
+        "A) Mature insulin contains an extra C-peptide that is absent from proinsulin",
+        "B) C-peptide is removed during maturation, so mature insulin lacks the C-peptide present in proinsulin",
+        "C) Proinsulin has no peptide chains at all",
+        "D) Mature insulin has no disulphide bonds"
+      ],
+      "answer": "B) C-peptide is removed during maturation, so mature insulin lacks the C-peptide present in proinsulin",
+      "explanation": "The Exemplar states that C-peptide is removed when proinsulin is converted to mature insulin. Therefore proinsulin contains the connecting peptide, whereas the mature hormone does not. This processing step is a key distinction in recombinant insulin production and maturation."
+    },
+    {
+      "q": "A patient with ADA-deficiency SCID receives gene therapy using corrected lymphocytes, but treatment has to be repeated. What best explains the recurrence?",
+      "options": [
+        "A) ADA is produced only by erythrocytes, which cannot be genetically modified",
+        "B) The corrected gene always mutates back immediately",
+        "C) The treated lymphocytes are not permanently self-renewing stem cells, so their effect diminishes as the cells are lost",
+        "D) Gene therapy works only when the defective gene is removed from every body cell"
+      ],
+      "answer": "C) The treated lymphocytes are not permanently self-renewing stem cells, so their effect diminishes as the cells are lost",
+      "explanation": "The Exemplar asks why the first ADA gene-therapy treatment was recurrent in nature. Corrected lymphocytes can provide ADA for a time, but they do not persist indefinitely like appropriately modified stem cells could. As these lymphocytes are replaced, the therapeutic effect falls and treatment must be repeated."
+    },
+    {
+      "q": "Which pair correctly matches a genetically modified crop with its intended trait described in the Exemplar?",
+      "options": [
+        "A) Golden rice - resistance to all pesticides; Bt cotton - extra vitamin C",
+        "B) Golden rice - herbicide-free cultivation only; Bt cotton - increased milk production",
+        "C) Golden rice - nitrogen fixation; Bt cotton - resistance to every possible pest",
+        "D) Golden rice - beta-carotene enrichment; Bt cotton - resistance to specified insect pests through Bt genes"
+      ],
+      "answer": "D) Golden rice - beta-carotene enrichment; Bt cotton - resistance to specified insect pests through Bt genes",
+      "explanation": "The Exemplar identifies Golden rice as a transgenic rice containing a gene for beta-carotene. It also describes Bt cotton as a GM crop with insect resistance, while explicitly noting that it is not resistant to all pesticides or all pests. Hence option D correctly captures both applications without overstating their effects."
+    }
+  ]
+}

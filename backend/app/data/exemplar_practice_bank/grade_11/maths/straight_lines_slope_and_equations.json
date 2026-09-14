@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 11",
+  "subject": "Maths",
+  "chapter": "Straight Lines",
+  "topic": "Straight Lines — Slope and Equations",
+  "questions": [
+    {
+      "q": "Find the distance between the parallel lines 3x+4y=9 and 6x+8y=15.",
+      "options": [
+        "A) 3/10",
+        "B) 3/5",
+        "C) 3/2",
+        "D) 1/10"
+      ],
+      "answer": "A) 3/10",
+      "explanation": "Rewrite the second line as 3x+4y=15/2 so the two equations have identical x and y coefficients. The distance is |9-15/2|/sqrt(3^2+4^2). This is (3/2)/5 = 3/10."
+    },
+    {
+      "q": "Which line passes through the intersection of 5x-6y-1=0 and 3x+2y+5=0 and is perpendicular to 3x-5y+11=0?",
+      "options": [
+        "A) 3x+5y+8=0",
+        "B) 5x+3y+8=0",
+        "C) 5x-3y+8=0",
+        "D) 3x-5y+8=0"
+      ],
+      "answer": "B) 5x+3y+8=0",
+      "explanation": "The first two lines intersect at (-1,-1). The line 3x-5y+11=0 has slope 3/5, so a perpendicular line has slope -5/3. Using point-slope form through (-1,-1) gives 5x+3y+8=0."
+    },
+    {
+      "q": "What is the reflection of the point (4,-13) about the line 5x+y+6=0?",
+      "options": [
+        "A) (1,2)",
+        "B) (0,0)",
+        "C) (-1,-14)",
+        "D) (3,4)"
+      ],
+      "answer": "C) (-1,-14)",
+      "explanation": "Let the reflected point be (h,k). The midpoint of (4,-13) and (h,k) lies on 5x+y+6=0, and the segment joining the two points is perpendicular to that line. Solving these two conditions gives h=-1 and k=-14."
+    },
+    {
+      "q": "A point moves so that its distance from (4,0) is half its distance from the line x=16. What is its locus?",
+      "options": [
+        "A) x^2+y^2=192",
+        "B) 4x^2+3y^2=192",
+        "C) 3x^2+4y^2=96",
+        "D) 3x^2+4y^2=192"
+      ],
+      "answer": "D) 3x^2+4y^2=192",
+      "explanation": "For a moving point (h,k), impose sqrt((h-4)^2+k^2) = |h-16|/2. Squaring and simplifying gives 4[(h-4)^2+k^2]=(h-16)^2. This reduces to 3h^2+4k^2=192, so the locus is 3x^2+4y^2=192."
+    }
+  ]
+}

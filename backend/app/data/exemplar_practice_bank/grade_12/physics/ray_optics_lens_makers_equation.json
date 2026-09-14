@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 12",
+  "subject": "Physics",
+  "chapter": "Ray Optics and Optical Instruments",
+  "topic": "Ray Optics — Lens Maker's Equation",
+  "questions": [
+    {
+      "q": "A plano-convex lens has curved-surface radius 20 cm and refractive index 1.5 in air. Using the lens-maker relation, what focal length does it have and does reversing the lens change its converging nature?",
+      "options": [
+        "A) f = +40 cm, and it remains converging whichever side faces the object.",
+        "B) f = +10 cm, but it is converging only from the curved side.",
+        "C) f = -40 cm, so it is diverging from either side.",
+        "D) f = +20 cm, and reversing it makes it diverging."
+      ],
+      "answer": "A) f = +40 cm, and it remains converging whichever side faces the object.",
+      "explanation": "For a plano-convex thin lens in air, one surface has infinite radius and the other has magnitude 20 cm. The lens-maker relation gives 1/f = (1.5 - 1)(1/20), so f = 40 cm with positive sign for a converging lens. Reversing a thin lens changes the order of the surfaces but not its focal length in the same surrounding medium."
+    },
+    {
+      "q": "For the same glass lens, is the focal length for red light greater than, equal to, or less than that for blue light?",
+      "options": [
+        "A) Smaller, because red light has larger refractive index.",
+        "B) Greater, because glass generally has a smaller refractive index for red than for blue, reducing optical power.",
+        "C) Equal, because focal length depends only on surface curvature.",
+        "D) It alternates with object distance."
+      ],
+      "answer": "B) Greater, because glass generally has a smaller refractive index for red than for blue, reducing optical power.",
+      "explanation": "The optical power of a lens in air is proportional to n - 1 for fixed radii. In normal dispersion, the refractive index for blue light is greater than for red light. Therefore blue light is focused more strongly and has a shorter focal length, so the red focal length is greater."
+    },
+    {
+      "q": "An object approaches a converging lens from the left with constant speed and stops at the first focal point. How does the real image move as the object approaches the focus from beyond it?",
+      "options": [
+        "A) Toward the lens with constant speed.",
+        "B) Away from the lens with constant speed.",
+        "C) Away from the lens with non-uniform acceleration, receding to infinity as the object reaches the focus.",
+        "D) Toward the lens with uniform acceleration."
+      ],
+      "answer": "C) Away from the lens with non-uniform acceleration, receding to infinity as the object reaches the focus.",
+      "explanation": "For a converging lens, 1/f = 1/v - 1/u under the usual sign convention, so as the object distance approaches the focal distance from beyond, the image distance grows without bound. The relation between v and u is nonlinear, so constant object speed does not produce constant image speed. The image therefore moves away with non-uniform acceleration and tends to infinity at the focus."
+    },
+    {
+      "q": "An astronomical refracting telescope has objective focal length 20 m and eyepiece focal length 2 cm, adjusted for normal viewing. Which set of statements is correct?",
+      "options": [
+        "A) Tube length is about 19.98 m and magnification is 100.",
+        "B) Tube length is about 20.02 m but magnification is 10.",
+        "C) Magnification is 1000 but the final image is erect.",
+        "D) Tube length is about 20.02 m, angular magnification magnitude is 1000, and the image is inverted."
+      ],
+      "answer": "D) Tube length is about 20.02 m, angular magnification magnitude is 1000, and the image is inverted.",
+      "explanation": "For normal adjustment, telescope length is fo + fe = 20 m + 0.02 m = 20.02 m. The angular magnification magnitude is fo/fe = 20/0.02 = 1000. A simple astronomical refracting telescope produces an inverted final image, so all three features in option D are consistent."
+    }
+  ]
+}

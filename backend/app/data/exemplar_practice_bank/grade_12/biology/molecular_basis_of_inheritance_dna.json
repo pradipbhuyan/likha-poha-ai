@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 12",
+  "subject": "Biology",
+  "chapter": "Molecular Basis of Inheritance",
+  "topic": "Molecular Basis of Inheritance — DNA",
+  "questions": [
+    {
+      "q": "DNA from an organism contains A = 29%, G = 17%, C = 32% and T = 17%. What is the best conclusion from these values?",
+      "options": [
+        "A) The DNA is unlikely to be ordinary double-stranded DNA because A is not equal to T and G is not equal to C",
+        "B) It must be double-stranded circular DNA",
+        "C) It must be double-stranded linear DNA",
+        "D) The data prove that it contains no pyrimidines"
+      ],
+      "answer": "A) The DNA is unlikely to be ordinary double-stranded DNA because A is not equal to T and G is not equal to C",
+      "explanation": "For standard double-stranded DNA, Chargaff relationships require A to equal T and G to equal C. The given proportions violate both equalities. The Exemplar therefore points to single-stranded DNA rather than either circular or linear double-stranded DNA."
+    },
+    {
+      "q": "In a Meselson-Stahl type experiment, bacteria initially containing N15-labelled DNA are shifted to N14 medium and allowed to replicate for four generations. What ratio of N15/N15 : N15/N14 : N14/N14 DNA is expected?",
+      "options": [
+        "A) 1:1:0",
+        "B) 0:1:7",
+        "C) 0:1:3",
+        "D) 1:4:0"
+      ],
+      "answer": "B) 0:1:7",
+      "explanation": "Semiconservative replication eliminates fully heavy N15/N15 molecules after the first generation in N14 medium. The hybrid fraction halves with each subsequent generation: all hybrid after one generation, then one-half, one-fourth and finally one-eighth by the fourth. Thus the fourth generation contains 1 part hybrid and 7 parts fully light DNA, with no fully heavy DNA."
+    },
+    {
+      "q": "The coding DNA strand of a transcription unit is 5'-ATGAATG-3'. Which RNA sequence is produced?",
+      "options": [
+        "A) 5'-UACUUAC-3'",
+        "B) 3'-AUGAAUG-5'",
+        "C) 5'-AUGAAUG-3'",
+        "D) 5'-CAUUCAU-3'"
+      ],
+      "answer": "C) 5'-AUGAAUG-3'",
+      "explanation": "An RNA transcript has the same base sequence as the coding DNA strand except that uracil replaces thymine. The orientation remains 5' to 3' when the coding strand is written 5' to 3'. Therefore 5'-ATGAATG-3' gives 5'-AUGAAUG-3'."
+    },
+    {
+      "q": "In E. coli, what molecular event most directly switches the lac operon on when lactose is available?",
+      "options": [
+        "A) The repressor binds more strongly to the operator",
+        "B) RNA polymerase is destroyed by lactose",
+        "C) Lactose binds directly to the structural genes",
+        "D) Lactose binds to the repressor, preventing it from blocking transcription"
+      ],
+      "answer": "D) Lactose binds to the repressor, preventing it from blocking transcription",
+      "explanation": "The Exemplar states that the lac operon is switched on when lactose is present and binds to the repressor. This prevents the repressor from occupying the operator in its inhibitory manner. RNA polymerase can then transcribe the structural genes, so option D gives the correct regulatory logic."
+    }
+  ]
+}
