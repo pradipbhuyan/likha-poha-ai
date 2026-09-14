@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 9",
+  "subject": "Maths",
+  "chapter": "Triangles",
+  "topic": "Triangles — Congruence Rules",
+  "questions": [
+    {
+      "q": "If AB = QR, BC = PR and CA = PQ, which correspondence correctly states the congruence?",
+      "options": [
+        "A) triangle ABC is congruent to triangle QRP",
+        "B) triangle ABC is congruent to triangle PQR",
+        "C) triangle ABC is congruent to triangle RPQ",
+        "D) triangle ABC is congruent to triangle PRQ"
+      ],
+      "answer": "A) triangle ABC is congruent to triangle QRP",
+      "explanation": "Vertex B is common to sides AB and BC, while vertex R is common to their corresponding sides QR and PR, so B corresponds to R. Then A corresponds to Q and C corresponds to P. Hence the correct order is ABC corresponding to QRP, and the congruence is by SSS."
+    },
+    {
+      "q": "In triangles ABC and DEF, AB = FD and angle A = angle D. Which additional equality is required to apply SAS congruence?",
+      "options": [
+        "A) BC = EF",
+        "B) AC = DE",
+        "C) AC = EF",
+        "D) BC = DE"
+      ],
+      "answer": "B) AC = DE",
+      "explanation": "For SAS, the equal angle must be included between the two equal corresponding sides. Angle A lies between AB and AC, while angle D lies between DF and DE. Since AB = FD is already given, the second required equality is AC = DE."
+    },
+    {
+      "q": "A right triangle ABC is right-angled at B and angle C = 2 times angle A. The Exemplar proves a relation using an auxiliary congruent triangle. Which relation is obtained?",
+      "options": [
+        "A) BC = 2AC",
+        "B) AB = 2BC",
+        "C) AC = 2BC",
+        "D) AC = 2AB"
+      ],
+      "answer": "C) AC = 2BC",
+      "explanation": "Because angle B is 90 degrees and angle C = 2 angle A, the acute angles are 30 degrees and 60 degrees. The Exemplar constructs a second right triangle and proves congruence by SAS, then obtains an equilateral triangle. This leads to the hypotenuse relation AC = 2BC."
+    },
+    {
+      "q": "Two sides of a triangle are 5 cm and 1.5 cm. Which proposed third side cannot form a triangle?",
+      "options": [
+        "A) 3.6 cm",
+        "B) 4.1 cm",
+        "C) 3.8 cm",
+        "D) 3.4 cm"
+      ],
+      "answer": "D) 3.4 cm",
+      "explanation": "For a triangle, the sum of any two sides must be greater than the third side. With 1.5 cm and 3.4 cm, the sum is only 4.9 cm, which is less than 5 cm. Therefore 3.4 cm cannot be the third side, while the other listed lengths satisfy the inequality."
+    }
+  ]
+}

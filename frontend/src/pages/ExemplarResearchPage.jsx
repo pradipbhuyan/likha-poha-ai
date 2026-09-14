@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { Fragment, useState, useRef, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { authFetch } from "../api/authClient";
@@ -388,6 +388,7 @@ export default function ExemplarResearchPage({ user, setActivePage }) {
     setPracticeQs([]);
     setPracticeAnswers({});
     setPracticeRevealed({});
+    setPracticeError("");
     if (!paidAccess) { setExplanation(""); return; }
 
     // ── Cache hit: serve instantly without LLM call ───────────────────────
@@ -476,55 +477,40 @@ export default function ExemplarResearchPage({ user, setActivePage }) {
   const [practiceLoading, setPracticeLoading] = useState(false);
   const [practiceAnswers, setPracticeAnswers] = useState({});
   const [practiceRevealed, setPracticeRevealed] = useState({});
+  const [practiceError, setPracticeError] = useState("");
 
   async function generatePractice(topic) {
     if (!paidAccess) { setActiveTopic(topic); return; }
     setPracticeQs([]);
     setPracticeAnswers({});
     setPracticeRevealed({});
+    setPracticeError("");
     setPracticeLoading(true);
 
-    /** Helper: call the doubt API and return the answer text */
-    async function callDoubt(questionText) {
-      const r = await fetch(`${API_BASE}/api/doubt/answer`, {
+    const genericErrorMessage = "Couldn't generate practice questions for this topic right now. Please try again.";
+
+    try {
+      // Single LLM call, server-side — no RAG content-matching step to fail
+      // (see backend/app/routes/teacher.py's exemplar-research/practice-questions
+      // route), and no second "backfill missing explanations" call: the
+      // prompt requires complete explanations up front.
+      const r = await fetch(`${API_BASE}/api/teacher/exemplar-research/practice-questions`, {
         method: "POST",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${user?.accessToken}` },
         body: JSON.stringify({
-          username: user?.username,
           grade: selectedGrade,
-          mode: "CBSE",
-          board: "CBSE",
-          subject: toRagSubject(selectedGrade, selectedSubject),
-          chapter: `Exemplar: ${topic.chapter}`,
-          question: questionText,
-          save_to_history: false,
+          subject: selectedSubject,
+          chapter: topic.chapter,
+          topic: topic.topic,
         }),
       });
       const d = await r.json();
-      return (d.answer || "").trim();
-    }
+      if (!r.ok || !d.success || !Array.isArray(d.questions) || d.questions.length === 0) {
+        setPracticeError(d.message || genericErrorMessage);
+        return;
+      }
 
-    try {
-      // ── Pass 1: generate questions ────────────────────────────────────────
-      const raw = await callDoubt(
-        `Generate exactly 4 NCERT Exemplar-level MCQ practice questions on "${topic.topic}" for CBSE ${selectedGrade} ${selectedSubject}. Each must be a tricky/HOTS question.
-
-IMPORTANT RULES:
-- Do NOT use LaTeX, dollar signs, or math notation. Write all math in plain text (e.g. x^2, P(x), (x-2)(x-3)).
-- You MUST include a detailed explanation of at least 3 sentences for EVERY question. NEVER leave explanation blank or short.
-- The explanation must show the complete step-by-step working to reach the correct answer.
-
-Respond ONLY with a valid JSON array (no markdown):
-[{"q":"...","options":["A) ...","B) ...","C) ...","D) ..."],"answer":"A) ...","explanation":"Step 1: ... Step 2: ... Therefore the answer is A because ..."}]`
-      );
-      const start = raw.indexOf("["), end = raw.lastIndexOf("]");
-      if (start === -1 || end === -1) { setPracticeQs([]); return; }
-
-      let parsed;
-      try { parsed = JSON.parse(raw.slice(start, end + 1)); } catch { setPracticeQs([]); return; }
-
-      // Clean LaTeX from all fields
-      let cleanedQs = parsed.map(q => ({
+      const cleanedQs = d.questions.map(q => ({
         ...q,
         q: cleanMathText(q.q),
         options: q.options ? q.options.map(o => cleanMathText(o)) : q.options,
@@ -532,38 +518,10 @@ Respond ONLY with a valid JSON array (no markdown):
         explanation: q.explanation ? cleanMathText(q.explanation) : "",
       }));
 
-      // ── Pass 2: if any explanation is missing or too short, fetch all explanations ─
-      const needsExplanations = cleanedQs.some(q => !q.explanation || q.explanation.length < 40);
-      if (needsExplanations) {
-        const questionsText = cleanedQs
-          .map((q, i) => `Q${i+1}: ${q.q}\nCorrect answer: ${q.answer}`)
-          .join("\n\n");
-
-        const explRaw = await callDoubt(
-          `For each of these ${selectedSubject} questions about "${topic.topic}" (Grade ${selectedGrade}), provide a detailed explanation of at least 3 sentences showing the complete working.
-
-${questionsText}
-
-Do NOT use dollar signs or LaTeX. Write all math in plain text.
-Respond ONLY with a JSON array of exactly ${cleanedQs.length} explanation strings:
-["Full explanation for Q1 showing step by step working...", "Full explanation for Q2...", ...]`
-        );
-        const es = explRaw.indexOf("["), ee = explRaw.lastIndexOf("]");
-        if (es !== -1 && ee !== -1) {
-          try {
-            const explanations = JSON.parse(explRaw.slice(es, ee + 1));
-            cleanedQs = cleanedQs.map((q, i) => ({
-              ...q,
-              explanation: (explanations[i] && typeof explanations[i] === "string")
-                ? cleanMathText(explanations[i])
-                : q.explanation,
-            }));
-          } catch { /* keep existing explanations */ }
-        }
-      }
-
       setPracticeQs(cleanedQs);
-    } catch { setPracticeQs([]); }
+    } catch {
+      setPracticeError("Couldn't generate practice questions right now — please check your connection and try again.");
+    }
     finally { setPracticeLoading(false); }
   }
 
@@ -645,11 +603,12 @@ Respond ONLY with a JSON array of exactly ${cleanedQs.length} explanation string
         <UpgradeCard onClose={() => { setSearchResult(""); }} onUpgrade={() => setActivePage?.("subscriptionPlans")} />
       )}
 
-      {/* ── Main layout: cards + explanation panel — flex-wrap for mobile ── */}
-      <div className="exemplar-layout">
-
-        {/* Topic cards grid */}
-        <div className="exemplar-card-panel">
+      {/* ── Main layout: cards grid — explanation expands full-width right
+          after the clicked card, same accordion pattern as Formula Sheet
+          (works identically at every viewport width, no separate mobile
+          stacking/sticky-side-panel logic needed). ── */}
+      <div>
+        <div>
           <p style={{ fontSize: ".75rem", fontWeight: 700, color: "var(--muted)", marginBottom: 12, textTransform: "uppercase", letterSpacing: ".08em" }}>
             {filteredCards.length} topics · click any card to get instant AI explanation
             {unavailableCount > 0 && ` · ${unavailableCount} without NCERT Exemplar material`}
@@ -662,7 +621,8 @@ Respond ONLY with a JSON array of exactly ${cleanedQs.length} explanation string
               // fully clickable rather than looking broken while loading.
               const isUnavailable = availability?.[card.topic] === false;
               return (
-                <button key={i} onClick={() => explainTopic(card)}
+              <Fragment key={i}>
+                <button onClick={() => explainTopic(card)}
                   disabled={isUnavailable}
                   title={isUnavailable ? "No NCERT Exemplar material published for this topic" : undefined}
                   style={{
@@ -691,15 +651,13 @@ Respond ONLY with a JSON array of exactly ${cleanedQs.length} explanation string
                   {isUnavailable && <div style={{ fontSize: ".72rem", fontWeight: 700, color: "var(--muted)", marginTop: 2 }}>Not published by NCERT</div>}
                   {isActive && <div style={{ fontSize: ".72rem", fontWeight: 700, color: "#6366f1", marginTop: 2 }}>✦ Viewing explanation →</div>}
                 </button>
-              );
-            })}
-          </div>
-        </div>
 
-        {/* Explanation panel — sticky on desktop, stacks below cards on mobile */}
-        {activeTopic && (
-          <div className="exemplar-expl-panel">
-            <div className="premium-card" style={{ borderLeft: "4px solid #6366f1" }}>
+                {/* Explanation — expands full-width right after the clicked
+                    card, same accordion pattern as Formula Sheet. Works the
+                    same way at every viewport width. */}
+                {isActive && (
+                  <div style={{ gridColumn: "1 / -1" }}>
+                    <div className="premium-card" style={{ borderLeft: "4px solid #6366f1" }}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 14 }}>
                 <div>
                   <div style={{ fontSize: "1.5rem", marginBottom: 4 }}>{activeTopic.emoji}</div>
@@ -737,6 +695,15 @@ Respond ONLY with a JSON array of exactly ${cleanedQs.length} explanation string
                     <div style={{ marginTop: 14, display: "flex", alignItems: "center", gap: 8 }}>
                       <div style={{ width: 18, height: 18, border: "2px solid rgba(16,185,129,.3)", borderTopColor: "#10b981", borderRadius: "50%", animation: "spin 0.9s linear infinite", flexShrink: 0 }} />
                       <span style={{ color: "var(--muted)", fontSize: ".8rem" }}>Generating Exemplar-level practice questions…</span>
+                    </div>
+                  )}
+                  {!practiceLoading && practiceError && (
+                    <div style={{ marginTop: 14, padding: "10px 12px", borderRadius: 8, background: "rgba(239,68,68,.08)", border: "1px solid rgba(239,68,68,.25)", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10 }}>
+                      <span style={{ color: "#ef4444", fontSize: ".8rem" }}>{practiceError}</span>
+                      <button onClick={() => generatePractice(activeTopic)}
+                        style={{ flexShrink: 0, padding: "5px 10px", borderRadius: 7, border: "1px solid rgba(239,68,68,.3)", background: "transparent", color: "#ef4444", fontWeight: 700, fontSize: ".76rem", cursor: "pointer", fontFamily: "inherit" }}>
+                        Retry
+                      </button>
                     </div>
                   )}
                   {practiceQs.length > 0 && (
@@ -804,9 +771,14 @@ Respond ONLY with a JSON array of exactly ${cleanedQs.length} explanation string
                   )}
                 </>
               ) : null}
-            </div>
+                    </div>
+                  </div>
+                )}
+              </Fragment>
+              );
+            })}
           </div>
-        )}
+        </div>
       </div>
 
       {/* ── Bottom: tip banner ── */}

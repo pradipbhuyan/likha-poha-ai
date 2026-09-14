@@ -31,6 +31,7 @@ from app.services.lesson_plan_bank_service import get_lesson_plan as get_lesson_
 from app.services.exemplar_research_bank_service import (
     get_available_topics,
     get_exemplar_explanation,
+    get_exemplar_practice_questions,
 )
 from app.services.feature_authorization_service import require_feature, Feature
 from app.services.teacher_lesson_plan_service import (
@@ -381,6 +382,66 @@ async def get_exemplar_research_explanation(data: ExemplarExplanationRequest, us
         "chapter": data.chapter,
         "topic": data.topic,
         "explanation": explanation,
+    }
+
+
+class ExemplarPracticeRequest(BaseModel):
+    grade: str
+    subject: str
+    chapter: str
+    topic: str
+
+
+@router.post("/exemplar-research/practice-questions")
+async def get_exemplar_research_practice_questions(data: ExemplarPracticeRequest, user=Depends(get_current_user)):
+    """
+    Serve pre-authored MCQ practice questions for a topic card — no LLM call
+    at request time, same bank-backed pattern as the explain route above
+    (see exemplar_research_bank_service.get_exemplar_practice_questions() and
+    docs/EXEMPLAR_RESEARCH_CONTENT_STATUS.md).
+
+    ExemplarResearchPage.jsx used to call /api/doubt/answer for this, which
+    does RAG-style content matching that an instruction prompt like "generate
+    4 MCQs in JSON" doesn't resemble, so it silently fell back to a generic
+    "couldn't find this in your textbook" reply instead of ever generating
+    questions. A live-LLM replacement was briefly implemented, but the
+    product decision landed on pre-authored content instead — this feature's
+    "cards" are a fixed catalogue (same TOPIC_CARDS as the explain route),
+    so it fits the pre-authored-bank pattern used everywhere else, not a
+    per-request generation feature.
+
+    Same access gating as explain/availability above. If no practice
+    questions have been authored yet for this topic, returns success:false
+    with a friendly message instead of generating any live.
+    """
+    profile = get_user_profile(user.id) or {}
+    if profile.get("role") == "teacher":
+        raise HTTPException(
+            status_code=403,
+            detail={
+                "feature": "EXEMPLAR_RESEARCH",
+                "message": "Exemplar Research is a student-only feature and is not available to teacher accounts.",
+            },
+        )
+    require_feature(user.id, Feature.EXEMPLAR_RESEARCH)
+
+    questions = get_exemplar_practice_questions(data.grade, data.subject, data.topic)
+    if not questions:
+        return {
+            "success": False,
+            "message": (
+                f"No practice questions have been authored yet for '{data.topic}'. "
+                "Please try another topic."
+            ),
+        }
+
+    return {
+        "success": True,
+        "grade": data.grade,
+        "subject": data.subject,
+        "chapter": data.chapter,
+        "topic": data.topic,
+        "questions": questions,
     }
 
 

@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 10",
+  "subject": "Maths",
+  "chapter": "Statistics",
+  "topic": "Statistics — Grouped Data, Median, Mode",
+  "questions": [
+    {
+      "q": "For 100 students, percentage marks are grouped as 30-35:14, 35-40:16, 40-45:18, 45-50:23, 50-55:18, 55-60:8, 60-65:3. What is the median percentage?",
+      "options": [
+        "A) 45.4",
+        "B) 47.5",
+        "C) 48.0",
+        "D) 50.0"
+      ],
+      "answer": "A) 45.4",
+      "explanation": "The cumulative frequency before 45-50 is 48, and n/2 = 50, so 45-50 is the median class. Using median = l + [(n/2 - cf)/f]h gives 45 + [(50-48)/23]x5. This is 45 + 10/23, approximately 45.4."
+    },
+    {
+      "q": "Agricultural holdings have classes 1-3, 3-5, 5-7, 7-9, 9-11, 11-13 with frequencies 20, 45, 80, 55, 40, 12. What is the grouped-data mode?",
+      "options": [
+        "A) 5.8 hectares",
+        "B) 6.2 hectares",
+        "C) 6.5 hectares",
+        "D) 7.0 hectares"
+      ],
+      "answer": "B) 6.2 hectares",
+      "explanation": "The modal class is 5-7 because it has the highest frequency 80. With l=5, h=2, f1=80, f0=45 and f2=55, the mode formula gives 5 + [(80-45)/(160-45-55)]x2. This equals 5 + 70/60, which is approximately 6.2 hectares."
+    },
+    {
+      "q": "A more-than cumulative income table shows: more than Rs 16000 -> 69 families and more than Rs 19000 -> 50 families. How many families earn from Rs 16000 up to Rs 19000?",
+      "options": [
+        "A) 15",
+        "B) 17",
+        "C) 19",
+        "D) 21"
+      ],
+      "answer": "C) 19",
+      "explanation": "In a more-than cumulative distribution, subtracting successive cumulative frequencies gives the class frequency. The number earning at least Rs 16000 is 69, while 50 earn at least Rs 19000. Therefore 69 - 50 = 19 families lie in the Rs 16000-19000 class."
+    },
+    {
+      "q": "A less-than cumulative marks table is: below 10 -> 3, below 20 -> 12, below 30 -> 27, below 40 -> 57, below 50 -> 75, below 60 -> 80. Which statement is correct?",
+      "options": [
+        "A) Median class is 20-30 and modal class is 30-40",
+        "B) Median class is 30-40 and modal class is 40-50",
+        "C) Both classes are 20-30",
+        "D) Both the median class and modal class are 30-40"
+      ],
+      "answer": "D) Both the median class and modal class are 30-40",
+      "explanation": "The class frequencies are 3, 9, 15, 30, 18 and 5 after successive subtraction, so the highest frequency occurs in 30-40. Also n = 80, so n/2 = 40, and the first cumulative frequency exceeding 40 is 57, again in 30-40. Hence both the modal class and median class are 30-40."
+    }
+  ]
+}

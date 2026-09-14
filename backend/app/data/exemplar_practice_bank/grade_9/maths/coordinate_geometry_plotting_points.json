@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 9",
+  "subject": "Maths",
+  "chapter": "Coordinate Geometry",
+  "topic": "Coordinate Geometry — Plotting Points",
+  "questions": [
+    {
+      "q": "From P(-6, 2), perpendiculars are dropped to the x-axis and y-axis at M and N respectively. Which coordinates must M and N have?",
+      "options": [
+        "A) M(-6, 0) and N(0, 2)",
+        "B) M(0, -6) and N(2, 0)",
+        "C) M(-6, 2) and N(0, 0)",
+        "D) M(6, 0) and N(0, -2)"
+      ],
+      "answer": "A) M(-6, 0) and N(0, 2)",
+      "explanation": "A perpendicular from P to the x-axis keeps the same x-coordinate and makes the y-coordinate zero, so M is (-6, 0). A perpendicular from P to the y-axis keeps the same y-coordinate and makes the x-coordinate zero, so N is (0, 2). These are exactly the axis-foot coordinates used in the Exemplar."
+    },
+    {
+      "q": "Three vertices of a rectangle are (3, 2), (-4, 2) and (-4, 5), in that order around the rectangle. What is the fourth vertex?",
+      "options": [
+        "A) (-3, 5)",
+        "B) (3, 5)",
+        "C) (4, 5)",
+        "D) (3, -5)"
+      ],
+      "answer": "B) (3, 5)",
+      "explanation": "The first two vertices have the same ordinate 2, so that side is horizontal. The second and third have the same abscissa -4, so the next side is vertical. The fourth vertex must therefore have x-coordinate 3 from the first vertex and y-coordinate 5 from the third vertex, giving (3, 5)."
+    },
+    {
+      "q": "Among P(-1,1), Q(3,-4), R(1,-1), S(-2,-3) and T(-4,4), which points lie in the fourth quadrant?",
+      "options": [
+        "A) P and T",
+        "B) S only",
+        "C) Q and R",
+        "D) P and R"
+      ],
+      "answer": "C) Q and R",
+      "explanation": "A point lies in the fourth quadrant when its x-coordinate is positive and its y-coordinate is negative. Q(3,-4) and R(1,-1) both have the sign pattern (+,-). The other points either have negative x-coordinates or positive y-coordinates, so they are not in quadrant IV."
+    },
+    {
+      "q": "For P(3,4), which combined statement is correct?",
+      "options": [
+        "A) P is in quadrant II; its distances from the y-axis and x-axis are 3 and 4 units.",
+        "B) P is in quadrant I; its distances from the y-axis and x-axis are 4 and 3 units.",
+        "C) P is on the x-axis; its distance from the y-axis is 3 units.",
+        "D) P is in quadrant I; its distances from the y-axis and x-axis are 3 and 4 units."
+      ],
+      "answer": "D) P is in quadrant I; its distances from the y-axis and x-axis are 3 and 4 units.",
+      "explanation": "Both coordinates of P are positive, so P lies in the first quadrant. The perpendicular distance from the y-axis is the absolute value of the x-coordinate, which is 3. The perpendicular distance from the x-axis is the absolute value of the y-coordinate, which is 4."
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 10",
+  "subject": "Science",
+  "chapter": "Carbon and Its Compounds",
+  "topic": "Carbon and Its Compounds",
+  "questions": [
+    {
+      "q": "Pentane has molecular formula C5H12. Counting all C-C and C-H links in an open-chain molecule, how many covalent bonds does one molecule contain?",
+      "options": [
+        "A) 16",
+        "B) 12",
+        "C) 17",
+        "D) 5"
+      ],
+      "answer": "A) 16",
+      "explanation": "An open-chain pentane molecule contains five carbon atoms joined by four C-C single bonds. It also contains twelve C-H bonds corresponding to its twelve hydrogen atoms. The total number of covalent bonds is therefore 4 + 12 = 16."
+    },
+    {
+      "q": "Ethanol is heated with alkaline KMnO4 and converted to ethanoic acid after oxidation. What role does KMnO4 play in this reaction?",
+      "options": [
+        "A) Reducing agent",
+        "B) Oxidising agent",
+        "C) Dehydrating agent",
+        "D) Merely a catalyst with no redox role"
+      ],
+      "answer": "B) Oxidising agent",
+      "explanation": "Ethanol gains oxygen or loses hydrogen as it is converted to ethanoic acid, so ethanol is oxidised. Alkaline potassium permanganate brings about this oxidation. Hence KMnO4 acts as the oxidising agent."
+    },
+    {
+      "q": "Which equation represents saponification among the reactions listed in the source?",
+      "options": [
+        "A) CH3COOH + C2H5OH -> CH3COOC2H5 + H2O",
+        "B) 2CH3COOH + 2Na -> 2CH3COONa + H2",
+        "C) CH3COOC2H5 + NaOH -> CH3COONa + C2H5OH",
+        "D) CH3COONa + NaOH -> CH4 + Na2CO3"
+      ],
+      "answer": "C) CH3COOC2H5 + NaOH -> CH3COONa + C2H5OH",
+      "explanation": "Saponification is the alkaline hydrolysis of an ester. Ethyl ethanoate reacting with sodium hydroxide gives sodium ethanoate and ethanol. That is exactly the reaction written in option C."
+    },
+    {
+      "q": "A compound C with formula C2H4O2 reacts with sodium to release a gas that burns with a pop sound. C reacts with an alcohol A in acid to form a sweet-smelling ester S, and S gives back A plus sodium salt R on treatment with NaOH. Which set is correct?",
+      "options": [
+        "A) C = ethanol, A = ethanoic acid, R = sodium ethoxide, S = ethene",
+        "B) C = methanol, A = methane, R = sodium carbonate, S = methanal",
+        "C) C = ethene, A = water, R = sodium hydroxide, S = ethanol",
+        "D) C = ethanoic acid, A = ethanol, R = sodium ethanoate, S = ethyl ethanoate"
+      ],
+      "answer": "D) C = ethanoic acid, A = ethanol, R = sodium ethanoate, S = ethyl ethanoate",
+      "explanation": "C2H4O2 is ethanoic acid in the context of the source. Ethanoic acid reacts with sodium to evolve hydrogen, and with ethanol in the presence of acid it forms the sweet-smelling ester ethyl ethanoate. Alkaline hydrolysis of that ester yields sodium ethanoate and ethanol, so all identities in option D are consistent."
+    }
+  ]
+}

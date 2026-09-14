@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 9",
+  "subject": "Maths",
+  "chapter": "Quadrilaterals",
+  "topic": "Quadrilaterals — Properties and Proofs",
+  "questions": [
+    {
+      "q": "A parallelogram has equal diagonals. What must be the measure of each interior angle?",
+      "options": [
+        "A) 90 degrees",
+        "B) 60 degrees",
+        "C) 120 degrees",
+        "D) It cannot be determined"
+      ],
+      "answer": "A) 90 degrees",
+      "explanation": "A parallelogram whose diagonals are equal is a rectangle. Every angle of a rectangle is a right angle. Therefore each interior angle is 90 degrees."
+    },
+    {
+      "q": "The diagonals AC and BD of a quadrilateral intersect at O and OA:OC = 3:2. Which conclusion is justified?",
+      "options": [
+        "A) The quadrilateral must be a rectangle.",
+        "B) The quadrilateral cannot be concluded to be a parallelogram because OA is not equal to OC.",
+        "C) The quadrilateral must be a rhombus.",
+        "D) The quadrilateral is a parallelogram because its diagonals intersect."
+      ],
+      "answer": "B) The quadrilateral cannot be concluded to be a parallelogram because OA is not equal to OC.",
+      "explanation": "In a parallelogram, the diagonals bisect each other. That would require OA = OC, or a ratio of 1:1. Since the given ratio is 3:2, the bisection condition fails, so the quadrilateral is not established as a parallelogram."
+    },
+    {
+      "q": "If the mid-points of the four sides of a rhombus are joined in order, what quadrilateral is formed?",
+      "options": [
+        "A) A rhombus",
+        "B) A square in every case",
+        "C) A rectangle",
+        "D) A kite"
+      ],
+      "answer": "C) A rectangle",
+      "explanation": "The segment joining mid-points of two sides of a triangle is parallel to the third side. Applying this around the rhombus makes the new quadrilateral a parallelogram whose sides are parallel to the rhombus diagonals. Since the diagonals of a rhombus are perpendicular, one angle of the new parallelogram is 90 degrees, so it is a rectangle."
+    },
+    {
+      "q": "The diagonals of a quadrilateral bisect each other, so the quadrilateral is a parallelogram. If angle A = 35 degrees, what is angle B?",
+      "options": [
+        "A) 35 degrees",
+        "B) 55 degrees",
+        "C) 125 degrees",
+        "D) 145 degrees"
+      ],
+      "answer": "D) 145 degrees",
+      "explanation": "If the diagonals bisect each other, the quadrilateral is a parallelogram. Consecutive angles of a parallelogram are supplementary. Therefore angle B = 180 - 35 = 145 degrees."
+    }
+  ]
+}

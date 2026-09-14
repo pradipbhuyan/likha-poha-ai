@@ -14984,37 +14984,6 @@ body.dark-mode .toast {
   }
 }
 
-/* ── Exemplar Research — mobile layout ──────────────────────────────────── */
-.exemplar-layout {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  align-items: flex-start;
-}
-.exemplar-card-panel  { flex: 1 1 300px; min-width: 0; }
-.exemplar-expl-panel  {
-  flex: 0 1 420px;
-  min-width: min(420px, 100%);
-  position: sticky;
-  top: 80px;
-}
-
-@media (max-width: 720px) {
-  .exemplar-layout {
-    flex-direction: column;
-  }
-  .exemplar-card-panel,
-  .exemplar-expl-panel {
-    flex: 0 0 100%;
-    width: 100%;
-    min-width: 0;
-  }
-  .exemplar-expl-panel {
-    position: static;   /* no sticky on mobile — explanation sits below cards */
-    order: 2;           /* always after the card grid */
-  }
-}
-
 /* ── Lessons — mobile filter row ─────────────────────────────────────────────
    flex-wrap + minWidth:0 on the three <select>s doesn't reliably shrink them
    on Android WebView (native <select> boxes keep a UA-enforced minimum

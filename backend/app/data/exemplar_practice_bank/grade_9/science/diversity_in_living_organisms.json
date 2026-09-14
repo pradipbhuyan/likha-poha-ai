@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 9",
+  "subject": "Science",
+  "chapter": "Diversity in Living Organisms",
+  "topic": "Diversity in Living Organisms",
+  "questions": [
+    {
+      "q": "Which description correctly separates Monera from Protista using the criteria highlighted in the source?",
+      "options": [
+        "A) Monera contains prokaryotes without a well-defined nucleus, whereas Protista includes unicellular eukaryotes; both groups can include autotrophic and heterotrophic forms.",
+        "B) Monera and Protista both contain only multicellular organisms with well-defined nuclei.",
+        "C) Monera contains only autotrophs, while Protista contains only heterotrophs.",
+        "D) Protista lacks membrane-bound nuclei, while Monera has a well-defined nucleus."
+      ],
+      "answer": "A) Monera contains prokaryotes without a well-defined nucleus, whereas Protista includes unicellular eukaryotes; both groups can include autotrophic and heterotrophic forms.",
+      "explanation": "The source states that Protista includes unicellular eukaryotic organisms and that all prokaryotes are classified under Monera. It also notes that both Monera and Protista may contain autotrophic as well as heterotrophic organisms. Thus option A uses the same classification criteria of cell structure and mode of nutrition."
+    },
+    {
+      "q": "Among Thallophyta, Bryophyta, Pteridophyta and Gymnosperms, which pair has specialised tissue for water conduction?",
+      "options": [
+        "A) Thallophyta and Bryophyta",
+        "B) Pteridophyta and Gymnosperms",
+        "C) Bryophyta and Gymnosperms",
+        "D) Thallophyta and Pteridophyta"
+      ],
+      "answer": "B) Pteridophyta and Gymnosperms",
+      "explanation": "The source asks which plant groups possess specialised tissue for conduction of water. Pteridophytes are vascular cryptogams, and gymnosperms also possess vascular tissues. Thallophytes and bryophytes lack the same level of specialised conducting tissue, so option B is correct."
+    },
+    {
+      "q": "Meena calls a garden animal an earthworm, while Hari calls it an insect. Which observed feature would most strongly support Hari’s classification?",
+      "options": [
+        "A) A bilaterally symmetrical body",
+        "B) A cylindrical body",
+        "C) Jointed legs",
+        "D) Visible body segmentation alone"
+      ],
+      "answer": "C) Jointed legs",
+      "explanation": "Both annelids and arthropods may show bilateral symmetry and segmentation, so those features alone do not settle the identification. Insects belong to Arthropoda, whose defining feature in the source is jointed legs. Therefore observing jointed legs strongly supports Hari’s claim."
+    },
+    {
+      "q": "Which heart-chamber classification is correct for the animals named in the source?",
+      "options": [
+        "A) Fish 3; frog 2; crocodile 3; pigeon 4",
+        "B) Fish 2; frog 4; crocodile 3; pigeon 3",
+        "C) Fish 4; frog 3; crocodile 2; pigeon 4",
+        "D) Fish 2; frog 3; crocodile 4; pigeon 4"
+      ],
+      "answer": "D) Fish 2; frog 3; crocodile 4; pigeon 4",
+      "explanation": "Fish have a two-chambered heart, while amphibians such as frogs generally have three chambers. Crocodiles are the reptilian exception with a four-chambered heart, and birds such as pigeons also have four chambers. Therefore option D gives the correct sequence."
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 9",
+  "subject": "Science",
+  "chapter": "Gravitation",
+  "topic": "Gravitation — Universal Law",
+  "questions": [
+    {
+      "q": "In a hypothetical case, Earth’s mass becomes four times its present value while its diameter becomes half. For the same object at the new surface, how many times would its weight become?",
+      "options": [
+        "A) 16 times",
+        "B) 8 times",
+        "C) 4 times",
+        "D) 2 times"
+      ],
+      "answer": "A) 16 times",
+      "explanation": "Weight at the surface is proportional to GM/R^2 for a fixed object mass. The new mass is 4M and halving the diameter also halves the radius, so R becomes R/2. Therefore the new gravitational field is 4 divided by (1/2)^2 = 16 times the original, and the weight also becomes 16 times."
+    },
+    {
+      "q": "A person can lift a maximum mass of 15 kg on Earth. If the same maximum lifting force is used on the Moon, where weight is about one-sixth of that on Earth, what maximum mass can be lifted?",
+      "options": [
+        "A) 30 kg",
+        "B) 90 kg",
+        "C) 75 kg",
+        "D) 15 kg"
+      ],
+      "answer": "B) 90 kg",
+      "explanation": "The person’s maximum force equals the weight of 15 kg on Earth. On the Moon, each kilogram weighs only one-sixth as much. Therefore the same force can balance six times the mass, giving 15 x 6 = 90 kg."
+    },
+    {
+      "q": "The gravitational force between two bodies is F. If both masses are doubled while the separation is unchanged, what is the new force?",
+      "options": [
+        "A) F/4",
+        "B) 2F",
+        "C) 4F",
+        "D) 8F"
+      ],
+      "answer": "C) 4F",
+      "explanation": "Universal gravitation gives force proportional to the product of the two masses when distance is unchanged. Doubling each mass multiplies the product by 2 x 2 = 4. Hence the new force is 4F."
+    },
+    {
+      "q": "Identical packets are dropped from equal heights above the equator and the north pole under otherwise identical conditions. Which packet reaches Earth first, and why?",
+      "options": [
+        "A) The equatorial packet, because g is greatest at the equator.",
+        "B) They arrive together because mass is identical.",
+        "C) They arrive together because G is a universal constant.",
+        "D) The polar packet, because acceleration due to gravity is greater at the pole than at the equator."
+      ],
+      "answer": "D) The polar packet, because acceleration due to gravity is greater at the pole than at the equator.",
+      "explanation": "The source states that acceleration due to gravity is least at the equator. For the same drop height, a larger downward acceleration produces a shorter fall time. Therefore the packet dropped above the north pole reaches the surface first."
+    }
+  ]
+}

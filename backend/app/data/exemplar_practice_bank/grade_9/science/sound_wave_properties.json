@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 9",
+  "subject": "Science",
+  "chapter": "Sound",
+  "topic": "Sound — Wave Properties",
+  "questions": [
+    {
+      "q": "Lightning is seen and thunder is heard 10 s later. Taking the speed of sound as 340 m/s, what is the approximate distance of the thunder cloud?",
+      "options": [
+        "A) 3400 m",
+        "B) 34 m",
+        "C) 340 m",
+        "D) 6800 m"
+      ],
+      "answer": "A) 3400 m",
+      "explanation": "The travel time of light is negligible here compared with the sound delay. Distance travelled by sound is speed multiplied by time, so it is 340 x 10 = 3400 m. Thus the thunder cloud is approximately 3.4 km away."
+    },
+    {
+      "q": "For sound travelling in air at 340 m/s, which pair is correct: wavelength at 256 Hz, and frequency when wavelength is 0.85 m?",
+      "options": [
+        "A) 0.75 m and 289 Hz",
+        "B) About 1.33 m and 400 Hz",
+        "C) 2.56 m and 340 Hz",
+        "D) 1.70 m and 256 Hz"
+      ],
+      "answer": "B) About 1.33 m and 400 Hz",
+      "explanation": "Use v = f lambda. At 256 Hz, lambda = 340/256 = about 1.33 m. When lambda = 0.85 m, f = 340/0.85 = 400 Hz, so option B contains both correct values."
+    },
+    {
+      "q": "A mechanical piano key is first struck gently and then much harder, with the same key used both times. What changes in the second sound?",
+      "options": [
+        "A) Frequency increases while amplitude stays the same.",
+        "B) Both frequency and amplitude increase.",
+        "C) Amplitude increases, so the sound is louder, while the pitch remains essentially unchanged.",
+        "D) Wavelength becomes zero because the key is struck harder."
+      ],
+      "answer": "C) Amplitude increases, so the sound is louder, while the pitch remains essentially unchanged.",
+      "explanation": "Striking the same key harder increases the amplitude of vibration, which increases loudness. The key’s natural frequency is essentially unchanged, so the pitch does not change merely because the strike is harder. The source states this distinction directly."
+    },
+    {
+      "q": "A girl sits at the centre of a 12 m by 12 m park. A building borders one side and a road borders the opposite side, where a cracker produces sound. Why is a distinct echo from the building not expected?",
+      "options": [
+        "A) Because sound cannot reflect from buildings.",
+        "B) Because echoes occur only with ultrasound.",
+        "C) Because the reflected sound travels a shorter path than the direct sound.",
+        "D) Because the extra reflected path is too small to produce the roughly 0.1 s separation needed for a distinct echo at ordinary sound speed."
+      ],
+      "answer": "D) Because the extra reflected path is too small to produce the roughly 0.1 s separation needed for a distinct echo at ordinary sound speed.",
+      "explanation": "The girl is 6 m from each opposite side, so the reflected path from the road-side source to the building and then to her exceeds the direct path by only 12 m. At about 340 m/s, that path difference corresponds to roughly 0.035 s. This is much less than the usual persistence-of-hearing interval of about 0.1 s, so a separate echo is not heard."
+    }
+  ]
+}

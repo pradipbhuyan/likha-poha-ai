@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 10",
+  "subject": "Science",
+  "chapter": "Chemical Reactions and Equations",
+  "topic": "Chemical Reactions and Equations",
+  "questions": [
+    {
+      "q": "For the reaction 3Fe(s) + 4H2O(g) -> Fe3O4(s) + 4H2(g), which description correctly identifies both the substance oxidised and the role of water?",
+      "options": [
+        "A) Iron is oxidised, water is reduced, and water acts as the oxidising agent",
+        "B) Iron is reduced, water is oxidised, and water acts as the reducing agent",
+        "C) Both iron and water are oxidised, so neither acts as an oxidising agent",
+        "D) Iron is oxidised, but water undergoes no redox change"
+      ],
+      "answer": "A) Iron is oxidised, water is reduced, and water acts as the oxidising agent",
+      "explanation": "Iron ends up combined with oxygen in Fe3O4, so iron has undergone oxidation. Water supplies the oxygen and is converted to hydrogen gas, so water is reduced. A substance that is reduced while oxidising another substance acts as the oxidising agent, making option A correct."
+    },
+    {
+      "q": "Aqueous sodium sulphate is mixed with aqueous barium chloride and an insoluble barium sulphate solid appears. Which classification best accounts for both the ion exchange and the solid formation?",
+      "options": [
+        "A) Combination reaction only",
+        "B) Double displacement as well as precipitation reaction",
+        "C) Decomposition reaction followed by neutralisation",
+        "D) Single displacement reaction because barium replaces sodium"
+      ],
+      "answer": "B) Double displacement as well as precipitation reaction",
+      "explanation": "The reacting salts exchange ions: barium combines with sulphate while sodium combines with chloride. Barium sulphate is insoluble, so it separates from the solution as a precipitate. The same event is therefore both a double displacement reaction and a precipitation reaction."
+    },
+    {
+      "q": "During electrolysis of water, hydrogen and oxygen are liberated. Which pair correctly gives the gas mole ratio H2:O2 and the reaction type?",
+      "options": [
+        "A) 1:1 and combination",
+        "B) 1:2 and displacement",
+        "C) 2:1 and decomposition",
+        "D) 4:1 and neutralisation"
+      ],
+      "answer": "C) 2:1 and decomposition",
+      "explanation": "Water breaks into simpler substances, hydrogen and oxygen, so the process is a decomposition reaction. The balanced relation is 2H2O -> 2H2 + O2. Therefore hydrogen and oxygen are produced in the mole ratio 2:1, which matches option C."
+    },
+    {
+      "q": "A fresh sample of edible oil has to be stored for a long time with minimum oxidative rancidity. Which gas pair from the Exemplar choices is most suitable for the storage atmosphere?",
+      "options": [
+        "A) Carbon dioxide or oxygen",
+        "B) Nitrogen or oxygen",
+        "C) Oxygen or helium",
+        "D) Helium or nitrogen"
+      ],
+      "answer": "D) Helium or nitrogen",
+      "explanation": "Rancidity is promoted by oxidation, so an oxygen-rich atmosphere is unsuitable. Nitrogen and helium are far less reactive under storage conditions and do not promote oxidation of the oil. Hence the pair that best protects the oil is helium or nitrogen."
+    }
+  ]
+}

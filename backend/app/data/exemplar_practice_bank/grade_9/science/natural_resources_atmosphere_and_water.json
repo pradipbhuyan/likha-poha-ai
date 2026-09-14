@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 9",
+  "subject": "Science",
+  "chapter": "Natural Resources",
+  "topic": "Natural Resources — Atmosphere and Water",
+  "questions": [
+    {
+      "q": "Which combination best describes biological nitrogen fixation and the role of root nodules?",
+      "options": [
+        "A) Nitrogen-fixing bacteria convert atmospheric nitrogen into usable nitrogen compounds, and root nodules support such bacteria; free oxygen can inhibit this fixation process.",
+        "B) Plants directly absorb atmospheric nitrogen through leaves, and root nodules store oxygen for the process.",
+        "C) Nitrogen fixation converts nitrates into nitrogen gas, and root nodules prevent bacteria from entering roots.",
+        "D) Nitrogen fixation is carried out only by animals, and root nodules mainly store carbon dioxide."
+      ],
+      "answer": "A) Nitrogen-fixing bacteria convert atmospheric nitrogen into usable nitrogen compounds, and root nodules support such bacteria; free oxygen can inhibit this fixation process.",
+      "explanation": "The source states that nitrogen molecules in air can be converted into nitrates and nitrites by nitrogen-fixing bacteria in soil. It also notes that this bacterial process does not take place in the presence of elemental oxygen and asks why root nodules are useful. Root nodules therefore relate to nitrogen-fixing bacteria that make atmospheric nitrogen available in usable forms."
+    },
+    {
+      "q": "Why does the Moon show much larger day-night temperature variation than Earth, even though both are at comparable distance from the Sun?",
+      "options": [
+        "A) Because the Moon contains more greenhouse gases than Earth.",
+        "B) Because the Moon lacks an atmosphere that would moderate heating and cooling, so its surface becomes very hot in sunlight and very cold in darkness.",
+        "C) Because the Moon receives no solar radiation at night while Earth does.",
+        "D) Because water on the Moon absorbs all incoming heat during the day."
+      ],
+      "answer": "B) Because the Moon lacks an atmosphere that would moderate heating and cooling, so its surface becomes very hot in sunlight and very cold in darkness.",
+      "explanation": "The source states that without an atmosphere Earth would become hotter during the day and colder at night. It separately asks why the Moon experiences extreme temperature variation. The common explanation is the absence of an atmosphere capable of redistributing heat and reducing rapid temperature swings."
+    },
+    {
+      "q": "Which process is not a step of the natural water cycle listed in the source?",
+      "options": [
+        "A) Evaporation",
+        "B) Transpiration",
+        "C) Photosynthesis",
+        "D) Precipitation"
+      ],
+      "answer": "C) Photosynthesis",
+      "explanation": "The water cycle includes evaporation, transpiration and precipitation. Photosynthesis uses water but is not itself one of the listed steps that circulates water through atmosphere and surface reservoirs in this context. Therefore photosynthesis is the process that does not belong in the sequence."
+    },
+    {
+      "q": "Near a coast, which air movement is expected during day and night, and what causes the reversal?",
+      "options": [
+        "A) Day: land to sea; night: sea to land, because seawater always heats faster.",
+        "B) Day and night: sea to land, because air pressure never reverses.",
+        "C) Day and night: land to sea, because land always remains warmer.",
+        "D) Day: sea to land because land heats faster; night: land to sea because land cools faster than water."
+      ],
+      "answer": "D) Day: sea to land because land heats faster; night: land to sea because land cools faster than water.",
+      "explanation": "During the day, land warms faster than water, so warm air rises over land and cooler air moves from sea to land. At night, land also cools faster, so the relatively warmer air over the sea rises and air moves from land toward sea. The source asks for exactly this day-night reversal in coastal wind currents."
+    }
+  ]
+}

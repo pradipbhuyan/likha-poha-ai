@@ -17,6 +17,13 @@ Design principles:
   this pre-authored bank).
 - Populate via: backend/scripts/prepare_gpt55_exemplar_explanation_prompts.py
   + backend/scripts/ingest_gpt55_exemplar_research_output.py
+
+get_exemplar_practice_questions() follows the identical pattern for the
+"Generate Practice Questions" card action — a separate bank
+(exemplar_practice_bank/, same grade/subject/topic folder layout) holding 4
+pre-authored MCQs per topic, no live LLM call either. Populate via:
+backend/scripts/prepare_gpt55_exemplar_practice_prompts.py
++ backend/scripts/ingest_gpt55_exemplar_practice_output.py
 """
 
 from pathlib import Path
@@ -26,6 +33,7 @@ import json
 from app.services.lesson_plan_bank_service import _slugify
 
 _BANK_ROOT = Path(__file__).resolve().parents[1] / "data" / "exemplar_research_bank"
+_PRACTICE_BANK_ROOT = Path(__file__).resolve().parents[1] / "data" / "exemplar_practice_bank"
 
 
 def _explanation_path(grade: str, subject: str, topic: str) -> Path:
@@ -98,3 +106,50 @@ def get_available_topics(grade: str, subject: str, topics: list[str]) -> dict[st
         topic: get_exemplar_explanation(grade, subject, topic) is not None
         for topic in topics
     }
+
+
+def _practice_path(grade: str, subject: str, topic: str) -> Path:
+    return _PRACTICE_BANK_ROOT / _slugify(grade) / _slugify(subject) / f"{_slugify(topic)}.json"
+
+
+def _read_practice(path: Path) -> list[dict] | None:
+    try:
+        if not path.exists():
+            return None
+        data = json.loads(path.read_text(encoding="utf-8"))
+        questions = data.get("questions")
+        return questions if questions else None
+    except Exception:
+        return None
+
+
+def get_exemplar_practice_questions(grade: str, subject: str, topic: str) -> list[dict] | None:
+    """
+    Look up the pre-authored MCQ practice questions for a topic card.
+
+    Same lookup shape as get_exemplar_explanation(): exact topic slug first,
+    then a substring scan over the subject folder for minor topic-title
+    drift. Returns None if no practice questions have been authored yet for
+    this topic.
+    """
+    questions = _read_practice(_practice_path(grade, subject, topic))
+    if questions:
+        return questions
+
+    topic_slug = _slugify(topic)
+    if not topic_slug:
+        return None
+
+    subject_dir = _PRACTICE_BANK_ROOT / _slugify(grade) / _slugify(subject)
+    try:
+        if not subject_dir.is_dir():
+            return None
+        for candidate in subject_dir.glob("*.json"):
+            if topic_slug in candidate.stem or candidate.stem in topic_slug:
+                questions = _read_practice(candidate)
+                if questions:
+                    return questions
+    except Exception:
+        return None
+
+    return None

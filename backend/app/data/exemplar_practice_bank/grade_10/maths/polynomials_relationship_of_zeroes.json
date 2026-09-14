@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 10",
+  "subject": "Maths",
+  "chapter": "Polynomials",
+  "topic": "Polynomials — Relationship of Zeroes",
+  "questions": [
+    {
+      "q": "The zeroes of x^2 + (a+1)x + b are 2 and -3. What are a and b?",
+      "options": [
+        "A) a = 0, b = -6",
+        "B) a = -2, b = 6",
+        "C) a = 1, b = -6",
+        "D) a = 0, b = 6"
+      ],
+      "answer": "A) a = 0, b = -6",
+      "explanation": "For a monic quadratic, the sum of zeroes equals the negative of the coefficient of x. Here 2 + (-3) = -1, so -(a+1) = -1 and hence a = 0. Their product is 2 x (-3) = -6, so b = -6."
+    },
+    {
+      "q": "Without finding the zeroes explicitly, what can be concluded about the zeroes of x^2 + 99x + 127?",
+      "options": [
+        "A) One is positive and one is negative",
+        "B) Both are negative",
+        "C) Both are positive",
+        "D) Both are zero"
+      ],
+      "answer": "B) Both are negative",
+      "explanation": "The sum of the zeroes is -99, which is negative, while their product is 127, which is positive. A positive product means the two zeroes have the same sign. Since their sum is negative, both zeroes must be negative."
+    },
+    {
+      "q": "A monic quadratic x^2 + ax + b has one zero equal to the negative of the other non-zero zero. Which condition must hold?",
+      "options": [
+        "A) a > 0 and b > 0",
+        "B) a < 0 and b = 0",
+        "C) a = 0 and b < 0",
+        "D) a = 0 and b > 0"
+      ],
+      "answer": "C) a = 0 and b < 0",
+      "explanation": "Let the zeroes be r and -r with r non-zero. Their sum is 0, so -a = 0 and therefore a = 0. Their product is -r^2, which is negative, so b must be less than 0."
+    },
+    {
+      "q": "A cubic polynomial ax^3 + bx^2 + cx + d has one zero equal to 0, with a non-zero. What is the product of its other two zeroes?",
+      "options": [
+        "A) -c/a",
+        "B) -b/a",
+        "C) d/a",
+        "D) c/a"
+      ],
+      "answer": "D) c/a",
+      "explanation": "If 0 is a zero, then d = 0 and the cubic can be written as x(ax^2 + bx + c). The remaining two zeroes are exactly the zeroes of ax^2 + bx + c. Their product is c/a by the quadratic zeroes-coefficients relation."
+    }
+  ]
+}

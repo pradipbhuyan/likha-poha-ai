@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 10",
+  "subject": "Maths",
+  "chapter": "Real Numbers",
+  "topic": "Real Numbers — Euclid's Algorithm & HCF",
+  "questions": [
+    {
+      "q": "A largest positive integer divides 1251, 9377 and 15628 leaving remainders 1, 2 and 3 respectively. What is that divisor?",
+      "options": [
+        "A) 625",
+        "B) 1250",
+        "C) 375",
+        "D) 25"
+      ],
+      "answer": "A) 625",
+      "explanation": "Subtract the respective remainders first, so the required divisor must exactly divide 1250, 9375 and 15625. Applying Euclid’s algorithm gives HCF(1250, 9375) = 625, and 15625 is also divisible by 625. Therefore the largest possible divisor is 625."
+    },
+    {
+      "q": "Two positive integers are claimed to have HCF 18 and LCM 380. Which conclusion is correct?",
+      "options": [
+        "A) The claim is possible because 18 x 380 is even",
+        "B) The claim is impossible because the LCM must be a multiple of the HCF",
+        "C) The claim is possible only if one integer is 18",
+        "D) The claim is impossible only when both integers are odd"
+      ],
+      "answer": "B) The claim is impossible because the LCM must be a multiple of the HCF",
+      "explanation": "For any two positive integers, the HCF divides each number, and therefore it must also divide their LCM. Here 380 is not divisible by 18, so 380 cannot be the LCM of two numbers whose HCF is 18. Hence the claimed pair of HCF and LCM is impossible."
+    },
+    {
+      "q": "Three walkers start together and take steps of 40 cm, 42 cm and 45 cm. What is the least distance they must each walk so that all three complete an exact whole number of steps?",
+      "options": [
+        "A) 12.6 m",
+        "B) 18.9 m",
+        "C) 25.2 m",
+        "D) 37.8 m"
+      ],
+      "answer": "C) 25.2 m",
+      "explanation": "The required distance must be the LCM of 40, 42 and 45 cm. Their prime factors give LCM = 2^3 x 3^2 x 5 x 7 = 2520 cm. Converting 2520 cm to metres gives 25.2 m."
+    },
+    {
+      "q": "Without long division, determine the decimal nature of 987/10500 after reducing it to lowest terms.",
+      "options": [
+        "A) Non-terminating and non-repeating",
+        "B) Non-terminating repeating because 10500 contains 3 and 7",
+        "C) Terminating after exactly one decimal place",
+        "D) Terminating because the reduced denominator has only the prime factors 2 and 5"
+      ],
+      "answer": "D) Terminating because the reduced denominator has only the prime factors 2 and 5",
+      "explanation": "The numerator and denominator have a common factor 21, so 987/10500 reduces to 47/500. The denominator 500 equals 2^2 x 5^3, containing no prime factors other than 2 and 5. Therefore its decimal expansion terminates."
+    }
+  ]
+}

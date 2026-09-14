@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 8",
+  "subject": "Maths",
+  "chapter": "Square-Square Root and Cube-Cube Root",
+  "topic": "Cubes and Cube Roots",
+  "questions": [
+    {
+      "q": "The Exemplar gives cube root(5832) = 18 and says the least number that must multiply 9 to make a perfect cube is 3. What is cube root(5832) + cube root(9 x 3)?",
+      "options": [
+        "A) 21",
+        "B) 18",
+        "C) 24",
+        "D) 27"
+      ],
+      "answer": "A) 21",
+      "explanation": "Prime factorisation gives 5832 = 2^3 x 3^6, so its cube root is 2 x 3^2 = 18. Multiplying 9 by 3 gives 27, whose cube root is 3. Therefore the required sum is 18 + 3 = 21."
+    },
+    {
+      "q": "Since 1728 is a perfect cube, divide it by 8 and then take the cube root. What value is obtained?",
+      "options": [
+        "A) 3",
+        "B) 6",
+        "C) 9",
+        "D) 12"
+      ],
+      "answer": "B) 6",
+      "explanation": "The source factorises 1728 as 2^6 x 3^3. Dividing by 8 = 2^3 leaves 2^3 x 3^3 = (2 x 3)^3 = 6^3. Hence the cube root of 1728/8 is 6."
+    },
+    {
+      "q": "Two perfect cubes end in 8 and 7 respectively. Using the unit-digit rules stated in the Exemplar, what must be the unit digits of their cube roots, in the same order?",
+      "options": [
+        "A) 8 and 7",
+        "B) 3 and 2",
+        "C) 2 and 3",
+        "D) 2 and 7"
+      ],
+      "answer": "C) 2 and 3",
+      "explanation": "A cube ending in 8 comes from a number whose unit digit is 2, because numbers ending in 2 have cubes ending in 8. A cube ending in 7 comes from a number whose unit digit is 3, because numbers ending in 3 have cubes ending in 7. Thus the cube-root unit digits are 2 and 3."
+    },
+    {
+      "q": "The Exemplar states that the cube of 100 has six zeroes and that 0.3^3 = 0.027. What is 100^3 x 0.3^3?",
+      "options": [
+        "A) 270",
+        "B) 2700",
+        "C) 270000",
+        "D) 27000"
+      ],
+      "answer": "D) 27000",
+      "explanation": "The cube of 100 is 1,000,000 because 100 x 100 x 100 has six zeroes. The cube of 0.3 is 0.027. Multiplying 1,000,000 by 0.027 shifts the decimal six places and gives 27,000."
+    }
+  ]
+}

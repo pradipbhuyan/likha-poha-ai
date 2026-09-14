@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 10",
+  "subject": "Science",
+  "chapter": "Magnetic Effects of Electric Current",
+  "topic": "Magnetic Effects of Current",
+  "questions": [
+    {
+      "q": "A long solenoid carrying steady current is used as an electromagnet. Which statement correctly combines the field pattern inside it with what happens when current direction is reversed?",
+      "options": [
+        "A) The field is nearly uniform inside, and reversing current exchanges the north and south poles",
+        "B) The field is zero inside, and reversing current does not affect the poles",
+        "C) The field is strongest only at the centre, and reversing current destroys magnetism permanently",
+        "D) The field is circular inside, and the poles remain fixed because they depend only on coil shape"
+      ],
+      "answer": "A) The field is nearly uniform inside, and reversing current exchanges the north and south poles",
+      "explanation": "The source states that field lines inside a long solenoid are approximately straight and parallel, indicating a nearly uniform magnetic field. It also states that the north and south poles exchange positions when the direction of current is reversed. Both facts together make option A correct."
+    },
+    {
+      "q": "Two coils are wound on a non-conducting rod. A key in the primary circuit is first inserted and later removed. What is observed in the galvanometer connected to the second coil?",
+      "options": [
+        "A) A permanent deflection in one direction after insertion",
+        "B) Momentary deflections on insertion and removal, in opposite directions",
+        "C) No deflection at insertion but a permanent deflection on removal",
+        "D) Momentary deflections in the same direction on both insertion and removal"
+      ],
+      "answer": "B) Momentary deflections on insertion and removal, in opposite directions",
+      "explanation": "When the key is inserted, current in the first coil changes from zero to a finite value, changing the magnetic flux through the second coil. When the key is removed, the flux changes in the opposite sense. Electromagnetic induction therefore produces two momentary deflections in opposite directions, as stated in option B."
+    },
+    {
+      "q": "Which statement correctly repairs a common misconception about magnetic field lines and also names the rule used around a straight current-carrying conductor?",
+      "options": [
+        "A) Parallel equidistant lines mean zero magnetic field, and Fleming's right-hand rule gives the field direction",
+        "B) Closely spaced lines always mean weaker field, and the left-hand rule gives the field direction",
+        "C) Parallel equidistant lines represent a uniform non-zero field, and the right-hand thumb rule gives the field direction",
+        "D) Magnetic field lines are open curves, and no directional rule is needed"
+      ],
+      "answer": "C) Parallel equidistant lines represent a uniform non-zero field, and the right-hand thumb rule gives the field direction",
+      "explanation": "Parallel, equally spaced magnetic field lines represent a uniform magnetic field, not a zero field. The closeness of field lines indicates relative field strength. For a straight current-carrying conductor, the right-hand thumb rule is used to determine the direction of the surrounding magnetic field."
+    },
+    {
+      "q": "Which feature distinguishes the commercial electric motor described in the source from an arrangement that relies only on a permanent magnet?",
+      "options": [
+        "A) It avoids coils with many turns",
+        "B) It cannot use a soft iron core",
+        "C) It converts mechanical energy into electrical energy",
+        "D) It uses an electromagnet with many turns on a soft iron core rather than relying only on a permanent magnet"
+      ],
+      "answer": "D) It uses an electromagnet with many turns on a soft iron core rather than relying only on a permanent magnet",
+      "explanation": "The source notes that commercial electric motors use an electromagnet, effectively a large number of turns, and a soft iron core. It specifically identifies use of a permanent magnet to rotate the armature as the choice commercial motors do not use. Therefore option D captures the intended distinction."
+    }
+  ]
+}

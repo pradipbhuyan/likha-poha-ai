@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 10",
+  "subject": "Science",
+  "chapter": "Light - Reflection and Refraction",
+  "topic": "Refraction of Light — Lenses",
+  "questions": [
+    {
+      "q": "A convex lens has power +4 D. Which focal length and lens behaviour are consistent with this value?",
+      "options": [
+        "A) f = +0.25 m, and the lens is converging",
+        "B) f = -0.25 m, and the lens is diverging",
+        "C) f = +4 m, and the lens is diverging",
+        "D) f = -4 m, and the lens is converging"
+      ],
+      "answer": "A) f = +0.25 m, and the lens is converging",
+      "explanation": "Lens power is P = 1/f when f is expressed in metres. For P = +4 D, f = 1/4 m = +0.25 m. A positive focal length corresponds to a convex converging lens, so option A is correct."
+    },
+    {
+      "q": "Two convex lenses have focal lengths 20 cm and 40 cm. Which statement correctly compares their powers and their ability to converge light?",
+      "options": [
+        "A) The 40 cm lens has +5 D and is more converging",
+        "B) The 20 cm lens has +5 D and is more converging",
+        "C) Both have the same power because both are convex",
+        "D) The 20 cm lens has +2.5 D and is less converging"
+      ],
+      "answer": "B) The 20 cm lens has +5 D and is more converging",
+      "explanation": "For a 20 cm lens, f = 0.20 m, so P = 1/0.20 = +5 D. For a 40 cm lens, P = +2.5 D. Greater positive power means stronger convergence, so the 20 cm lens is more converging."
+    },
+    {
+      "q": "A lens forms a real image on a screen 80 cm from the lens, and the image is three times the size of the object. Approximately where is the object placed?",
+      "options": [
+        "A) 240 cm from the lens",
+        "B) 80 cm from the lens",
+        "C) 26.7 cm from the lens",
+        "D) 13.3 cm from the lens"
+      ],
+      "answer": "C) 26.7 cm from the lens",
+      "explanation": "A real image formed on a screen by a convex lens is inverted, so its magnification has magnitude 3. Using |m| = v/|u| with v = 80 cm gives 3 = 80/|u|. Hence |u| = 80/3, approximately 26.7 cm, which is option C."
+    },
+    {
+      "q": "A convex lens is at the 50 cm mark, with an object at 12 cm and a sharp screen image at 88 cm. If the object is shifted to the 31 cm mark, what happens ideally?",
+      "options": [
+        "A) The image forms at the 69 cm mark",
+        "B) The image forms at the 50 cm mark",
+        "C) The image remains at the 88 cm mark",
+        "D) The object is now one focal length from the lens, so the image tends to infinity"
+      ],
+      "answer": "D) The object is now one focal length from the lens, so the image tends to infinity",
+      "explanation": "Initially the object and image are each 38 cm from the lens, so the object is at 2F and the image is at 2F. Therefore the focal length is 19 cm. Moving the object to 31 cm places it 19 cm from the lens, exactly at the focus, so the refracted rays emerge parallel and the image is at infinity."
+    }
+  ]
+}

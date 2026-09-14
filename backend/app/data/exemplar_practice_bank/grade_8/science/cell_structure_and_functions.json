@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 8",
+  "subject": "Science",
+  "chapter": "Cell - Structure and Functions",
+  "topic": "Cell — Structure and Functions",
+  "questions": [
+    {
+      "q": "A cell has a cell membrane, ribosomes and chromosomes, but no cell wall or chloroplast. Which inference best matches the combinations and distinctions used in the Exemplar?",
+      "options": [
+        "A) It must be a typical plant cell because chromosomes occur only in plants.",
+        "B) It can fit an animal cell because cell membrane, ribosomes and chromosomes are compatible with animal cells, while cell wall and chloroplast are not required.",
+        "C) It must be a bacterial cell because every cell without chloroplast is bacterial.",
+        "D) It cannot be a cell because all cells must have a cell wall."
+      ],
+      "answer": "B) It can fit an animal cell because cell membrane, ribosomes and chromosomes are compatible with animal cells, while cell wall and chloroplast are not required.",
+      "explanation": "The source provides a combination of cell membrane, mitochondria, ribosome and chromosome as appropriate for an animal cell. It also identifies cell wall as a distinguishing feature of plant cells and chloroplasts as plant-specific structures involved in photosynthesis. Therefore the stated combination is compatible with an animal cell rather than requiring a plant or bacterial identity."
+    },
+    {
+      "q": "A microscopic cell has a cell wall but no distinct nucleus. Which reasoning identifies it correctly?",
+      "options": [
+        "A) It is a plant cell because all cells with walls have a well-organised nucleus.",
+        "B) It is an animal cell because animal cells lack a distinct nucleus.",
+        "C) It is a bacterial cell because the source describes prokaryotes as lacking a distinct nucleus, and bacteria can possess a cell wall.",
+        "D) It is a nerve cell because nerve cells have walls and no nucleus."
+      ],
+      "answer": "C) It is a bacterial cell because the source describes prokaryotes as lacking a distinct nucleus, and bacteria can possess a cell wall.",
+      "explanation": "The Exemplar directly presents the case of a cell with a cell wall but no distinct nucleus and identifies it as bacterial. It also states that prokaryotes do not have a well-organised nucleus. Combining those ideas leads to a bacterial, prokaryotic cell."
+    },
+    {
+      "q": "Which chain correctly links a cell structure to its function and then to an organism-level observation from the source?",
+      "options": [
+        "A) Cell membrane -> controls entry and exit of materials -> helps a cell regulate exchange with its surroundings",
+        "B) Chromosome -> performs photosynthesis -> gives leaves their green colour",
+        "C) Chloroplast -> carries hereditary characters -> transfers traits from parents",
+        "D) Nucleus -> forms the outermost plant-cell layer -> provides rigidity"
+      ],
+      "answer": "A) Cell membrane -> controls entry and exit of materials -> helps a cell regulate exchange with its surroundings",
+      "explanation": "The source calls the cell membrane a selective boundary that controls movement of materials into and out of cells. That function directly explains how a cell regulates exchange with its surroundings. The other options assign functions to the wrong organelles or structures."
+    },
+    {
+      "q": "A learner says, “A unicellular organism cannot respire because respiration needs many tissues.” Which correction is most consistent with the Exemplar?",
+      "options": [
+        "A) The statement is correct because only multicellular organisms respire.",
+        "B) The statement is wrong because a single cell in a unicellular organism can perform life functions such as respiration and reproduction.",
+        "C) The statement is wrong only for plants, because animal-like unicellular organisms do not respire.",
+        "D) The statement is correct unless the organism has chloroplasts."
+      ],
+      "answer": "B) The statement is wrong because a single cell in a unicellular organism can perform life functions such as respiration and reproduction.",
+      "explanation": "The Exemplar explicitly states that unicellular organisms respire and reproduce. It also says that a single cell can perform all the functions needed in a unicellular organism. Therefore tissues are not a requirement for respiration in such organisms."
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 9",
+  "subject": "Maths",
+  "chapter": "Heron's Formula",
+  "topic": "Heron's Formula — Area of Triangle",
+  "questions": [
+    {
+      "q": "A triangle has sides 56 cm, 60 cm and 52 cm. What is its area by Heron's formula?",
+      "options": [
+        "A) 1344 cm^2",
+        "B) 1311 cm^2",
+        "C) 1322 cm^2",
+        "D) 1392 cm^2"
+      ],
+      "answer": "A) 1344 cm^2",
+      "explanation": "The semi-perimeter is (56 + 60 + 52)/2 = 84 cm. Heron's formula gives area = sqrt(84*28*24*32). This product is 1344^2, so the area is 1344 cm^2."
+    },
+    {
+      "q": "A triangular field has sides 41 m, 40 m and 9 m. If each rose bed needs 900 cm^2 of space, how many beds can be prepared?",
+      "options": [
+        "A) 1800",
+        "B) 2000",
+        "C) 200",
+        "D) 20,000"
+      ],
+      "answer": "B) 2000",
+      "explanation": "The semi-perimeter is 45 m, so Heron's formula gives area = sqrt(45*4*5*36) = 180 m^2. Each bed needs 900 cm^2 = 0.09 m^2. Therefore the number of beds is 180/0.09 = 2000."
+    },
+    {
+      "q": "A triangular advertising wall has sides 13 m, 14 m and 15 m. It earns Rs 2000 per m^2 per year. What rent is due for 6 months?",
+      "options": [
+        "A) Rs 42,000",
+        "B) Rs 168,000",
+        "C) Rs 84,000",
+        "D) Rs 126,000"
+      ],
+      "answer": "C) Rs 84,000",
+      "explanation": "The semi-perimeter is 21 m, so the area is sqrt(21*8*7*6) = sqrt(7056) = 84 m^2. At Rs 2000 per m^2 per year, the annual rent is Rs 168,000. For 6 months, half of that amount is Rs 84,000."
+    },
+    {
+      "q": "If every side of a triangle is doubled, what is the ratio of the area of the new triangle to the original area?",
+      "options": [
+        "A) 2:1",
+        "B) 8:1",
+        "C) 1:4",
+        "D) 4:1"
+      ],
+      "answer": "D) 4:1",
+      "explanation": "Doubling all three sides doubles the semi-perimeter and also doubles each difference s-a, s-b and s-c. In Heron's formula the product under the square root therefore gets multiplied by 2^4 = 16. Taking the square root multiplies the area by 4, so the ratio is 4:1."
+    }
+  ]
+}

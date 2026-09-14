@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 10",
+  "subject": "Maths",
+  "chapter": "Constructions",
+  "topic": "Constructions — Tangents and Similar Triangles",
+  "questions": [
+    {
+      "q": "A pair of tangents to a circle is required to meet at an angle of 60 degrees. What angle must the two radii to the points of contact subtend at the centre?",
+      "options": [
+        "A) 120 degrees",
+        "B) 60 degrees",
+        "C) 90 degrees",
+        "D) 150 degrees"
+      ],
+      "answer": "A) 120 degrees",
+      "explanation": "Each radius to a point of contact is perpendicular to its tangent, producing two right angles in the quadrilateral formed by the centre, contact points and external point. The four angles sum to 360 degrees. Hence the central angle is 360 - 90 - 90 - 60 = 120 degrees."
+    },
+    {
+      "q": "Can a pair of real tangents be constructed from a point 3 cm from the centre of a circle of radius 3.5 cm?",
+      "options": [
+        "A) Yes, and both tangents have length 0.5 cm",
+        "B) No, because the point lies inside the circle",
+        "C) Yes, because every point determines two tangents",
+        "D) No, because the point lies on the circle"
+      ],
+      "answer": "B) No, because the point lies inside the circle",
+      "explanation": "A pair of tangents can be drawn only from a point outside the circle. Here the point is 3 cm from the centre while the radius is 3.5 cm, so the point lies inside the circle. Therefore no real tangent from that point can touch the circle."
+    },
+    {
+      "q": "A triangle is constructed similar to a given triangle with scale factor 3/2. Which statement is correct?",
+      "options": [
+        "A) The new triangle has the same sides and is congruent",
+        "B) Corresponding angles are multiplied by 3/2",
+        "C) Corresponding sides are 3/2 times as long, angles remain equal, so the triangles are similar but not congruent",
+        "D) The new triangle has area 3/2 times the original area"
+      ],
+      "answer": "C) Corresponding sides are 3/2 times as long, angles remain equal, so the triangles are similar but not congruent",
+      "explanation": "A scale factor of 3/2 multiplies every corresponding side by 3/2 while preserving all corresponding angles. Since the side lengths change, the new triangle is not congruent to the original. Its area would scale by (3/2)^2 = 9/4, not by 3/2."
+    },
+    {
+      "q": "Two concentric circles have radii 3 cm and 5 cm. From a point on the outer circle, tangents are drawn to the inner circle. What is the length of each tangent?",
+      "options": [
+        "A) 2 cm",
+        "B) 3 cm",
+        "C) 5 cm",
+        "D) 4 cm"
+      ],
+      "answer": "D) 4 cm",
+      "explanation": "The radius to a point of contact is perpendicular to the tangent, forming a right triangle. The distance from the common centre to the external point is 5 cm and the inner radius is 3 cm. Thus tangent length = sqrt(5^2 - 3^2) = sqrt(16) = 4 cm."
+    }
+  ]
+}

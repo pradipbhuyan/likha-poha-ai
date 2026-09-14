@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 8",
+  "subject": "Science",
+  "chapter": "Force and Pressure",
+  "topic": "Force and Pressure",
+  "questions": [
+    {
+      "q": "Two people push a moving cart from opposite sides, yet the cart continues with the same speed in the same direction. What is the best inference?",
+      "options": [
+        "A) The forces are unequal and act in the same direction.",
+        "B) The two applied forces are equal in magnitude and opposite in direction, so their net effect is zero.",
+        "C) No force at all acts on the cart.",
+        "D) Gravity has become zero because the cart is moving."
+      ],
+      "answer": "B) The two applied forces are equal in magnitude and opposite in direction, so their net effect is zero.",
+      "explanation": "The source presents this exact situation and asks what can be inferred from unchanged speed and direction. Equal and opposite pushes balance one another, so the resultant of those applied forces is zero. The cart can therefore continue its existing motion without acceleration from the two pushes."
+    },
+    {
+      "q": "A pointed heel and a flat sole support people of the same weight on sand. Why is the flat sole more comfortable?",
+      "options": [
+        "A) It increases pressure because the same force acts over a larger area.",
+        "B) It decreases pressure because the same force is spread over a larger contact area.",
+        "C) It removes gravity, so no force acts on the sand.",
+        "D) It produces magnetic force that supports the person."
+      ],
+      "answer": "B) It decreases pressure because the same force is spread over a larger contact area.",
+      "explanation": "The Exemplar compares pointed heels with flat soles on a sandy beach. For the same body weight, the force is essentially the same, but the contact area differs. A larger area means less pressure on the sand, so the flat sole sinks less and is more comfortable."
+    },
+    {
+      "q": "A gas-filled balloon rises upward. What must be true about the upward force compared with gravity at the moment it accelerates upward?",
+      "options": [
+        "A) The upward force is smaller than gravity.",
+        "B) The upward force is exactly zero.",
+        "C) The upward force is larger than the gravitational force.",
+        "D) Gravity must reverse direction."
+      ],
+      "answer": "C) The upward force is larger than the gravitational force.",
+      "explanation": "The source asks whether the upward force on a rising gas-filled balloon is larger or smaller than gravity. Upward acceleration requires a net force in the upward direction. Therefore the upward force must exceed the downward gravitational force at that moment."
+    },
+    {
+      "q": "A needle bursts an inflated balloon more easily than a finger. Which explanation connects this to the pressure idea used in the Exemplar?",
+      "options": [
+        "A) The needle applies no force but has high pressure.",
+        "B) The same or comparable force is concentrated over a very small area at the needle tip, producing much greater pressure.",
+        "C) A finger always produces more pressure because it has a larger area.",
+        "D) The balloon bursts because a needle creates magnetic attraction."
+      ],
+      "answer": "B) The same or comparable force is concentrated over a very small area at the needle tip, producing much greater pressure.",
+      "explanation": "The Exemplar uses the needle-versus-finger example to test pressure. Pressure increases when a force acts over a smaller area. The tiny contact area of the needle tip therefore creates much greater pressure and punctures the balloon more easily."
+    }
+  ]
+}

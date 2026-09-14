@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 9",
+  "subject": "Science",
+  "chapter": "Force and Laws of Motion",
+  "topic": "Force and Laws of Motion",
+  "questions": [
+    {
+      "q": "A truck of mass M accelerates at a under a driving force F. It is then loaded with an additional mass M and the driving force is reduced to F/2. What is the new acceleration?",
+      "options": [
+        "A) a/4",
+        "B) a/2",
+        "C) a",
+        "D) 2a"
+      ],
+      "answer": "A) a/4",
+      "explanation": "Initially a = F/M. After loading, the total mass becomes 2M and the force becomes F/2. The new acceleration is (F/2)/(2M) = F/(4M) = a/4."
+    },
+    {
+      "q": "The same force of 5 N produces accelerations of 8 m/s^2 on mass m1 and 24 m/s^2 on mass m2. What acceleration will 5 N produce when the two masses are tied together?",
+      "options": [
+        "A) 4 m/s^2",
+        "B) 6 m/s^2",
+        "C) 8 m/s^2",
+        "D) 16 m/s^2"
+      ],
+      "answer": "B) 6 m/s^2",
+      "explanation": "From F = ma, m1 = 5/8 kg and m2 = 5/24 kg. Their combined mass is 5/8 + 5/24 = 5/6 kg. Therefore the acceleration under the same 5 N force is 5 divided by 5/6, which equals 6 m/s^2."
+    },
+    {
+      "q": "A goalkeeper pulls the hands backward while catching a fast ball. Which explanation correctly applies momentum change and force?",
+      "options": [
+        "A) Pulling the hands backward increases the ball’s momentum change.",
+        "B) Pulling the hands backward makes the stopping time smaller and therefore the force larger.",
+        "C) For essentially the same change in momentum, increasing the stopping time reduces the rate of change of momentum and hence the average force on the hands.",
+        "D) The action removes the reaction force required by Newton’s third law."
+      ],
+      "answer": "C) For essentially the same change in momentum, increasing the stopping time reduces the rate of change of momentum and hence the average force on the hands.",
+      "explanation": "The ball must lose nearly the same momentum whether the hands move backward or not. Pulling the hands backward increases the time over which that momentum changes. Since force is the rate of change of momentum, the larger stopping time reduces the average force on the goalkeeper’s hands."
+    },
+    {
+      "q": "A 10 g bullet moving at 1000 m/s enters a sand-bag and comes to rest after travelling 5 cm. Assuming uniform deceleration, what are the magnitudes of the deceleration and resistive force?",
+      "options": [
+        "A) 1 x 10^6 m/s^2 and 1 x 10^4 N",
+        "B) 5 x 10^6 m/s^2 and 5 x 10^4 N",
+        "C) 2 x 10^7 m/s^2 and 2 x 10^5 N",
+        "D) 1 x 10^7 m/s^2 and 1 x 10^5 N"
+      ],
+      "answer": "D) 1 x 10^7 m/s^2 and 1 x 10^5 N",
+      "explanation": "Use v^2 = u^2 + 2as with v = 0, u = 1000 m/s and s = 0.05 m. This gives a = -1000^2/(0.1) = -1 x 10^7 m/s^2, so the deceleration magnitude is 1 x 10^7 m/s^2. The bullet mass is 0.01 kg, so the resistive force magnitude is ma = 0.01 x 1 x 10^7 = 1 x 10^5 N."
+    }
+  ]
+}

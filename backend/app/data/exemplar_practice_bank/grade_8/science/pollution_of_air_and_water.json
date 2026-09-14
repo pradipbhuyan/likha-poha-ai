@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 8",
+  "subject": "Science",
+  "chapter": "Pollution of Air and Water",
+  "topic": "Pollution of Air and Water",
+  "questions": [
+    {
+      "q": "A city wants to reduce both local air pollution and contribution to global warming. Which action is most consistent with the Exemplar?",
+      "options": [
+        "A) Increase private car use and burn more firewood.",
+        "B) Shift commuters toward buses and cleaner fuels while reducing fossil-fuel combustion.",
+        "C) Replace windmills with diesel generators.",
+        "D) Burn collected dry leaves daily because smoke is harmless."
+      ],
+      "answer": "B) Shift commuters toward buses and cleaner fuels while reducing fossil-fuel combustion.",
+      "explanation": "The source identifies automobile exhaust and fossil-fuel combustion as major sources of air pollution. It also recommends lower-pollution transport choices such as school buses and discusses cleaner fuels like CNG and LPG. Therefore reducing individual vehicle emissions and fossil-fuel burning best addresses both pollution and greenhouse-gas concerns."
+    },
+    {
+      "q": "Incomplete combustion of petrol or diesel in traffic produces a gas that reduces the oxygen-carrying capacity of blood. Which pollutant is it?",
+      "options": [
+        "A) Carbon monoxide",
+        "B) Carbon dioxide",
+        "C) Chlorofluorocarbon",
+        "D) Nitrogen"
+      ],
+      "answer": "A) Carbon monoxide",
+      "explanation": "The Exemplar states that incomplete combustion of fuels such as petrol and diesel produces carbon monoxide. It also matches carbon monoxide with reduced oxygen-carrying capacity of blood. Combining those facts identifies carbon monoxide as the pollutant."
+    },
+    {
+      "q": "The Taj Mahal is affected by “marble cancer.” Which chain of reasoning best matches the Exemplar?",
+      "options": [
+        "A) Water pollution -> methane -> erosion of marble",
+        "B) Air pollution -> acid rain -> damage to marble",
+        "C) Noise pollution -> vibration -> formation of soot inside marble",
+        "D) Soil pollution -> CFC release -> bleaching of marble"
+      ],
+      "answer": "B) Air pollution -> acid rain -> damage to marble",
+      "explanation": "The source says the Taj Mahal is especially affected by air pollution and identifies acid rain as the cause of marble cancer. Acid-forming pollutants in air can produce acidic precipitation. That acidic rain reacts with and damages marble surfaces."
+    },
+    {
+      "q": "A water sample looks clear but may still contain microorganisms and dissolved impurities. Which method listed in the Exemplar is expected to remove all impurities most completely?",
+      "options": [
+        "A) Filtration only",
+        "B) Boiling only",
+        "C) Adding chlorine tablets only",
+        "D) Distillation"
+      ],
+      "answer": "D) Distillation",
+      "explanation": "The Exemplar asks which procedure gives water free from all impurities and lists distillation among the options. Filtration, boiling and chlorination each address only certain contaminants or germs. Distillation separates water from both dissolved and suspended impurities more completely in the context of the question."
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 8",
+  "subject": "Science",
+  "chapter": "Combustion and Flame",
+  "topic": "Combustion and Flame",
+  "questions": [
+    {
+      "q": "A burning candle is covered by an inverted tumbler and soon goes out. Which interpretation also explains why a woollen blanket can help when a person’s clothes catch fire?",
+      "options": [
+        "A) Both methods lower the fuel’s calorific value.",
+        "B) Both methods reduce the supply of oxygen needed for combustion.",
+        "C) Both methods increase the ignition temperature of oxygen.",
+        "D) Both methods convert the fuel into a non-combustible metal."
+      ],
+      "answer": "B) Both methods reduce the supply of oxygen needed for combustion.",
+      "explanation": "The candle under a tumbler goes out because the available oxygen is gradually used up. Covering burning clothes with a woollen blanket similarly cuts the fire off from fresh air. Both actions therefore attack the oxygen requirement of combustion."
+    },
+    {
+      "q": "A copper vessel becomes black on the outside while food is being cooked over a chulha. Which additional observation would support the same underlying cause?",
+      "options": [
+        "A) A blue outer flame with complete combustion and no soot",
+        "B) Formation of soot due to incomplete combustion when oxygen supply is insufficient",
+        "C) A fuel with high calorific value always leaving no residue",
+        "D) Carbon dioxide preventing all combustion in the stove"
+      ],
+      "answer": "B) Formation of soot due to incomplete combustion when oxygen supply is insufficient",
+      "explanation": "The source attributes blackening of the copper vessel to improper or incomplete combustion of the fuel. Incomplete combustion can produce soot, which deposits as a black layer on the vessel. Thus soot formation under limited oxygen conditions matches the same cause."
+    },
+    {
+      "q": "A vehicle can use petrol or CNG. The Exemplar gives calorific values of about 45,000 kJ/kg for petrol and 50,000 kJ/kg for CNG and also discusses cleaner fuels. Which choice is best supported?",
+      "options": [
+        "A) Prefer petrol because lower calorific value always means more useful energy.",
+        "B) Prefer CNG because it has the higher stated calorific value and is discussed as a cleaner automobile fuel.",
+        "C) Prefer wood because all solid fuels are cleaner than gases.",
+        "D) Both fuels are identical because calorific value has no connection with fuel efficiency."
+      ],
+      "answer": "B) Prefer CNG because it has the higher stated calorific value and is discussed as a cleaner automobile fuel.",
+      "explanation": "The Exemplar provides a higher calorific value for CNG than for petrol. It also asks why CNG is replacing petrol and diesel in big cities, linking CNG with cleaner combustion. Combining energy output and pollution considerations supports choosing CNG."
+    },
+    {
+      "q": "Which flame region should be used when the aim is to boil water quickly, and why?",
+      "options": [
+        "A) Innermost zone, because unburnt wax vapours make it the hottest",
+        "B) Middle yellow zone, because partial combustion produces the maximum temperature",
+        "C) Outermost zone, because complete combustion makes it the hottest region",
+        "D) Any zone, because all zones of a flame have the same temperature"
+      ],
+      "answer": "C) Outermost zone, because complete combustion makes it the hottest region",
+      "explanation": "The Exemplar asks which zone of a flame is best for rapid heating and separately matches the outer zone with complete combustion. Complete combustion releases heat efficiently, making the outer zone the hottest. Therefore the outermost zone is the best choice for boiling water quickly."
+    }
+  ]
+}

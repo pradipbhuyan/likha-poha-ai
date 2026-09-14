@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 8",
+  "subject": "Science",
+  "chapter": "Materials: Metals and Non-Metals",
+  "topic": "Metals and Non-Metals",
+  "questions": [
+    {
+      "q": "An iron nail is placed in copper sulphate solution, while a copper wire is placed in ferrous sulphate solution. Which result follows from the relative reactivity stated in the Exemplar?",
+      "options": [
+        "A) Iron displaces copper from copper sulphate, but copper does not displace iron from ferrous sulphate.",
+        "B) Copper displaces iron, but iron cannot displace copper.",
+        "C) Both metals displace each other equally.",
+        "D) Neither can take part in displacement because metals never react with salt solutions."
+      ],
+      "answer": "A) Iron displaces copper from copper sulphate, but copper does not displace iron from ferrous sulphate.",
+      "explanation": "The source explicitly states that iron is more reactive than copper and asks for an activity demonstrating it. A more reactive metal can displace a less reactive metal from its salt solution, so iron can displace copper from copper sulphate. Copper cannot displace the more reactive iron from ferrous sulphate."
+    },
+    {
+      "q": "A material is hard, can be beaten into sheets, drawn into wires and gives a ringing sound when struck. Which classification is best supported?",
+      "options": [
+        "A) It shows a typical set of metallic properties.",
+        "B) It must be a non-metal because non-metals are usually ductile.",
+        "C) It must be sulphur because sulphur is sonorous and malleable.",
+        "D) It must be a gas because gases are drawn into wires."
+      ],
+      "answer": "A) It shows a typical set of metallic properties.",
+      "explanation": "The Exemplar links malleability, ductility and sonority with metals. It also discusses metals as generally hard and useful for objects such as bells and wires. A substance showing all these properties is therefore most consistent with a metal."
+    },
+    {
+      "q": "Sulphur is burnt in oxygen and the product is dissolved in water. What sequence is supported by the Exemplar?",
+      "options": [
+        "A) Sulphur dioxide forms, then sulphurous acid forms and turns blue litmus red.",
+        "B) Sulphur oxide forms a base and turns red litmus blue.",
+        "C) Magnesium oxide forms and remains neutral.",
+        "D) Copper oxide forms and releases hydrogen gas."
+      ],
+      "answer": "A) Sulphur dioxide forms, then sulphurous acid forms and turns blue litmus red.",
+      "explanation": "The source gives a fill-in sequence in which sulphur reacts with oxygen to form sulphur dioxide. Dissolving sulphur dioxide in water forms sulphurous acid. Because it is acidic, it turns blue litmus red."
+    },
+    {
+      "q": "Which metal from the source is unusual because it can react with dilute hydrochloric acid as well as sodium hydroxide solution to release hydrogen?",
+      "options": [
+        "A) Copper",
+        "B) Iron",
+        "C) Aluminium",
+        "D) Silver"
+      ],
+      "answer": "C) Aluminium",
+      "explanation": "The Exemplar directly asks for the metal that produces hydrogen with both dilute hydrochloric acid and sodium hydroxide solution. Aluminium fits this behaviour in the source. The other listed metals do not satisfy both conditions in that question."
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 10",
+  "subject": "Science",
+  "chapter": "Light - Reflection and Refraction",
+  "topic": "Light — Reflection and Spherical Mirrors",
+  "questions": [
+    {
+      "q": "A 10 mm object forms a 5 mm real image 30 cm in front of a concave mirror. Using the mirror sign convention, which pair of object distance and focal length is consistent with these data?",
+      "options": [
+        "A) u = -60 cm, f = -20 cm",
+        "B) u = -15 cm, f = -30 cm",
+        "C) u = -60 cm, f = +20 cm",
+        "D) u = +60 cm, f = -20 cm"
+      ],
+      "answer": "A) u = -60 cm, f = -20 cm",
+      "explanation": "A real image formed by a concave mirror is inverted, so magnification m = -5/10 = -1/2. Using m = -v/u with v = -30 cm gives u = -60 cm. Then 1/f = 1/v + 1/u = -1/30 - 1/60 = -1/20, so f = -20 cm."
+    },
+    {
+      "q": "Sunlight converges to a point 15 cm in front of a concave mirror. Where should an object be placed to obtain an image of the same size as the object?",
+      "options": [
+        "A) 15 cm in front of the mirror",
+        "B) 30 cm in front of the mirror",
+        "C) Between 15 cm and 30 cm",
+        "D) More than 30 cm away"
+      ],
+      "answer": "B) 30 cm in front of the mirror",
+      "explanation": "Parallel rays from the Sun meet at the focus, so the focal length of the concave mirror is 15 cm. An object placed at the centre of curvature, which is 2f, forms a real inverted image of the same size at the centre of curvature. Thus the required object distance is 30 cm."
+    },
+    {
+      "q": "Which mirror is best suited to view the full length of a distant tall building when a relatively small mirror is desired?",
+      "options": [
+        "A) Concave mirror because it always magnifies distant objects",
+        "B) Plane mirror because it gives the widest field of view",
+        "C) Convex mirror because it forms a diminished erect image and provides a wide field of view",
+        "D) Concave mirror at its focus because the image becomes virtual"
+      ],
+      "answer": "C) Convex mirror because it forms a diminished erect image and provides a wide field of view",
+      "explanation": "A convex mirror always forms a virtual, erect and diminished image for a distant object. Its wide field of view allows a large scene, such as a tall building, to be seen in a comparatively small mirror. That is why option C is the suitable choice."
+    },
+    {
+      "q": "A segmented “magic mirror” makes the head look bigger, the middle part of the body the same size, and the legs smaller. From top to bottom, what mirror types are required?",
+      "options": [
+        "A) Plane, convex, concave",
+        "B) Convex, concave, plane",
+        "C) Convex, plane, concave",
+        "D) Concave, plane, convex"
+      ],
+      "answer": "D) Concave, plane, convex",
+      "explanation": "A concave mirror can produce an enlarged upright image when the object is within its focal length. A plane mirror produces an image of the same size, while a convex mirror produces a diminished upright image. Therefore the order from top to bottom is concave, plane and convex."
+    }
+  ]
+}

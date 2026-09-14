@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 10",
+  "subject": "Science",
+  "chapter": "Electricity",
+  "topic": "Electricity — Ohm's Law and Circuits",
+  "questions": [
+    {
+      "q": "Two resistors of 2 ohm and 4 ohm are connected in series to a 6 V battery. What are the circuit current and the heat produced in the 4 ohm resistor in 5 s?",
+      "options": [
+        "A) 1 A and 20 J",
+        "B) 1.5 A and 45 J",
+        "C) 3 A and 180 J",
+        "D) 0.5 A and 5 J"
+      ],
+      "answer": "A) 1 A and 20 J",
+      "explanation": "The total series resistance is 2 + 4 = 6 ohm, so the current is I = V/R = 6/6 = 1 A. Heat in the 4 ohm resistor is H = I^2Rt = 1^2 x 4 x 5 = 20 J. Therefore the correct pair is 1 A and 20 J."
+    },
+    {
+      "q": "The current through a resistor is increased by 100% while its temperature remains unchanged. By what percentage does the power dissipated increase?",
+      "options": [
+        "A) 100%",
+        "B) 300%",
+        "C) 200%",
+        "D) 400%"
+      ],
+      "answer": "B) 300%",
+      "explanation": "A 100% increase in current means the current doubles from I to 2I. For fixed resistance, power is P = I^2R, so the new power is 4I^2R, four times the original. The increase is therefore 3 times the original power, or 300%."
+    },
+    {
+      "q": "Five identical resistors each have resistance 1/5 ohm. Which pair gives the maximum and minimum equivalent resistances obtainable using all five?",
+      "options": [
+        "A) Maximum 1/5 ohm, minimum 1/10 ohm",
+        "B) Maximum 5 ohm, minimum 1/5 ohm",
+        "C) Maximum 1 ohm, minimum 1/25 ohm",
+        "D) Maximum 25 ohm, minimum 1 ohm"
+      ],
+      "answer": "C) Maximum 1 ohm, minimum 1/25 ohm",
+      "explanation": "The maximum resistance is obtained by connecting all five in series: 5 x 1/5 = 1 ohm. The minimum is obtained by connecting all five in parallel, giving R/5 = (1/5)/5 = 1/25 ohm. Thus option C correctly states both extreme values."
+    },
+    {
+      "q": "An electric kettle consumes 1 kW at 220 V. Which fuse rating is the most appropriate among the given choices?",
+      "options": [
+        "A) 1 A",
+        "B) 2 A",
+        "C) 4 A",
+        "D) 5 A"
+      ],
+      "answer": "D) 5 A",
+      "explanation": "The operating current is I = P/V = 1000/220, which is about 4.55 A. A fuse should be rated just above the normal operating current so that it does not melt during proper use. Among the options, 5 A is the suitable rating."
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 8",
+  "subject": "Maths",
+  "chapter": "Direct and Inverse Proportions",
+  "topic": "Direct and Inverse Proportions",
+  "questions": [
+    {
+      "q": "A truck uses 54 litres of diesel to travel 297 km. Assuming direct proportion, how much diesel is required for 550 km?",
+      "options": [
+        "A) 100 litres",
+        "B) 90 litres",
+        "C) 108 litres",
+        "D) 110 litres"
+      ],
+      "answer": "A) 100 litres",
+      "explanation": "Diesel used and distance travelled vary directly when mileage is fixed. Set 54/297 = x/550, so x = 54 x 550 / 297. Since 297 = 54 x 5.5, the result is x = 100 litres."
+    },
+    {
+      "q": "A car travels a fixed journey in 10 hours at 48 km/h. What speed is needed to cover the same journey in 8 hours?",
+      "options": [
+        "A) 54 km/h",
+        "B) 60 km/h",
+        "C) 64 km/h",
+        "D) 80 km/h"
+      ],
+      "answer": "B) 60 km/h",
+      "explanation": "For a fixed distance, speed and time vary inversely. The distance is 48 x 10 = 480 km. To cover 480 km in 8 hours, the speed must be 480/8 = 60 km/h."
+    },
+    {
+      "q": "A camp has food for 300 cadets for 42 days. If 50 more cadets join, for how many days will the food last?",
+      "options": [
+        "A) 30 days",
+        "B) 35 days",
+        "C) 36 days",
+        "D) 49 days"
+      ],
+      "answer": "C) 36 days",
+      "explanation": "The number of cadets and the number of days are inversely proportional for a fixed food supply. Thus 300 x 42 = 350 x d. Solving gives d = 300 x 42 / 350 = 36 days."
+    },
+    {
+      "q": "At constant temperature, a gas has volume 630 cm3 at pressure 360 mm of mercury. If its volume becomes 720 cm3, what is the new pressure?",
+      "options": [
+        "A) 280 mm",
+        "B) 300 mm",
+        "C) 360 mm",
+        "D) 315 mm"
+      ],
+      "answer": "D) 315 mm",
+      "explanation": "At constant temperature, gas volume and pressure vary inversely, so their product remains constant. Hence 630 x 360 = 720 x p. Dividing by 720 gives p = 315 mm of mercury."
+    }
+  ]
+}

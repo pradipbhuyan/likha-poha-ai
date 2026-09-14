@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 9",
+  "subject": "Science",
+  "chapter": "Motion",
+  "topic": "Motion — Distance, Speed, Velocity",
+  "questions": [
+    {
+      "q": "A car starts from rest and accelerates uniformly at 5 m/s^2 for 8 s. It then continues at the velocity reached for another 4 s. What total distance does it cover in the first 12 s?",
+      "options": [
+        "A) 320 m",
+        "B) 240 m",
+        "C) 160 m",
+        "D) 480 m"
+      ],
+      "answer": "A) 320 m",
+      "explanation": "For the first 8 s, s = 0.5at^2 = 0.5 x 5 x 64 = 160 m. Its speed after 8 s is v = at = 40 m/s, so in the next 4 s it covers 40 x 4 = 160 m. The total distance is therefore 160 + 160 = 320 m."
+    },
+    {
+      "q": "A motorcyclist travels from A to B at 30 km/h and returns over the same distance at 20 km/h. What is the average speed for the complete trip?",
+      "options": [
+        "A) 25 km/h",
+        "B) 24 km/h",
+        "C) 10 km/h",
+        "D) 50 km/h"
+      ],
+      "answer": "B) 24 km/h",
+      "explanation": "For equal distances, average speed is total distance divided by total time, not the simple arithmetic mean of the two speeds. Taking one-way distance as d, total time is d/30 + d/20 = d/12 hours and total distance is 2d. Thus average speed = 2d divided by d/12 = 24 km/h."
+    },
+    {
+      "q": "A particle moves through half a circle of radius r. Which pair gives its distance travelled and magnitude of displacement?",
+      "options": [
+        "A) 2r and pi r",
+        "B) 2 pi r and r",
+        "C) pi r and 2r",
+        "D) pi r and 0"
+      ],
+      "answer": "C) pi r and 2r",
+      "explanation": "Half the circumference of a circle is pi r, so that is the distance travelled. After half a revolution, the particle is at the diametrically opposite point. The straight-line separation of those endpoints is the diameter, 2r, which is the displacement magnitude."
+    },
+    {
+      "q": "An object starts from rest, travels 20 m in the first 2 s and 160 m in the next 4 s under uniform acceleration. What is its velocity 7 s after the start?",
+      "options": [
+        "A) 35 m/s",
+        "B) 50 m/s",
+        "C) 60 m/s",
+        "D) 70 m/s"
+      ],
+      "answer": "D) 70 m/s",
+      "explanation": "From rest, the first 2 s distance is s = 0.5a(2^2) = 2a. Setting this equal to 20 m gives a = 10 m/s^2, and then the total distance in 6 s is 0.5 x 10 x 36 = 180 m, consistent with another 160 m after the first 20 m. Therefore v at 7 s is at = 10 x 7 = 70 m/s."
+    }
+  ]
+}

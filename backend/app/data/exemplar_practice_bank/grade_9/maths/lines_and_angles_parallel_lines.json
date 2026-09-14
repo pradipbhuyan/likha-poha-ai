@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 9",
+  "subject": "Maths",
+  "chapter": "Lines and Angles",
+  "topic": "Lines and Angles — Parallel Lines",
+  "questions": [
+    {
+      "q": "Two interior angles on the same side of a transversal cutting parallel lines are in the ratio 2:3. What is the greater angle?",
+      "options": [
+        "A) 108 degrees",
+        "B) 72 degrees",
+        "C) 120 degrees",
+        "D) 54 degrees"
+      ],
+      "answer": "A) 108 degrees",
+      "explanation": "Same-side interior angles between parallel lines are supplementary, so their sum is 180 degrees. Let the angles be 2x and 3x; then 5x = 180, so x = 36. The greater angle is 3x = 108 degrees."
+    },
+    {
+      "q": "An exterior angle of a triangle is 105 degrees, and the two interior opposite angles are equal. What is each of those equal angles?",
+      "options": [
+        "A) 75 degrees",
+        "B) 52.5 degrees",
+        "C) 37.5 degrees",
+        "D) 105 degrees"
+      ],
+      "answer": "B) 52.5 degrees",
+      "explanation": "An exterior angle equals the sum of the two interior opposite angles. If the two opposite angles are equal, each is half of 105 degrees. Therefore each equals 52.5 degrees."
+    },
+    {
+      "q": "The angles of a triangle are in the ratio 2:3:4. Which ordered set gives its angles from smallest to largest?",
+      "options": [
+        "A) 30, 60, 90 degrees",
+        "B) 45, 60, 75 degrees",
+        "C) 40, 60, 80 degrees",
+        "D) 20, 70, 90 degrees"
+      ],
+      "answer": "C) 40, 60, 80 degrees",
+      "explanation": "The three angles of a triangle add to 180 degrees. The ratio has 2 + 3 + 4 = 9 equal parts, so each part is 180/9 = 20 degrees. Multiplying by 2, 3 and 4 gives 40, 60 and 80 degrees."
+    },
+    {
+      "q": "The bisectors of angles B and C of triangle ABC meet at O. If angle A is 130 degrees, what is angle BOC?",
+      "options": [
+        "A) 130 degrees",
+        "B) 145 degrees",
+        "C) 150 degrees",
+        "D) 155 degrees"
+      ],
+      "answer": "D) 155 degrees",
+      "explanation": "For the intersection of the internal bisectors of angles B and C, the Exemplar establishes angle BOC = 90 degrees + angle A/2. With angle A = 130 degrees, half of A is 65 degrees. Thus angle BOC = 90 + 65 = 155 degrees."
+    }
+  ]
+}

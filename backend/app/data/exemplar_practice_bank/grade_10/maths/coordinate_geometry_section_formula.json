@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 10",
+  "subject": "Maths",
+  "chapter": "Coordinate Geometry",
+  "topic": "Coordinate Geometry — Section Formula",
+  "questions": [
+    {
+      "q": "In what ratio does the x-axis divide the segment joining A(-4,-6) and B(-1,7), and what is the point of division?",
+      "options": [
+        "A) 6:7 at (-34/13, 0)",
+        "B) 7:6 at (-31/13, 0)",
+        "C) 6:7 at (-31/13, 0)",
+        "D) 7:6 at (-34/13, 0)"
+      ],
+      "answer": "A) 6:7 at (-34/13, 0)",
+      "explanation": "Let the x-axis point P divide AB internally in the ratio m:n = AP:PB. Using the y-coordinate, (7m - 6n)/(m+n) = 0, so 7m = 6n and m:n = 6:7. The x-coordinate is [6(-1)+7(-4)]/13 = -34/13, giving P(-34/13,0)."
+    },
+    {
+      "q": "Point A(2,-4) is equidistant from P(3,8) and Q(-10,y). What are the possible values of y?",
+      "options": [
+        "A) -4 only",
+        "B) -3 or -5",
+        "C) 3 or 5",
+        "D) -2 or -6"
+      ],
+      "answer": "B) -3 or -5",
+      "explanation": "AP^2 = (3-2)^2 + (8+4)^2 = 1 + 144 = 145. Equating AQ^2 gives (-10-2)^2 + (y+4)^2 = 145, so 144 + (y+4)^2 = 145. Thus (y+4)^2 = 1 and y = -3 or -5."
+    },
+    {
+      "q": "The segment joining A(3,2) and B(5,1) is divided internally at P in the ratio 1:2. If P lies on 3x - 18y + k = 0, find k.",
+      "options": [
+        "A) -19",
+        "B) 11",
+        "C) 19",
+        "D) 30"
+      ],
+      "answer": "C) 19",
+      "explanation": "For AP:PB = 1:2, the section formula gives P = ((1x5+2x3)/3, (1x1+2x2)/3) = (11/3, 5/3). Substituting into 3x - 18y + k = 0 gives 11 - 30 + k = 0. Therefore k = 19."
+    },
+    {
+      "q": "A(-2,3), B(6,7) and C(8,3) are consecutive vertices of parallelogram ABCD. What is D?",
+      "options": [
+        "A) (2,-1)",
+        "B) (-1,0)",
+        "C) (0,1)",
+        "D) (0,-1)"
+      ],
+      "answer": "D) (0,-1)",
+      "explanation": "The diagonals of a parallelogram bisect each other, so A + C = B + D coordinate-wise. Therefore D = A + C - B. This gives D = (-2+8-6, 3+3-7) = (0,-1)."
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 9",
+  "subject": "Science",
+  "chapter": "Matter in Our Surroundings",
+  "topic": "Matter in Our Surroundings — States of Matter",
+  "questions": [
+    {
+      "q": "A natural gas sample is to be liquefied, while a separate sample of hydrogen gas in a closed container is allowed to occupy a larger volume. Which combined description is correct?",
+      "options": [
+        "A) Liquefaction needs low temperature and high pressure, and the average distance between hydrogen molecules increases when the container volume increases.",
+        "B) Liquefaction needs high temperature and low pressure, and the average distance between hydrogen molecules increases when the container volume increases.",
+        "C) Liquefaction needs low temperature and low pressure, and the average distance between hydrogen molecules decreases when the container volume increases.",
+        "D) Liquefaction needs high temperature and high pressure, and the average distance between hydrogen molecules is unaffected by container volume."
+      ],
+      "answer": "A) Liquefaction needs low temperature and high pressure, and the average distance between hydrogen molecules increases when the container volume increases.",
+      "explanation": "The source states that a gas can be liquefied under low temperature and high pressure. It also asks when the distance between hydrogen molecules increases, and increasing the container volume is one such condition because the same gas gets more space. Therefore both statements in option A are consistent with the particle model described in the source."
+    },
+    {
+      "q": "A water sample boils at 102°C at normal pressure. What is the best conclusion about this sample and its freezing point?",
+      "options": [
+        "A) It is pure water and must freeze at 0°C.",
+        "B) It is not pure water, and it should not be expected to freeze at exactly 0°C.",
+        "C) It is pure water because boiling above 100°C proves stronger intermolecular forces.",
+        "D) It is not pure water, but every impure water sample still freezes exactly at 0°C."
+      ],
+      "answer": "B) It is not pure water, and it should not be expected to freeze at exactly 0°C.",
+      "explanation": "Pure water has characteristic melting and boiling points under a fixed pressure. A sample boiling at 102°C at normal pressure therefore indicates dissolved impurities rather than pure water. Those impurities also alter the freezing point, so freezing exactly at 0°C should not be expected."
+    },
+    {
+      "q": "Steam at the boiling point can cause more severe burns than water at the same temperature. Which explanation best uses the ideas in the source?",
+      "options": [
+        "A) Steam is always at a higher temperature than boiling water.",
+        "B) Steam particles have no intermolecular attraction, so they penetrate skin more easily.",
+        "C) Steam releases latent heat when it condenses, so it transfers additional energy even when its temperature initially matches boiling water.",
+        "D) Boiling water has no thermal energy once it reaches its boiling point."
+      ],
+      "answer": "C) Steam releases latent heat when it condenses, so it transfers additional energy even when its temperature initially matches boiling water.",
+      "explanation": "The source explicitly contrasts the cooling effect of ice with the severe burns caused by steam and asks about latent heat. Steam at the boiling point contains latent heat associated with vaporisation. When it condenses on skin, that latent heat is released in addition to the ordinary heat transfer, making burns more severe."
+    },
+    {
+      "q": "A wet shirt must be dried as quickly as possible. Which set of actions best follows the factors affecting evaporation described in the source?",
+      "options": [
+        "A) Fold the shirt, keep it in humid air, and reduce air movement.",
+        "B) Keep the shirt in shade, reduce exposed area, and cover it with another cloth.",
+        "C) Cool the shirt, keep the air still, and increase humidity.",
+        "D) Spread the shirt to increase exposed area, keep it warm, and place it where moving air can carry away water vapour."
+      ],
+      "answer": "D) Spread the shirt to increase exposed area, keep it warm, and place it where moving air can carry away water vapour.",
+      "explanation": "Evaporation increases when temperature and exposed surface area increase and when moving air removes water vapour from near the liquid surface. The source uses a wet shirt and a moving fan as applications of these ideas. Spreading the shirt, warming it and increasing air movement therefore speeds drying most effectively."
+    }
+  ]
+}

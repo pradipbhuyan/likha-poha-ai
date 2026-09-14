@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 9",
+  "subject": "Science",
+  "chapter": "Why Do We Fall Ill",
+  "topic": "Why Do We Fall Ill — Health and Disease",
+  "questions": [
+    {
+      "q": "Why are antibiotics generally ineffective against viral diseases according to the source?",
+      "options": [
+        "A) Viruses use host-cell machinery and have very few biochemical mechanisms of their own for antibiotics to target.",
+        "B) Viruses are always larger than bacteria, so antibiotics cannot enter them.",
+        "C) Antibiotics work only on protozoans, never on bacteria.",
+        "D) Viruses contain no genetic material and therefore cannot be targeted."
+      ],
+      "answer": "A) Viruses use host-cell machinery and have very few biochemical mechanisms of their own for antibiotics to target.",
+      "explanation": "The source explains that viruses depend heavily on the host cell’s machinery and have very few biochemical pathways of their own. Antibiotics usually act on microbial biochemical processes, especially those of bacteria. With fewer virus-specific processes to attack without damaging host cells, antiviral treatment is more difficult."
+    },
+    {
+      "q": "A family lives in an overcrowded, poorly ventilated house and stagnant water is present nearby. Which pair of health risks is most directly increased?",
+      "options": [
+        "A) Cancer and genetic abnormalities",
+        "B) Air-borne infections and mosquito-borne diseases",
+        "C) High blood pressure and diabetes",
+        "D) Only non-infectious diseases"
+      ],
+      "answer": "B) Air-borne infections and mosquito-borne diseases",
+      "explanation": "The source links overcrowded, poorly ventilated housing with air-borne disease transmission. It also stresses that stagnant water should be avoided because mosquitoes act as vectors for several diseases. Therefore both air-borne infections and mosquito-borne diseases become more likely in this setting."
+    },
+    {
+      "q": "Which contact does not transmit AIDS according to the source?",
+      "options": [
+        "A) Blood transfusion from infected blood",
+        "B) Sexual contact with an infected person",
+        "C) Hugging an infected person",
+        "D) Breast feeding by an infected mother"
+      ],
+      "answer": "C) Hugging an infected person",
+      "explanation": "The source lists sexual contact, blood transfusion and breast feeding as routes by which HIV can be transmitted. It explicitly identifies hugs as a form of contact that does not transmit AIDS. Hence option C is the non-transmission route."
+    },
+    {
+      "q": "Why are children vaccinated in a polio eradication programme?",
+      "options": [
+        "A) The vaccine physically blocks every polio virus from entering the body.",
+        "B) The vaccine directly kills all polio microorganisms outside the body.",
+        "C) The vaccine works only after a child develops polio symptoms.",
+        "D) The vaccine prepares the immune system so that the body develops protection against the polio-causing agent."
+      ],
+      "answer": "D) The vaccine prepares the immune system so that the body develops protection against the polio-causing agent.",
+      "explanation": "The source states that children are vaccinated because vaccination creates immunity in the body. Vaccination trains the immune system to respond effectively when it encounters the relevant pathogen. Therefore its preventive effect comes from immune preparedness rather than physically blocking all entry or curing established disease."
+    }
+  ]
+}

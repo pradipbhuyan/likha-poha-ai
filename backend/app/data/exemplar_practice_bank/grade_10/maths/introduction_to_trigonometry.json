@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 10",
+  "subject": "Maths",
+  "chapter": "Introduction to Trigonometry and Its Applications",
+  "topic": "Introduction to Trigonometry",
+  "questions": [
+    {
+      "q": "Evaluate tan1° x tan2° x tan3° x ... x tan89°.",
+      "options": [
+        "A) 1",
+        "B) 0",
+        "C) 1/2",
+        "D) sqrt(3)"
+      ],
+      "answer": "A) 1",
+      "explanation": "Pair tan1° with tan89°, tan2° with tan88°, and so on. Since tan(90°-theta) = cot(theta), every paired product equals tan(theta)cot(theta) = 1. The remaining middle factor is tan45° = 1, so the whole product is 1."
+    },
+    {
+      "q": "For an acute angle A, sin A = 1/2. What is cot A?",
+      "options": [
+        "A) 1/sqrt(3)",
+        "B) sqrt(3)",
+        "C) 1",
+        "D) 2"
+      ],
+      "answer": "B) sqrt(3)",
+      "explanation": "For an acute angle, sin A = 1/2 corresponds to A = 30°. At 30°, cos A = sqrt(3)/2. Therefore cot A = cos A / sin A = sqrt(3)."
+    },
+    {
+      "q": "If 4tan(theta) = 3, find (4sin(theta) - cos(theta))/(4sin(theta) + cos(theta)).",
+      "options": [
+        "A) 1/3",
+        "B) 2/3",
+        "C) 1/2",
+        "D) 3/4"
+      ],
+      "answer": "C) 1/2",
+      "explanation": "From 4tan(theta) = 3, we have 4sin(theta)/cos(theta) = 3, so 4sin(theta) = 3cos(theta). The numerator becomes 3cos(theta) - cos(theta) = 2cos(theta). The denominator becomes 3cos(theta) + cos(theta) = 4cos(theta), so the ratio is 1/2."
+    },
+    {
+      "q": "If sin(theta) - cos(theta) = 0 for an acute angle, what is sin^4(theta) + cos^4(theta)?",
+      "options": [
+        "A) 1",
+        "B) 3/4",
+        "C) 1/4",
+        "D) 1/2"
+      ],
+      "answer": "D) 1/2",
+      "explanation": "The condition gives sin(theta) = cos(theta). Together with sin^2(theta) + cos^2(theta) = 1, this means each square equals 1/2. Therefore sin^4(theta) + cos^4(theta) = 1/4 + 1/4 = 1/2."
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 9",
+  "subject": "Maths",
+  "chapter": "Number Systems",
+  "topic": "Number System — Irrational Numbers",
+  "questions": [
+    {
+      "q": "The Exemplar gives the irrational numbers 3 + sqrt(2) and 3 - sqrt(2). Which statement about their sum and product is correct?",
+      "options": [
+        "A) Their sum is 6 and their product is 7; both are rational.",
+        "B) Their sum is 6 but their product is irrational.",
+        "C) Their sum is irrational but their product is 7.",
+        "D) Both their sum and product are irrational."
+      ],
+      "answer": "A) Their sum is 6 and their product is 7; both are rational.",
+      "explanation": "Add the two numbers: (3 + sqrt(2)) + (3 - sqrt(2)) = 6 because the irrational parts cancel. Multiply them as conjugates: (3 + sqrt(2))(3 - sqrt(2)) = 9 - 2 = 7. Thus two irrational numbers can have both a rational sum and a rational product."
+    },
+    {
+      "q": "Let x = fourth_root(2), as in the Exemplar example. Which classification of x^2 and x^4 is correct?",
+      "options": [
+        "A) x^2 and x^4 are both irrational.",
+        "B) x^2 is irrational and x^4 is rational.",
+        "C) x^2 is rational and x^4 is irrational.",
+        "D) x^2 and x^4 are both rational."
+      ],
+      "answer": "B) x^2 is irrational and x^4 is rational.",
+      "explanation": "Squaring x = fourth_root(2) gives x^2 = sqrt(2). The number sqrt(2) is irrational, while raising x to the fourth power gives x^4 = 2. Therefore the square is irrational but the fourth power is rational."
+    },
+    {
+      "q": "After rationalising 1/(sqrt(7) - 2), which expression is obtained?",
+      "options": [
+        "A) (sqrt(7) - 2)/3",
+        "B) (sqrt(7) + 2)/5",
+        "C) (sqrt(7) + 2)/3",
+        "D) 3/(sqrt(7) + 2)"
+      ],
+      "answer": "C) (sqrt(7) + 2)/3",
+      "explanation": "Multiply numerator and denominator by the conjugate sqrt(7) + 2. The denominator becomes (sqrt(7) - 2)(sqrt(7) + 2) = 7 - 4 = 3. Hence the rationalised form is (sqrt(7) + 2)/3."
+    },
+    {
+      "q": "The Exemplar sets a = 5 + 2sqrt(6) and b = 1/a. What is a^2 + b^2?",
+      "options": [
+        "A) 96",
+        "B) 100",
+        "C) 102",
+        "D) 98"
+      ],
+      "answer": "D) 98",
+      "explanation": "Rationalising 1/(5 + 2sqrt(6)) gives b = 5 - 2sqrt(6), because their product is 25 - 24 = 1. Therefore a + b = 10 and ab = 1. Using a^2 + b^2 = (a + b)^2 - 2ab gives 100 - 2 = 98."
+    }
+  ]
+}

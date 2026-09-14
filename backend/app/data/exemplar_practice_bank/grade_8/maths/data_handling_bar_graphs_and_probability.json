@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 8",
+  "subject": "Maths",
+  "chapter": "Data Handling",
+  "topic": "Data Handling — Bar Graphs and Probability",
+  "questions": [
+    {
+      "q": "In the Exemplar wage table for 30 workers, the class 830-840 has frequency 9, while 10 workers earn Rs 850 or more. What is the difference between these two counts?",
+      "options": [
+        "A) 1",
+        "B) 9",
+        "C) 10",
+        "D) 19"
+      ],
+      "answer": "A) 1",
+      "explanation": "The frequency table shows 9 workers in the 830-840 class. Adding the frequencies from 850-860 through 890-900 gives 1 + 3 + 1 + 1 + 4 = 10 workers earning Rs 850 or more. The difference is therefore 10 - 9 = 1."
+    },
+    {
+      "q": "A favourite-food survey has 120 people: 40 prefer South Indian food and 25 prefer Chinese food. What is the difference between their pie-chart sector angles?",
+      "options": [
+        "A) 30 degrees",
+        "B) 45 degrees",
+        "C) 60 degrees",
+        "D) 75 degrees"
+      ],
+      "answer": "B) 45 degrees",
+      "explanation": "South Indian food represents 40/120 of the circle, giving 120 degrees. Chinese food represents 25/120 of the circle, giving 75 degrees. The difference is 120 - 75 = 45 degrees."
+    },
+    {
+      "q": "A coin is tossed 200 times and heads appears 120 times. What is the experimental ratio of heads to tails?",
+      "options": [
+        "A) 2:3",
+        "B) 3:5",
+        "C) 3:2",
+        "D) 5:2"
+      ],
+      "answer": "C) 3:2",
+      "explanation": "There are 200 - 120 = 80 tails. The ratio of heads to tails is therefore 120:80. Dividing both terms by 40 simplifies the ratio to 3:2."
+    },
+    {
+      "q": "A jar contains 6 red, 5 green, 4 blue and 5 yellow marbles of the same size. If one marble is chosen at random, what is the probability that it is not red?",
+      "options": [
+        "A) 3/10",
+        "B) 1/2",
+        "C) 2/5",
+        "D) 7/10"
+      ],
+      "answer": "D) 7/10",
+      "explanation": "The jar contains 6 + 5 + 4 + 5 = 20 marbles. Non-red marbles total 5 + 4 + 5 = 14. Therefore the probability of not choosing red is 14/20 = 7/10."
+    }
+  ]
+}

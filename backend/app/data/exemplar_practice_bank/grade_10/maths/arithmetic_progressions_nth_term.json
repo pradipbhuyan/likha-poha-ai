@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 10",
+  "subject": "Maths",
+  "chapter": "Arithmetic Progressions",
+  "topic": "Arithmetic Progressions — nth Term",
+  "questions": [
+    {
+      "q": "In an AP, 7 times the 7th term equals 11 times the 11th term. What is the 18th term?",
+      "options": [
+        "A) 0",
+        "B) 7",
+        "C) 11",
+        "D) 18"
+      ],
+      "answer": "A) 0",
+      "explanation": "Let the first term be a and common difference be d. Then 7(a+6d) = 11(a+10d), which simplifies to a = -17d. Therefore a_18 = a + 17d = 0."
+    },
+    {
+      "q": "The second term of an AP is 13 and the fifth term is 25. What is its seventh term?",
+      "options": [
+        "A) 29",
+        "B) 33",
+        "C) 37",
+        "D) 41"
+      ],
+      "answer": "B) 33",
+      "explanation": "We have a + d = 13 and a + 4d = 25. Subtracting gives 3d = 12, so d = 4 and then a = 9. Hence the seventh term is a + 6d = 9 + 24 = 33."
+    },
+    {
+      "q": "For the AP 53, 48, 43, ... which is the first negative term?",
+      "options": [
+        "A) 10th term, equal to 8",
+        "B) 11th term, equal to 3",
+        "C) 12th term, equal to -2",
+        "D) 13th term, equal to -7"
+      ],
+      "answer": "C) 12th term, equal to -2",
+      "explanation": "Here a = 53 and d = -5, so a_n = 53 + (n-1)(-5) = 58 - 5n. For the term to be negative, 58 - 5n < 0, which gives n > 11.6. Thus the first possible integer n is 12, and a_12 = -2."
+    },
+    {
+      "q": "If the sum of the first n terms of an AP is S_n = n(4n+1), what is its 20th term?",
+      "options": [
+        "A) 149",
+        "B) 153",
+        "C) 161",
+        "D) 157"
+      ],
+      "answer": "D) 157",
+      "explanation": "The nth term is a_n = S_n - S_(n-1). Since S_n = 4n^2 + n and S_(n-1) = 4(n-1)^2 + (n-1), subtraction gives a_n = 8n - 3. Putting n = 20 gives a_20 = 160 - 3 = 157."
+    }
+  ]
+}

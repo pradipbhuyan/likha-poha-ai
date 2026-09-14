@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 10",
+  "subject": "Science",
+  "chapter": "Life Processes",
+  "topic": "Life Processes — Nutrition and Respiration",
+  "questions": [
+    {
+      "q": "Two green plants are placed in oxygen-free containers, one in continuous light and the other in darkness. Which plant is expected to survive longer, and why?",
+      "options": [
+        "A) The plant in light, because photosynthesis can supply oxygen and food while respiration continues",
+        "B) The plant in darkness, because respiration stops in darkness",
+        "C) Both survive equally because plants do not require oxygen",
+        "D) Neither can survive even briefly because photosynthesis never releases oxygen"
+      ],
+      "answer": "A) The plant in light, because photosynthesis can supply oxygen and food while respiration continues",
+      "explanation": "A green plant in light can carry out photosynthesis, producing carbohydrates and releasing oxygen. That oxygen can support the plant's own aerobic respiration inside the closed container for longer. The plant kept in darkness cannot photosynthesise, so its available oxygen and stored food are depleted without replacement."
+    },
+    {
+      "q": "If salivary amylase is absent from saliva, which immediate digestive step is affected first while the rest of the alimentary canal is still intact?",
+      "options": [
+        "A) Protein is no longer converted to amino acids in the mouth",
+        "B) Starch is not efficiently converted to sugars in the mouth",
+        "C) Bile can no longer reach the small intestine",
+        "D) Fats can no longer be emulsified in the stomach"
+      ],
+      "answer": "B) Starch is not efficiently converted to sugars in the mouth",
+      "explanation": "Salivary amylase is the first digestive enzyme that acts on food in the mouth. Its substrate is starch, which it begins breaking into simpler sugars. Protein and fat digestion mainly depend on other enzymes and organs, so the direct early effect is impaired starch digestion in the mouth."
+    },
+    {
+      "q": "Which option correctly compares two anaerobic fates of pyruvate described in the source?",
+      "options": [
+        "A) Yeast forms lactic acid, while oxygen-deficient muscles form ethanol and CO2",
+        "B) Both yeast and muscles convert pyruvate only to CO2 and water",
+        "C) Yeast forms ethanol and CO2, while oxygen-deficient muscles form lactic acid",
+        "D) Yeast and muscles both require mitochondria for fermentation"
+      ],
+      "answer": "C) Yeast forms ethanol and CO2, while oxygen-deficient muscles form lactic acid",
+      "explanation": "In yeast, anaerobic respiration converts pyruvate into ethanol and carbon dioxide. In human muscle cells under oxygen deficiency, pyruvate is converted into lactic acid, which is associated with cramps. These are distinct anaerobic pathways, so option C correctly compares them."
+    },
+    {
+      "q": "Which sequence correctly links digestion in the small intestine with the substances involved?",
+      "options": [
+        "A) Bile digests proteins, trypsin emulsifies fats, and lipase digests starch",
+        "B) Salivary amylase digests all food in the small intestine and bile has no role",
+        "C) Hydrochloric acid from the liver digests fats while mucus digests proteins",
+        "D) Bile helps emulsify fats, trypsin acts on proteins, and lipase acts on fats; final digestion occurs mainly in the small intestine"
+      ],
+      "answer": "D) Bile helps emulsify fats, trypsin acts on proteins, and lipase acts on fats; final digestion occurs mainly in the small intestine",
+      "explanation": "The small intestine receives bile from the liver, and bile helps in emulsification of fats rather than directly digesting proteins. Pancreatic trypsin digests proteins and lipase acts on emulsified fats. The source also identifies the small intestine as the place where food is finally digested, making option D the coherent combination."
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 10",
+  "subject": "Science",
+  "chapter": "Acids, Bases and Salts",
+  "topic": "Acids, Bases and Salts",
+  "questions": [
+    {
+      "q": "Equal volumes of hydrochloric acid and sodium hydroxide of the same concentration are mixed. Which combined observation is most consistent with the source?",
+      "options": [
+        "A) A nearly neutral pH is obtained and the temperature rises because neutralisation is exothermic",
+        "B) The solution remains strongly acidic and the temperature falls",
+        "C) The solution becomes strongly basic because NaOH always dominates HCl",
+        "D) No salt forms because equal volumes cancel the reaction"
+      ],
+      "answer": "A) A nearly neutral pH is obtained and the temperature rises because neutralisation is exothermic",
+      "explanation": "Equal amounts of a strong acid and a strong base of the same concentration neutralise each other to form salt and water. The Exemplar source also states that acid-base mixing raises the temperature, showing that neutralisation is exothermic. Therefore a nearly neutral solution together with a temperature rise is the consistent outcome."
+    },
+    {
+      "q": "A salt A used in bakery products gives, on heating, another salt B used for removing permanent hardness of water and a gas C that turns lime water milky. Which identification is correct?",
+      "options": [
+        "A) A = washing soda, B = baking soda, C = H2",
+        "B) A = baking soda, B = sodium carbonate, C = CO2",
+        "C) A = common salt, B = bleaching powder, C = Cl2",
+        "D) A = gypsum, B = plaster of Paris, C = SO2"
+      ],
+      "answer": "B) A = baking soda, B = sodium carbonate, C = CO2",
+      "explanation": "Baking soda is sodium hydrogencarbonate, a substance used in bakery products. On heating it forms sodium carbonate along with carbon dioxide and water; sodium carbonate is used in water-softening applications. Carbon dioxide turns lime water milky, so option B fits all three clues."
+    },
+    {
+      "q": "In the chlor-alkali process, a gaseous by-product X reacts with lime to form a bleaching agent Y. Which pair correctly identifies X and Y?",
+      "options": [
+        "A) X = H2, Y = washing soda",
+        "B) X = CO2, Y = baking soda",
+        "C) X = Cl2, Y = bleaching powder",
+        "D) X = O2, Y = plaster of Paris"
+      ],
+      "answer": "C) X = Cl2, Y = bleaching powder",
+      "explanation": "Electrolysis of brine in the chlor-alkali process produces chlorine gas along with hydrogen and sodium hydroxide. The source states that chlorine reacts with lime to give the compound used as a bleaching agent. Thus X is chlorine and Y is bleaching powder."
+    },
+    {
+      "q": "A white sulphate salt of a Group 2 element can be made into a mouldable paste, but after being left in the open it becomes a hard mass. Which explanation best matches this behaviour?",
+      "options": [
+        "A) Washing soda loses all its sodium ions and becomes insoluble",
+        "B) Baking soda absorbs carbon dioxide and turns into common salt",
+        "C) Gypsum loses water and becomes calcium carbonate",
+        "D) Plaster of Paris takes up water and converts to gypsum, producing a hard solid mass"
+      ],
+      "answer": "D) Plaster of Paris takes up water and converts to gypsum, producing a hard solid mass",
+      "explanation": "The mouldable material described is plaster of Paris, a partially hydrated calcium sulphate. When mixed with or exposed to water, it hydrates to gypsum. This hydration sets the material into a hard mass, which is why option D explains the observation."
+    }
+  ]
+}

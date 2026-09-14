@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 9",
+  "subject": "Science",
+  "chapter": "Structure of the Atom",
+  "topic": "Structure of the Atom — Models",
+  "questions": [
+    {
+      "q": "An ion has mass number 27, contains 14 neutrons and carries 3 positive charges. How many protons and electrons does the ion contain?",
+      "options": [
+        "A) 13 protons and 10 electrons",
+        "B) 10 protons and 13 electrons",
+        "C) 14 protons and 11 electrons",
+        "D) 13 protons and 16 electrons"
+      ],
+      "answer": "A) 13 protons and 10 electrons",
+      "explanation": "The number of protons equals mass number minus neutrons, so it is 27 - 14 = 13. A 3 positive ion has lost three electrons compared with the neutral atom. Hence the ion has 13 - 3 = 10 electrons, giving option A."
+    },
+    {
+      "q": "Which pair of conclusions is supported by Rutherford’s alpha-particle scattering experiment according to the source?",
+      "options": [
+        "A) Electrons carry negative charge, and neutrons lie in the nucleus.",
+        "B) Most of the atom is empty space, while most of its mass and positive charge are concentrated in a small nucleus.",
+        "C) Positive charge is uniformly distributed, and electrons are embedded throughout it.",
+        "D) All electrons move only in stationary shells, and the nucleus has no positive charge."
+      ],
+      "answer": "B) Most of the atom is empty space, while most of its mass and positive charge are concentrated in a small nucleus.",
+      "explanation": "Rutherford’s scattering results showed that most alpha particles passed through, implying that most of the atom is empty space. The comparatively few large deflections required a very small, dense, positively charged region. The source therefore connects Rutherford’s experiment with discovery of the nucleus and concentration of mass and positive charge there."
+    },
+    {
+      "q": "Two chlorine atoms are represented as 35Cl and 37Cl, both with atomic number 17. Which statement about them is correct?",
+      "options": [
+        "A) They have different electronic configurations and therefore different valencies.",
+        "B) They are isobars because their mass numbers are different.",
+        "C) They are isotopes with the same number of protons and electrons but different numbers of neutrons, so their valencies are the same.",
+        "D) They must form ions with different charges because one has two extra neutrons."
+      ],
+      "answer": "C) They are isotopes with the same number of protons and electrons but different numbers of neutrons, so their valencies are the same.",
+      "explanation": "Both atoms have atomic number 17, so each neutral atom has 17 protons and 17 electrons. Their different mass numbers arise from different neutron counts, making them isotopes. Because valency depends on electronic configuration rather than neutron number, their valencies remain the same."
+    },
+    {
+      "q": "Which sequence correctly places the three atomic models discussed in the source in chronological order and identifies the key refinement at each stage?",
+      "options": [
+        "A) Bohr → Thomson → Rutherford; nucleus → positive sphere → stationary orbits",
+        "B) Rutherford → Bohr → Thomson; positive sphere → electron → nucleus",
+        "C) Thomson → Bohr → Rutherford; empty space → embedded electrons → nucleus",
+        "D) Thomson → Rutherford → Bohr; electrons embedded in a positively charged sphere → small central nucleus with mostly empty space → electrons in stationary orbits"
+      ],
+      "answer": "D) Thomson → Rutherford → Bohr; electrons embedded in a positively charged sphere → small central nucleus with mostly empty space → electrons in stationary orbits",
+      "explanation": "The source asks for the chronological order of Thomson, Rutherford and Bohr models. Thomson came first with electrons distributed in a positively charged sphere, Rutherford then proposed a small dense nucleus and mostly empty atomic space, and Bohr later introduced stationary electron orbits. Thus option D gives both the correct sequence and the corresponding refinements."
+    }
+  ]
+}

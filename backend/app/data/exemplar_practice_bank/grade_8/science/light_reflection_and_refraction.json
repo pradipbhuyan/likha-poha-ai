@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 8",
+  "subject": "Science",
+  "chapter": "Light",
+  "topic": "Light — Reflection and Refraction",
+  "questions": [
+    {
+      "q": "The angle between an incident ray and its reflected ray is 60 degrees. What is the angle of incidence?",
+      "options": [
+        "A) 15 degrees",
+        "B) 30 degrees",
+        "C) 60 degrees",
+        "D) 120 degrees"
+      ],
+      "answer": "B) 30 degrees",
+      "explanation": "For reflection from a plane mirror, the angle of incidence equals the angle of reflection. The angle between the incident and reflected rays is therefore twice the angle of incidence. Half of 60 degrees is 30 degrees."
+    },
+    {
+      "q": "An object and its image in a plane mirror appear to be 24 cm apart. How far is the object from the mirror?",
+      "options": [
+        "A) 6 cm",
+        "B) 12 cm",
+        "C) 24 cm",
+        "D) 48 cm"
+      ],
+      "answer": "B) 12 cm",
+      "explanation": "A plane mirror forms an image as far behind the mirror as the object is in front. Therefore the object-image separation is twice the object-mirror distance. Dividing 24 cm by 2 gives 12 cm."
+    },
+    {
+      "q": "Two plane mirrors are at right angles. A ray strikes the first mirror at 25 degrees to its normal, then reaches the second mirror. What reflection angle from the second mirror is consistent with the Exemplar result?",
+      "options": [
+        "A) 25 degrees",
+        "B) 50 degrees",
+        "C) 65 degrees",
+        "D) 115 degrees"
+      ],
+      "answer": "C) 65 degrees",
+      "explanation": "The source gives this right-angle mirror arrangement and asks for the reflection angle at the second mirror. After the first reflection, the ray geometry relative to the perpendicular second mirror makes its angle of incidence there 65 degrees. By the law of reflection, the reflection angle at the second mirror is also 65 degrees."
+    },
+    {
+      "q": "A nocturnal bird has a large cornea and a large pupil. Which explanation best links these features with vision?",
+      "options": [
+        "A) They reduce the amount of light entering the eye, preventing all night vision.",
+        "B) They allow more light to enter the eye, which is useful in dim conditions.",
+        "C) They form images outside the retina so the bird can see farther.",
+        "D) They make rods sensitive only to bright light."
+      ],
+      "answer": "B) They allow more light to enter the eye, which is useful in dim conditions.",
+      "explanation": "The Exemplar asks how large cornea and pupil help nocturnal birds. A larger opening and light-collecting front surface allow more light into the eye. This improves vision when environmental light levels are low."
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 8",
+  "subject": "Science",
+  "chapter": "Microorganisms: Friend and Foe",
+  "topic": "Microorganisms — Friend and Foe",
+  "questions": [
+    {
+      "q": "A student links three observations from the Exemplar: bread dough rises, sugar solution with yeast releases a gas, and yeast is used in the wine industry. Which explanation correctly connects all three?",
+      "options": [
+        "A) Yeast carries out fermentation; carbon dioxide can make dough rise, while alcohol is formed from sugars.",
+        "B) Yeast performs photosynthesis; oxygen makes dough rise and alcohol is absorbed from air.",
+        "C) Bacteria convert sugars directly into oxygen and alcohol, so yeast is only a carrier.",
+        "D) Viruses reproduce in sugar solution and release carbon dioxide as a waste product."
+      ],
+      "answer": "A) Yeast carries out fermentation; carbon dioxide can make dough rise, while alcohol is formed from sugars.",
+      "explanation": "The source states that yeast is used in the wine industry because of fermentation and also asks which gas is released during bread preparation. Fermentation converts sugars into alcohol and releases carbon dioxide, so the same microorganism explains both observations. Therefore the option connecting yeast, fermentation, carbon dioxide and alcohol is the only one consistent with all the cited facts."
+    },
+    {
+      "q": "Pit A contains agricultural waste sealed inside a polythene bag and buried, while pit B contains the same waste without the bag and is also buried. Which conclusion best combines the expected observation with the role of decomposers?",
+      "options": [
+        "A) Pit A degrades faster because polythene supplies nutrients to microorganisms.",
+        "B) Both degrade equally because soil alone determines decomposition.",
+        "C) Pit B degrades faster because microorganisms can act more effectively on exposed biodegradable waste.",
+        "D) Neither degrades because microorganisms cannot survive in soil."
+      ],
+      "answer": "C) Pit B degrades faster because microorganisms can act more effectively on exposed biodegradable waste.",
+      "explanation": "The Exemplar gives this exact two-pit situation and indicates faster degradation when the waste is not packed in polythene. Decomposition is carried out by microorganisms, and enclosing the waste limits their effective access and suitable conditions compared with exposed waste in soil. Hence pit B should show faster breakdown."
+    },
+    {
+      "q": "A farmer wants to improve nitrogen-deficient soil without depending only on chemical fertilisers. Which pair from the Exemplar provides a biologically sound route to nitrogen enrichment?",
+      "options": [
+        "A) Rhizobium in legume root nodules and blue-green algae in soil",
+        "B) Bread mould and malarial parasite",
+        "C) Virus in host cells and Lactobacillus in curd",
+        "D) Aspergillus and Bacillus anthracis"
+      ],
+      "answer": "A) Rhizobium in legume root nodules and blue-green algae in soil",
+      "explanation": "The source identifies Rhizobium as the nitrogen-fixing microorganism in root nodules of legumes. It also asks which nutrient is enriched in soil by blue-green algae, with nitrogen being the relevant nutrient. Combining those two source facts makes Rhizobium and blue-green algae the correct pair."
+    },
+    {
+      "q": "A child has influenza, while another patient has a bacterial disease for which antibiotics are prescribed. Which statement correctly distinguishes the disease agents using only the Exemplar facts?",
+      "options": [
+        "A) Influenza is bacterial, whereas antibiotics are meant only for viral diseases.",
+        "B) Influenza is caused by a virus, while antibiotics are medicines used against pathogenic microorganisms such as bacteria.",
+        "C) Influenza is caused by a fungus, and antibiotics are vaccines.",
+        "D) Both influenza and all bacterial diseases are prevented only by oil-based food preservation."
+      ],
+      "answer": "B) Influenza is caused by a virus, while antibiotics are medicines used against pathogenic microorganisms such as bacteria.",
+      "explanation": "The Exemplar explicitly lists influenza as a human disease caused by a virus. It separately identifies antibiotics as medicines used against pathogenic microorganisms, while its disease examples distinguish viral and bacterial causes. Thus the only option that correctly classifies influenza and the role of antibiotics is B."
+    }
+  ]
+}

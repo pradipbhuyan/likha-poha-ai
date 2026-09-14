@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 8",
+  "subject": "Science",
+  "chapter": "Sound",
+  "topic": "Sound — Nature and Propagation",
+  "questions": [
+    {
+      "q": "A vibrating object has frequency 50 Hz. A second object makes 10 oscillations in 20 s. Which comparison is correct?",
+      "options": [
+        "A) Their frequencies are 50 Hz and 0.5 Hz respectively, so the first vibrates 100 times faster.",
+        "B) Their frequencies are 50 Hz and 2 Hz respectively, so the first vibrates 25 times faster.",
+        "C) Their frequencies are 0.02 Hz and 0.5 Hz respectively, so the second is faster.",
+        "D) Both have frequency 50 Hz because both are vibrating objects."
+      ],
+      "answer": "A) Their frequencies are 50 Hz and 0.5 Hz respectively, so the first vibrates 100 times faster.",
+      "explanation": "The first frequency is given directly as 50 vibrations per second. The second makes 10 oscillations in 20 seconds, so its frequency is 10/20 = 0.5 Hz. Comparing 50 with 0.5 gives a factor of 100."
+    },
+    {
+      "q": "A frying pan is struck inside a chamber from which all air has been removed. Which statement correctly separates production from propagation of sound?",
+      "options": [
+        "A) The pan will not vibrate, but sound will travel through vacuum.",
+        "B) The pan can vibrate, but the sound cannot reach an observer through the vacuum because sound needs a medium.",
+        "C) The pan cannot vibrate because vibration itself requires air.",
+        "D) The sound becomes ultrasound automatically in vacuum."
+      ],
+      "answer": "B) The pan can vibrate, but the sound cannot reach an observer through the vacuum because sound needs a medium.",
+      "explanation": "The Exemplar explicitly asks about striking a pan in vacuum and distinguishes vibration from hearing. The pan can still vibrate because the strike provides mechanical energy. However sound cannot propagate through a vacuum, so the vibration will not be heard through the evacuated space."
+    },
+    {
+      "q": "A stringed instrument is plucked once with a larger force and once with a smaller force, without otherwise changing the string. Which property changes most directly?",
+      "options": [
+        "A) Loudness changes because the amplitude of vibration changes.",
+        "B) Pitch changes because amplitude alone determines frequency.",
+        "C) Speed of sound changes because the string is brighter.",
+        "D) Audible range changes from 20 Hz to above 20,000 Hz automatically."
+      ],
+      "answer": "A) Loudness changes because the amplitude of vibration changes.",
+      "explanation": "The source states that loudness depends on amplitude and asks about plucking the same string with different force. A stronger pluck produces a larger vibration amplitude. Therefore the louder sound corresponds to the greater applied force, while pitch is primarily linked to frequency."
+    },
+    {
+      "q": "Lightning is seen and thunder is heard 5 seconds later. Using the source value 330 m/s for the speed of sound, how far away is the event?",
+      "options": [
+        "A) 66 m",
+        "B) 330 m",
+        "C) 1,650 m",
+        "D) 3,300 m"
+      ],
+      "answer": "C) 1,650 m",
+      "explanation": "The delay is due to sound travelling much more slowly than light, so the light is effectively seen first. Distance travelled by sound is speed multiplied by time, giving 330 m/s * 5 s = 1,650 m. Thus the event is about 1.65 km away."
+    }
+  ]
+}

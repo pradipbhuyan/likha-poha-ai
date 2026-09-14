@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 8",
+  "subject": "Maths",
+  "chapter": "Mensuration",
+  "topic": "Mensuration — Area and Volume",
+  "questions": [
+    {
+      "q": "A cube of side 5 cm is painted on all faces and cut into 1 cm cubes. How many small cubes have exactly one face painted?",
+      "options": [
+        "A) 54",
+        "B) 27",
+        "C) 42",
+        "D) 64"
+      ],
+      "answer": "A) 54",
+      "explanation": "A small cube has exactly one painted face only when it lies inside a face and not on an edge. On each face, the usable interior grid is (5-2) x (5-2) = 3 x 3 = 9 cubes. There are 6 faces, so the total is 6 x 9 = 54."
+    },
+    {
+      "q": "A cylinder has its radius doubled and its height reduced to one-fourth. Which statement correctly describes both its volume and curved surface area?",
+      "options": [
+        "A) Volume doubles and curved surface area is unchanged",
+        "B) Volume is unchanged and curved surface area is halved",
+        "C) Volume is halved and curved surface area is unchanged",
+        "D) Volume is unchanged and curved surface area doubles"
+      ],
+      "answer": "B) Volume is unchanged and curved surface area is halved",
+      "explanation": "Cylinder volume is proportional to r^2h. Doubling r multiplies r^2 by 4, while making h one-fourth multiplies by 1/4, so the volume factor is 1. Curved surface area is proportional to rh, so its factor is 2 x 1/4 = 1/2, meaning it is halved."
+    },
+    {
+      "q": "The areas of three coterminous faces of a cuboid are 6 cm2, 15 cm2 and 10 cm2. What is the volume of the cuboid?",
+      "options": [
+        "A) 20 cm3",
+        "B) 40 cm3",
+        "C) 30 cm3",
+        "D) 60 cm3"
+      ],
+      "answer": "C) 30 cm3",
+      "explanation": "Let the edge lengths be a, b and c, so ab = 6, bc = 15 and ca = 10. Multiplying the three equations gives (abc)^2 = 6 x 15 x 10 = 900. Therefore abc = sqrt(900) = 30 cm3, which is the cuboid volume."
+    },
+    {
+      "q": "Metal cubes with edges 6 cm, 8 cm and 10 cm are melted to form one cube. What is the edge of the new cube?",
+      "options": [
+        "A) 10 cm",
+        "B) 18 cm",
+        "C) 24 cm",
+        "D) 12 cm"
+      ],
+      "answer": "D) 12 cm",
+      "explanation": "The total metal volume is conserved when the cubes are melted. Their volumes are 6^3 = 216, 8^3 = 512 and 10^3 = 1000, for a total of 1728 cm3. Since 1728 = 12^3, the new cube has edge 12 cm."
+    }
+  ]
+}

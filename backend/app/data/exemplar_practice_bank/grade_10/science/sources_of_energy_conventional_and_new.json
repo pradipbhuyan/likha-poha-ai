@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 10",
+  "subject": "Science",
+  "chapter": "Sources of Energy",
+  "topic": "Sources of Energy — Conventional and New",
+  "questions": [
+    {
+      "q": "Which statement correctly connects fossil fuels with both their renewability and one environmental consequence stated in the source?",
+      "options": [
+        "A) Fossil fuels are non-renewable, are used in thermal power plants, and their burning releases oxides linked with acid rain",
+        "B) Fossil fuels are renewable and their combustion removes sulphur oxides from air",
+        "C) Fossil fuels are inexhaustible because they ultimately come from the Sun",
+        "D) Fossil fuels are used only in hydroelectric plants and do not pollute"
+      ],
+      "answer": "A) Fossil fuels are non-renewable, are used in thermal power plants, and their burning releases oxides linked with acid rain",
+      "explanation": "The source identifies fossil fuels as non-renewable and as the fuel used in thermal power plants. It also connects their burning with release of oxides of carbon, nitrogen and sulphur, which contributes to acid rain. Therefore option A correctly combines all of these source-supported facts."
+    },
+    {
+      "q": "Why can a hydroelectric plant generate more electrical power when the stored water falls through a greater height?",
+      "options": [
+        "A) The water temperature rises and directly creates electric charge",
+        "B) Greater height means greater gravitational potential energy is available for conversion into kinetic and then electrical energy",
+        "C) Water at greater height contains more ions that carry current",
+        "D) The turbine no longer needs to rotate"
+      ],
+      "answer": "B) Greater height means greater gravitational potential energy is available for conversion into kinetic and then electrical energy",
+      "explanation": "Stored water possesses gravitational potential energy because of its height. Increasing the height increases the potential energy available per unit mass, which can be converted into kinetic energy of falling water and then electrical energy in the generator. This is the reason stated in option B."
+    },
+    {
+      "q": "Which pair correctly identifies one advantage of solar energy and one major difficulty associated with nuclear energy?",
+      "options": [
+        "A) Solar energy creates maximum pollution; nuclear waste is harmless",
+        "B) Solar energy is non-renewable; nuclear fuel cannot undergo fission",
+        "C) Solar energy causes very little pollution during use; safe disposal of spent nuclear fuel is a major problem",
+        "D) Solar energy works equally well at all times; nuclear plants have no waste"
+      ],
+      "answer": "C) Solar energy causes very little pollution during use; safe disposal of spent nuclear fuel is a major problem",
+      "explanation": "The source identifies solar energy as one of the least polluting forms during harnessing and use. For nuclear energy, a major challenge is the safe disposal of spent fuel and radioactive waste. Option C correctly combines these two contrasting points."
+    },
+    {
+      "q": "In a box-type solar cooker, which roles are correctly assigned to the mirror and the glass sheet?",
+      "options": [
+        "A) The mirror prevents all radiation from entering, while glass cools the box",
+        "B) The mirror generates electricity, while glass stores chemical energy",
+        "C) The mirror produces the greenhouse effect, while glass only reflects sunlight away",
+        "D) The mirror directs more sunlight into the cooker, while the glass sheet helps trap heat through the greenhouse effect"
+      ],
+      "answer": "D) The mirror directs more sunlight into the cooker, while the glass sheet helps trap heat through the greenhouse effect",
+      "explanation": "The plane mirror is used to reflect additional sunlight into the cooker, increasing the incoming solar energy. The glass sheet allows sunlight to enter but reduces the escape of heat, producing the greenhouse effect inside the box. Therefore option D correctly assigns the two roles."
+    }
+  ]
+}

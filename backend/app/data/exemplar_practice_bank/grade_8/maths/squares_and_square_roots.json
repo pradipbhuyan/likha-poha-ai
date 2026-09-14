@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 8",
+  "subject": "Maths",
+  "chapter": "Square-Square Root and Cube-Cube Root",
+  "topic": "Squares and Square Roots",
+  "questions": [
+    {
+      "q": "The Exemplar notes that 38^2 < 1500 < 39^2. Which pair correctly gives the least number to add to 1500 to make a perfect square and the number of natural numbers between 38^2 and 39^2?",
+      "options": [
+        "A) 21 and 76",
+        "B) 21 and 77",
+        "C) 38 and 76",
+        "D) 39 and 75"
+      ],
+      "answer": "A) 21 and 76",
+      "explanation": "The next perfect square after 1500 is 39^2 = 1521, so the least addition is 1521 - 1500 = 21. The Exemplar property says there are 2n natural numbers between n^2 and (n+1)^2. With n = 38, this gives 2 x 38 = 76 natural numbers."
+    },
+    {
+      "q": "In a mass drill, 6250 students are available and 9 are left out when the rest form a square. How many additional students beyond 6250 would be needed to form the next larger complete square, and how many students would then be in each row?",
+      "options": [
+        "A) 79 additional, 80 per row",
+        "B) 150 additional, 80 per row",
+        "C) 150 additional, 79 per row",
+        "D) 159 additional, 81 per row"
+      ],
+      "answer": "B) 150 additional, 80 per row",
+      "explanation": "The source gives 6250 - 9 = 6241 = 79^2, so the existing complete square has 79 students per row. The next square is 80^2 = 6400. Therefore 6400 - 6250 = 150 additional students are needed, and the new square has 80 students per row."
+    },
+    {
+      "q": "Using the Exemplar results sqrt(22.09) = 4.7 and sqrt(0.5625) = 0.75, what is sqrt(22.09) + sqrt(0.5625)?",
+      "options": [
+        "A) 4.95",
+        "B) 5.25",
+        "C) 5.45",
+        "D) 6.20"
+      ],
+      "answer": "C) 5.45",
+      "explanation": "The long-division example gives sqrt(22.09) = 4.7. From sqrt(5625) = 75, shifting the decimal appropriately gives sqrt(0.5625) = 0.75. Adding the two square roots gives 4.7 + 0.75 = 5.45."
+    },
+    {
+      "q": "The least number divisible by 3, 4, 5 and 6 is 60. To turn it into the smallest perfect square divisible by all four numbers, which multiplication and square root are correct?",
+      "options": [
+        "A) Multiply by 5; square root 10",
+        "B) Multiply by 10; square root 20",
+        "C) Multiply by 12; square root 24",
+        "D) Multiply by 15; square root 30"
+      ],
+      "answer": "D) Multiply by 15; square root 30",
+      "explanation": "The prime factorisation of 60 is 2^2 x 3 x 5. For a perfect square, every prime exponent must be even, so one more factor of 3 and one more factor of 5 are required. Multiplying by 15 gives 900 = 30^2, so the required square root is 30."
+    }
+  ]
+}

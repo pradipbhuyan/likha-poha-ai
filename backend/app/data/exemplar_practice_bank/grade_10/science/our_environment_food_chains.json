@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 10",
+  "subject": "Science",
+  "chapter": "Our Environment",
+  "topic": "Our Environment — Food Chains",
+  "questions": [
+    {
+      "q": "In the food chain Grass -> Grasshopper -> Frog -> Snake -> Hawk, the snake is at the fourth trophic level and receives 5 kJ. Using the 10% law, how much energy was available at the producer level?",
+      "options": [
+        "A) 5000 kJ",
+        "B) 500 kJ",
+        "C) 50 kJ",
+        "D) 5 kJ"
+      ],
+      "answer": "A) 5000 kJ",
+      "explanation": "Only about 10% of the energy at one trophic level is transferred to the next. Working backward from 5 kJ at the fourth trophic level gives 50 kJ at the third, 500 kJ at the second, and 5000 kJ at the producer level. Hence option A is correct."
+    },
+    {
+      "q": "A persistent pesticide enters a food chain and is not readily degraded. Which statement correctly predicts its concentration pattern?",
+      "options": [
+        "A) Its concentration is greatest in producers because they receive solar energy directly",
+        "B) Its concentration tends to increase at successive trophic levels, a process called biomagnification",
+        "C) Its concentration becomes zero in carnivores because energy flow is unidirectional",
+        "D) It is converted completely into heat at each trophic transfer"
+      ],
+      "answer": "B) Its concentration tends to increase at successive trophic levels, a process called biomagnification",
+      "explanation": "Non-biodegradable pesticides can accumulate in organisms and are not efficiently removed between trophic transfers. Their concentration therefore becomes progressively higher at higher trophic levels. This increasing concentration through a food chain is called biomagnification."
+    },
+    {
+      "q": "In the chain Grass -> Deer -> Tiger, deer disappear from the ecosystem. What is the most likely combined effect?",
+      "options": [
+        "A) Tiger population increases and grass decreases",
+        "B) Tigers start eating grass, so both populations remain stable",
+        "C) Tiger population decreases while grass population increases",
+        "D) Both tiger and grass populations necessarily become zero"
+      ],
+      "answer": "C) Tiger population decreases while grass population increases",
+      "explanation": "Deer are the food source for tigers and also the consumers of grass in this chain. Removing deer reduces food available to tigers, so tiger numbers tend to fall. At the same time grazing pressure on grass decreases, so grass tends to increase."
+    },
+    {
+      "q": "Which option correctly links ozone depletion with its main cause and a major biological consequence stated in the source?",
+      "options": [
+        "A) Methane depletion causes only lung damage",
+        "B) Carbon monoxide depletion causes peptic ulcers",
+        "C) Pesticides directly remove ozone and prevent skin cancer",
+        "D) Chlorofluorocarbons contribute to ozone depletion, increasing harmful UV exposure that can damage the immune system and cause skin cancer"
+      ],
+      "answer": "D) Chlorofluorocarbons contribute to ozone depletion, increasing harmful UV exposure that can damage the immune system and cause skin cancer",
+      "explanation": "The source identifies chlorofluorocarbon compounds as the main cause of ozone depletion. A thinner ozone layer allows more ultraviolet radiation to reach living organisms. Excessive UV exposure is associated in the source with immune-system damage and skin cancer, which makes option D correct."
+    }
+  ]
+}

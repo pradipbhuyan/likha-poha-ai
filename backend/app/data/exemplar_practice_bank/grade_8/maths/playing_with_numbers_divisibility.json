@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 8",
+  "subject": "Maths",
+  "chapter": "Playing with Numbers",
+  "topic": "Playing with Numbers — Divisibility",
+  "questions": [
+    {
+      "q": "The four-digit number 756x is divisible by 11, where x is a digit. What is x?",
+      "options": [
+        "A) 8",
+        "B) 6",
+        "C) 4",
+        "D) 2"
+      ],
+      "answer": "A) 8",
+      "explanation": "For divisibility by 11, the difference between the sums of digits in alternating places must be 0 or a multiple of 11. Here one alternating sum is 7 + 6 = 13 and the other is 5 + x, so their difference is 8 - x. Since x is a digit, 8 - x = 0 gives x = 8."
+    },
+    {
+      "q": "A three-digit number 42x is divisible by 9. What digit must x be?",
+      "options": [
+        "A) 2",
+        "B) 3",
+        "C) 6",
+        "D) 9"
+      ],
+      "answer": "B) 3",
+      "explanation": "A number is divisible by 9 when the sum of its digits is divisible by 9. For 42x, the digit sum is 4 + 2 + x = 6 + x. The only digit x making this sum 9 or 18 is x = 3."
+    },
+    {
+      "q": "A six-digit number is formed by repeating a three-digit number, for example 256256. Which factorisation explains why every such number is divisible by 1001?",
+      "options": [
+        "A) 256256 = 256 x 101",
+        "B) 256256 = 256 x 100",
+        "C) 256256 = 256 x 1001",
+        "D) 256256 = 256 x 11"
+      ],
+      "answer": "C) 256256 = 256 x 1001",
+      "explanation": "Repeating a three-digit number N produces 1000N + N. Factoring gives N(1000 + 1) = 1001N. Therefore 256256 = 256 x 1001, and the same reasoning works for every repeated three-digit block."
+    },
+    {
+      "q": "The number 123123A4 is divisible by 11. What is the digit A?",
+      "options": [
+        "A) 0",
+        "B) 2",
+        "C) 8",
+        "D) 4"
+      ],
+      "answer": "D) 4",
+      "explanation": "For 123123A4, take alternating sums from the right: 4 + 3 + 1 + 2 = 10 and A + 2 + 3 + 1 = A + 6. Their difference is 10 - (A + 6) = 4 - A. For divisibility by 11 this difference can be 0, so A = 4."
+    }
+  ]
+}

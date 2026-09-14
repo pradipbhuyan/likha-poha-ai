@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 8",
+  "subject": "Science",
+  "chapter": "Stars and the Solar System",
+  "topic": "Stars and the Solar System",
+  "questions": [
+    {
+      "q": "The Sun appears to move from east to west across the sky. What does this imply about Earth’s rotation?",
+      "options": [
+        "A) Earth rotates from east to west.",
+        "B) Earth rotates from west to east.",
+        "C) Earth rotates from north to south.",
+        "D) Earth does not rotate; only the Sun moves."
+      ],
+      "answer": "B) Earth rotates from west to east.",
+      "explanation": "The Exemplar directly connects the apparent daily motion of the Sun with Earth’s rotation. An apparent east-to-west motion of the sky results from Earth rotating in the opposite direction. Therefore Earth rotates from west to east."
+    },
+    {
+      "q": "A newly discovered planet lies between Uranus and Neptune. Which statement about its orbital period is most consistent with the Exemplar?",
+      "options": [
+        "A) It should be shorter than Uranus’s period.",
+        "B) It should be longer than Neptune’s period.",
+        "C) It should be greater than Uranus’s period but less than Neptune’s period.",
+        "D) It must equal Earth’s period."
+      ],
+      "answer": "C) It should be greater than Uranus’s period but less than Neptune’s period.",
+      "explanation": "The source asks about a hypothetical planet between Uranus and Neptune. Planets farther from the Sun have longer orbital periods, so a planet between those two should have an intermediate period. Thus its period should exceed Uranus’s but remain less than Neptune’s."
+    },
+    {
+      "q": "A bright object in the night sky does not twinkle and changes its position with respect to the background stars over time. Which identification is best supported?",
+      "options": [
+        "A) A planet",
+        "B) A fixed star",
+        "C) The Pole Star specifically",
+        "D) A meteor that remains permanently in one place"
+      ],
+      "answer": "A) A planet",
+      "explanation": "The Exemplar contrasts stars and planets by noting that planets generally do not twinkle and change position relative to stars. A bright non-twinkling object with changing position therefore fits the behaviour of a planet. The observation does not match a fixed star such as the Pole Star."
+    },
+    {
+      "q": "If the first day of a month is a new moon day, what should be expected around the fifteenth day?",
+      "options": [
+        "A) Another new moon because the lunar cycle is 15 days long",
+        "B) A full moon, approximately half a lunar cycle after new moon",
+        "C) No Moon because the Moon stops reflecting sunlight",
+        "D) A permanently crescent Moon"
+      ],
+      "answer": "B) A full moon, approximately half a lunar cycle after new moon",
+      "explanation": "The Exemplar asks what phase should occur on the fifteenth when the first is a new moon. Roughly half a lunar cycle after new moon, the Earth-facing half of the Moon appears fully illuminated. Therefore the expected phase is a full moon."
+    }
+  ]
+}

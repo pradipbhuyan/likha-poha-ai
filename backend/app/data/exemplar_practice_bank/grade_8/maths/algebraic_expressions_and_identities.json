@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 8",
+  "subject": "Maths",
+  "chapter": "Algebraic Expressions and Identities",
+  "topic": "Algebraic Expressions and Identities",
+  "questions": [
+    {
+      "q": "Using the same identities as the Exemplar, evaluate 48^2 + (38^2 - 22^2)/16.",
+      "options": [
+        "A) 2364",
+        "B) 2304",
+        "C) 2404",
+        "D) 2464"
+      ],
+      "answer": "A) 2364",
+      "explanation": "Using (a-b)^2, 48^2 = (50-2)^2 = 2500 - 200 + 4 = 2304. Using a^2-b^2 = (a-b)(a+b), (38^2-22^2)/16 = (16 x 60)/16 = 60. Therefore the total is 2304 + 60 = 2364."
+    },
+    {
+      "q": "Which is the complete factorisation of x^4 - 256 using the difference-of-squares identity repeatedly?",
+      "options": [
+        "A) (x^2 - 16)(x^2 - 16)",
+        "B) (x^2 + 16)(x + 4)(x - 4)",
+        "C) (x^2 + 16)(x - 16)",
+        "D) (x + 4)^2(x - 4)^2"
+      ],
+      "answer": "B) (x^2 + 16)(x + 4)(x - 4)",
+      "explanation": "First write x^4 - 256 as (x^2)^2 - 16^2. This factors to (x^2 + 16)(x^2 - 16). The second factor is another difference of squares, x^2 - 16 = (x+4)(x-4), giving option B."
+    },
+    {
+      "q": "If x + 1/x = 5, the Exemplar obtains x^2 + 1/x^2 = 23. What is (x - 1/x)^2?",
+      "options": [
+        "A) 19",
+        "B) 23",
+        "C) 21",
+        "D) 25"
+      ],
+      "answer": "C) 21",
+      "explanation": "From (x + 1/x)^2 = 25, subtracting 2 gives x^2 + 1/x^2 = 23. Now (x - 1/x)^2 = x^2 + 1/x^2 - 2. Therefore its value is 23 - 2 = 21."
+    },
+    {
+      "q": "The identity (3x + 5y)^2 - 30xy = 9x^2 + 25y^2 is verified in the Exemplar. What is the value of the expression when x = 2 and y = 1?",
+      "options": [
+        "A) 49",
+        "B) 55",
+        "C) 65",
+        "D) 61"
+      ],
+      "answer": "D) 61",
+      "explanation": "Use the verified identity instead of expanding the original expression. Substituting x = 2 and y = 1 gives 9 x 2^2 + 25 x 1^2 = 36 + 25. Hence the expression equals 61."
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 8",
+  "subject": "Science",
+  "chapter": "Friction",
+  "topic": "Friction — Types and Effects",
+  "questions": [
+    {
+      "q": "A stalled car requires a very large push to start moving, but a smaller push keeps it rolling. What does this observation imply?",
+      "options": [
+        "A) Static friction to start motion is greater than the friction opposing rolling once the car is moving.",
+        "B) Rolling friction is always greater than static friction.",
+        "C) Friction disappears completely after motion starts.",
+        "D) Gravity is the only force resisting the car."
+      ],
+      "answer": "A) Static friction to start motion is greater than the friction opposing rolling once the car is moving.",
+      "explanation": "The Exemplar uses the stalled-car situation to contrast the effort needed before and after motion begins. Starting requires overcoming static friction, which is larger than the rolling resistance encountered once the wheels are moving. That is why the initial push is much harder than the continuing push."
+    },
+    {
+      "q": "A marble rolls from the same height onto three horizontal surfaces: silk cloth, sand and glass. On which surface should it travel the shortest distance, and why?",
+      "options": [
+        "A) Glass, because smoother surfaces always produce more friction.",
+        "B) Silk, because cloth has no friction.",
+        "C) Sand, because it offers the greatest opposing friction among the three.",
+        "D) All three, because friction is independent of surface type."
+      ],
+      "answer": "C) Sand, because it offers the greatest opposing friction among the three.",
+      "explanation": "The source presents the same comparison and asks where the marble travels the least. Greater friction removes the marble’s motion more quickly, so it covers a shorter distance. A sand-covered surface offers more resistance than smooth glass and therefore stops the marble sooner."
+    },
+    {
+      "q": "Why does sprinkling talcum powder on a wooden surface help a rolling rubber ball travel farther?",
+      "options": [
+        "A) It increases friction so the ball gains speed.",
+        "B) It reduces friction between the ball and the surface, so less kinetic energy is lost per unit distance.",
+        "C) It removes gravity from the ball.",
+        "D) It changes rolling motion into magnetic motion."
+      ],
+      "answer": "B) It reduces friction between the ball and the surface, so less kinetic energy is lost per unit distance.",
+      "explanation": "The Exemplar identifies talcum powder as a way to make the same ball travel a longer distance. The powder reduces friction at the contact surface. With less frictional resistance, the ball loses speed more slowly and rolls farther."
+    },
+    {
+      "q": "On a rainy day, which path from the Exemplar is least likely to make a person slip: loose soil, polished marble, bricks or gravel?",
+      "options": [
+        "A) Polished marble because the smoothest surface gives the strongest grip.",
+        "B) Loose soil because water eliminates friction there.",
+        "C) Bricks because they always have zero friction.",
+        "D) Gravel because its rough surface provides greater friction and grip."
+      ],
+      "answer": "D) Gravel because its rough surface provides greater friction and grip.",
+      "explanation": "The source compares these four surfaces in heavy rain and asks which gives the safest grip. Slipping is less likely when friction between footwear and the ground is greater. The rough gravel surface provides more friction than polished marble and therefore offers better traction."
+    }
+  ]
+}

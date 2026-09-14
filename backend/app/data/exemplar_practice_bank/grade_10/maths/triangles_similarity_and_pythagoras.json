@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 10",
+  "subject": "Maths",
+  "chapter": "Triangles",
+  "topic": "Triangles — Similarity and Pythagoras",
+  "questions": [
+    {
+      "q": "A triangle has sides 10 cm, 24 cm and 26 cm. Which conclusion follows from the converse of Pythagoras theorem?",
+      "options": [
+        "A) It is right-angled, with 26 cm as hypotenuse",
+        "B) It is acute-angled because 26 < 10+24",
+        "C) It is isosceles",
+        "D) It cannot form a triangle"
+      ],
+      "answer": "A) It is right-angled, with 26 cm as hypotenuse",
+      "explanation": "The largest side is 26 cm. We have 10^2 + 24^2 = 100 + 576 = 676, and 26^2 = 676. Since the square of the largest side equals the sum of the squares of the other two, the triangle is right-angled with hypotenuse 26 cm."
+    },
+    {
+      "q": "Two similar triangles have areas 36 cm^2 and 100 cm^2. If a side of the larger triangle is 20 cm, what is the corresponding side of the smaller triangle?",
+      "options": [
+        "A) 10 cm",
+        "B) 12 cm",
+        "C) 14 cm",
+        "D) 16 cm"
+      ],
+      "answer": "B) 12 cm",
+      "explanation": "For similar triangles, the ratio of areas equals the square of the ratio of corresponding sides. Thus smaller side / larger side = sqrt(36/100) = 6/10. The required side is 20 x 6/10 = 12 cm."
+    },
+    {
+      "q": "A 15 m tower casts a 24 m shadow while, at the same instant, a pole casts a 16 m shadow. Assuming the Sun rays make the same angle with the ground, what is the pole height?",
+      "options": [
+        "A) 8 m",
+        "B) 9 m",
+        "C) 10 m",
+        "D) 12 m"
+      ],
+      "answer": "C) 10 m",
+      "explanation": "The tower and pole form right triangles with equal acute angles made by the Sun rays, so the triangles are similar by AA. Hence height/shadow is the same for both: 15/24 = h/16. Solving gives h = 15 x 16 / 24 = 10 m."
+    },
+    {
+      "q": "In a right triangle ABC right-angled at B, altitude BD meets hypotenuse AC at D. If AD = 4 cm and DC = 5 cm, which pair is correct?",
+      "options": [
+        "A) BD = 3 cm and AB = 6 cm",
+        "B) BD = 2sqrt(5) cm and AB = 3sqrt(5) cm",
+        "C) BD = sqrt(20) cm and AB = sqrt(20) cm",
+        "D) BD = 2sqrt(5) cm and AB = 6 cm"
+      ],
+      "answer": "D) BD = 2sqrt(5) cm and AB = 6 cm",
+      "explanation": "The altitude-to-hypotenuse similarity relations give BD^2 = AD x DC = 4 x 5 = 20, so BD = 2sqrt(5). Also AC = 4 + 5 = 9 and AB^2 = AD x AC = 4 x 9 = 36. Therefore AB = 6 cm."
+    }
+  ]
+}

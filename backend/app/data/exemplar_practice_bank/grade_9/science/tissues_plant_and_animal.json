@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 9",
+  "subject": "Science",
+  "chapter": "Tissues",
+  "topic": "Tissues — Plant and Animal",
+  "questions": [
+    {
+      "q": "The tip of a sugarcane plant is removed, yet the plant continues to increase in length. Which tissue best explains this?",
+      "options": [
+        "A) Intercalary meristem",
+        "B) Lateral meristem",
+        "C) Sclerenchyma",
+        "D) Cork"
+      ],
+      "answer": "A) Intercalary meristem",
+      "explanation": "The source specifically notes that sugarcane can keep growing in length even after its tip is removed. This is possible because intercalary meristem remains active at regions away from the removed apical tip. Its dividing cells continue to add length to the plant."
+    },
+    {
+      "q": "A person suffers dislocation of two long bones in the hand, while another person moves a limb normally by muscle contraction. Which pairing is correct?",
+      "options": [
+        "A) Dislocation mainly suggests tendon break; movement occurs because skeletal muscles pull ligaments.",
+        "B) Dislocation may result from ligament break; normal movement occurs because skeletal muscles pull tendons attached to bones.",
+        "C) Dislocation mainly suggests cartilage loss; normal movement occurs because smooth muscles pull tendons.",
+        "D) Dislocation mainly suggests areolar tissue break; normal movement occurs because cardiac muscles pull ligaments."
+      ],
+      "answer": "B) Dislocation may result from ligament break; normal movement occurs because skeletal muscles pull tendons attached to bones.",
+      "explanation": "Ligaments connect bone to bone, so a ligament injury can allow bones at a joint to become dislocated. Tendons connect skeletal muscles to bones. Therefore normal voluntary movement occurs when skeletal muscles contract and pull on tendons, making option B correct."
+    },
+    {
+      "q": "A branch bends in strong wind without breaking, while coconut husk is very tough and difficult to pull apart. Which tissues best explain these two properties respectively?",
+      "options": [
+        "A) Parenchyma and aerenchyma",
+        "B) Sclerenchyma and collenchyma",
+        "C) Collenchyma and sclerenchyma",
+        "D) Xylem vessels and phloem fibres"
+      ],
+      "answer": "C) Collenchyma and sclerenchyma",
+      "explanation": "The source links flexibility in plants with collenchyma, whose unevenly thickened living cells provide support with bending. It also identifies the coconut husk with sclerenchymatous tissue. Sclerenchyma has thick, lignified walls and provides great mechanical strength, so the correct order is collenchyma then sclerenchyma."
+    },
+    {
+      "q": "Which statement correctly combines a living xylem component with a dead phloem component?",
+      "options": [
+        "A) Xylem vessels are living, and sieve tubes are dead.",
+        "B) Tracheids are living, and companion cells are dead.",
+        "C) Xylem fibres are living, and phloem parenchyma is dead.",
+        "D) Xylem parenchyma is living, and phloem fibres are dead."
+      ],
+      "answer": "D) Xylem parenchyma is living, and phloem fibres are dead.",
+      "explanation": "The source identifies xylem parenchyma as a component involved in sideways conduction and asks for a living component of xylem. It also explicitly states that phloem fibres are the dead element of phloem. Therefore option D correctly combines the living and dead components."
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 8",
+  "subject": "Science",
+  "chapter": "Conservation of Plants and Animals",
+  "topic": "Conservation of Plants and Animals",
+  "questions": [
+    {
+      "q": "A forest area contains an endemic species whose population has fallen sharply after its habitat was cleared. Which conclusion best combines the Exemplar ideas of endemic and endangered species?",
+      "options": [
+        "A) It cannot become endangered because endemic species are automatically protected.",
+        "B) It is at greater risk because it is restricted to a specific habitat and loss of that habitat can push a declining population towards extinction.",
+        "C) It is already extinct because any fall in population means extinction.",
+        "D) It should be moved only to a botanical garden because in-situ conservation is impossible."
+      ],
+      "answer": "B) It is at greater risk because it is restricted to a specific habitat and loss of that habitat can push a declining population towards extinction.",
+      "explanation": "The source defines endemic species as those found exclusively in a particular habitat. It also explains that endangered species have drastically reduced populations and may become extinct if their habitat is not protected. Habitat destruction therefore creates especially high risk for an endemic species because its natural range is already limited."
+    },
+    {
+      "q": "Large forest patches are cleared for crop cultivation. Which sequence of effects is most consistent with the Exemplar questions on deforestation?",
+      "options": [
+        "A) More vegetation -> greater water holding capacity -> less soil erosion",
+        "B) Less vegetation -> more soil erosion -> loss of fertility and greater risk of floods or droughts",
+        "C) Less vegetation -> lower carbon dioxide -> reduced global warming",
+        "D) More bare soil -> increased biodiversity -> greater stability of the ecosystem"
+      ],
+      "answer": "B) Less vegetation -> more soil erosion -> loss of fertility and greater risk of floods or droughts",
+      "explanation": "The Exemplar links forest clearing with soil erosion and asks how soil erosion affects soil fertility. It also asks how deforestation can lead to frequent floods and droughts, showing that vegetation loss disturbs water retention and runoff. Thus the chain from deforestation to erosion, fertility loss and hydrological extremes is the supported one."
+    },
+    {
+      "q": "Which conservation arrangement is consistent with the Exemplar description of a biosphere reserve?",
+      "options": [
+        "A) A protected region that may include wildlife sanctuaries or national parks and also conserves biodiversity together with local culture",
+        "B) A zoo that contains only endemic animals and excludes all human culture",
+        "C) A botanical garden used only for extinct plant species",
+        "D) An area where capturing and poaching are allowed to maintain population balance"
+      ],
+      "answer": "A) A protected region that may include wildlife sanctuaries or national parks and also conserves biodiversity together with local culture",
+      "explanation": "The source states that a biosphere reserve is meant to conserve biodiversity and the culture of the area. It also includes the idea that a wildlife sanctuary can occur within a biosphere reserve. Therefore a broad protected landscape containing other protected areas and human cultural context is the correct description."
+    },
+    {
+      "q": "A migratory bird leaves its habitat during one season. Which combination from the Exemplar best explains this behaviour?",
+      "options": [
+        "A) Plenty of food and mild weather",
+        "B) Unavailability of food and extreme weather conditions",
+        "C) Increased soil fertility and larger nesting areas",
+        "D) Protection from poaching and increased vegetation"
+      ],
+      "answer": "B) Unavailability of food and extreme weather conditions",
+      "explanation": "The Exemplar lists seasonal food shortage and extreme weather among the conditions responsible for migration. Migration allows birds to move to places where survival conditions are more favourable. Hence the combination of food unavailability and extreme weather is the best explanation."
+    }
+  ]
+}

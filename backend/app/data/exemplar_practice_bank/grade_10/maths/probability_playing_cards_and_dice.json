@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 10",
+  "subject": "Maths",
+  "chapter": "Probability",
+  "topic": "Probability — Playing Cards and Dice",
+  "questions": [
+    {
+      "q": "The king, queen and jack of clubs are removed from a standard 52-card deck. One card is drawn from the remaining deck. What are P(heart) and P(king), respectively?",
+      "options": [
+        "A) 13/49 and 3/49",
+        "B) 13/52 and 4/52",
+        "C) 10/49 and 3/49",
+        "D) 13/49 and 4/49"
+      ],
+      "answer": "A) 13/49 and 3/49",
+      "explanation": "After removing three club face cards, 49 cards remain. No heart was removed, so all 13 hearts are still present, giving P(heart)=13/49. One king, the king of clubs, was removed, leaving 3 kings, so P(king)=3/49."
+    },
+    {
+      "q": "Two ordinary dice are thrown together. What is the probability that the product of the two top numbers is less than 9?",
+      "options": [
+        "A) 1/3",
+        "B) 4/9",
+        "C) 5/12",
+        "D) 1/2"
+      ],
+      "answer": "B) 4/9",
+      "explanation": "There are 36 equally likely ordered outcomes. Counting products below 9 gives 6 outcomes when the first die is 1, then 4, 2, 2, 1 and 1 outcomes for first-die values 2 through 6, for a total of 16. Thus the probability is 16/36 = 4/9."
+    },
+    {
+      "q": "Two ordinary dice are thrown. What is the probability that the absolute difference between the two numbers is 2?",
+      "options": [
+        "A) 1/6",
+        "B) 1/4",
+        "C) 2/9",
+        "D) 5/18"
+      ],
+      "answer": "C) 2/9",
+      "explanation": "The favourable ordered pairs are (1,3), (2,4), (3,1), (3,5), (4,2), (4,6), (5,3) and (6,4). That gives 8 favourable outcomes out of 36 equally likely outcomes. Therefore the probability is 8/36 = 2/9."
+    },
+    {
+      "q": "Each of two dice has faces marked 0,1,1,1,6,6. If both are thrown, what is the probability that the total score is 7?",
+      "options": [
+        "A) 1/6",
+        "B) 2/9",
+        "C) 1/2",
+        "D) 1/3"
+      ],
+      "answer": "D) 1/3",
+      "explanation": "A total of 7 occurs only as 1+6 or 6+1. On each die, P(1)=3/6 and P(6)=2/6. Therefore P(total 7) = 2 x (3/6)(2/6) = 12/36 = 1/3."
+    }
+  ]
+}

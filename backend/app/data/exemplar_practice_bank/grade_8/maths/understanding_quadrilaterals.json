@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 8",
+  "subject": "Maths",
+  "chapter": "Understanding Quadrilaterals and Practical Geometry",
+  "topic": "Understanding Quadrilaterals",
+  "questions": [
+    {
+      "q": "Two adjacent angles of a parallelogram are in the ratio 4:5. What are the two angles?",
+      "options": [
+        "A) 80 degrees and 100 degrees",
+        "B) 72 degrees and 108 degrees",
+        "C) 90 degrees and 90 degrees",
+        "D) 60 degrees and 120 degrees"
+      ],
+      "answer": "A) 80 degrees and 100 degrees",
+      "explanation": "Adjacent angles of a parallelogram are supplementary, so their sum is 180 degrees. Let them be 4x and 5x; then 9x = 180 and x = 20. Therefore the angles are 80 degrees and 100 degrees."
+    },
+    {
+      "q": "One diagonal of a rhombus is equal in length to its side. What are the two distinct angle measures of the rhombus?",
+      "options": [
+        "A) 45 degrees and 135 degrees",
+        "B) 60 degrees and 120 degrees",
+        "C) 90 degrees and 90 degrees",
+        "D) 30 degrees and 150 degrees"
+      ],
+      "answer": "B) 60 degrees and 120 degrees",
+      "explanation": "If a diagonal equals the rhombus side, the two triangles formed with that diagonal have all three sides equal. Each such triangle is equilateral, so the angles along that diagonal are 60 degrees. Combining the two 60-degree parts gives the opposite angles of 120 degrees, while the other two angles are 60 degrees."
+    },
+    {
+      "q": "In rectangle HOPE, diagonals meet at G. If HG = 5x + 1 and EG = 4x + 19, what is x?",
+      "options": [
+        "A) 9",
+        "B) 12",
+        "C) 18",
+        "D) 20"
+      ],
+      "answer": "C) 18",
+      "explanation": "The diagonals of a rectangle are equal and bisect each other. Therefore the half-diagonals HG and EG are equal, so 5x + 1 = 4x + 19. Solving gives x = 18."
+    },
+    {
+      "q": "In a rhombus, the diagonals bisect each other at right angles. If the half-diagonals are 5 cm and 12 cm, what is the perimeter?",
+      "options": [
+        "A) 34 cm",
+        "B) 48 cm",
+        "C) 50 cm",
+        "D) 52 cm"
+      ],
+      "answer": "D) 52 cm",
+      "explanation": "The half-diagonals and one side form a right triangle. The side length is sqrt(5^2 + 12^2) = sqrt(169) = 13 cm. All four sides of a rhombus are equal, so the perimeter is 4 x 13 = 52 cm."
+    }
+  ]
+}

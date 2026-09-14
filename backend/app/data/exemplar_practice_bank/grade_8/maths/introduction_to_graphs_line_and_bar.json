@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 8",
+  "subject": "Maths",
+  "chapter": "Introduction to Graphs",
+  "topic": "Introduction to Graphs — Line and Bar",
+  "questions": [
+    {
+      "q": "For the linear relation y = 2x, what is the value of y when x = 7?",
+      "options": [
+        "A) 14",
+        "B) 9",
+        "C) 12",
+        "D) 16"
+      ],
+      "answer": "A) 14",
+      "explanation": "The relation y = 2x means every y-coordinate is twice its corresponding x-coordinate. Substituting x = 7 gives y = 2 x 7. Therefore y = 14, and the point (7,14) lies on the same straight-line graph."
+    },
+    {
+      "q": "The perimeter P of a square is graphed against its side length s using the values 1,2,3,4,5 and 4,8,12,16,20. Which additional point lies on the same linear graph?",
+      "options": [
+        "A) (6,20)",
+        "B) (6,24)",
+        "C) (7,24)",
+        "D) (8,28)"
+      ],
+      "answer": "B) (6,24)",
+      "explanation": "The table follows the rule P = 4s. For s = 6, the corresponding perimeter is 4 x 6 = 24. Hence (6,24) continues the same linear relationship."
+    },
+    {
+      "q": "Points A(1,2), B(4,2) and C(1,4) are three vertices of an axis-aligned rectangle. What is the fourth vertex?",
+      "options": [
+        "A) (2,4)",
+        "B) (3,4)",
+        "C) (4,4)",
+        "D) (4,1)"
+      ],
+      "answer": "C) (4,4)",
+      "explanation": "A and B have the same y-coordinate, so AB is horizontal, while A and C have the same x-coordinate, so AC is vertical. The missing corner must combine B's x-coordinate 4 with C's y-coordinate 4. Therefore the fourth vertex is (4,4)."
+    },
+    {
+      "q": "For the relation p = 2q, which pair correctly gives p when q = 3 and q when p = 8?",
+      "options": [
+        "A) p = 3, q = 4",
+        "B) p = 6, q = 8",
+        "C) p = 8, q = 6",
+        "D) p = 6, q = 4"
+      ],
+      "answer": "D) p = 6, q = 4",
+      "explanation": "When q = 3, p = 2 x 3 = 6. When p = 8, the equation 8 = 2q gives q = 4. Thus the required pair is p = 6 and q = 4."
+    }
+  ]
+}

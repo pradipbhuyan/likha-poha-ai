@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 9",
+  "subject": "Science",
+  "chapter": "Work and Energy",
+  "topic": "Work, Energy and Power",
+  "questions": [
+    {
+      "q": "A rocket is moving with speed v and then its speed is suddenly tripled without changing its mass. What is the ratio of final kinetic energy to initial kinetic energy?",
+      "options": [
+        "A) 9:1",
+        "B) 3:1",
+        "C) 6:1",
+        "D) 1:9"
+      ],
+      "answer": "A) 9:1",
+      "explanation": "Kinetic energy is proportional to v^2 for a fixed mass. Tripling speed changes v^2 by a factor of 3^2 = 9. Therefore the final kinetic energy is nine times the initial kinetic energy."
+    },
+    {
+      "q": "Avinash runs at 8 m/s against a frictional force of 10 N, while Kapil moves at 3 m/s against a frictional force of 25 N. Who develops greater power against friction?",
+      "options": [
+        "A) Kapil, because 25 N is the larger force.",
+        "B) Avinash, because his power is 80 W while Kapil’s is 75 W.",
+        "C) Both develop 80 W.",
+        "D) Both develop 75 W."
+      ],
+      "answer": "B) Avinash, because his power is 80 W while Kapil’s is 75 W.",
+      "explanation": "For steady motion against friction, power is force multiplied by speed. Avinash develops 10 x 8 = 80 W, while Kapil develops 25 x 3 = 75 W. Since 80 W is greater than 75 W, Avinash is more powerful in this comparison."
+    },
+    {
+      "q": "A motor pump has power 2 kW and raises water to a height of 10 m. Taking g = 10 m/s^2, what mass of water can it raise in one minute?",
+      "options": [
+        "A) 200 kg",
+        "B) 600 kg",
+        "C) 1200 kg",
+        "D) 2000 kg"
+      ],
+      "answer": "C) 1200 kg",
+      "explanation": "The energy supplied in one minute is Pt = 2000 x 60 = 120000 J. Raising mass m through 10 m requires mgh = m x 10 x 10 = 100m J. Equating the two gives m = 120000/100 = 1200 kg."
+    },
+    {
+      "q": "A ball is dropped from a height of 10 m. After striking the ground, 40% of its mechanical energy is lost. Neglecting air resistance, to what height does it rebound?",
+      "options": [
+        "A) 4 m",
+        "B) 10 m",
+        "C) 8 m",
+        "D) 6 m"
+      ],
+      "answer": "D) 6 m",
+      "explanation": "Just before impact, the ball’s mechanical energy equals its initial potential energy mgh with h = 10 m. Losing 40% leaves 60% of that energy for the rebound. Since rebound potential energy is proportional to height, the new height is 0.60 x 10 = 6 m."
+    }
+  ]
+}

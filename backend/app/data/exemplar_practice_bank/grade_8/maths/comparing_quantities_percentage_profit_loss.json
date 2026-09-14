@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 8",
+  "subject": "Maths",
+  "chapter": "Comparing Quantities",
+  "topic": "Comparing Quantities — Percentage, Profit Loss",
+  "questions": [
+    {
+      "q": "A number is increased by 20% and then the increased value is decreased by 20%. What is the net change from the original number?",
+      "options": [
+        "A) 4% decrease",
+        "B) No change",
+        "C) 4% increase",
+        "D) 8% decrease"
+      ],
+      "answer": "A) 4% decrease",
+      "explanation": "Take the original number as 100. After a 20% increase it becomes 120, and 20% of 120 is 24. The final value is 96, which is 4 less than 100, so there is a 4% decrease."
+    },
+    {
+      "q": "An article is marked at Rs 280, sold after a 20% discount, and the seller still makes a 12% profit. What is the cost price?",
+      "options": [
+        "A) Rs 224",
+        "B) Rs 200",
+        "C) Rs 196",
+        "D) Rs 250"
+      ],
+      "answer": "B) Rs 200",
+      "explanation": "A 20% discount on Rs 280 is Rs 56, so the selling price is Rs 224. A 12% profit means selling price is 112% of cost price. Therefore cost price = 224 x 100/112 = Rs 200."
+    },
+    {
+      "q": "Rs 48,000 is invested for one year at 8% per annum compounded half-yearly. Which pair gives the final amount and compound interest?",
+      "options": [
+        "A) Rs 51,840 and Rs 3,840",
+        "B) Rs 51,916 and Rs 3,916",
+        "C) Rs 51,916.80 and Rs 3,916.80",
+        "D) Rs 52,000 and Rs 4,000"
+      ],
+      "answer": "C) Rs 51,916.80 and Rs 3,916.80",
+      "explanation": "Half-yearly compounding uses 4% for each of two conversion periods. Thus the amount is 48,000 x 1.04^2 = Rs 51,916.80. Subtracting the principal gives compound interest of Rs 3,916.80."
+    },
+    {
+      "q": "A car worth Rs 2,50,000 decreases in value by 10% in one year and by a further 12% in the next year. What is the overall percentage decrease over the two years?",
+      "options": [
+        "A) 22%",
+        "B) 12%",
+        "C) 19.2%",
+        "D) 20.8%"
+      ],
+      "answer": "D) 20.8%",
+      "explanation": "After the first 10% decrease, the value is 90% of the original. After the next 12% decrease, it becomes 88% of that value, so the combined factor is 0.90 x 0.88 = 0.792. The final value is 79.2% of the original, hence the overall decrease is 20.8%."
+    }
+  ]
+}

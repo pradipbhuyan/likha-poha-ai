@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 9",
+  "subject": "Maths",
+  "chapter": "Probability",
+  "topic": "Probability — Basic Concepts",
+  "questions": [
+    {
+      "q": "Which of the following cannot be an empirical probability of an event?",
+      "options": [
+        "A) 3/2",
+        "B) 2/3",
+        "C) 0",
+        "D) 1"
+      ],
+      "answer": "A) 3/2",
+      "explanation": "An empirical probability is a ratio of the number of favourable trials to the total number of trials. Such a ratio cannot be less than 0 or greater than 1. Since 3/2 is greater than 1, it cannot be an empirical probability."
+    },
+    {
+      "q": "Two coins are tossed 500 times: two heads occur 100 times, exactly one head 270 times, and no head 130 times. What is the empirical probability of getting at least one head?",
+      "options": [
+        "A) 27/50",
+        "B) 37/50",
+        "C) 13/50",
+        "D) 1/5"
+      ],
+      "answer": "B) 37/50",
+      "explanation": "At least one head includes the outcomes with two heads and exactly one head. Their combined frequency is 100 + 270 = 370 out of 500 trials. Thus the empirical probability is 370/500 = 37/50."
+    },
+    {
+      "q": "Three coins are tossed 200 times. The frequencies for 3 tails, 2 tails, 1 tail and no tail are 20, 68, 82 and 30. What is the probability of getting fewer than 3 tails?",
+      "options": [
+        "A) 1/10",
+        "B) 17/50",
+        "C) 9/10",
+        "D) 41/100"
+      ],
+      "answer": "C) 9/10",
+      "explanation": "Fewer than 3 tails includes 2 tails, 1 tail and no tail. Their frequencies add to 68 + 82 + 30 = 180. Therefore the empirical probability is 180/200 = 9/10."
+    },
+    {
+      "q": "Using the same 500 two-coin trials with frequencies 100 for two heads, 270 for exactly one head, and 130 for no head, what is the empirical probability of getting either two heads or no head?",
+      "options": [
+        "A) 13/50",
+        "B) 27/50",
+        "C) 37/50",
+        "D) 23/50"
+      ],
+      "answer": "D) 23/50",
+      "explanation": "The event combines two mutually exclusive outcomes: two heads and no head. Their frequencies are 100 and 130, so the event occurred 230 times. The empirical probability is 230/500 = 23/50."
+    }
+  ]
+}

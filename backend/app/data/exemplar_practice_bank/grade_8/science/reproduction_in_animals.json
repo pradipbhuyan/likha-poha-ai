@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 8",
+  "subject": "Science",
+  "chapter": "Reproduction in Animals",
+  "topic": "Reproduction in Animals",
+  "questions": [
+    {
+      "q": "Which sequence correctly follows human reproduction from formation of sex cells to early development?",
+      "options": [
+        "A) Gamete formation -> fertilisation -> zygote -> embryo",
+        "B) Embryo -> gamete formation -> fertilisation -> zygote",
+        "C) Fertilisation -> zygote -> gamete formation -> embryo",
+        "D) Gamete formation -> embryo -> fertilisation -> zygote"
+      ],
+      "answer": "A) Gamete formation -> fertilisation -> zygote -> embryo",
+      "explanation": "The Exemplar provides the sequence of events in human reproduction. Male and female gametes are formed first and then fuse during fertilisation. Their fusion forms a zygote, which subsequently develops into an embryo."
+    },
+    {
+      "q": "Frogs and hens are both oviparous, yet their fertilisation differs. Which statement captures that difference?",
+      "options": [
+        "A) Both have internal fertilisation because all egg-laying animals do.",
+        "B) Frogs typically show external fertilisation in water, while hens have internal fertilisation before laying eggs.",
+        "C) Hens show external fertilisation, while frogs are viviparous.",
+        "D) Neither undergoes fertilisation because both lay eggs."
+      ],
+      "answer": "B) Frogs typically show external fertilisation in water, while hens have internal fertilisation before laying eggs.",
+      "explanation": "The source explicitly asks why hens and frogs are both oviparous despite different types of fertilisation. Frogs release gametes into water, where fertilisation occurs externally. In hens fertilisation occurs inside the female body even though the fertilised egg is later laid."
+    },
+    {
+      "q": "Why do animals with external fertilisation often release a very large number of gametes?",
+      "options": [
+        "A) To increase the chance that some male and female gametes meet and fertilisation succeeds",
+        "B) Because external fertilisation always occurs on dry land",
+        "C) Because each gamete directly develops into a complete adult without fertilisation",
+        "D) Because water converts all gametes into embryos automatically"
+      ],
+      "answer": "A) To increase the chance that some male and female gametes meet and fertilisation succeeds",
+      "explanation": "The Exemplar states that animals with external fertilisation produce many gametes to improve the chance of successful fertilisation. In an external environment many gametes may be lost, dispersed or fail to meet. Producing a large number raises the probability that enough gametes will encounter one another."
+    },
+    {
+      "q": "Hydra and Amoeba both reproduce asexually, but by different mechanisms. Which pairing is correct?",
+      "options": [
+        "A) Hydra -> binary fission; Amoeba -> budding",
+        "B) Hydra -> budding; Amoeba -> binary fission",
+        "C) Hydra -> internal fertilisation; Amoeba -> external fertilisation",
+        "D) Hydra -> ovulation; Amoeba -> metamorphosis"
+      ],
+      "answer": "B) Hydra -> budding; Amoeba -> binary fission",
+      "explanation": "The source identifies budding as the asexual method in Hydra. It also describes Amoeba as a single-celled organism reproducing by binary fission, beginning with division of the nucleus and then the body. Therefore the two organisms use different asexual processes: budding in Hydra and binary fission in Amoeba."
+    }
+  ]
+}

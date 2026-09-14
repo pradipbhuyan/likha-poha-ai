@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 8",
+  "subject": "Maths",
+  "chapter": "Linear Equation in One Variable",
+  "topic": "Linear Equations in One Variable",
+  "questions": [
+    {
+      "q": "A father is four times as old as his son. After 10 years, the father will be three times as old as the son. What is the sum of their present ages?",
+      "options": [
+        "A) 100 years",
+        "B) 80 years",
+        "C) 90 years",
+        "D) 120 years"
+      ],
+      "answer": "A) 100 years",
+      "explanation": "Let the son's present age be x, so the father's age is 4x. After 10 years, 4x + 10 = 3(x + 10), which gives x = 20. Their present ages are 20 and 80, so the sum is 100 years."
+    },
+    {
+      "q": "A steamer takes 7 hours downstream and 8 hours upstream for the same distance, with stream speed 2 km/h. Which set gives the steamer speed in still water, downstream speed and distance?",
+      "options": [
+        "A) 28 km/h, 30 km/h, 210 km",
+        "B) 30 km/h, 32 km/h, 224 km",
+        "C) 32 km/h, 34 km/h, 238 km",
+        "D) 30 km/h, 28 km/h, 196 km"
+      ],
+      "answer": "B) 30 km/h, 32 km/h, 224 km",
+      "explanation": "Let the still-water speed be x km/h. Equal distances give 7(x+2) = 8(x-2), so x = 30. The downstream speed is 32 km/h and the distance is 7 x 32 = 224 km."
+    },
+    {
+      "q": "Two cars start 690 km apart and travel towards each other. After 6 hours they are still 30 km apart, and one car is 10 km/h faster than the other. How far has the faster car travelled in those 6 hours?",
+      "options": [
+        "A) 300 km",
+        "B) 330 km",
+        "C) 360 km",
+        "D) 390 km"
+      ],
+      "answer": "C) 360 km",
+      "explanation": "Let the faster speed be x and the slower speed be x-10. In 6 hours they cover 690 - 30 = 660 km together, so 6x + 6(x-10) = 660 and x = 60. The faster car therefore travels 60 x 6 = 360 km."
+    },
+    {
+      "q": "A family pays Rs 52.00 for circus tickets, including one service fee of Rs 3.25, and each ticket costs Rs 9.75. Which equation and solution are correct?",
+      "options": [
+        "A) 52 = 3.25t + 9.75, t = 13",
+        "B) 52 = 9.75t - 3.25, t = 5",
+        "C) 52 = 9.75t + 3.25, t = 4",
+        "D) 52 = 9.75t + 3.25, t = 5"
+      ],
+      "answer": "D) 52 = 9.75t + 3.25, t = 5",
+      "explanation": "The ticket cost is 9.75 times the number of tickets, and the service fee is added once, so the equation is 52 = 9.75t + 3.25. Subtracting 3.25 gives 48.75 = 9.75t. Dividing by 9.75 gives t = 5."
+    }
+  ]
+}

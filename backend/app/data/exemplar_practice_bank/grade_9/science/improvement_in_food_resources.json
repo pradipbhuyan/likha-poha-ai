@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 9",
+  "subject": "Science",
+  "chapter": "Improvement in Food Resources",
+  "topic": "Improvement in Food Resources",
+  "questions": [
+    {
+      "q": "Which statement best distinguishes manure from heavy reliance on chemical fertilisers according to the source?",
+      "options": [
+        "A) Manure adds large amounts of organic matter, improves water holding in sandy soil and drainage in clayey soil, while excessive fertiliser use can harm soil and the environment.",
+        "B) Manure supplies only concentrated mineral salts and no organic matter, while fertilisers mainly improve soil structure.",
+        "C) Manure always pollutes because it is made from animal waste, while fertilisers never affect soil fertility.",
+        "D) Manure is used only for weed control, while fertilisers are used only for irrigation."
+      ],
+      "answer": "A) Manure adds large amounts of organic matter, improves water holding in sandy soil and drainage in clayey soil, while excessive fertiliser use can harm soil and the environment.",
+      "explanation": "The source describes manure as rich in organic matter but relatively low in nutrients. It states that manure improves water-holding capacity in sandy soil and helps drainage in clayey soil. It also warns that excessive fertiliser use can damage soil quality and the environment, so option A gives the correct contrast."
+    },
+    {
+      "q": "Which pair of cropping practices is correctly matched with its description?",
+      "options": [
+        "A) Mixed cropping: crops grown in alternate rows; intercropping: crops grown in pre-planned succession.",
+        "B) Intercropping: crops such as soybean and maize grown in alternate rows; crop rotation: different crops grown on the same land in pre-planned succession.",
+        "C) Crop rotation: wheat and groundnut grown together at the same time; mixed cropping: only one crop grown repeatedly.",
+        "D) Intercropping: unwanted plants grown with crops; crop rotation: removal of weeds."
+      ],
+      "answer": "B) Intercropping: crops such as soybean and maize grown in alternate rows; crop rotation: different crops grown on the same land in pre-planned succession.",
+      "explanation": "The source gives soybean and maize in alternate rows as an example of intercropping. It defines crop rotation as growing different crops on the same land in a pre-planned succession. These are distinct from mixed cropping, in which crops such as wheat and groundnut are grown together without the row arrangement specified for intercropping."
+    },
+    {
+      "q": "In composite fish culture, Catla, Rohu and Mrigal can reduce competition because they feed in different pond zones. Which order matches surface, middle and bottom feeding?",
+      "options": [
+        "A) Rohu, Catla, Mrigal",
+        "B) Mrigal, Rohu, Catla",
+        "C) Catla, Rohu, Mrigal",
+        "D) Catla, Mrigal, Rohu"
+      ],
+      "answer": "C) Catla, Rohu, Mrigal",
+      "explanation": "The source identifies Catla as a surface feeder, Rohu as a middle-zone feeder and Mrigal as a bottom feeder. Using species that feed in different zones allows more complete use of available food resources in a pond. Therefore the correct order is Catla, Rohu, Mrigal."
+    },
+    {
+      "q": "Which statement about crop improvement and animal production is correct?",
+      "options": [
+        "A) Crossing two varieties is interspecific hybridisation, and Apis dorsata is the Italian honey bee.",
+        "B) Crossing plants of two species is intervarietal hybridisation, and Apis cerana indica is the Italian honey bee.",
+        "C) Hybridisation means crossing only genetically identical plants, and Apis mellifera is a local Indian cattle breed.",
+        "D) Hybridisation involves genetically dissimilar plants, and Apis mellifera is the Italian honey bee species introduced for honey production."
+      ],
+      "answer": "D) Hybridisation involves genetically dissimilar plants, and Apis mellifera is the Italian honey bee species introduced for honey production.",
+      "explanation": "The source defines hybridisation as crossing genetically dissimilar plants and distinguishes crosses between varieties from crosses between species. It also identifies Apis mellifera as the Italian honey bee introduced for honey production. Hence option D correctly combines both facts from crop improvement and apiculture."
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 10",
+  "subject": "Science",
+  "chapter": "Control and Coordination",
+  "topic": "Control and Coordination — Nervous System",
+  "questions": [
+    {
+      "q": "Which sequence correctly traces a simple reflex response from detection of a stimulus to the responding muscle?",
+      "options": [
+        "A) Receptor -> sensory neuron -> spinal cord -> motor neuron -> muscle",
+        "B) Receptor -> motor neuron -> spinal cord -> sensory neuron -> muscle",
+        "C) Receptor -> spinal cord -> motor neuron -> sensory neuron -> muscle",
+        "D) Muscle -> sensory neuron -> spinal cord -> motor neuron -> receptor"
+      ],
+      "answer": "A) Receptor -> sensory neuron -> spinal cord -> motor neuron -> muscle",
+      "explanation": "A receptor first detects the stimulus and generates a signal. The sensory neuron carries the signal to the spinal cord, where it is relayed to a motor neuron. The motor neuron then carries the response signal to the muscle, giving the sequence in option A."
+    },
+    {
+      "q": "A student links three brain regions with functions: forebrain with centres for hearing, smell, memory and sight; medulla with involuntary actions such as vomiting and blood-pressure control; cerebellum with posture and balance. How should this set be judged?",
+      "options": [
+        "A) Only the forebrain link is correct",
+        "B) All three links are correct",
+        "C) Only the medulla link is correct",
+        "D) Only the cerebellum link is correct"
+      ],
+      "answer": "B) All three links are correct",
+      "explanation": "The source places major sensory and thinking functions in the forebrain. It assigns several involuntary actions to the medulla in the hindbrain and posture and balance to the cerebellum. Since all three associations agree with the source, option B is correct."
+    },
+    {
+      "q": "Why does transmission across a synapse normally proceed from the axonal end of one neuron toward the dendritic end of the next?",
+      "options": [
+        "A) Dendrites release chemicals that travel backward through the first neuron",
+        "B) Electrical impulses jump directly across the gap without chemical signalling",
+        "C) The axonal end releases chemical messengers that cross the synapse and trigger a new electrical impulse in the next neuron",
+        "D) The cell body physically touches the next axon and forces current across"
+      ],
+      "answer": "C) The axonal end releases chemical messengers that cross the synapse and trigger a new electrical impulse in the next neuron",
+      "explanation": "Within a neuron, an electrical impulse travels toward the axonal end. At that end, the signal causes release of chemicals into the synaptic gap. These chemicals act on the dendritic side of the next neuron to initiate a new electrical signal, producing the normal one-way transmission described in option C."
+    },
+    {
+      "q": "Which set correctly links three endocrine clues from the source?",
+      "options": [
+        "A) High blood sugar -> excess insulin; dwarfism -> excess growth hormone; iodine -> adrenaline",
+        "B) High blood sugar -> thyroxine deficiency; dwarfism -> insulin deficiency; iodine -> testosterone",
+        "C) High blood sugar -> adrenaline deficiency; dwarfism -> thyroxine excess; iodine -> insulin",
+        "D) High blood sugar -> insulin deficiency; dwarfism -> growth-hormone deficiency; iodine is needed for thyroxine synthesis"
+      ],
+      "answer": "D) High blood sugar -> insulin deficiency; dwarfism -> growth-hormone deficiency; iodine is needed for thyroxine synthesis",
+      "explanation": "Insulin regulates blood sugar, so insufficient insulin can cause blood glucose to rise. Dwarfism is associated in the source with deficiency of growth hormone. Iodine is required for synthesis of thyroxine, so all three clues are matched correctly only in option D."
+    }
+  ]
+}

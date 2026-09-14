@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 9",
+  "subject": "Maths",
+  "chapter": "Statistics",
+  "topic": "Statistics — Mean, Median, Mode",
+  "questions": [
+    {
+      "q": "The mean of five numbers is 30. If one number is removed, the mean of the remaining four becomes 28. What number was removed?",
+      "options": [
+        "A) 38",
+        "B) 28",
+        "C) 30",
+        "D) 35"
+      ],
+      "answer": "A) 38",
+      "explanation": "The total of the five numbers is 5*30 = 150. The total of the four remaining numbers is 4*28 = 112. The removed number is therefore 150 - 112 = 38."
+    },
+    {
+      "q": "The mean of 100 observations is 50. One observation recorded as 50 is replaced by 150. What is the new mean?",
+      "options": [
+        "A) 50.5",
+        "B) 51",
+        "C) 51.5",
+        "D) 52"
+      ],
+      "answer": "B) 51",
+      "explanation": "The original total is 100*50 = 5000. Replacing 50 by 150 increases the total by 100, making it 5100. Dividing by 100 gives the new mean 51."
+    },
+    {
+      "q": "The observations 26, 29, 42, 53, x, x + 2, 70, 75, 82, 93 are in ascending order and have median 65. What is x?",
+      "options": [
+        "A) 63",
+        "B) 65",
+        "C) 64",
+        "D) 66"
+      ],
+      "answer": "C) 64",
+      "explanation": "There are 10 observations, so the median is the average of the 5th and 6th observations. Those are x and x + 2, so the median is (x + x + 2)/2 = x + 1. Setting x + 1 = 65 gives x = 64."
+    },
+    {
+      "q": "For the basketball scores 17, 2, 7, 27, 25, 5, 14, 18, 10, 24, 48, 10, 8, 7, 10, 28, what is median - mode?",
+      "options": [
+        "A) 0",
+        "B) 1",
+        "C) 4",
+        "D) 2"
+      ],
+      "answer": "D) 2",
+      "explanation": "After arranging the 16 scores, the 8th and 9th values are 10 and 14, so the median is 12. The value 10 occurs three times, more often than any other score, so the mode is 10. Hence median - mode = 12 - 10 = 2."
+    }
+  ]
+}

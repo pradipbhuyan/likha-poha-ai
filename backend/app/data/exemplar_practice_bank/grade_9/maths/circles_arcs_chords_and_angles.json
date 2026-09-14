@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 9",
+  "subject": "Maths",
+  "chapter": "Circles",
+  "topic": "Circles — Arcs, Chords and Angles",
+  "questions": [
+    {
+      "q": "A circle has diameter 34 cm and a chord of length 30 cm. What is the perpendicular distance from the centre to the chord?",
+      "options": [
+        "A) 8 cm",
+        "B) 15 cm",
+        "C) 17 cm",
+        "D) 4 cm"
+      ],
+      "answer": "A) 8 cm",
+      "explanation": "The radius is 17 cm, and the perpendicular from the centre bisects the 30 cm chord into two 15 cm halves. A right triangle is formed with hypotenuse 17 and one leg 15. The distance is sqrt(17^2 - 15^2) = sqrt(64) = 8 cm."
+    },
+    {
+      "q": "AB = 12 cm and BC = 16 cm with AB perpendicular to BC. What is the radius of the circle passing through A, B and C?",
+      "options": [
+        "A) 8 cm",
+        "B) 10 cm",
+        "C) 12 cm",
+        "D) 6 cm"
+      ],
+      "answer": "B) 10 cm",
+      "explanation": "The triangle is right-angled at B, so AC is the hypotenuse. By Pythagoras, AC = sqrt(12^2 + 16^2) = sqrt(400) = 20 cm. For a right triangle, the circumcircle has the hypotenuse as diameter, so the radius is 10 cm."
+    },
+    {
+      "q": "ABCD is cyclic, AB is a diameter, and angle ADC = 140 degrees. What is angle BAC?",
+      "options": [
+        "A) 40 degrees",
+        "B) 80 degrees",
+        "C) 50 degrees",
+        "D) 30 degrees"
+      ],
+      "answer": "C) 50 degrees",
+      "explanation": "Opposite angles of a cyclic quadrilateral are supplementary, so angle ABC = 180 - 140 = 40 degrees. Since AB is a diameter, angle ACB is 90 degrees. Therefore angle BAC = 180 - 90 - 40 = 50 degrees."
+    },
+    {
+      "q": "A chord of a circle is equal in length to the radius. What angle does this chord subtend at a point on the major segment?",
+      "options": [
+        "A) 60 degrees",
+        "B) 45 degrees",
+        "C) 90 degrees",
+        "D) 30 degrees"
+      ],
+      "answer": "D) 30 degrees",
+      "explanation": "Join the chord endpoints to the centre. The two radii and the chord are all equal, so they form an equilateral triangle and the central angle is 60 degrees. The angle subtended by the same chord at a point on the major segment is half the central angle, so it is 30 degrees."
+    }
+  ]
+}

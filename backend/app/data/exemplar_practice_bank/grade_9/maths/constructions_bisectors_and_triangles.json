@@ -1,0 +1,52 @@
+{
+  "grade": "Grade 9",
+  "subject": "Maths",
+  "chapter": "Constructions",
+  "topic": "Constructions — Bisectors and Triangles",
+  "questions": [
+    {
+      "q": "Using only ruler and compass, which of the following angles is constructible according to the Exemplar examples?",
+      "options": [
+        "A) 37.5 degrees",
+        "B) 40 degrees",
+        "C) 42.5 degrees",
+        "D) 35 degrees"
+      ],
+      "answer": "A) 37.5 degrees",
+      "explanation": "A 75-degree angle can be obtained by combining standard constructible angles 45 degrees and 30 degrees. Bisecting 75 degrees gives 37.5 degrees. Therefore 37.5 degrees is constructible using ruler and compass."
+    },
+    {
+      "q": "Why is an angle of 67.5 degrees constructible with ruler and compass?",
+      "options": [
+        "A) Because it is one-third of 202.5 degrees.",
+        "B) Because it is half of 135 degrees, and 135 degrees can be formed from 90 degrees and 45 degrees.",
+        "C) Because every decimal angle is constructible.",
+        "D) Because it is the supplement of 22.5 degrees only."
+      ],
+      "answer": "B) Because it is half of 135 degrees, and 135 degrees can be formed from 90 degrees and 45 degrees.",
+      "explanation": "The Exemplar writes 67.5 degrees as 135/2 degrees. A 135-degree angle can be constructed as 90 degrees + 45 degrees. Bisecting that angle gives 67.5 degrees."
+    },
+    {
+      "q": "A triangle ABC is to be constructed with BC = 3 cm, angle C = 60 degrees, and the difference AB - AC specified. Which listed difference makes the construction possible?",
+      "options": [
+        "A) 3.2 cm",
+        "B) 3.1 cm",
+        "C) 2.8 cm",
+        "D) 3.0 cm"
+      ],
+      "answer": "C) 2.8 cm",
+      "explanation": "For a triangle, the absolute difference of two sides must be less than the third side. Here the fixed side BC is 3 cm, so the specified difference AB - AC must be less than 3 cm. Among the options, only 2.8 cm satisfies that condition."
+    },
+    {
+      "q": "A triangle is proposed with angle B = 105 degrees, angle C = 90 degrees, and perimeter 10 cm. Why is the construction impossible?",
+      "options": [
+        "A) The perimeter is too small for every triangle.",
+        "B) A right angle cannot be used in ruler-and-compass construction.",
+        "C) The two given angles must be equal.",
+        "D) The two given angles already sum to 195 degrees, exceeding the 180-degree angle sum of a triangle."
+      ],
+      "answer": "D) The two given angles already sum to 195 degrees, exceeding the 180-degree angle sum of a triangle.",
+      "explanation": "The angles of a triangle must add to exactly 180 degrees. Here 105 + 90 = 195 degrees before the third angle is even included. Therefore no triangle with these two angles exists, regardless of the stated perimeter."
+    }
+  ]
+}
