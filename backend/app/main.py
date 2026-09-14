@@ -107,6 +107,7 @@ from app.routes.cache_management import router as cache_management_router
 from app.routes.product_catalogue import router as product_catalogue_router
 from app.routes.teacher import router as teacher_router
 from app.routes.teacher_classroom import router as teacher_classroom_router
+from app.routes.mobile_ota import router as mobile_ota_router
 from app.routes.subscription import router as subscription_router
 from app.routes.issues import router as issues_router
 from app.routes.feedback import router as feedback_router
@@ -541,6 +542,12 @@ app.include_router(
     teacher_router,
     prefix="/api/teacher",
     tags=["Teacher"],
+)
+
+app.include_router(
+    mobile_ota_router,
+    prefix="/api/mobile/ota",
+    tags=["Mobile OTA"],
 )
 
 app.include_router(

@@ -288,6 +288,12 @@ EMAIL_LOOKUP_LIMITER = RateLimiter(max_calls=8, window_seconds=60, name="email_l
 PAYMENT_CREATE_LIMITER = RateLimiter(max_calls=10, window_seconds=60, name="payment_create")  # 10/min
 PAYMENT_VERIFY_LIMITER = RateLimiter(max_calls=10, window_seconds=60, name="payment_verify")  # 10/min
 
+# Mobile OTA update check — the Capacitor updater plugin calls this on every
+# app foreground, unauthenticated (it runs before/without login). One device
+# legitimately triggers a handful of calls per session (foreground + periodic
+# background checks), so this is looser than the auth limiters above.
+MOBILE_OTA_CHECK_LIMITER = RateLimiter(max_calls=30, window_seconds=60, name="mobile_ota_check")  # 30/min
+
 # Admin test payments  (stricter — admin-only traffic should be low volume)
 ADMIN_TEST_PAYMENT_LIMITER = RateLimiter(max_calls=5, window_seconds=60, name="admin_test_payment")  # 5/min
 

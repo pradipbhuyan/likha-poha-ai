@@ -1,5 +1,12 @@
 {
   "appId": "in.likhapoha.app",
   "appName": "Likha Poha AI",
-  "webDir": "dist"
+  "webDir": "dist",
+  "plugins": {
+    "CapacitorUpdater": {
+      "updateUrl": "https://api.likhapoha.in/api/mobile/ota/check",
+      "statsUrl": "",
+      "autoUpdate": "atBackground"
+    }
+  }
 }
