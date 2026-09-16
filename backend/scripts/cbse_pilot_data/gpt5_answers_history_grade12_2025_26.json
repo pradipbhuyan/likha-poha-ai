@@ -1,0 +1,481 @@
+[
+  {
+    "question_number": 1,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following place of Harappan civilisation is associated with fire altars?",
+    "options": [
+      "Harappa",
+      "Lothal",
+      "Mohenjodaro",
+      "Rakhigarhi"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "Lothal",
+    "answer_explanation": "Lothal is associated with fire altars in Harappan archaeology."
+  },
+  {
+    "question_number": 2,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Archaeologists have been able to reconstruct dietary practices from finds of charred grains and seeds. These are studied by __________.",
+    "options": [
+      "Agronomist",
+      "Palaeontologist",
+      "Archaeo-botanists",
+      "Anthologist"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "Archaeo-botanists",
+    "answer_explanation": "Archaeo-botanists study ancient plant remains such as charred grains and seeds."
+  },
+  {
+    "question_number": 3,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which one of the following is NOT a correct statement about Mahajanapadas?",
+    "options": [
+      "Most mahajanapadas were ruled by kings.",
+      "Some known as ganas or sanghas, were oligarchies.",
+      "Each mahajanapada had a capital city, which was often fortified.",
+      "Panchala became the most powerful mahajanapada between 6-4 BCE."
+    ],
+    "diagram_dependent": false,
+    "answer_text": "Panchala became the most powerful mahajanapada between 6-4 BCE.",
+    "answer_explanation": "Magadha, not Panchala, emerged as the most powerful mahajanapada in this period."
+  },
+  {
+    "question_number": 4,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Match the following and select the correct option. List I: 1. Endogamy 2. Exogamy 3. Polygyny 4. Polyandry. List II: a. It is the practice of a woman having several husbands. b. It refers to marriage within a unit – this could be a kin group, caste, or a group living in the same locality. c. It refers to marriage outside the unit. d. It is the practice of a man having several wives.",
+    "options": [
+      "1 - b, 2- c, 3 -d, 4- a",
+      "1 - a, 2- d, 3 -c, 4- b",
+      "1 - c, 2- b, 3 -d, 4- a",
+      "1 - d, 2- a, 3 -b, 4- c"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "1 - b, 2- c, 3 -d, 4- a",
+    "answer_explanation": "Endogamy is marriage within a group; exogamy outside; polygyny is one man with several wives; polyandry is one woman with several husbands."
+  },
+  {
+    "question_number": 5,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following states that the paternal estate was to be divided equally amongst sons after the death of the parents, with a special share for the eldest?",
+    "options": [
+      "Vishnusmriti",
+      "Vyasasmriti",
+      "Likhitasmriti",
+      "Manusmriti"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "Manusmriti",
+    "answer_explanation": "The Manusmriti prescribed equal division of paternal property among sons, with an additional share for the eldest."
+  },
+  {
+    "question_number": 6,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The _____________ consists of hymns in praise of a variety of deities, especially Agni, Indra and Soma.",
+    "options": [
+      "The Rigveda",
+      "The Yajurveda",
+      "The Samaveda",
+      "The Atharvaveda"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "The Rigveda",
+    "answer_explanation": "The Rigveda contains hymns dedicated especially to Agni, Indra and Soma."
+  },
+  {
+    "question_number": 7,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "According to which Buddhist text Asoka distributed portions of the Buddha’s relics to every important town and ordered the construction of stupas over them?",
+    "options": [
+      "Ashokavadana",
+      "Vinaya Pitaka",
+      "Sutta Pitaka",
+      "Dipavamsa"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "Ashokavadana",
+    "answer_explanation": "The Ashokavadana narrates that Ashoka redistributed the Buddha's relics and ordered stupas to be built over them."
+  },
+  {
+    "question_number": 8,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following statements is/are correct about François Bernier? 1. A Frenchman, a doctor, political philosopher and historian. 2. He was closely associated with the Mughal court, as a physician to Prince Dara Shukoh. 3. He was in India for 14 years, from 1656 to 1670. 4. He was also associated as an intellectual and scientist, with Danishmand Khan, an Armenian noble at the Mughal court.",
+    "options": [
+      "1, 2, 3, 4",
+      "1, 2, 3",
+      "1, 2, 4",
+      "2, 3, 4"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "1, 2, 3, 4",
+    "answer_explanation": "All four statements about François Bernier are correct."
+  },
+  {
+    "question_number": 9,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "These trees are among the most peculiar trees in kind and most astonishing in habit. They look exactly like date -palms, without any difference between them except that the one produces nut as its fruits and the other produces dates. Which of the following traveller gave this description?",
+    "options": [
+      "Ibn Battuta",
+      "Al-Biruni",
+      "Duarte Barbosa",
+      "Megasthanese"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "Ibn Battuta",
+    "answer_explanation": "Ibn Battuta described coconut trees by comparing them with date palms."
+  },
+  {
+    "question_number": 10,
+    "section": "A",
+    "question_type": "assertion_reason",
+    "marks": 1,
+    "question_text": "There are two statements marked as Assertion (A) and Reason (R). Read the statements and choose the appropriate option. Assertion (A): Lingayats did not practice funerary rites such as cremation, prescribed in the Dharmashastras. Reason (R): Lingayats believe that on death the devotee will be united with Shiva and will not return to this world. Options:",
+    "options": [
+      "Both (A) and (R) are correct and (R) is the correct explanation of (A).",
+      "Both (A) and (R) are correct and (R) is not the correct explanation of (A).",
+      "(A) is correct but (R) is not correct.",
+      "(R) is correct but (A) is not correct"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "Both (A) and (R) are correct and (R) is the correct explanation of (A).",
+    "answer_explanation": "Lingayats buried their dead because they believed the devotee would unite with Shiva and would not be reborn."
+  },
+  {
+    "question_number": 11,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following was the first dynasty to rule over the Vijayanagara Empire?",
+    "options": [
+      "Suluva dynasty",
+      "Aravidu dynasty",
+      "Tuluva dynasty",
+      "Sangama dynasty"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "Sangama dynasty",
+    "answer_explanation": "The Sangama dynasty was the first ruling dynasty of Vijayanagara."
+  },
+  {
+    "question_number": 12,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following statements is correct regarding the Amara-nayaka system?",
+    "options": [
+      "The Amara-nayakas belonged to Bijapur.",
+      "Amara is believed to be derived from the Hindi word samara,",
+      "The amara-nayakas were independent and never sent tribute to the king.",
+      "They were Military commanders who got territories to govern by the Raya."
+    ],
+    "diagram_dependent": false,
+    "answer_text": "They were Military commanders who got territories to govern by the Raya.",
+    "answer_explanation": "Amara-nayakas were military chiefs assigned territories by the Vijayanagara rulers."
+  },
+  {
+    "question_number": 13,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Choose the correct option: The book deals with the fiscal side of the empire and provides rich quantitative information on revenue rates.",
+    "options": [
+      "Manzil-abadi",
+      "Sipah-abadi",
+      "Mulk-abadi",
+      "Aam-abadi"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "Mulk-abadi",
+    "answer_explanation": "The Mulk-abadi section of the Ain-i-Akbari deals with fiscal administration and revenue rates."
+  },
+  {
+    "question_number": 14,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Consider the following statements regarding the criteria of classific ation of lands under Akbar. 1. Polaj is land which is annually cultivated for each crop in succession and is never allowed to lie fallow. 2. Parauti is land left out of cultivation for a time that it may recover its strength. 3. Chachar is land that has lain fallow for three or four years. 4. Banjar land was also called jins-i-kamil. Which of the following statements is/are correct?",
+    "options": [
+      "1, 2, 3, 4",
+      "1, 2, 3",
+      "1, 2, 4",
+      "2, 3, 4"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "1, 2, 3",
+    "answer_explanation": "Polaj, parauti and chachar are correctly described; banjar was not called jins-i-kamil."
+  },
+  {
+    "question_number": 15,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The zamindars defaulted on payments , after the ‘Permanent Settlement ’ was introduced in 1793. Which of the following was a reason behind it? 1. The initial demands were very high. 2. This high demand was imposed in the 1790s, a time when the prices of agricultural produce were depressed, making it difficult for the ryots to pay their dues to the zamindar. 3. The revenue was invariable, regardless of the harvest, and had to be paid punctually. 4. The Permanent Settlement initially limited the power of the zamindar to collect rent from the ryot and manage his zamindari.",
+    "options": [
+      "1, 2, 3",
+      "1, 2, 4",
+      "2, 3, 4",
+      "1, 2, 3, 4"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "1, 2, 3, 4",
+    "answer_explanation": "All listed factors contributed to zamindars' default under the Permanent Settlement."
+  },
+  {
+    "question_number": 16,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The __________ were most powerful in North Bengal, although rich peasants and village headmen were emerging as commanding figures in the countryside in other parts of Bengal as well.",
+    "options": [
+      "Zamindars",
+      "Jotedars",
+      "Taluqdars",
+      "Ryots"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "Jotedars",
+    "answer_explanation": "Jotedars were especially powerful in north Bengal."
+  },
+  {
+    "question_number": 17,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Choose the correct chronological order of the events following events out of the options given below: 1. The sepoys arrived at the gates of the Red Fort early in the morning. 2. They first seized the bell of arms and plundered the treasury. 3. Late in the afternoon of 10 May 1857, the sepoys in the cantonment of Meerut broke out in mutiny. 4. Awadh was formally annexed to the British Empire. Options",
+    "options": [
+      "1, 2, 3, 4",
+      "2, 1, 3, 4",
+      "3, 2, 1, 4",
+      "4, 3, 2, 1"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "4, 3, 2, 1",
+    "answer_explanation": "Awadh was annexed in 1856, the Meerut mutiny began on 10 May 1857, sepoys seized arms and treasury, and then reached the Red Fort."
+  },
+  {
+    "question_number": 18,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Name the historian who remarked that South Africa was the making of the Mahatma.",
+    "options": [
+      "Sumit Sarkar",
+      "Sekhar Bandyopadhyay",
+      "Chandran Devanesan",
+      "David Hardiman"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "Chandran Devanesan",
+    "answer_explanation": "Historian Chandran Devanesan wrote that South Africa was the making of the Mahatma."
+  },
+  {
+    "question_number": 19,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Match the column I with column II and choose the correct option. Column I Column II (i) Mahatma Gandhi returns from South Africa (a) 1917 (ii) Champaran movement (b) 1918 (iii) Peasant movements in Kheda (Gujarat), and workers’ movement in Ahmedabad (c) 1919 (iv) Rowlatt Satyagraha (d) 1915 Options.",
+    "options": [
+      "i – b, ii – c, iii – a, iv – d",
+      "i – c, ii – a, iii – b, iv – d",
+      "i – c, ii – d, iii – b, iv – a",
+      "i – d, ii – a, iii – b, iv – c"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "i – d, ii – a, iii – b, iv – c",
+    "answer_explanation": "Gandhi returned in 1915; Champaran was 1917; Kheda and Ahmedabad were 1918; Rowlatt Satyagraha was 1919."
+  },
+  {
+    "question_number": 20,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Who proposed that the National Flag of India be a ‘horizontal tricolour of saffron, white and dark green in equal proportion’, with a wheel in navy blue at the centre?",
+    "options": [
+      "J. B. Kripalani",
+      "Rajendra Prasad",
+      "Pandit Jawaharlal Nehru",
+      "Sardar Vallabhbhai Patel"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "Pandit Jawaharlal Nehru",
+    "answer_explanation": "Jawaharlal Nehru moved the resolution proposing the tricolour with a navy-blue wheel."
+  },
+  {
+    "question_number": 21,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "1. One among the following group initially refused to join the Constituent Assembly, as they believed that it was a British creation. Choose the correct option:",
+    "options": [
+      "Socialists",
+      "Tribals",
+      "Backward Classes",
+      "Anglo-Indian"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "Socialists",
+    "answer_explanation": "The Socialists initially stayed away from the Constituent Assembly, regarding it as a British creation."
+  },
+  {
+    "question_number": 22,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "A “The archaeological records provide no immediate answer of the existence of centre of power”. Give suitable examples to prove the statement in the context of Harappa. OR 22.B Prove that Harappans had access to different parts of the world.",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "A. Archaeology does not provide direct proof of a single central authority at Harappa. Uniform bricks, weights, seals, planned cities and standardised drainage suggest coordination, but no definite palace, royal tomb, monumental ruler image or clear administrative archive has been found. OR B. Harappans had long-distance contacts: lapis lazuli came from Afghanistan, copper from Oman and Rajasthan, carnelian from Gujarat, and Mesopotamian texts mention Meluhha. Harappan seals, beads and pottery have also been found outside the subcontinent.",
+    "answer_explanation": "The answer addresses both internal-choice alternatives using standard NCERT evidence."
+  },
+  {
+    "question_number": 23,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Describe the various stages through which Mahabharata was compiled in the 20th century. Discuss any three points.",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "In 1919, V. S. Sukthankar began preparing a critical edition of the Mahabharata at the Bhandarkar Oriental Research Institute. Scholars collected Sanskrit manuscripts from many regions, compared their varying readings, selected verses common to most versions for the main text, and recorded regional variations in footnotes and appendices. The project took about forty-seven years and produced a multi-volume critical edition.",
+    "answer_explanation": "These were the principal stages in the twentieth-century compilation of the critical edition."
+  },
+  {
+    "question_number": 24,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Explain the barriers that Al Biruni felt obstructed his understanding.",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "Al-Biruni identified three barriers: language, because Sanskrit differed greatly from Arabic and Persian; religious beliefs and practices, which were unfamiliar and difficult for outsiders to understand; and the self-absorption or insularity of local scholars, who were often unwilling to share knowledge with foreigners.",
+    "answer_explanation": "These are the three barriers listed in NCERT."
+  },
+  {
+    "question_number": 25,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "What was the condition of an average peasant of North India during the seventeenth century?",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "An average seventeenth-century north Indian peasant lived close to subsistence. He cultivated small plots with family labour, paid a substantial share of produce as land revenue, faced uncertainty from crop failure and price fluctuations, and often depended on village communities, moneylenders or zamindars. Yet peasants also grew food and cash crops and could sometimes expand cultivation where land was available.",
+    "answer_explanation": "This summarises the material condition of ordinary peasants under Mughal agrarian relations."
+  },
+  {
+    "question_number": 26,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Discuss the policies adopted by the British towards the Paharias during the early 18th century in Bengal.",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "The British first attempted to pacify the Paharias by offering allowances to chiefs and encouraging settled cultivation. Augustus Cleveland proposed regular stipends to hill chiefs in return for maintaining order. When these measures achieved limited success, the British promoted the settlement of Santhals in the foothills, cleared forests and expanded revenue-paying agriculture, thereby restricting Paharia access to land and forests.",
+    "answer_explanation": "The answer covers pacification, stipends and the later Santhal settlement strategy."
+  },
+  {
+    "question_number": 27,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "“Rumours and prophecies played a part in moving the people into action during the revolt of 1857.” Examine the statement with rumours and reasons for its beliefs. OR 27B ‘A chain of grievances in Awadh linked the prince, taluqdars, peasants and sepoy to join hands in the revolt of 1857 against the British”. Examine the statement by giving three points. SECTION C 3x8=24 LONG ANSWER TYPE QUESTIONS",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "A. Rumours that rifle cartridges were greased with cow and pig fat convinced Hindu and Muslim sepoys that the British intended to destroy their religions. Prophecies that British rule would end one hundred years after Plassey also spread rapidly. Chapatis and lotus flowers circulated as symbols, and distrust grew because social and religious reforms were interpreted as forced conversion. OR B. In Awadh, annexation displaced the Nawab and court, taluqdars lost estates and authority, peasants suffered heavy revenue demands, and many sepoys came from peasant families in the region. These linked grievances united princes, taluqdars, peasants and sepoys against British rule.",
+    "answer_explanation": "Both alternatives are answered with three or more relevant points."
+  },
+  {
+    "question_number": 28,
+    "section": "C",
+    "question_type": "long_answer",
+    "marks": 8,
+    "question_text": "A. Enumerate the features of Mauryan administration. OR 28.B. How do modern historians explain the development and rise of Magadhan power? Explain briefly.",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "A. Mauryan administration was centred on the king and the capital Pataliputra. The empire was divided into provinces, some governed by royal princes. Officials collected revenue, maintained records, supervised trade, agriculture, mines, forests and public works. A large army and network of spies supported imperial authority. Roads, communication routes and strategic centres were maintained, while Ashoka's dhamma-mahamattas promoted welfare and moral conduct. OR B. Historians explain Magadha's rise through fertile alluvial land, access to iron ore, elephants for warfare, rivers for communication, ambitious rulers such as Bimbisara, Ajatashatru and Mahapadma Nanda, fortified capitals at Rajagaha and Pataliputra, and efficient taxation and military organisation.",
+    "answer_explanation": "This gives a structured eight-mark response for both alternatives."
+  },
+  {
+    "question_number": 29,
+    "section": "C",
+    "question_type": "long_answer",
+    "marks": 8,
+    "question_text": "A “Krishnadeva Raya’s rule was characterised by expansion and consolidation.” Substantiate the statement with suitable examples. OR 29.B. “Abdur Razzaq, an ambassador sent by the ruler of Persia to Calicut (present -day Kozhikode) in the fifteenth century, was greatly impressed by the fortifications, and mentioned seven lines of forts.” Substantiate the statement with suitable examples.",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "A. Krishnadeva Raya expanded Vijayanagara by defeating the rulers of Odisha, capturing the Raichur Doab and suppressing rebellious chiefs. He consolidated authority by strengthening the amara-nayaka system, maintaining a powerful army, building temples and irrigation works, and patronising trade and literature. His reign combined conquest, administration and cultural achievement. OR B. Abdur Razzaq described Vijayanagara as a vast fortified city with seven concentric lines of walls. The fortifications enclosed not only the urban core but also fields, gardens and settlements. Massive masonry walls followed the natural terrain, gateways controlled movement, and the royal centre had additional protected enclosures. The system enabled defence, food security and administrative control.",
+    "answer_explanation": "Both options are supported with suitable examples."
+  },
+  {
+    "question_number": 30,
+    "section": "C",
+    "question_type": "long_answer",
+    "marks": 8,
+    "question_text": "A. Discuss the point that private letters and autobiographies tell us about a great deal of information about an individual? How are these sources different from official accounts? OR 30.B. Explain why many scholars believe that the months after Independence were Gandhiji’s ‘finest hour.’ SECTION D 3x4=12 SOURCE BASED QUESTIONS",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "A. Private letters and autobiographies reveal personal beliefs, emotions, relationships, doubts and everyday experiences that official records often omit. They help historians understand how individuals interpreted events. However, they are selective, subjective and sometimes written to justify the author. Official accounts are more formal and administrative, but may reflect institutional interests and suppress dissenting voices. OR B. After Independence and Partition, Gandhi worked tirelessly for communal peace. He visited riot-affected areas, comforted refugees, opposed revenge, fasted in Calcutta and Delhi, and insisted that minorities be protected. His moral intervention helped restore peace in places where governments struggled, which is why scholars call these months his finest hour.",
+    "answer_explanation": "The response compares source types and explains Gandhi's role after Partition."
+  },
+  {
+    "question_number": 31,
+    "section": "D",
+    "question_type": "case_study",
+    "marks": 4,
+    "question_text": "Read the given passage and answer the following questions How do we know about the Buddha’s teachings? These have been reconstructed by carefully editing, translating and analysing the Buddhist texts mentioned earlier. Historians have also tried to reconstruct details of his life from hagiographies. Many of these were written down at lea st a century after the time of the Buddha, in an attempt to preserve memories of the great teacher. Source-Chapter-4, Themes in Indian History-I, NCERT 31.1. What do you understand by the term ‘hagiographies? 31.2. Write any one teaching/philosophy of Buddha. 31.3. Why did art historians need to acquire familiarity with hagiographies? 1+1+ 2 =4",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "31.1 Hagiographies are reverential biographies of saints or religious teachers that present their lives as exemplary and often include miraculous or devotional elements. 31.2 One teaching of the Buddha was that suffering arises from desire and can be overcome by following the Middle Path and the Eightfold Path. 31.3 Art historians study hagiographies because scenes in Buddhist sculpture often represent episodes from the Buddha's life symbolically. Familiarity with these narratives helps identify figures, symbols and events depicted in the artwork.",
+    "answer_explanation": "Each subpart is answered according to its mark allocation."
+  },
+  {
+    "question_number": 32,
+    "section": "D",
+    "question_type": "case_study",
+    "marks": 4,
+    "question_text": "Read the given passage and answer the following questions Often associated with the goddess were forms of worship that were classified as ‘Tantra Vidya’. Tantric practices were widespread in several parts of the subcontinent – they were open to women and men, and practitioners often ignored differences of caste and class within the ritual context. Many of these ideas influenced Shaivism as well as Buddhism, especia lly in the eastern, northern and southern parts of the subcontinent. Source-page no142, chapter-2, Themes in Indian History-II, NCERT 32.1. Is tantric tradition different from Vedic tradition? 32.2. “Tantric practices somewhat inculcated the notion of an egalitarian society. ” Do you agree? 2+1+ 1 =4 32.3. Whom did the tantric ideas influence?",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "32.1 Yes. Tantric traditions differed from orthodox Vedic practices because they used distinctive rituals, mantras and methods of worship and were not restricted by the same caste and gender rules. 32.2 Yes. Tantric practices were open to both women and men and often ignored caste and class distinctions within rituals, giving them an egalitarian tendency. 32.3 Tantric ideas influenced Shaivism and Buddhism, especially in eastern, northern and southern India.",
+    "answer_explanation": "The answer is derived directly from the passage and NCERT context."
+  },
+  {
+    "question_number": 33,
+    "section": "D",
+    "question_type": "case_study",
+    "marks": 4,
+    "question_text": "Read the given passage and answer the following questions Countering the demand for separate electorates, Govind Ballabh Pant declared that it was not only harmful for the nation but also for the minorities. He agreed with B. Pocker Bahadur that the success of a democracy was to be judged by the confidence it generated amongst different sections of people. He agreed too that every citizen in a free state should be treated in a manner that satisfied “not only his material wan ts but also his spiritual sense of self -respect”, and that the majority community had an obligation to try and understand the problems of minorities and empathise with their aspirations. Yet Pant opposed the idea of separate electorates. It was a suicidal demand, he argued, that would permanently isolate the minorities, make them vulnerable, and deprive them of any effective say within the government. Source-page no 329, Chapter 4, Themes in Indian History-III, NCERT 33.1. Why were the national leaders countering demand for separate electorates? 33.2. Imagine you were a member of the Constituent Assembly. Would you have supported the idea of separate electorates? Give reasons to justify your answer. 33.3. What was the argument given by B. Pocker Bahadur to which Govind Ballabh Pant agreed? 1+2+ 1 =4 SECTION E MAP BASED QUESTIONS 1x5=5",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "33.1 National leaders opposed separate electorates because they feared these would permanently divide society, isolate minorities and weaken national unity. 33.2 I would oppose separate electorates because equal citizenship and joint electorates encourage shared political responsibility, while constitutional safeguards can protect minority rights without institutionalising division. 33.3 B. Pocker Bahadur argued that democracy should be judged by the confidence it generated among different sections and that citizens' material needs and spiritual self-respect must both be protected.",
+    "answer_explanation": "The response answers all three source-based subparts."
+  },
+  {
+    "question_number": 34,
+    "section": "E",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "34.1 In which two categories do the historians of religion often classify bhakti traditions? 34.2 (a) How many wells have been estimated by the scholars in Mohenjodaro? OR (b) Where is the Brihadishvara temple located? 34.3 Mention any two centres of the National movement.",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "34.1 Historians commonly classify bhakti traditions into saguna bhakti, worship of a deity with attributes and form, and nirguna bhakti, devotion to a formless absolute. 34.2(a) Scholars estimate about 700 wells at Mohenjodaro. OR 34.2(b) The Brihadishvara Temple is located at Thanjavur in Tamil Nadu. 34.3 Any two centres of the national movement may be identified, for example Champaran and Kheda.",
+    "answer_explanation": "The response covers all map-based and factual subparts; exact map points should be matched to the map supplied in the original paper if required."
+  }
+]

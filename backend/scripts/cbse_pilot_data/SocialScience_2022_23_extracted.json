@@ -1,0 +1,435 @@
+[
+  {
+    "question_number": 1,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "What helped in the colonisation of Asian and African countries? Identify the correct statement from the following options.",
+    "options": [
+      "Intergovernmental policies for the expansion of trade",
+      "Governmental invite to the mother countries for expansion",
+      "Technology, investments and improvement in transport",
+      "Capitalists of these regions wanted trade with colonial powers"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 2,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following newspaper was started by Bal Gangadhar Tilak?",
+    "options": [
+      "Hindu",
+      "Kesari",
+      "Sudharak",
+      "Pratap"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 3,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Who among the following was the author of the book 'Gita Govind'?",
+    "options": [
+      "Tulsidas",
+      "Surdas",
+      "Jayadev",
+      "Raidas"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 4,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Arrange the following in chronological order: I. Print culture created the conditions for the French Revolution II. Martin Luther’s writings led to beginning of the Protestant Reformation III. Menocchio reinterpreted the message of the Bible IV. Johann Gutenberg invented Printing press OPTIONS:",
+    "options": [
+      "III, II, I & IV",
+      "I, II, III & IV",
+      "IV, III, II & I",
+      "IV,  II, III & I"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 5,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Identify the crop with the help of the following information - It is a crop which is used both as food and fodder. - It is a kharif crop which requires temperature between 21°C to 27°C. - It grows well in old alluvial soil. - Use of modern inputs have contributed to the increasing production of this crop. Options:",
+    "options": [
+      "Wheat",
+      "Maize",
+      "Rice",
+      "Sugarcane"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 6,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following description of forest is NOT correct?",
+    "options": [
+      "Reserved Forest -Reservation of more than half of forests",
+      "Protected Forest- Reservation of 1/3 of the forests",
+      "Unclassed Forest-Reservation of forest under govt. and private individuals",
+      "Permanent Forest-Reserved and unclassed forest for the production of timber"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 7,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Match the following: RESOURCES - EXAMPLES. a. Renewable Resources - I. Forests and wildlife; b. Non-Renewable Resources - II. The oceanic resources; c. National Resources - III. Roads, canals and railway; d. International Resources - IV. Minerals and fossil fuels.",
+    "options": [
+      "a-I, b-IV, c-III, d-II",
+      "a-II, b-I, c-IV, d-III",
+      "a-IV, b-I, c-IV, d-II",
+      "a-I, b-IV, c-II, d-III"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 8,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Consider the following statements regarding power sharing arrangements in Belgium and identify the incorrect one from the following:",
+    "options": [
+      "Equal number of members from Dutch and French community in the central government",
+      "Separate government for Brussels with equal representation of communities",
+      "The state government to be subordinate to the central government",
+      "Community government elected by people belonging to one language community"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 9,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which one of the following subjects comes under the legislation of Centre and State in India?",
+    "options": [
+      "Education",
+      "Forests",
+      "Banking",
+      "Trade"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 10,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following statement is true regarding Feminist Movements?",
+    "options": [
+      "A group which favours giving more power to working women at rural and urban level.",
+      "A movement that believes in   giving exclusive rights to female in urban areas.",
+      "Radical women’s movements aimed at equality in personal and family life as well.",
+      "It is the practice of placing a feminine and masculine point of view in decision making."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 11,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which one among the following pairs is correctly matched? LIST I LIST II",
+    "options": [
+      "Bharatiya Janata Party National Democratic Alliance",
+      "Congress Party Left front",
+      "Communist Party of India Regional Party",
+      "Mizo National Front United Progressive Alliance"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 12,
+    "section": "A",
+    "question_type": "assertion_reason",
+    "marks": 1,
+    "question_text": "There are two statements marked as Assertion (A) and Reason (R). Mark your answer as per the codes provided below: Assertion (A): Democracy is an accountable, responsive and legitimate government Reason (R): Democracies have regular, free and fair elections and decision-making is based on norms and procedures",
+    "options": [
+      "Both A and R are true and R is the correct explanation of A.",
+      "Both A and R are true but R is not the correct explanation of A.",
+      "A is true but R is false.",
+      "A is false but R is true."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 13,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which one of the following religions was protected and fostered by Sri Lankans in their constitution?",
+    "options": [
+      "Christianity",
+      "Hinduism",
+      "Buddhism",
+      "Islam"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 14,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Read the given data and find out children of which state has attained maximum elementary school education? States Per Capita Income For 2018– 19 (in Rs) Infant Mortality Rate per 1,000 live births (2018) Literac y Rate % 2017–18 Net Attendance Ratio (per 100 persons) secondary stage (age 14 and 15 years) 2017–18 HARYANA 2,36,147 30 82 61 KERALA 2,04,105 7 94 83 BIHAR 40,982 32 62 43 Sources: Economic Survey 2020–21, P.A 157, National Sample Survey Organisation (Report No. 585), National statistical office, Government of India.",
+    "options": [
+      "Haryana",
+      "Bihar",
+      "Haryana and Kerala  both",
+      "Kerala"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 15,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Read the following data and select the appropriate option from the following. Educational Achievement of Rural Population of Uttar Pradesh Category Male Female Literacy rate for rural population 76% 54% Literacy rate for rural children in age group 10-14 years 90% 87% Percentage of rural children aged 10-14 attending school 85% 82% How much percentage of girls are not attending school?",
+    "options": [
+      "81%",
+      "61%",
+      "69%",
+      "18%"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 16,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Find the odd one out from the following options:",
+    "options": [
+      "Tourist Guide, Barber, Tailor, and Potter",
+      "Teacher, Doctor, Vegetable Vendor and Lawyer",
+      "Postman, Cobbler, Soldier and Police Constable",
+      "Indian Railways, Jet Airways, Doordarshan and Metro"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 17,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Fill in the blank: SECTOR CRITERIA USED Primary, Secondary & Tertiary Nature of economic activity Organized & Unorganized ? OPTIONS:",
+    "options": [
+      "Nature of Employment activities",
+      "Nature of Social activities",
+      "Nature of Production activities",
+      "Nature of Political activities"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 18,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Read the information given below and select the correct option Rohan has taken a loan of Rs.5 lakhs from the bank to purchase a house on 12% rate of interest. He has to submit papers of new house and salary record to the bank. What is this process called as? [",
+    "options": [
+      "Interest Rate",
+      "Collateral",
+      "Principal Amount",
+      "Instalments"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 19,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following international agencies allow free trade and work on mutual trade between countries?",
+    "options": [
+      "WTO",
+      "IMF",
+      "UPU",
+      "FAO"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 20,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Identify the correct statements about globalization. I. Removal of barriers by the government II. Foreign companies are allowed to set up factories III. Has enabled all companies to increase their investments IV. Has lessened foreign investment and foreign trade OPTIONS:",
+    "options": [
+      "I &II",
+      "II & III",
+      "I & III",
+      "II & IV"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 21,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "Analyse any two factors that were responsible for the Great Depression in America during 1929. 2",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 22,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "Mention the provisions that constitute India into a secular country. 2",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 23,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "Suggest any two ways to conserve energy resources in India. OR Suggest any two ways to improve the usage of Solar energy.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 24,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "In what ways Government can increase employment in the rural sector? 2 SECTION C SHORT ANSWER BASED QUESTIONS (3X5=15)",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 25,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "How was the social and political situation of India affected by the First World War? Explain. OR How did the Indian merchants and industrialist s relate themselves to the Civil Disobedience Movement? Explain.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 26,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Examine the factors that influence the distribution pattern of the railway network in India. 3",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 27,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "In what ways Multi National Corporation (MNC) different from other companies? Explain with an example.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 28,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Differentiate between democratic and non-democratic government. 3",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 29,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "‘Tertiary sector is different from other sectors.’ Justify the statement with suitable arguments. 3 SECTION D LONG ANSWER BASED QUESTIONS (5X4=20)",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 30,
+    "section": "D",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "Highlight the various measures and practices that French revolutionaries introduced to create a sense of collective identity amongst the French people. OR Highlight the role of Otto Von Bismarck in making of Germany.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 31,
+    "section": "D",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "‘Manufacturing sector is considered as the backbone of general and economic development.’ Examine the statement in the context of India. OR Examine the multi-pronged aspects of Information Technology and Electronics Industry.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 32,
+    "section": "D",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "Describe the role of political parties in India. OR Describe the necessity or utility of political parties in democratic countries.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 33,
+    "section": "D",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "Explain the role of Self-Help Groups (SHGs) in the rural society. OR Explain the significance of The Reserve Bank of India in the Indian economy. SECTION-E CASE BASED QUESTIONS (4x3=12)",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 34,
+    "section": "E",
+    "question_type": "case_study",
+    "marks": 4,
+    "question_text": "Read the source given below and answer the question that follows: Will Thorne is one of those who went in search of seasonal work, loading bricks and doing odd jobs. He describes how job-seekers walked to London in search of work: ‘I had always wanted to go to London, and my desire ... was stimulated by letters from an old workmate ... who was now working at the Old Kent Road Gas Works ... I finally decided to go ... in November, 1881. With two friends I started out to walk the journey, filled with the hope that we would be able to obtain employment, when we get there, with the kind assistance of my friend ... we had little money when we started, not enough to pay for our food and lodgings each night until we arrived in London. Some days we walked as much as twenty miles, and other days less. Our money was gone at the end of the third day ... For two nights we slept out – once under a haystack, and once in an old farm shed ... On arrival in London we tried to find ... my friend ... but ... were unsuccessful. Our money was gone, so there was nothing for us to do but to walk around until late at night, and then try to find some place to sleep. We found an old building and slept in it that night. The next day, Sunday, late in the afternoon, we got to the Old Kent Gas Works, and applied for work. To my great surprise, the man we had been looking for was working at the time. He spoke to the foreman and I was given a job.’ Quoted in Raphael Samuel, ‘Comers and Goers’, in H.J. Dyos and Michael Wolff, eds, The Victorian City: Images and Realities, 1973. 34.1 Analyse the major factor which led London become an attractive place for the job seekers. 34.2 Analyse the reason for the appointment of Will Thorne by the Old Kent Gas works. 34.3 Examine the preference of hand labour over machi nes by the industrialists of the Victorian Britain.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 35,
+    "section": "E",
+    "question_type": "case_study",
+    "marks": 4,
+    "question_text": "Read the given extract and answer following questions Narmada Bachao Andolan or Save Narmada Movement is a Non -Governmental Organisation (NGO) that mobilized tribal people, farmers, environmentalists and human rights activists against the Sardar Sarovar Dam being built across the Narmada river in Gujarat. It originally focused on the environmental issues related to trees that would be submerged under the dam water. Recently it has re-focused the aim to enable poor citizens, especially the oustees (displaced people) to get full rehabilitation facilities from the government. People felt that their suffering would not be in vain... accepted the trauma of displaceme nt believing in the promise of irrigated fields and plentiful harvests. So, often the survivors of Rihand told us that they accepted their sufferings as sacrifice for the sake of their nation. But now, after thirty bitter years of being adrift, their livel ihood having even being more precarious, they keep asking: “Are we the only ones chosen to make sacrifices for the nation?” Source: S. Sharma, quoted in In the Belly of the River. Tribal conflicts over development in Narmada valley. A. Baviskar. 1995. 35.1 With what objective ‘Sardar Sarovar Dam’ was built? 35.2 Analyse the reason of protest by the tribal people. 35.3 Highlight the issues on which ‘Save Narmada Movement’ worked on.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 36,
+    "section": "E",
+    "question_type": "case_study",
+    "marks": 4,
+    "question_text": "Read the given extract and answer following questions. Power sharing arrangements can also be seen in the way political parties, pressure groups and movements control or influence those in power. In a democracy, the citizens must have freedom to choose among various contenders for power. In contemporary democracies, this takes the form of competition among different parties. Such competition ensures that power does not remain in one hand. In the long run, power is shared among different political parties that represent different ideologies and social groups. So metimes this kind of sharing can be direct, when two or more parties form an alliance to contest elections. If their alliance is elected, they form a coalition government and thus share power. In a democracy, we find interest groups such as those of traders, businessmen, industrialists, farmers and industrial workers. They also will have share in governmental power, either through participation in governmental committees or bringing influence on the decision-making process. 36.1 ‘Power sharing is an essen tial component of democracy.’ Give one example to prove the statement. 36.2 How is alliance building an example of power sharing? 36.3 How Political parties, pressure groups and movements help in controlling or influencing those who are in power? SECTION-F MAP SKILL BASED QUESTION (2+3=5) 37 37a. Two places A and B have been marked on the given outline map of India. 2 Identify them and write their correct names on the lines drawn near them. A. Indian National Congress session at this place in 1920 B. The place where Mahatma Gandhi broke Salt Law. 37b. On the same outline map of India locate and label any THREE of the following with suitable Symbols. a. Hirakud Dam b. Tarapur Atomic Power Station c. Noida Software Technology Park d. Kochi Port Note: The following questions are for Visually Impaired Candidates only in lieu of Q. No.37. Attempt any FIVE questions.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 37,
+    "section": "E",
+    "question_type": "case_study",
+    "marks": 4,
+    "question_text": "1 Name the Place where the session of Indian National Congress was held in September 1920.",
+    "options": [],
+    "diagram_dependent": false
+  }
+]

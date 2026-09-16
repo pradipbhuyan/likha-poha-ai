@@ -1,0 +1,444 @@
+[
+  {
+    "question_number": 1,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If two positive integers a and b are written as a = x3y2 and b = xy3, where x, y are prime numbers, then the result obtained by dividing the product of the positive integers by the LCM (a, b) is",
+    "options": [
+      "xy",
+      "xy2",
+      "x3y3",
+      "x2y2"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 2,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The given linear polynomial y = f(x) has",
+    "options": [
+      "2 zeros",
+      "1 zero and the zero is ‘3’",
+      "1 zero and the zero is ‘4’",
+      "No zero"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 3,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The lines representing the given pair of linear equations are non-intersecting. Which of the following statements is true?",
+    "options": [
+      "௔ଵ ௔ଶ = ௕ଵ ௕ଶ = ௖ଵ ௖ଶ",
+      "௔ଵ ௔ଶ = ௕ଵ ௕ଶ ≠ ௖ଵ ௖ଶ",
+      "௔ଵ ௔ଶ ≠ ௕ଵ ௕ଶ = ௖ଵ ௖ଶ",
+      "௔ଵ ௔ଶ ≠ ௕ଵ ௕ଶ ≠ ௖ଵ ௖ଶ"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 4,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The nature of roots of the quadratic equation 9x2 – 6x – 2 = 0 is:",
+    "options": [
+      "No real roots",
+      "2 equal real roots",
+      "2 distinct real roots",
+      "More than 2 real roots"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 5,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Two APs have the same common difference. The first term of one of these is –1 and that of the other is – 8. The difference between their 4th terms is",
+    "options": [
+      "1",
+      "-7",
+      "7",
+      "9"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 6,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "What is the ratio in which the line segment joining (2,-3) and (5, 6) is divided by x-axis?",
+    "options": [
+      "1:2",
+      "2:1",
+      "2:5",
+      "5:2"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 7,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "A point (x,y) is at a distance of 5 units from the origin. How many such points lie in the third quadrant?",
+    "options": [
+      "0",
+      "1",
+      "2",
+      "infinitely many"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 8,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "In Δ ABC, DE ‖ AB. If AB = a, DE = x, BE = b and EC = c. Then x expressed in terms of a, b and c is:",
+    "options": [
+      "௔௖ ௕",
+      "௔௖ ௕ା௖",
+      "௔௕ ௖",
+      "௔௕ ௕ା௖"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 9,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If O is centre of a circle and Chord PQ makes an angle 50° with the tangent PR at the point of contact P, then the angle subtended by the chord at the centre is",
+    "options": [
+      "130°",
+      "100°",
+      "50°",
+      "30°"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 10,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "A quadrilateral PQRS is drawn to circumscribe a circle. If PQ = 12 cm, QR = 15 cm and RS = 14 cm, then find the length of SP is",
+    "options": [
+      "15 cm",
+      "14 cm",
+      "12 cm",
+      "11 cm"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 11,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Given that sin θ = ௔ ௕, then cos θ is.",
+    "options": [
+      "௕ √௕మି௔మ",
+      "௕ ௔",
+      "√௕మି௔ మ ௕",
+      "௔ √௕మି௔మ"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 12,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "(sec A + tan A) (1 – sin A) equals:",
+    "options": [
+      "sec A",
+      "sin A",
+      "cosec A",
+      "cos A"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 13,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If a pole 6 m high casts a shadow 2 √3m long on the ground, then the Sun’s elevation is",
+    "options": [
+      "60°",
+      "45°",
+      "30°",
+      "90°"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 14,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If the perimeter and the area of a circle are numerically equal, then the radius of the circle is",
+    "options": [
+      "2 units",
+      "π units",
+      "4 units",
+      "7 units"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 15,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "It is proposed to build a new circular park equal in area to the sum of areas of two circular parks of diameters 16 m and 12 m in a locality. The radius of the new park is",
+    "options": [
+      "10m",
+      "15m",
+      "20m",
+      "24m"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 16,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "There is a square board of side ‘2a’ units circumscribing a red circle. Jayadev is asked to keep a dot on the above said board. The probability that he keeps the dot on the shaded region is.",
+    "options": [
+      "ସିగ ସ",
+      "గିସ ସ",
+      "ସ గ",
+      "గ ସ"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 17,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "2 cards of hearts and 4 cards of spades are missing from a pack of 52 cards. A card is drawn at random from the remaining pack. What is the probability of getting a black card?",
+    "options": [
+      "ଶଶ ହଶ",
+      "ଶଶ ସ଺",
+      "ଶସ ହଶ",
+      "ଶସ ସ଺"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 18,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The upper limit of the modal class of the given distribution is: Height [in cm] Below 140 Below 145 Below 150 Below 155 Below 160 Below 165 Number of girls 4 11 29 40 46 51",
+    "options": [
+      "165",
+      "160",
+      "155",
+      "150"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 19,
+    "section": "A",
+    "question_type": "assertion_reason",
+    "marks": 1,
+    "question_text": "DIRECTION: In the question number 19 and 20, a statement of assertion",
+    "options": [
+      "Both assertion (A) and reason (R) are true and reason (R) is the correct explanation of assertion (A)",
+      "Both assertion (A) and reason (R) are true and reason (R) is not the correct explanation of assertion (A)",
+      "Assertion (A) is true but reason (R) is false.",
+      "Assertion (A) is false but reason (R) is true. 1"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 20,
+    "section": "A",
+    "question_type": "assertion_reason",
+    "marks": 1,
+    "question_text": "Statement A (Assertion): -5, ିହ ଶ , 0, ହ ଶ , .... is in Arithmetic Progression. Statement R (Reason) : The terms of an Arithmetic Progression cannot have both positive and negative rational numbers.",
+    "options": [
+      "Both assertion (A) and reason (R) are true and reason (R) is the correct explanation of assertion (A)",
+      "Both assertion (A) and reason (R) are true and reason (R) is not the correct explanation of assertion (A)",
+      "Assertion (A) is true but reason (R) is false.",
+      "Assertion (A) is false but reason (R) is true. 1 SECTION B Section B consists of 5 questions of 2 marks each."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 21,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "Prove that √2 is an irrational number. 2",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 22,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "ABCD is a parallelogram. Point P divides AB in the ratio 2:3 and point Q divides DC in the ratio 4:1. Prove that OC is half of OA.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 23,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "From an external point P, two tangents, PA and PB are drawn to a circle with centre O. At a point E on the circle, a tangent is drawn to intersect PA and PB at C and D, respectively. If PA = 10 cm, find the perimeter of ∆PCD.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 24,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "If tan (A + B) = √3 and tan (A – B) = ଵ √ଷ; 0° < A + B < 90°; A > B, find A and B. 2 [or] Find the value of x if 2 cosec230 + x sin260 – ଷ ସ tan230 = 10",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 25,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "With vertices A, B and C of ΔABC as centres, arcs are drawn with radii 14 cm and the three portions of the triangle so obtained are removed. Find the total area removed from the triangle. [or] Find the area of the unshaded region shown in the given figure. SECTION C Section C consists of 6 questions of 3 marks each",
+    "options": [],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 26,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "National Art convention got registrations from students from all parts of the country, of which 60 are interested in music, 84 are interested in dance and 108 students are interested A B C D P Q O in handicrafts. For optimum cultural exchange, organisers wish to keep them in minimum number of groups such that each group consists of students interested in the same artform and the number of students in each group is the same. Find the number of students in each group. Find the number of groups in each art form. How many rooms are required if each group will be allotted a room?",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 27,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "If α, β are zeroes of quadratic polynomial 5x2 + 5x + 1, find the value of 1. αଶ + βଶ 2. αିଵ + βିଵ",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 28,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "The sum of a two digit number and the number obtained by reversing the digits is 66. If the digits of the number differ by 2, find the number. How many such numbers are there? [or] Solve : - ଶ √௫ +ଷ √௬ = 2 ; ସ √௫ - ଽ √௬ = -1, x, y>o",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 29,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "PA and PB are tangents drawn to a circle of centre O from an external point P. Chord AB makes an angle of 30° with the radius at the point of contact. If length of the chord is 6 cm, find the length of the tangent PA and the length of the radius OA. [or] Two tangents TP and TQ are drawn to a circle with centre O from an external point T. Prove that ∠ PTQ = 2 ∠ OPQ.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 30,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "If 1 + sin2θ = 3sinθ cosθ , then prove that tanθ = 1 or ଵ ଶ 3",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 31,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "The length of 40 leaves of a plant are measured correct to nearest millimetre, and the data obtained is represented in the following table. Length [in mm] Number of leaves 118 – 126 3 127 – 135 5 136 – 144 9 145 – 153 12 154 – 162 5 163 – 171 4 172 – 180 2 Find the mean length of the leaves. SECTION D Section D consists of 4 questions of 5 marks each",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 32,
+    "section": "D",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "A motor boat whose speed is 18 km/h in still water takes 1 hour more to go 24 km upstream than to return downstream to the same spot. Find the speed of stream. [or] Two water taps together can fill a tank in 9ଷ ଼ hours. The tap of larger diameter takes 10 hours less than the smaller one to fill the tank separately. Find the time in which each tap can separately fill the tank.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 33,
+    "section": "D",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "(a) State and prove Basic Proportionality theorem. (b) In the given figure ∠CEF = ∠CFE. F is the midpoint of DC. Prove that ஺஻ ஻஽ = ஺ா ி஽",
+    "options": [],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 34,
+    "section": "D",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "Water is flowing at the rate of 15 km/h through a pipe of diameter 14 cm into a cuboidal pond which is 50 m long and 44 m wide. In what time will the level of water in pond rise by 21 cm? What should be the speed of water if the rise in water level is to be attained in 1 hour? [or] A tent is in the shape of a cylinder surmounted by a conical top. If the height and radius of the cylindrical part are 3 m and 14 m respectively, and the total height of the tent is 13.5 m, find the area of the canvas required for making the tent, keeping a provision of 26 m2 of canvas for stitching and wastage. Also, find the cost of the canvas to be purchased at the rate of ₹ 500 per m2.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 35,
+    "section": "D",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "The median of the following data is 50. Find the values of ‘p’ and ‘q’, if the sum of all frequencies is 90. Also find the mode of the data. Marks obtained Number of students 20 – 30 p 30 – 40 15 40 – 50 25 50 – 60 20 60 – 70 q 70 – 80 8 80 - 90 10 SECTION E",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 36,
+    "section": "E",
+    "question_type": "case_study",
+    "marks": 4,
+    "question_text": "Manpreet Kaur is the national record holder for women in the shot-put discipline. Her throw of 18.86m at the Asian Grand Prix in 2017 is the maximum distance for an Indian female athlete. Keeping her as a role model, Sanjitha is determined to earn gold in Olympics one day. Initially her throw reached 7.56m only. Being an athlete in school, she regularly practiced both in the mornings and in the evenings and was able to improve the distance by 9cm every week. During the special camp for 15 days, she started with 40 throws and every day kept increasing the number of throws by 12 to achieve this remarkable progress. (i) How many throws Sanjitha practiced on 11th day of the camp? 1 (ii) What would be Sanjitha’s throw distance at the end of 6 weeks? (or) When will she be able to achieve a throw of 11.16 m? (iii) How many throws did she do during the entire camp of 15 days ? 1",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 37,
+    "section": "E",
+    "question_type": "case_study",
+    "marks": 4,
+    "question_text": "Tharunya was thrilled to know that the football tournament is fixed with a monthly timeframe from 20th July to 20th August 2023 and for the first time in the FIFA Women’s World Cup’s history, two nations host in 10 venues. Her father felt that the game can be better understood if the position of players is represented as points on a coordinate plane. (i) At an instance, the midfielders and forward formed a parallelogram. Find the position of the central midfielder (D) if the position of other players who formed the parallelogram are :- A(1,2), B(4,3) and C(6,6) (ii) Check if the Goal keeper G(-3,5), Sweeper H(3,1) and Wing-back K(0,3) fall on a same straight line. [or] Check if the Full-back J(5,-3) and centre-back I(-4,6) are equidistant from forward C(0,1) and if C is the mid-point of IJ. (iii) If Defensive midfielder A(1,4), Attacking midfielder B(2,-3) and Striker E(a,b) lie on the same straight line and B is equidistant from A and E, find the position of E.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 38,
+    "section": "E",
+    "question_type": "case_study",
+    "marks": 4,
+    "question_text": "One evening, Kaushik was in a park. Children were playing cricket. Birds were singing on a nearby tree of height 80m. He observed a bird on the tree at an angle of elevation of 45°. When a sixer was hit, a ball flew through the tree frightening the bird to fly away. In 2 seconds, he observed the bird flying at the same height at an angle of elevation of 30° and the ball flying towards him at the same height at an angle of elevation of 60°. (i) At what distance from the foot of the tree was he observing the bird sitting on the tree? (ii) How far did the bird fly in the mentioned time? (or) After hitting the tree, how far did the ball travel in the sky when Kaushik saw the ball? (iii) What is the speed of the bird in m/min if it had flown 20(√3 + 1) m? 1",
+    "options": [],
+    "diagram_dependent": false
+  }
+]

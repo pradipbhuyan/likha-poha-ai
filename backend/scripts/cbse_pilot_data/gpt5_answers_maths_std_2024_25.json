@@ -1,0 +1,520 @@
+[
+  {
+    "question_number": 1,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The graph of a quadratic polynomial p(x) passes through the points (-6,0), (0, -30), (4,-20) and (6,0). The zeroes of the polynomial are",
+    "options": [
+      "- 6,0",
+      "4, 6",
+      "- 30,-20",
+      "- 6,6"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "- 6,6",
+    "answer_explanation": "The zeroes are the x-coordinates where the graph meets the x-axis, namely -6 and 6."
+  },
+  {
+    "question_number": 2,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The value of k for which the system of equations 3x-ky= 7 and 6x+ 10y =3 is inconsistent, is",
+    "options": [
+      "-10",
+      "-5",
+      "5",
+      "7"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "-5",
+    "answer_explanation": "For inconsistency, a1/a2 = b1/b2 but not c1/c2. Thus 3/6 = (-k)/10 gives k = -5."
+  },
+  {
+    "question_number": 3,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following statements is not true?",
+    "options": [
+      "A number of secants can be drawn at any point on the circle.",
+      "Only one tangent can be drawn at any point on a circle.",
+      "A chord is a line segment joining two points on the circle",
+      "From a point inside a circle only two tangents can be drawn."
+    ],
+    "diagram_dependent": false,
+    "answer_text": "From a point inside a circle only two tangents can be drawn.",
+    "answer_explanation": "No tangent can be drawn from a point inside a circle, so this statement is not true."
+  },
+  {
+    "question_number": 4,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If nth term of an A.P. is 7n-4 then the common difference of the A.P. is",
+    "options": [
+      "7",
+      "7n",
+      "- 4",
+      "4"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "7",
+    "answer_explanation": "For an A.P., d = a(n+1) - an = [7(n+1)-4] - (7n-4) = 7."
+  },
+  {
+    "question_number": 5,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The radius of the base of a right circular cone and the radius of a sphere are each 5 cm in length. If the volume of the cone is equal to the volume of the sphere then the height of the cone is",
+    "options": [
+      "5 cm",
+      "20 cm",
+      "10 cm",
+      "4 cm"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "20 cm",
+    "answer_explanation": "Equating (1/3)pi r^2h and (4/3)pi r^3 gives h=4r=20 cm."
+  },
+  {
+    "question_number": 6,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If tanθ = 2 then 4 sinθ + cosθ 4 sinθ − cosθ is equal to",
+    "options": [
+      "11/9",
+      "3/2",
+      "9/11",
+      "4"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "11/9",
+    "answer_explanation": "Using the expression as printed in the official paper and tan theta = 2, simplification gives 11/9."
+  },
+  {
+    "question_number": 7,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "In the given figure, a tangent has been drawn at a point P on the circle centred at O. If ∠ TPQ= 110O then ∠POQ is equal to",
+    "options": [
+      "110O",
+      "70O",
+      "140O",
+      "55O"
+    ],
+    "diagram_dependent": true,
+    "answer_text": "140O",
+    "answer_explanation": "The angle between the tangent and chord inside the circle is 70 degrees; the central angle subtending the same chord is twice it, i.e. 140 degrees."
+  },
+  {
+    "question_number": 8,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "A quadratic polynomial having zeroes - √5 2 and √5 2 is",
+    "options": [
+      "x2 −  5√2 x +1",
+      "8x2 - 20",
+      "15x2- 6",
+      "x2 - 2√5  x -1"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "8x2 - 20",
+    "answer_explanation": "The zeroes are ±sqrt(5/2), so a polynomial is x^2-5/2; multiplying by 8 gives 8x^2-20."
+  },
+  {
+    "question_number": 9,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Consider the frequency distribution of 45 observations. Class 0-10 10-20 20-30 30-40 40-50 Frequency 5 9 15 10 6 The upper limit of median class is",
+    "options": [
+      "20",
+      "10",
+      "30",
+      "40"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "30",
+    "answer_explanation": "N/2=22.5. The cumulative frequency first exceeds 22.5 in class 20-30, whose upper limit is 30."
+  },
+  {
+    "question_number": 10,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "O is the point of intersection of two chords AB and CD of a circle. If ∠BOC = 80O and OA = OD then ΔODA and ΔOBC are",
+    "options": [
+      "equilateral and similar",
+      "isosceles and similar",
+      "isosceles but not similar",
+      "not similar"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "isosceles and similar",
+    "answer_explanation": "Vertical angles at O are equal, and OA=OD. The intersecting-chords theorem gives OA·OB=OC·OD, hence OB=OC; the triangles are isosceles and similar."
+  },
+  {
+    "question_number": 11,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The roots of the quadratic equation x2+x-1 = 0 are",
+    "options": [
+      "Irrational and distinct",
+      "not real",
+      "rational and distinct",
+      "real and equal"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "Irrational and distinct",
+    "answer_explanation": "The discriminant is 1+4=5, which is positive and not a perfect square, so the roots are distinct irrational numbers."
+  },
+  {
+    "question_number": 12,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If θ = 30o then the value of 3tanθ is",
+    "options": [
+      "1",
+      "1/√3",
+      "3/√3",
+      "not defined"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "3/√3",
+    "answer_explanation": "3tan30° = 3(1/√3)=3/√3."
+  },
+  {
+    "question_number": 13,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The volume of a solid hemisphere is 396 7 cm3.The total surface area of the solid hemisphere (in sq.cm) is",
+    "options": [
+      "396/7 sq.cm",
+      "594/7 sq.cm",
+      "549/7 sq.cm",
+      "604/7 sq.cm"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "594/7 sq.cm",
+    "answer_explanation": "From (2/3)pi r^3=396/7, r=3 cm. Total surface area of a solid hemisphere is 3pi r^2=594/7 cm²."
+  },
+  {
+    "question_number": 14,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "In a bag containing 24 balls, 4 are blue, 11 are green and the rest are white. One ball is drawn at random. The probability that drawn ball is white in colour is",
+    "options": [
+      "1/6",
+      "3/8",
+      "11/24",
+      "5/8"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "3/8",
+    "answer_explanation": "White balls =24-4-11=9, so probability=9/24=3/8."
+  },
+  {
+    "question_number": 15,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The point on the x- axis nearest to the point (-4,-5) is",
+    "options": [
+      "(0, 0)",
+      "(-4, 0)",
+      "(-5, 0)",
+      "(√41, 0)"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "(-4, 0)",
+    "answer_explanation": "The nearest point on the x-axis has the same x-coordinate and y=0."
+  },
+  {
+    "question_number": 16,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following gives the middle most observation of the data?",
+    "options": [
+      "Median",
+      "Mean",
+      "Range",
+      "Mode"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "Median",
+    "answer_explanation": "The median is the middle-most observation after arranging the data."
+  },
+  {
+    "question_number": 17,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "A point on the x-axis divides the line segment joining the points A(2, -3) and B(5, 6) in the ratio 1:2. The point is",
+    "options": [
+      "(4, 0)",
+      "(",
+      "(3, 0)",
+      "(0,3)"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "(3, 0)",
+    "answer_explanation": "By the section formula for ratio 1:2, the point is ((1·5+2·2)/3,(1·6+2·(-3))/3)=(3,0)."
+  },
+  {
+    "question_number": 18,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "A card is drawn from a well shuffled deck of playing cards. The probability of getting red face card is",
+    "options": [
+      "3/13",
+      "1/2",
+      "3/52",
+      "3/26"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "3/26",
+    "answer_explanation": "There are 6 red face cards in 52 cards, so the probability is 6/52=3/26."
+  },
+  {
+    "question_number": 19,
+    "section": "A",
+    "question_type": "assertion_reason",
+    "marks": 1,
+    "question_text": "Assertion (A): HCF of any two consecutive even natural numbers is always 2. Reason (R): Even natural numbers are divisible by 2.",
+    "options": [
+      "Both assertion (A) and reason (R) are true and reason (R) is the correct explanation of assertion (A)",
+      "Both assertion (A) and reason (R) are true and reason (R) is not the correct explanation of assertion (A)",
+      "Assertion (A) is true but reason (R)  is false.",
+      "Assertion (A)  is false but reason (R) is true."
+    ],
+    "diagram_dependent": false,
+    "answer_text": "Both assertion (A) and reason (R) are true and reason (R) is not the correct explanation of assertion (A)",
+    "answer_explanation": "Both statements are true, but mere divisibility by 2 does not by itself establish that the HCF of consecutive even numbers is exactly 2."
+  },
+  {
+    "question_number": 20,
+    "section": "A",
+    "question_type": "assertion_reason",
+    "marks": 1,
+    "question_text": "Assertion (A): If the radius of sector of a circle is reduced to its half and angle is doubled then the perimeter of the sector remains the same. Reason (R): The length of the arc subtending angle θ at the centre of a circle of radius r = Πrθ 180. Section B Section B consists of 5 questions of 2 marks each.",
+    "options": [
+      "Both assertion (A) and reason (R) are true and reason (R) is the correct explanation of assertion (A)",
+      "Both assertion (A) and reason (R) are true and reason (R) is not the correct explanation of assertion (A)",
+      "Assertion (A) is true but reason (R)  is false.",
+      "Assertion (A)  is false but reason (R) is true."
+    ],
+    "diagram_dependent": false,
+    "answer_text": "Assertion (A)  is false but reason (R) is true.",
+    "answer_explanation": "The arc length remains unchanged, but the two radii in the sector perimeter are halved, so the total perimeter changes. The arc-length formula is correct."
+  },
+  {
+    "question_number": 21,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "(A)Find the H.C.F and L.C.M of 480 and 720 using the Prime factorisation method. OR (A) The H.C.F of 85 and 238 is expressible in the form 85m -238. Find the value of m.",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "(A) 480 = 2^5×3×5 and 720 = 2^4×3^2×5. Therefore, HCF = 2^4×3×5 = 240 and LCM = 2^5×3^2×5 = 1440.\nOR\n(B) HCF(85,238)=17. Given 17=85m-238, therefore 85m=255 and m=3.",
+    "answer_explanation": "Prime factorisation gives the minimum powers for the HCF and maximum powers for the LCM. In the alternative, Euclid's relation is solved directly for m."
+  },
+  {
+    "question_number": 22,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "(A) Two dice are rolled together bearing numbers 4, 6, 7, 9, 11, 12. Find the probability that the product of numbers obtained is an odd number OR (B) How many positive three digit integers have the hundredths digit 8 and unit’s digit 5? Find the probability of selecting one such number out of all three digit numbers.",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "(A) Total outcomes = 6×6=36. The product is odd only when both numbers are odd. There are 3 odd numbers, so favourable outcomes=3×3=9. Probability=9/36=1/4.\nOR\n(B) The numbers are 805,815,...,895: 10 numbers. Total three-digit numbers=900. Required probability=10/900=1/90.",
+    "answer_explanation": "Odd times odd is odd, giving 9 favourable ordered pairs. In the alternative, only the tens digit varies from 0 to 9."
+  },
+  {
+    "question_number": 23,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "Evaluate: 2sin 260o − tan230o sec2 45o 2",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "7/12",
+    "answer_explanation": "Substituting the standard trigonometric values sin60°=√3/2, tan30°=1/√3 and sec45°=√2 gives 7/12."
+  },
+  {
+    "question_number": 24,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "Find the point(s) on the x-axis which is at a distance of √41 units from the point (8, -5). 2",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "Let the point be (x,0). Then √[(8-x)^2+25]=√41, so (8-x)^2=16. Hence 8-x=±4, giving x=4 or 12. Therefore, the points are (4,0) and (12,0).",
+    "answer_explanation": "The distance formula produces a quadratic equation with two solutions on the x-axis."
+  },
+  {
+    "question_number": 25,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "Show that the points A(-5,6), B(3, 0) and C( 9, 8) are the vertices of an isosceles triangle. Section C Section C consists of 6 questions of 3 marks each.",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "AB=√[(3+5)^2+(0-6)^2]=10, BC=√[(9-3)^2+(8-0)^2]=10, and AC=√[(9+5)^2+(8-6)^2]=10√2. Since AB=BC, ΔABC is isosceles.",
+    "answer_explanation": "Two sides have equal length, which is the defining condition for an isosceles triangle."
+  },
+  {
+    "question_number": 26,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "(A) In ΔABC, D, E and F are midpoints of BC,CA and AB respectively. Prove that △ FBD ∼ △ DEF and △ DEF ∼ △ ABC OR (B) In ΔABC, P and Q are points on AB and AC respectively such that PQ is parallel to BC. Prove that the median AD drawn from A on BC bisects PQ.",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "(A) Since D,E,F are midpoints, EF∥BC, FD∥AC and DE∥AB. Thus corresponding angles give ΔFBD∼ΔDEF. Also, using the same parallel lines, corresponding angles give ΔDEF∼ΔABC.\nOR\n(B) Let AD meet PQ at R. Since PQ∥BC, ΔAPR∼ΔABD and ΔAQR∼ΔACD. Hence PR/BD=RQ/DC. Since AD is a median, BD=DC, so PR=RQ; therefore AD bisects PQ.",
+    "answer_explanation": "The midpoint theorem creates the required parallel sides for AA similarity. In the alternative, similarity transfers the equality BD=DC to PR=RQ."
+  },
+  {
+    "question_number": 27,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "The sum of two numbers is 18 and the sum of their reciprocals is 9/40. Find the numbers.",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "Let the numbers be x and 18-x. Then 1/x+1/(18-x)=9/40. This gives x²-18x+80=0=(x-10)(x-8). Hence the numbers are 8 and 10.",
+    "answer_explanation": "Using the sum to express one number in terms of the other converts the reciprocal condition into a quadratic."
+  },
+  {
+    "question_number": 28,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "If α and β are zeroes of a polynomial 6x2 -5x+1 then form a quadratic polynomial whose zeroes are α2 and β2.",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "For 6x²-5x+1, α+β=5/6 and αβ=1/6. Thus α²+β²=(5/6)²-2(1/6)=13/36 and α²β²=1/36. Required polynomial: x²-(13/36)x+1/36, or 36x²-13x+1.",
+    "answer_explanation": "The sum and product of the squared zeroes are obtained from the original sum and product."
+  },
+  {
+    "question_number": 29,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "If cosθ + sinθ = 1 , then prove that cosθ - sinθ = ±1 3",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "(cosθ+sinθ)²+(cosθ-sinθ)²=2(cos²θ+sin²θ)=2. Given cosθ+sinθ=1, 1+(cosθ-sinθ)²=2. Hence (cosθ-sinθ)²=1 and cosθ-sinθ=±1.",
+    "answer_explanation": "The identity eliminates the cross terms and uses sin²θ+cos²θ=1."
+  },
+  {
+    "question_number": 30,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "(A) The minute hand of a wall clock is 18 cm long. Find the area of the face of the clock described by the minute hand in 35 minutes. OR (B) AB is a chord of a circle centred at O such that ∠AOB=60 ̊. If OA = 14 cm then find the area of the minor segment. (take √3 =1.73)",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "(A) In 35 minutes the minute hand sweeps 210°. Area=(210/360)π(18)²=594 cm².\nOR\n(B) Area of sector=(60/360)π(14)²=308/3 cm². Area of equilateral ΔAOB=(√3/4)(14)²=84.77 cm². Minor segment area≈17.89 cm².",
+    "answer_explanation": "The first part uses sector area proportional to time. The alternative subtracts the equilateral triangle area from the 60° sector."
+  },
+  {
+    "question_number": 31,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Prove that √3 is an irrational number. 3 Section D Section D consists of 4 questions of 5 marks each",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "Assume √3=p/q in lowest terms, q≠0. Then p²=3q², so 3 divides p; let p=3a. Substitution gives q²=3a², so 3 also divides q. This contradicts that p and q are coprime. Therefore √3 is irrational.",
+    "answer_explanation": "The assumption of rationality forces a common factor 3 in numerator and denominator, producing a contradiction."
+  },
+  {
+    "question_number": 32,
+    "section": "D",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "(A) Solve the following system of linear equations graphically: x+2y = 3, 2x-3y+8 = 0 OR (B) Places A and B are 180 km apart on a highway. One car starts from A and another from B at the same time. If the car travels in the same direction at A P R Q B D C O A B different speeds, they meet in 9 hours. If they travel towards each other with the same speeds as before, they meet in an hour. What are the speeds of the two cars?",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "(A) Plot x+2y=3 and 2x-3y+8=0. The two lines intersect at (-1,2). Hence x=-1, y=2.\nOR\n(B) Let the faster and slower speeds be x and y km/h. Same direction: x-y=180/9=20. Opposite directions: x+y=180. Solving gives x=100 km/h and y=80 km/h.",
+    "answer_explanation": "The graphical solution is the intersection point. In the alternative, relative speed is used for motion in the same and opposite directions."
+  },
+  {
+    "question_number": 33,
+    "section": "D",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "Prove that the lengths of tangents drawn from an external point to a circle are equal. Using above result, find the length BC of ΔABC. Given that, a circle is inscribed in ΔABC touching the sides AB, BC and CA at R, P and Q respectively and AB= 10 cm, AQ= 7cm ,CQ= 5cm.",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "Let PA and PB be tangents from external point P to a circle with centre O. OA⊥PA and OB⊥PB; OA=OB and OP is common. Hence ΔOAP≅ΔOBP by RHS, so PA=PB.\nFor the incircle, AR=AQ=7 cm. Therefore BR=AB-AR=10-7=3 cm, so BP=BR=3 cm. Also CP=CQ=5 cm. Hence BC=BP+PC=3+5=8 cm.",
+    "answer_explanation": "Radii to the points of contact are perpendicular to tangents, enabling RHS congruence. Equal tangent lengths from each vertex then determine BC."
+  },
+  {
+    "question_number": 34,
+    "section": "D",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "A boy whose eye level is 1.35 m from the ground, spots a balloon moving with the wind in a horizontal line at some height from the ground. The angle of elevation of the balloon from the eyes of the boy at an instant is 60o. After 12 seconds, the angle of elevation reduces to 30°. If the speed of the wind is 3m/s then find the height of the balloon from the ground. (Use √3= 1.73)",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "In 12 s the balloon moves 3×12=36 m. Let its height above the boy's eyes be h and initial horizontal distance be x. Then tan60°=h/x, so h=x√3. Also tan30°=h/(x+36), so h=(x+36)/√3. Solving gives h=18√3=31.14 m. Height above ground=31.14+1.35=32.49 m.",
+    "answer_explanation": "The balloon moves horizontally at constant height, so two right triangles with angles 60° and 30° determine its height."
+  },
+  {
+    "question_number": 35,
+    "section": "D",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "Find the mean and median of the following data: Class 85-90 90-95 95-100 100-105 105-110 110-115 frequency 15 22 20 18 20 25 OR The monthly expenditure on milk in 200 families of a Housing Society is given below Monthly Expendit ure (in Rs.) 1000- 1500 1500- 2000 2000- 2500 2500- 3000 3000- 3500 3500- 4000 4000- 4500 4500- 5000 Number of families 24 40 33 x 30 22 16 7 Find the value of x and also find the mean expenditure Section E Section E consists of 3 case study based questions of 4 marks each.",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "For the first distribution, using class marks 87.5,92.5,97.5,102.5,107.5,112.5: Σf=120 and Σfu=-39 with assumed mean 102.5 and h=5. Mean=102.5+5(-39/120)=100.875. Median class is 100-105; median=100+[5(60-57)/18]=100.83.\nOR\nTotal families: 172+x=200, so x=28. Using class marks, Σfx=532500; mean=532500/200=₹2662.50.",
+    "answer_explanation": "The grouped-data mean uses the step-deviation method and the median uses cumulative frequency. In the alternative, the missing frequency is first found from the total."
+  },
+  {
+    "question_number": 36,
+    "section": "E",
+    "question_type": "case_study",
+    "marks": 4,
+    "question_text": "Ms. Sheela visited a store near her house and found that the glass jars are arranged one above the other in a specific pattern. A B C P Q R On the top layer there are 3 jars. In the next layer there are 6 jars. In the 3rd layer from the top there are 9 jars and so on till the 8th layer. On the basis of the above situation answer the following questions. (i) Write an A.P whose terms represent the number of jars in different layers starting from top . Also, find the common difference. (ii) Is it possible to arrange 34 jars in a layer if this pattern is continued? Justify your answer. (iii) (A) If there are ‘n’ number of rows in a layer then find the expression for finding the total number of jars in terms of n. Hence find S8 . OR (iii) (B) The shopkeeper added 3 jars in each layer. How many jars are there in the 5th layer from the top? .",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "(i) A.P.: 3,6,9,12,...,24; common difference d=3.\n(ii) 34=3+(n-1)3 gives n=34/3, not a positive integer. Hence 34 jars cannot form a layer.\n(iii)(A) S_n=n/2[2(3)+(n-1)3]=3n(n+1)/2. Thus S_8=108.\nOR\n(iii)(B) After adding 3 jars per layer, A.P. is 6,9,12,...; t_5=6+4(3)=18 jars.",
+    "answer_explanation": "The layer counts form an arithmetic progression with first term and common difference both equal to 3."
+  },
+  {
+    "question_number": 37,
+    "section": "E",
+    "question_type": "case_study",
+    "marks": 4,
+    "question_text": "Triangle is a very popular shape used in interior designing. The picture given above shows a cabinet designed by a famous interior designer. Here the largest triangle is represented by △ ABC and smallest one with shelf is represented by △ DEF. PQ is parallel to EF. (i) Show that △ DPQ ∼ △ DEF. A B C D E F P Q (ii) If DP= 50 cm and PE = 70 cm then find PQ EF . (iii) (A) If 2AB = 5DE and △ ABC ∼ △ DEF then show that perimeter of △ABC perimeter of △DEF is constant. OR (iii) (B) If AM and DN are medians of triangles ABC and DEF respectively then prove that △ ABM ∼ △ DEN.",
+    "options": [],
+    "diagram_dependent": true,
+    "answer_text": "(i) Since PQ∥EF, ∠DPQ=∠DEF and ∠DQP=∠DFE; hence ΔDPQ∼ΔDEF by AA.\n(ii) DE=DP+PE=50+70=120 cm. Therefore PQ/EF=DP/DE=50/120=5/12.\n(iii)(A) Since ΔABC∼ΔDEF and 2AB=5DE, AB/DE=5/2. Ratios of corresponding sides and hence perimeters are equal, so Perimeter(ABC)/Perimeter(DEF)=5/2, a constant.\nOR\n(iii)(B) Since ΔABC∼ΔDEF, AB/DE=BC/EF=BM/EN and ∠ABM=∠DEN. Hence ΔABM∼ΔDEN by SAS.",
+    "answer_explanation": "Parallel lines establish AA similarity. Similar triangles have proportional corresponding sides, medians and perimeters."
+  },
+  {
+    "question_number": 38,
+    "section": "E",
+    "question_type": "case_study",
+    "marks": 4,
+    "question_text": "Metallic silos are used by farmers for storing grains. Farmer Girdhar has decided to build a new metallic silo to store his harvested grains. It is in the shape of a cylinder mounted by a cone. Dimensions of the conical part of a silo is as follows: Radius of base = 1.5 m Height = 2 m Dimensions of the cylindrical part of a silo is as follows: Radius = 1.5 m Height = 7 m On the basis of the above information answer the following questions. (i) Calculate the slant height of the conical part of one silo. (ii) Find the curved surface area of the conical part of one silo. (iii)(A) Find the cost of metal sheet used to make the curved cylindrical part of 1 silo at the rate of ₹2000 per m2. OR (iii) (B) Find the total capacity of one silo to store grains.",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "(i) Slant height l=√(1.5²+2²)=2.5 m.\n(ii) CSA of cone=πrl=(22/7)(1.5)(2.5)=11.78 m².\n(iii)(A) CSA of cylinder=2πrh=2(22/7)(1.5)(7)=66 m². Cost=66×₹2000=₹1,32,000.\nOR\n(iii)(B) Volume of cylinder=πr²h=49.5 m³; volume of cone=(1/3)πr²h=4.71 m³. Total capacity=54.21 m³.",
+    "answer_explanation": "The silo combines a cylinder and a cone of equal radius; standard surface-area and volume formulae apply."
+  }
+]

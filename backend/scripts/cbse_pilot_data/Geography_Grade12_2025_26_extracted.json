@@ -1,0 +1,357 @@
+[
+  {
+    "question_number": 1,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which continent has the highest number of the world's most populous countries?",
+    "options": [
+      "Africa",
+      "North America",
+      "Asia",
+      "South America"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 2,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following is a characteristic of stage one of the Demographic Transition Theory? .",
+    "options": [
+      "High fertility and high mortality",
+      "Both fertility and mortality declined considerably",
+      "High growth of population",
+      "Fertility rate is high, and the mortality rate declines"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 3,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Country Y has an HDI of 0.950 and is ranked among the highest in human development. Which of the following policies should it focus on to maintain this status?",
+    "options": [
+      "Increasing industrial output to boost GNI per capita",
+      "Not investing on infrastructure for healthcare and education",
+      "Reducing emphasis on education to focus on economic activities",
+      "Strengthening policies on environmental sustainability and social equity."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 4,
+    "section": "A",
+    "question_type": "assertion_reason",
+    "marks": 1,
+    "question_text": "Assertion (A): Population change in an area is an important indicator of economic development, social upliftment, and historical and cultural background of the region. Reason (R): The population growth or population change refers to the change in the number of inhabitants of a territory during a specific period of time, which can be expressed in terms of absolute numbers or percentage.",
+    "options": [
+      "Both (A) and (R) are true, and (R) is the correct explanation of",
+      ".",
+      "Both (A) and (R) are true, but (R) is not the correct explanation of (A).",
+      "(A) is true, but (R) is false."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 5,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following activities is an example of a quaternary activity?",
+    "options": [
+      "Transporting coal from mines to factories via railways",
+      "A lawyer drafting contracts for corporate clients",
+      "A salesperson working at a local supermarket",
+      "A scientist developing genetically modified crops in a research lab"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 6,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Match the following policies with the pillar of human development they reflect. Policies/Initiatives: 1. Equal access to education for girls and boys. 2. Availability of resources for future generations. 3. Encouraging participation in local governance. 4. Skill development programs for higher efficiency. Pillar of Human Development: a. Sustainability b. Equity c. Productivity d. Empowerment",
+    "options": [
+      "1-a, 2-b, 3-c, 4-d",
+      "1-b, 2-a, 3-d, 4-c",
+      "1-c, 2-d, 3-b, 4-a",
+      "1-d, 2-c, 3-a, 4-b"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 7,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "What is the primary purpose of Regional Trade Blocs?",
+    "options": [
+      "To reduce global trade by limiting international exchanges between member nations.",
+      "To encourage trade between countries with geographical proximity and similar or complementary trading items while reducing trade restrictions in the developing world.",
+      "To replace global organizations and regulate all international trade activities globally.",
+      "To enforce trade tariffs between member nations and prevent free trade agreements."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 8,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which one of these statements about India's imports is true?",
+    "options": [
+      "In the 1950s and 60s, India mainly imported machinery and equipment.",
+      "India's exports were higher than its imports, which led to a negative balance of payment.",
+      "After the 1970s, India started importing food because of the Green Revolution.",
+      "India imports more petroleum now because it's used as fuel and in industry."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 9,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The percentage decadal growth rate of India's population declined significantly between 1991-2001 and 2001-2011. If a policymaker wants to maintain a steady growth rate, which of the following strategies would be most effective?",
+    "options": [
+      "Encourage higher birth rates to boost population growth.",
+      "Focus on reducing investment in healthcare.",
+      "Implement policies to encourage rural-to-urban migration.",
+      "Promote balanced population growth through family planning and education initiatives."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 10,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If a region has a high proportion of people aged below 15 years and above 65 years, what challenge is most likely to arise?",
+    "options": [
+      "High literacy rate",
+      "Low dependency ratio",
+      "Economic strain on the working-age population",
+      "High participation in the labour force"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 11,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following was not a measure adopted by the Government of India in the 1990s to promote liberalization and a free -market economy to influence the development of Indian agriculture?",
+    "options": [
+      "The creation of the Farmer’s Portal to assist with  insurance, agricultural storage, crops, seeds, pesticides, market prices, and welfare schemes.",
+      "Launch of the National Mission for Sustainable Agriculture to",
+      "Promotion of organic farming through schemes like Paramparagat Krishi Vikas Yojana (PKVY) and Rashtriya Krishi Vikas Yojana (RKVY).",
+      "Introduction of high -yielding seed varieties of wheat (Mexico) and rice (the Philippines) in the 1960s and 1970s."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 12,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following statements about agricultural land use in India between 1950-51 and 2014-15 is correct based on the table?",
+    "options": [
+      "The percentage of culturable waste land as part of the reporting area decreased from 8.0% to 4.0%.",
+      "The net area sown as a perc entage of total cultivable land decreased from 78.4% to 70.0%.",
+      "The percentage of current fallow land as part of the reporting area decreased from 4.9% to 3.7%.",
+      "The total cultivable land as a percentage of the reporting area increased from 58.0% to 59.5%."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 13,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following statements correctly describe the objectives of the Pradhan Mantri Krishi Sinchayee Yojana (PMKSY)? 1. To promote the exclusive use of traditional irrigation methods in rain-fed areas. 2. To ensure access to protective irrigation for all agricultural farms and expand cultivable areas under assured irrigation. 3. To integrate water resources, distribution, and efficient usage through technologies like \"Per Drop More Crop.\" 4. To introduce sustainable water conservation practices and improve on-farm water use efficiency.",
+    "options": [
+      "1 and 3 only",
+      "2, 3, and 4 only",
+      "1, 2, and 4 only",
+      "1, 2, 3 and 4"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 14,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "As a policymaker, tasked with fostering behavioural changes in the community to shift from a prevailing attitude of consumption to one focused on conservation and smart water management, which of the following programs would you prioritize for implementation?",
+    "options": [
+      "Arvary Pani Sansad",
+      "Atal Bhujal Yojana",
+      "National Water Policy, 2012",
+      "Jal Kranti Abhiyan"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 15,
+    "section": "A",
+    "question_type": "assertion_reason",
+    "marks": 1,
+    "question_text": "Assertion (A): Bio-energy is a sustainable and versatile source of energy that can be converted into electrical energy, heat energy, or gas for cooking. Reason (R): Bio-energy not only processes waste and garbage to produce energy but also reduces environmental pollution, enhances self-reliance, and i mproves the economic life of rural areas in developing countries. Options:",
+    "options": [
+      "Both Assertion (A) and Reason (R) are true, and Reason (R) is the correct explanation of Assertion (A).",
+      "Both Assertion (A) and Reason (R) are true, but Reason (R) is not the correct explanation of Assertion (A).",
+      "Assertion (A) is true, but Reason (R) is false.",
+      "Assertion (A) is false, but Reason (R) is true"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 16,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Match the mode of transport with its description. Column A (Mode of Transport): a. Airways b. Roadways c. Railways d. Waterways. Column B (Description): 1. Suitable for heavy goods over land but limited to connected regions. 2. Capable of carrying large volumes of heavy goods at a lower cost. 3. Flexible setup and rapid delivery for high-value, low-volume goods. 4. Widely accessible and easy to use for short-distance trade and delivery.",
+    "options": [
+      "a-3, b-4, c-1, d-2",
+      "a-2, b-3, c-4, d-1",
+      "a-1, b-2, c-3, d-4",
+      "a-4, b-1, c-2, d-3"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 17,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "UDAN (Ude Desh ka Aam Nagrik) is a first-of-its kind scheme globally, designed to jump - start the regional aviation market. Regional Connectivity Scheme (RCS) -UDAN was conceived by the Ministry of Civil Aviation (MoCA) Govt. of India, to promote regional connectivity . by making fly affordable for the common citizen. The central idea of UDAN is",
+    "options": [
+      "To encourage airlines to operate flights on regional and remote routes through enabling policies and extending incentives.",
+      "To ensure the development of world-class international airports in metropolitan cities.",
+      "To provide subsidies to private airlines for expanding their global flight operations.",
+      "To improve air cargo infrastructure to support trade and export activities in rural areas. Section-B"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 18,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "The concept of neo determinism was put forward by Griffith Taylor in 1920. The concept shows that neither is there a situation of absolute necessity (environmental determinism) nor is there a condition of absolute freedom (possibilism). It means that human beings can conquer nature by obeying it. They have to respond to the red signals and can proceed in their pursuits of development when nature permits the modifications. It means that possibilities can be created within the limits which do not damage the environment and there is no free run without accidents. The free run which the developed economies attempted to take has already resulted in the greenhouse effect, ozone layer depletion, global warming, receding glaciers and degrading lands. (source: https://ncert.nic.in/textbook.php?legy1=1-8) i. Who proposed the concept of neo-determinism? ii. How did Taylor view the relationship between nature and a country’s economic program? iii. Why neo determinism has become quite relevant in the present- day context? 1+1+1 =3",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 19,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Read the given passage carefully and answer the questions that follows: The concept of human development was introduced by Dr Mahbub-ul- Haq. Dr Haq has described human development as development that enlarges people’s choices and improves their lives. People are central to all development under this concept. These choices are not fixed but keep on changing. The basic goal of development is to create conditions where people can live meaningful lives. The human development index (HDI) ranks the countries based on their performance in the key areas of health, education and access to resources. These rankings are based on a score between 0 to 1 that a country earns from its record in the key areas of human development. The ways to measure human development are constantly being refined and newer ways of capturing different elements of human development are being researched. Researchers have found links between the level of corruption or political freedom in a particular region. India ranks 132 out of 191 countries in the Human Development Index (HDI) 2021, after registering a decline in its score over two consecutive years for the first time in two decades. 1+1+1 =3 . (https://ncert.nic.in/textbook.php?legy1=3-8) The 2023 HDI stands at a new high following steep decline during 2020 and 2021 due to the COVID -19 pandemic, according to the 2023 -24 Human Development Report released by the United Nations Development Programme (UNDP) on March 13, 2024. The report found that rich countries experienced unprecedented development. But half of the world’s poorest nations continued to languish below their pre-COVID crisis levels. The 2023 -24 Hu man Development Report identified Switzerland, Norway, and Iceland as leading the national human development indices, while the Central African Republic, South Sudan, and Somalia lagged the furthest behind. (Source:https://www.downtoearth.org.in/governance/poverty- reduction-in-reverse-far-right-populism-to-blame-says-un-2023- human-development-report-95011) i. What does the Human Development Index (HDI) measure according to the source? ii. What significant trend did the 20 23 HDI report highlight regarding the world’s poorest nations? iii. Which three countries were ranked highest in the 2023 Human Development Index? Section-C",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 20,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Explain how outsourcing has impacted both the countries that outsource work and the countries receiving outsourced jobs.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 21,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "How can we promote sustainable urban development while addressing challenges like pollution, resource scarcity, and congestion in growing cities and new towns?",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 22,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Identify and explain three measures that urban planners can adopt to address urban transportation challenges, including congestion, pollution, and inefficiency.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 23,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Discuss the key features of population growth in India during the period 1951–1981 including the main reasons for the rapid population increase during this phase? OR Who are adolescents? Why are they considered important in the population? What are the challenges faced by society in dealing with adolescents? 1+1+1 =3 Section- D .",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 24,
+    "section": "D",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "Explain how pastoral nomadism is an adaptation to specific geographical conditions. Illustrate your answer with examples from different regions of the world. OR \"Mining has played a significant role in human development, especially since the Industrial Revolution.” In view of the statement, discuss the factors affecting mining activities. What are the economic and social impacts of mining on developed and developing countries, and how do these impacts differ based on their levels of industrialization and labour dynamics? 2+3=5",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 25,
+    "section": "D",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "How have countries like India, China, Brazil and Indonesia benefitted from the development of small-scale industries? What are technopolies? Give two examples. OR Discuss with examples , any five factors that influence industrial location. 3+2=5",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 26,
+    "section": "D",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "Explain the problems faced by slum dwellers in urban areas. How do these problems impact their quality of life? OR \"Noise pollution has emerged as a serious problem despite being location specific.\" Analyse the statement and explain. 3+2=5",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 27,
+    "section": "D",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "Study the table showing the composition of India’s exports since 2015-2021 and answer the question. How have the composition and trends in India's exports evolved since 2015-16? Highlight five key changes.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 28,
+    "section": "D",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "Formulate a development plan for the Bharmaur tribal region under the Integrated Tribal Development Project (ITDP), focusing on improving agriculture, education, and livelihood opportunities, considering the region’s climatic conditions, socio -economic challenges, and potential for sustainable development. OR The development of the Indira Gandhi Canal Command area has led to the degradation of the physical environment there. Suggest five measures to promote ecological sustainability in the Indira Gandhi Canal Project. Section-E .",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 29,
+    "section": "E",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "following: A. A major seaport of Europe. B. An international seaport in South Africa. C. An important waterway of Europe. D. An area of subsistence gathering in South America. E. An important airport of South America. F. A terminal station of Trans-Siberian Railway. G. Region of extensive commercial grain agriculture in Australia.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 30,
+    "section": "E",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "Locate and label any five of the following geographical features on the Political Outline map of India with appropriate symbols: A. An important iron ore mine in Odisha. B. Southernmost seaport of India C. An oil refinery in Gujarat . D. The state with highest population density. E. The state leading in the production of tea F. An international airport in Karnataka. G. An important coal mine in West Bengal The following questions are for visually impaired students in lieu of Question No.30. Attempt any five. A. Name an important iron ore mine in Odisha B. Name southernmost seaport of India C. Name an oil refinery in Gujarat D. Name the state with highest population density. E. Name one leading cotton producing state of India. F. Name the international airport of Karnataka G. Name an important coal mine of West Bengal",
+    "options": [],
+    "diagram_dependent": false
+  }
+]

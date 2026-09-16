@@ -1,0 +1,475 @@
+You are answering questions from an official CBSE Class X Social Science
+2025-26 Sample Question Paper, using CBSE's own official marking-scheme conventions.
+
+For every question in the JSON array below, add exactly two fields:
+- "answer_text": the correct answer.
+    - For question_type "mcq" or "assertion_reason": copy the correct option's text
+      EXACTLY as it appears in that question's own "options" array (character for
+      character), not a paraphrase, not just the letter.
+    - For "short_answer", "long_answer", or "case_study": the worked solution,
+      written the way a CBSE marking scheme presents it — final answer clearly
+      stated, with the key points/reasoning shown concisely (not a full essay,
+      just what would earn the marks).
+- "answer_explanation": 1-3 sentences on WHY that's correct / the reasoning or
+  historical/civic/geographic concept used, distinct from the working already in answer_text.
+
+Rules:
+- Return ONLY a JSON array, same length and same "question_number" values as the
+  input, each object containing ALL the original fields plus the two new ones. No
+  markdown code fences, no commentary before or after — just the raw JSON array.
+- Do not renumber, skip, merge, or reorder questions.
+- Question 1 is a column-matching question already reconstructed as plain text with
+  its 4 combination options — answer with the correct combination exactly as given.
+- Questions 2, 9, 19, and 21 were originally picture/map/cartoon-based; they have
+  been replaced with the CBSE-provided "for visually impaired students" text-only
+  alternate versions, which are complete and answerable from the text alone.
+- marks values indicate how much a full-credit answer is worth — long_answer (5
+  marks) and case_study (4 marks, with sub-parts) should show correspondingly more
+  points than short_answer (2-3 marks).
+
+Here is the questions array:
+
+[
+  {
+    "question_number": 1,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Match the following and choose the correct option. Column I: A. Frederic Sorrieu, B. Statue of Liberty, C. Foreground in front of the Statue of Liberty, D. Sorrieu's utopian vision. Column II: 1. Torch of enlightenment, 2. Shattered remains of absolutist institutions, 3. Democratic and Social Republics, 4. French Artist.",
+    "options": [
+      "A-4, B-1, C-2, D-3",
+      "A-2, B-4, C-4, D-1",
+      "A-1, B-2, C-4, D-3",
+      "A-4, B-1, C-3, D-4"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 2,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which one option from the following is the appropriate reason for the formation of the Swaraj party?",
+    "options": [
+      "To ask for Poorna Swaraj for Indians.",
+      "To return to Council Politics.",
+      "To ask Dominion State for India.",
+      "To oppose Simon Commission."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 3,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Thousands of people fled Europe for America in the 19th century due to -",
+    "options": [
+      "Widespread poverty and deadly diseases",
+      "Frequent famines and poor living conditions",
+      "Continuous wars and political instability",
+      "Harsh climate and repeated natural disasters"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 4,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Louise-Sebastien Mercier proclaimed “Tremble, therefore, tyrants of the world! Tremble before the virtual writer!” Who are referred to as the tyrants in this context?",
+    "options": [
+      "Educated classes who wanted to change the society",
+      "Absolutist institutions like monarchy and church",
+      "Authors of the new books",
+      "Printing press"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 5,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "“The Silk route was a good example of vibrant pre -modern trade and cultural links between distant parts of the world.” Explain the statement with any two examples. OR 5B. ‘Sometimes the new crops could make the difference between life and death. ’. Explain the statement with any two examples.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 6,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "‘A variety of cultural processes played an important role in developing a sense of nationalism in India’. Support the statement with suitable examples. OR 6 B. Salt March 'became an effective tool of resistance against colonialism.’ Analyse the statement with suitable reasons.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 7,
+    "section": "A",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "‘In Britain the formation of the nation -state was not the result of a sudden upheaval or revolution but was the result of a long-drawn-out process.’ Analyse this statement with suitable reasons. OR 7B. ‘The Treaty of Vienna was drawn up in 1815 with the object of undoing most of the changes that had come about in Europe during the Napoleonic wars.’ Highlight the significant provisions of this treaty.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 8,
+    "section": "A",
+    "question_type": "case_study",
+    "marks": 4,
+    "question_text": "Read the given text and answer the following questions. \"Why Newspapers? Krishnaji Trimbuck Ranade, inhabitant of Poona, intends to publish a Newspaper in the Marathi Language with a view of affording useful information on every topic of local interest...\" (Bombay Telegraph and Courier, 6 January 1849). \"The task of the native newspapers and political associations is identical to the role of the Opposition in the House of Commons in Parliament in England. That is to critically examine government policy to suggest improvements... These associations ought to carefully study the particular issues, gather diverse relevant information...\" (Native Opinion, 3 April 1870). 8.1 Explain the main reason for publishing newspapers by Krishnaji (1 mark). 8.2 How was the task of native newspaper and political association seen identical to the role of the opposition (1 mark)? 8.3 Analyze the reasons for the popularity of newspapers during the 19th century (2 marks).",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 9,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "Name: A) The place where the Civil Disobedience Movement was launched. B) The place where the Indian National Congress session was held in September 1920.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 10,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "What is essential for resource development to contribute to overall development?",
+    "options": [
+      "The availability of resources alone is enough.",
+      "The presence of foreign invaders and their governance.",
+      "Technological development and institutional changes.",
+      "Only human resources can contribute to development."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 11,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Identify the appropriate option to fill in the empty boxes: Alluvial ? ? Ideal for the growth of sugarcane, paddy, wheat and other cereal and pulse crops. Ideal for growing cotton suitable for crops like cashew nut.",
+    "options": [
+      "Black soil, Red and Yellow soils",
+      "Laterite soil, Black soil.",
+      "Red & Yellow soils & Black soil.",
+      "Black soil & Laterite soil."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 12,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "A total of 628 tigers died in India during the past five years due to natural causes and other reasons, including poaching, according to government data. Meanwhile, 349 people were killed in tiger attacks during this period, with one state alone recording 200 deaths. [source: https://www.ptinews.com/story/national/628-tigers-died-in-india-in-past-five-years-govt-data/1685133t/] Which of the following is the most significant indirect consequence of poaching on the tiger population?",
+    "options": [
+      "Reduction in the prey species, dwindling tiger's food supply.",
+      "Increase in human-wildlife conflicts in protected areas",
+      "Rise in the tiger population.",
+      "Decrease in tourism revenue in national parks"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 13,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Based on the classification of forests, which of the following statements would most likely apply to places like Jammu and Kashmir, Andhra Pradesh, and Kerala etc.?",
+    "options": [
+      "These places mostly have forests managed as reserved or protected forests for conservation.",
+      "They rely on unclassed forests and local c ommunity management for forest conservation.",
+      "They have forest resources and primarily focus on industrial development.",
+      "There are no classified forests and forest management is entirely left to private ownership."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 14,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which one of the following states has made roof top water harvesting compulsory in India?",
+    "options": [
+      "Haryana",
+      "Punjab",
+      "Assam",
+      "Tamil Nadu."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 15,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following statements best evaluates the overall goal of the Pradhan Mantri Krishi Sinchaee Yojana?",
+    "options": [
+      "Addressing the negative ecological effects of large dams by reducing water usage.",
+      "To provide better irrigation systems and sustainable water conservation practices for farmers.",
+      "Shifting farmers from traditional crops to more commercial, water-intensive crops.",
+      "Preserve the natural river flow and prevent the fragmentation of aquatic ecosystems."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 16,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "Rice is grown as a commercial crop in Haryana and Punjab, but as a subsistence crop in Odisha. Using your understanding of geographical factors and economic practices, explain why rice cultivation differs in these regions.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 17,
+    "section": "B",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "Person P is willing to establish a mineral based industry. He has been advised to set up a bauxite industry in Odisha as a suitable way to m ake a profitable venture. Analyse the possible reasons behind the advice given to her. Please note that the assessment scheme of the Academic Session 2024 -25 will continue in the current session i.e. 2025-26 OR 17B. ‘Coal is the most important and abundant fossil fuel in India.’ Justify the statement by evaluating the significant role it plays in the growth of the Indian economy in its different forms.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 18,
+    "section": "B",
+    "question_type": "case_study",
+    "marks": 4,
+    "question_text": "Read the given text and answer the following questions:(1+2+1=4) Global pollution is rising due to rapid economic growth, population increases, and insufficient environmental management. This poses serious health risks for people and ecosystems, particularly in low - and middle-income countries. Contributing to these challenges, the global economy relies on deeply intertwined supply chains, sustained by more than 100 billion tons of raw materials entering the system each year. Intensive material consumption depletes natural resources and causes negative environmental impacts at every stage of the product lifecycle. Global waste is expected to increase to 3.4 billion tons by 2050. Pollution of all types hinders development outcomes. Exposure to air pollution, water pollution, and hazardous chemicals and wastes like mercu ry, lead and persistent organic pollutants ( POPs) causes debilitating and fatal illnesses, creates harmful living conditions, and destroys ecosystems. Pollution undermines sustainable economic growth, exacerbates poverty and inequality in both urban and rural areas, and significantly contributes to climate change. Poor people, who cannot afford to protect themselves from the negative impacts of pollution, end up suffering the most. Pollution is the largest environmental cause of disease and premature death. It is estimated to be several times more deaths than from AIDS, tuberculosis, and malaria combined. Global health crises, such as the COVID -19 pandemic, are reminders of the strong linkages between environment and health and of the need to address such linkages systematically. [Source: https://www.worldbank.org/en/topic/pollution] 18.1 Why do you think is global waste expected to increase by 2050? 18.2 How do manufacturing industries cause pollution of different types? Explain with examples. 18.3 Is it correct to consider pollution as a possible cause for worsening of the current global trends of poverty and inequality? Justify. MAP SKILL-BASED QUESTION (3 marks)",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 19,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "Answer any three of the following: (i) Name the dam in the Mahanadi basin that integrates conservation of water with flood control. (ii) Specify the name of a major sea port in West Bengal. (iii) Name an international airport in Tamil Nadu. (iv) State the name of an international airport in Punjab.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 20,
+    "section": "C",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following statement(s) are true with respect to the ethnic composition of Belgium? I. 59 percent of the total population of Belgium lives in the Wallonia region and speaks French. II. 40 percent live in the Flemish region and speak Dutch. III. One percent of the Belgians speak German. IV. In the capital city Brussels, 80 percent people speak French while 20 per cent are Dutch speaking. Choose the correct option:",
+    "options": [
+      "I and II",
+      "III and IV",
+      "I, II and III",
+      "I and IV"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 21,
+    "section": "C",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Consider the following statements on Power Sharing and choose the correct statement(s): I. Imposing the will of the majority community over others. II. It helps in reducing the possibility of conflict between the social groups. III. Power Sharing is a good way to ensure the stability of political order. IV. It brings socio-political opposition among parties.",
+    "options": [
+      "I and II",
+      "I and III",
+      "II and IV",
+      "II and III"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 22,
+    "section": "C",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Consider the following case and choose the correct option- Suppose the Government of India plans to issue new currency notes of different denominations in order to curb the influence of black money. The Government of one state is opposed to this policy of the Central Government. Can the state government stop the union government from implementing this policy?",
+    "options": [
+      "Yes, because Currency is the subject of State List",
+      "No, because Currency is a subject of Union List",
+      "Yes, because the approval of both the governments is necessary to implement this change.",
+      "No, because any such change must be approved by the local government also."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 23,
+    "section": "C",
+    "question_type": "assertion_reason",
+    "marks": 1,
+    "question_text": "Two statements are given as Assertion (A) and Reason(R). Study the statements carefully and identify the correct alternative: ASSERTION (A) : Exclusive attention to caste can produce negative results in democracy. REASON (R): It can divert attention from other important issues thus leading to tensions, conflicts and even violence. Choose the correct option:",
+    "options": [
+      "Lala Lajpat Rai",
+      "Bal Gangadhar Tilak",
+      "Gopal Krishan Gokhale",
+      "Raja Rammohan Roy"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 24,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "Highlight any two key features of federalism.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 25,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "‘Women in India face discrimination, disadvantages and oppression in many ways.’ Highlight any two aspects of life where you witness this inequality.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 26,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "‘Democracy leads to peaceful and harmonious life among citizens in every sphere.’ Support this statement with suitable arguments.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 27,
+    "section": "C",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "‘Political parties play a significant role in the effective working of a democracy.’ Explain. OR 27B. Analyse how the issue of leadership succession poses a challenge to political parties in India.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 28,
+    "section": "C",
+    "question_type": "case_study",
+    "marks": 4,
+    "question_text": "Read the given text and answer the following questions:(1+1+2=4) Sri Lanka emerged as an independent country in 1948. The leaders of the Sinhala community sought to secure dominance over government by virtue of their majority. As a result, the democratica lly elected government adopted a series of MAJORITARIAN measures to establish Sinhala supremacy. Over the years, it created feelings of alienation among the Sri Lankan Tamils. They felt that none of the major political parties led by the Buddhist Sinhala l eaders was sensitive to their language and culture. As a result, the relations between the Sinhala and Tamil communities strained over time. On the other hand, the Belgian leaders took a different path. They recognised the existence of regional differences and cultural diversities. Between 1970 and 1993, they amended their constitution four times to work out an arrangement that would enable everyone to live together within the same country. Source-Adapted from Power Sharing,NCERT 28. 1 State any two demands of Tamils in Sri Lanka. 28. 2 State the results of the Majoritarian Government in Sri Lanka. 28. 3 Explain any two provisions of the Belgian model of power sharing. SECTION D ECONOMICS (20 marks)",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 29,
+    "section": "D",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Underemployment is caused when -",
+    "options": [
+      "More workers are employed than actually required",
+      "Fewer workers are employed than actually required",
+      "Workers are paid more than their actual output",
+      "Jobs are given only to highly educated workers"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 30,
+    "section": "D",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "What can be inferred about the limitations of using per capita income (average income) to compare well -being across countries? Choose the correct option as the answer.",
+    "options": [
+      "It shows how equally or unequally income is distributed among the people in a country.",
+      "The only measure needed to understand a country’s development is Per capita income.",
+      "It gives a basic idea of economic well-being but hides the income inequality.",
+      "It only reflects the industrial growth of a country an d does not consider other important factors."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 31,
+    "section": "D",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following examples best demonstrates how the tertiary sector supports both the primary and secondary sectors?",
+    "options": [
+      "Farmers grow vegetables and sell them directly to consumers, with no transportation or storage involved.",
+      "A factory makes shoes and uses raw materials like leather to create the product, relying on transport and retail stores to distribute the shoes.",
+      "A bakery bakes bread and uses delivery services to send the bread to local shops for sale, without any direct involvement of raw materials.",
+      "A company produces furniture from wood, but does not require any transport or retail services to sell the product."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 32,
+    "section": "D",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which one of the following issues currency notes in India?",
+    "options": [
+      "Finance Ministry.",
+      "Reserve Bank of India.",
+      "State Bank of India.",
+      "Central Bank of India."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 33,
+    "section": "D",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Person Z tries to explain how the requirement of a double coincidence of wants in a barter system limits trade and exchange. Which of the following justification do you think will be used by him/her?",
+    "options": [
+      "It makes trade more complicated, as each person must have what the other person wants, limiting the pool of potential trade partners.",
+      "The barter system allows trade to be conducted more efficiently since both parties already know what they need from the transaction.",
+      "It increases the number of exchanges because each person can trade for exactly what they want.",
+      "The system creates value for goods by ensuring that both parties have a direct need for each other’s goods."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 34,
+    "section": "D",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Recognize and choose the option that correctly matches the effects and consequent outcomes of globalization. Column A (Effects of globalisation) Column B (Outcomes) 1.Increased foreign investment i. Expansion of global markets and access to technology 2.Cultural exchange and awareness ii. Loss of traditional jobs due to automation and cheaper labor elsewhere 3.Techonological exchange and awareness iii. Spread of cultural practices, ideas, and values across borders 4.Growth of multinational corporations iv. Large companies becoming dominant players in global markets Choose the correct option:",
+    "options": [
+      "1-iii, 2-ii, 3-i, 4-iv",
+      "1-iv, 2-ii, 3-i, 4-iii",
+      "1-ii, 2-iv, 3-iii, 4-i",
+      "1-i, 2-iii, 3-ii, 4-iv"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 35,
+    "section": "D",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Evaluate the utility of public services in contributing to the overall well -being of individuals and society.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 36,
+    "section": "D",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "‘Expanding access to loans in the formal sector is important, yet it is equally critical that these loans are accessible to all people for national development.’ Justify the statement.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 37,
+    "section": "D",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Highlight the significant three factors that have contr ibuted to the growth of globalisation.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 38,
+    "section": "D",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "A research student spoke with two people, M and N to learn about their work-related differences. On the basis of the interview conducted with both of them, the student concludes that while person M was working in an organized sector, person N was an employee of a workplace that was functioning in an unorganis ed way. Analyse the key differences between the two sectors that must have enabled the research student to come to this conclusion. OR",
+    "options": [],
+    "diagram_dependent": false
+  }
+]

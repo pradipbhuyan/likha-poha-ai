@@ -1,0 +1,531 @@
+[
+  {
+    "question_number": 1,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The change in colour of the moist litmus paper in the given set up is due to i. presence of acid ii. presence of base iii. presence of H+(aq) in the solution iv. presence of Litmus which acts as an indicator",
+    "options": [
+      "i and ii",
+      "Only ii",
+      "Only iii",
+      "Only iv."
+    ],
+    "diagram_dependent": false,
+    "answer_text": "Only iii",
+    "answer_explanation": "Only iii"
+  },
+  {
+    "question_number": 2,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "In the redox reaction MnO2 + 4HCl → MnCl2 + 2H2O + Cl2",
+    "options": [
+      "MnO2 is reduced to MnCl2& HCl is oxidized to H2O",
+      "MnO2 is reduced to MnCl2& HCl is oxidized to Cl2",
+      "MnO2 is oxidized to MnCl2 & HCl is reduced to Cl2",
+      "MnO2 is oxidized to MnCl2 & HCl is reduced to H2O"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "MnO2 is reduced to MnCl2& HCl is oxidized to Cl2",
+    "answer_explanation": "MnO2 is reduced to MnCl2& HCl is oxidized to Cl2"
+  },
+  {
+    "question_number": 3,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following is the correct observation of the reaction shown in the above set up?",
+    "options": [
+      "Brown powder of Magnesium oxide is formed.",
+      "Colourless gas which turns lime water milky is evolved.",
+      "Magnesium ribbon burns with brilliant white light.",
+      "Reddish brown gas with a smell of burning Sulphur has evolved."
+    ],
+    "diagram_dependent": false,
+    "answer_text": "Magnesium ribbon burns with brilliant white light.",
+    "answer_explanation": "Magnesium ribbon burns with brilliant white light."
+  },
+  {
+    "question_number": 4,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "With the reference to four gases CO2,CO, Cl2 and O2, which one of the options in the table is correct? Option Acidic oxide Used in treatment of water Product of respiration Product of incomplete combustion",
+    "options": [
+      "CO Cl2 O2 CO",
+      "CO2 Cl2 CO2 CO",
+      "CO2 O2 O2 CO2",
+      "CO O2 CO2 CO2"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "CO2 Cl2 CO2 CO",
+    "answer_explanation": "CO2 Cl2 CO2 CO"
+  },
+  {
+    "question_number": 5,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "On placing a copper coin in a test tube containing green ferrous sulphate solution, it will be observed that the ferrous sulphate solution",
+    "options": [
+      "turns blue, and a grey substance is deposited on the copper coin.",
+      "turns colourless and a grey substance is deposited on the copper coin.",
+      "turns colourless and a reddish–brown substance is deposited on the copper coin.",
+      "remains green with no change in the copper coin."
+    ],
+    "diagram_dependent": false,
+    "answer_text": "remains green with no change in the copper coin.",
+    "answer_explanation": "Copper is less reactive than iron, so it cannot displace iron from FeSO₄; the solution remains green and the coin is unchanged."
+  },
+  {
+    "question_number": 6,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Anita added a drop each of diluted acetic acid and diluted hydrochloric acid on pH paper and compared the colors. Which of the following is the correct conclusion?",
+    "options": [
+      "pH of acetic acid is more than that of hydrochloric acid.",
+      "pH of acetic acid is less than that of hydrochloric acid.",
+      "Acetic acid dissociates completely in aqueous solution.",
+      "Acetic acid is a strong acid"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "pH of acetic acid is more than that of hydrochloric acid.",
+    "answer_explanation": "Acetic acid is weak and ionises partially, so it has a higher pH than strong hydrochloric acid of comparable concentration."
+  },
+  {
+    "question_number": 7,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The formulae of four organic compounds are shown below. Choose the correct option",
+    "options": [
+      "A and B are unsaturated hydrocarbons",
+      "C and D are saturated hydrocarbons",
+      "Addition of hydrogen in presence of catalyst changes A to C",
+      "Addition of potassium permanganate changes B to D"
+    ],
+    "diagram_dependent": true,
+    "answer_text": "NEEDS_MANUAL_REVIEW: The extracted question or required figure is incomplete, so the correct option cannot be determined reliably.",
+    "answer_explanation": "The source text does not contain enough information to identify the answer without guessing."
+  },
+  {
+    "question_number": 8,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "In the given transverse section of the leaf identify the layer of cells where maximum photosynthesis occurs.",
+    "options": [
+      "I, II",
+      "II, III",
+      "III, IV",
+      "I, IV"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "II, III",
+    "answer_explanation": "Maximum photosynthesis occurs in palisade mesophyll, represented by layers II and III in the standard transverse leaf section."
+  },
+  {
+    "question_number": 9,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Observe the experimental setup shown below. Name the chemical indicated as ‘X’ that can absorb the gas which is evolved as a byproduct of respiration.",
+    "options": [
+      "NaOH",
+      "KOH",
+      "Ca (OH)2",
+      "K2CO3"
+    ],
+    "diagram_dependent": true,
+    "answer_text": "KOH",
+    "answer_explanation": "KOH absorbs carbon dioxide released during respiration."
+  },
+  {
+    "question_number": 10,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If a tall pea plant is crossed with a pure dwarf pea plant then, what percentage of F1 and F2 generation respectively will be tall?",
+    "options": [
+      "25%, 25%",
+      "50%, 50%",
+      "75%,100%",
+      "100%, 75%"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "100%, 75%",
+    "answer_explanation": "TT×tt gives all Tt (100% tall) in F1; Tt×Tt gives 3:1, i.e. 75% tall in F2."
+  },
+  {
+    "question_number": 11,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Observe the three figures given below. Which of the following depicts tropic movements appropriately?",
+    "options": [
+      "B and C",
+      "A and C",
+      "B only",
+      "C only"
+    ],
+    "diagram_dependent": true,
+    "answer_text": "NEEDS_MANUAL_REVIEW: The extracted question or required figure is incomplete, so the correct option cannot be determined reliably.",
+    "answer_explanation": "The source text does not contain enough information to identify the answer without guessing."
+  },
+  {
+    "question_number": 12,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The diagram shown below depicts pollination. Choose the options that will show a maximum variation in the offspring.",
+    "options": [
+      "A, B and C",
+      "B and D",
+      "B, C and D",
+      "A and C"
+    ],
+    "diagram_dependent": true,
+    "answer_text": "NEEDS_MANUAL_REVIEW: The extracted question or required figure is incomplete, so the correct option cannot be determined reliably.",
+    "answer_explanation": "The source text does not contain enough information to identify the answer without guessing."
+  },
+  {
+    "question_number": 13,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "A complete circuit is left on for several minutes, causing the connecting copper wire to become hot. As the temperature of the wire increases, the electrical resistance of the wire",
+    "options": [
+      "decreases.",
+      "remains the same.",
+      "increases.",
+      "increases for some time and then decreases ."
+    ],
+    "diagram_dependent": false,
+    "answer_text": "increases.",
+    "answer_explanation": "The resistance of a metallic conductor increases with temperature."
+  },
+  {
+    "question_number": 14,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "A copper wire is held between the poles of a magnet. The current in the wire can be reversed. The pole of the magnet can also be changed over. In how many of the four directions shown can the force act on the wire?",
+    "options": [
+      "1",
+      "2",
+      "3",
+      "4"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "2",
+    "answer_explanation": "Reversing either current or magnetic field reverses the force, so among the shown alternatives the force can act in two opposite directions."
+  },
+  {
+    "question_number": 15,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Plastic insulation surrounds a wire having diameter d and length l as shown above. A decrease in the resistance of the wire would be produced by an increase in the",
+    "options": [
+      "length l of the wire",
+      "diameter d of the wire",
+      "temperature of the wire",
+      "thickness of the plastic insulation"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "diameter d of the wire",
+    "answer_explanation": "R=ρl/A; increasing diameter increases cross-sectional area and decreases resistance."
+  },
+  {
+    "question_number": 16,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following pattern correctly describes the magnetic field around a long straight wire carrying current?",
+    "options": [
+      "straight lines perpendicular to the wire.",
+      "straight lines parallel to the wire.",
+      "radial lines originating from the wire.",
+      "concentric circles centred around the wire."
+    ],
+    "diagram_dependent": false,
+    "answer_text": "concentric circles centred around the wire.",
+    "answer_explanation": "Magnetic field lines around a straight current-carrying wire are concentric circles centred on the wire."
+  },
+  {
+    "question_number": 17,
+    "section": "A",
+    "question_type": "assertion_reason",
+    "marks": 1,
+    "question_text": "Assertion: Silver bromide decomposition is used in black and white photography. Reason: Light provides energy for this exothermic reaction.",
+    "options": [
+      "Both A and R are true and R is the correct explanation of A",
+      "Both A and R are true and R is not the correct explanation of A",
+      "A is true but R is false",
+      "A is False but R is true"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "A is true but R is false",
+    "answer_explanation": "A is true but R is false"
+  },
+  {
+    "question_number": 18,
+    "section": "A",
+    "question_type": "assertion_reason",
+    "marks": 1,
+    "question_text": "Assertion: Height in pea plants is controlled by efficiency of enzymes and is thus genetically controlled. Reason: Cellular DNA is the information source for making proteins in the cell.",
+    "options": [
+      "Both A and R are true and R is the correct explanation of A",
+      "Both A and R are true and R is not the correct explanation of A",
+      "A is true but R is false",
+      "A is False but R is true"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "Both A and R are true and R is the correct explanation of A",
+    "answer_explanation": "Both A and R are true and R is the correct explanation of A"
+  },
+  {
+    "question_number": 19,
+    "section": "A",
+    "question_type": "assertion_reason",
+    "marks": 1,
+    "question_text": "Assertion: Amphibians can tolerate mixing of oxygenated and deoxygenated blood. Reason: Amphibians are animals with two chambered heart",
+    "options": [
+      "Both A and R are true and R is the correct explanation of A",
+      "Both A and R are true and R is not the correct explanation of A",
+      "A is true but R is false",
+      "A is False but R is true"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "A is true but R is false",
+    "answer_explanation": "A is true but R is false"
+  },
+  {
+    "question_number": 20,
+    "section": "A",
+    "question_type": "assertion_reason",
+    "marks": 1,
+    "question_text": "Assertion: On freely suspending a current – carrying solenoid, it comes to rest in Geographical N-S direction. Reason : One end of current carrying straight solenoid behaves as a North pole and the other end as a South pole, just like a bar magnet. SECTION – B Q. no. 21 to 26 are very short answer questions.",
+    "options": [
+      "Both A and R are true and R is the correct explanation of A",
+      "Both A and R are true and R is not the correct explanation of A",
+      "A is true but R is false",
+      "A is False but R is true"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "Both A and R are true and R is the correct explanation of A",
+    "answer_explanation": "Both A and R are true and R is the correct explanation of A"
+  },
+  {
+    "question_number": 21,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "A clear solution of slaked lime is made by dissolving Ca(OH)2in an excess of water. This solution is left exposed to air. The solution slowly goes milky as a faint white precipitate forms. Explain why a faint white precipitate forms, support your response with the help of a chemical equation. OR Keerti added dilute Hydrochloric acid to four metals and recorded her observations as shown in the table given below: Metal Gas Evolved Copper Yes Iron Yes Magnesium No Zinc Yes Select the correct observation(s) and give chemical equation(s) of the reaction involved.",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "CO₂ from air reacts with lime water to form insoluble CaCO₃, causing milkiness: Ca(OH)₂ + CO₂ → CaCO₃↓ + H₂O. OR Correct observations: iron, magnesium and zinc evolve H₂; copper does not. Fe+2HCl→FeCl₂+H₂; Mg+2HCl→MgCl₂+H₂; Zn+2HCl→ZnCl₂+H₂.",
+    "answer_explanation": "The precipitate is calcium carbonate; metals above hydrogen displace it from dilute acids."
+  },
+  {
+    "question_number": 22,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "How is the mode of action in beating of the heart different from reflex actions? Give four examples.",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "Heartbeat is an involuntary rhythmic action initiated by the sinoatrial node and regulated by the autonomic nervous system; it is not a sudden response through a reflex arc. Reflex actions are rapid automatic responses to stimuli. Examples: withdrawal from a hot object, knee jerk, blinking, sneezing.",
+    "answer_explanation": "Heartbeat is internally generated and continuous, whereas reflexes are stimulus-triggered protective responses."
+  },
+  {
+    "question_number": 23,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "Patients whose gallbladder are removed are recommended to eat less oily food. Why?",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "The gallbladder stores and concentrates bile. After its removal, bile enters the intestine continuously in small amounts, so large quantities of fat cannot be emulsified efficiently; hence less oily food is advised.",
+    "answer_explanation": "Bile salts emulsify fats and aid lipase action."
+  },
+  {
+    "question_number": 24,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "Name the substances other than water, that are reabsorbed during urine formation. What are the two parameters that decide the amount of water that is reabsorbed in the kidney?",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "Glucose, amino acids and salts are reabsorbed in addition to water. Water reabsorption depends on (i) the amount of excess water in the body and (ii) the amount of dissolved wastes that must be excreted.",
+    "answer_explanation": "Selective reabsorption maintains water and solute balance."
+  },
+  {
+    "question_number": 25,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "State the phenomena observed in the above diagram. Explain with reference to the diagram, which of the two lights mentioned above will have the higher wavelength? OR How will you use two identical prisms so that a narrow beam of white lightincident on one prism emerges out of the second prism as white light? Draw the diagram.",
+    "options": [],
+    "diagram_dependent": true,
+    "answer_text": "NEEDS_MANUAL_REVIEW: The diagram identifying the two lights is missing. In dispersion, red has the longer wavelength and deviates least, while violet has the shorter wavelength and deviates most.",
+    "answer_explanation": "The exact labels cannot be matched without the figure."
+  },
+  {
+    "question_number": 26,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "A lot of waste is generated in neighborhood. However, almost all of it is biodegradable. What impact will it have on the environment or human health? SECTION - C Q.no. 27 to 33 are short answer questions.",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "Biodegradable waste is decomposed by microorganisms, but large accumulation can produce foul smell, methane, leachate, disease-carrying flies and rodents, and oxygen depletion in nearby water. Proper composting/segregation is therefore required.",
+    "answer_explanation": "Biodegradability reduces persistence but does not make unmanaged waste harmless."
+  },
+  {
+    "question_number": 27,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "i) ii) Identify the types of reaction mentioned above in (i) and (ii). Give one example for each type in the form of a balanced chemical equation.",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "NEEDS_MANUAL_REVIEW: Reactions (i) and (ii) are absent from the extracted text.",
+    "answer_explanation": "The reaction types cannot be identified without the missing equations/figures."
+  },
+  {
+    "question_number": 28,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "(a) Identify the gasses evolved at the anode and cathode in the above experimental set up. (b) Name the process that occurs. Why is it called so? (c) Illustrate the reaction of the process with the help of a chemical equation.",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "(a) Hydrogen is evolved at the cathode and oxygen at the anode. (b) The process is electrolytic decomposition/electrolysis of water because electricity decomposes one compound into simpler substances. (c) 2H₂O(l) → 2H₂(g) + O₂(g).",
+    "answer_explanation": "Water decomposes in a 2:1 volume ratio of hydrogen to oxygen."
+  },
+  {
+    "question_number": 29,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "The leaves of a plant were covered with aluminium foil, how would it affect the physiology of the plant? OR How is lymph an important fluid involved in transportation? If lymphatic vessels get blocked, how would it affect the human body? Elaborate.",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "Covered leaves receive no light, so photosynthesis and starch formation stop in those parts; stomatal gas exchange and transpiration may also be reduced, lowering food production and growth. OR Lymph returns tissue fluid to blood, transports absorbed fats and supports immunity; blockage causes fluid accumulation (oedema), swelling and impaired fat transport.",
+    "answer_explanation": "Light is essential for photosynthesis; lymphatic drainage prevents tissue-fluid accumulation."
+  },
+  {
+    "question_number": 30,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Rohit wants to have an erect image of an object using a converging mirror of focal length 40 cm. (a) Specify the range of distance where the object can be placed in front of the mirror. Justify. (b) Draw a ray diagram to show image formation in this case. (c) State one use of the mirror based on the above kind of image formation.",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "(a) For an erect image with a concave mirror of focal length 40 cm, place the object between the pole and focus: 0<u<40 cm. The image is virtual, erect and magnified behind the mirror. (b) Draw one ray parallel to the axis reflected through F and another directed towards C; their backward extensions meet behind the mirror. (c) Used as a shaving/makeup mirror or dentist’s mirror.",
+    "answer_explanation": "A concave mirror forms a virtual erect image only when the object is within the focal length."
+  },
+  {
+    "question_number": 31,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "(a) A lens of focal length 5 cm is being used by Debashree in the laboratory as a magnifying glass. Her least distance of distinct vision is 25 cm. (i) What is the magnification obtained by using the glass? (ii) She keeps a book at a distance 10 cm from her eyes and tries to read. She is unable to read. What is the reason for this? (b) Ravi kept a book at a distance of 10 cm from the eyes of his friend Hari. Hari is not able to read anything written in the book. Give reasons for this?",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "(a)(i) For a simple microscope with final image at the near point, M=1+D/f=1+25/5=6. (ii) At 10 cm the book is inside her near point (25 cm), so the eye cannot accommodate enough to focus it. (b) Hari likewise cannot see clearly because the object is closer than his least distance of distinct vision.",
+    "answer_explanation": "A normal eye sees distinctly only at or beyond about 25 cm."
+  },
+  {
+    "question_number": 32,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "A student fixes a white sheet of paper on a drawing board. He places a bar magnet in the centre and sprinkles some iron filings uniformly around the bar magnet. Then he taps gently and observes that iron filings arrange themselves in a certain pattern. (a) Why do iron filings arrange themselves in a particular pattern? (b) Which physical quantity is indicated by the pattern of field lines around the bar magnet? (c) State any two properties of magnetic field lines. OR A compass needle is placed near a current carrying wire. State your observations for the following cases and give reasons for the same in each case- (a) Magnitude of electric current in wire is increased. (b) The compass needle is displaced away from the wire.",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "(a) Iron filings become temporarily magnetised and align along the magnetic field. (b) The pattern indicates the direction and relative strength of the magnetic field. (c) Field lines form closed curves; they never intersect; closeness indicates stronger field (any two).",
+    "answer_explanation": "The filings trace the local direction of the magnetic field."
+  },
+  {
+    "question_number": 33,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Why is damage to the ozone layer a cause for concern? What are its causes and what steps are being taken to limit this damage? SECTION - D Q.no. 34 to 36 are Long answer questions.",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "Ozone absorbs harmful UV radiation. Its depletion increases skin cancer, cataracts and damage to crops/plankton. CFCs and related chemicals release chlorine/bromine radicals that destroy ozone. Measures include phasing out ozone-depleting substances under the Montreal Protocol and using safer refrigerants.",
+    "answer_explanation": "Protecting stratospheric ozone limits biological exposure to UV-B."
+  },
+  {
+    "question_number": 34,
+    "section": "D",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "Shristi heated Ethanol with a compound A in presence of a few drops of concentrated sulphuric acid and observed a sweet smelling compound B is formed. When B is treated with sodium hydroxide it gives back Ethanol and a compound C. (a) Identify A and C (b) Give one use each of compounds A and B. (c) Write the chemical reactions involved and name the reactions. OR (a) What is the role of concentrated Sulphuric acid when it is heated with Ethanol at 443 K. Give the reaction involved. (b) Reshu by mistake forgot to label the two test tubes containing Ethanol and Ethanoic acid. Suggest an experiment to identify the substances correctly? Illustrate the reactions with the help of chemical equations",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "(a) A is ethanoic acid; C is sodium ethanoate. (b) Ethanoic acid is used in vinegar/preservation; ester B (ethyl ethanoate) is used in perfumes/flavouring. (c) Esterification: CH₃COOH+C₂H₅OH ⇌ CH₃COOC₂H₅+H₂O (conc. H₂SO₄). Saponification: CH₃COOC₂H₅+NaOH→CH₃COONa+C₂H₅OH.",
+    "answer_explanation": "Ethanol and ethanoic acid form a sweet-smelling ester, which alkaline hydrolysis converts back to alcohol and salt."
+  },
+  {
+    "question_number": 35,
+    "section": "D",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "(a) Why is it not possible to reconstruct the whole organism from a fragment in complex multicellular organisms? (b) Sexual maturation of reproductive tissues and organs are necessary link for reproduction. Elucidate. OR (a) How are variations useful for species if there is drastic alteration in the niches? (b) Explain how the uterus and placenta provide necessary conditions for proper growth and development of the embryo after implantation?",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "(a) Complex multicellular organisms have specialised, interdependent tissues; most fragments lack the organised cell types needed to regenerate an entire body. (b) At puberty, reproductive organs mature and begin producing gametes and hormones; only then can fertilisation, pregnancy and reproduction occur.",
+    "answer_explanation": "Cell differentiation limits regeneration, while sexual maturity provides functional gametes and organs."
+  },
+  {
+    "question_number": 36,
+    "section": "D",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "The diagram above is a schematic diagram of a household circuit. The house shown in the above diagram has 5 usable spaces where electrical connections are made. For this house, the mains have a voltage of 220 V and the net current coming from the mains is 22A. (a) What is the mode of connection to all the spaces in the house fr om the mains? (b) The spaces 5 and 4 have the same resistance and spaces 3 and 2 have respective resistances of 20Ω and 30Ω. Space 1 has a resistance double that of space 5. What is the net resistance for space 5. (c) What is the current in space 3? (d) What should be placed between the main connection and the rest of the house’s electrical appliances to save them from accidental high electric current? SECTION - E Q.no. 37 to 39 are case - based/data -based questions with 2 to 3 short sub - parts. Internal choice is provided in one of these sub-parts.",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "(a) All spaces are connected in parallel. (b) Total resistance=V/I=220/22=10 Ω. Let R₅=R₄=R and R₁=2R, with R₂=30 Ω and R₃=20 Ω. Then 1/10=1/(2R)+1/R+1/30+1/20, giving 3/(2R)=1/60, so R=90 Ω. (c) I₃=220/20=11 A. (d) A fuse or MCB should be placed in the live wire.",
+    "answer_explanation": "Parallel connection gives equal voltage to each space; equivalent resistance uses reciprocal addition."
+  },
+  {
+    "question_number": 37,
+    "section": "E",
+    "question_type": "case_study",
+    "marks": 4,
+    "question_text": "Two students decided to investigate the effect of water and air on iron object under identical experimental conditions. They measured the mass of each object before placing it partially immersed in 10 ml of water. After a few days, the object were removed, dried and their masses were measured. The table shows their results. Student Object Mass of Object before Rusting in g Mass of the coated object in g A Nail 3.0 3.15 B Thin plate 6.0 6.33 (a) What might be the reason for the varied observations of the two students? (b) In another set up the students coated iron nails with zinc metal and noted that, iron nails coated with zinc prevents rusting. They also observed that zinc initially acts as a physical barrier, but an extra advantage of using zinc is that it continues to prevent rusting even if the layer of zinc is damaged. Name this process of rust prevention and give any two other methods to prevent rusting. OR (b) In which of the following applications of Iron, rusting will occur most? Support your answer with valid reason. A - Iron Bucket electroplated with Zinc B - Electricity cables having iron wires covered with aluminium C - Iron hinges on a gate D - Painted iron fence",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "(a) The thin plate has greater exposed surface area, so more iron reacts with oxygen and moisture and its mass gain is larger. (b) Zinc coating is galvanisation. Other methods: painting, oiling/greasing, electroplating or alloying (any two). OR Rusting is greatest for unprotected iron hinges on a gate because they are directly exposed to air and moisture.",
+    "answer_explanation": "Rusting requires oxygen and water; protective coatings isolate iron, and zinc also gives sacrificial protection."
+  },
+  {
+    "question_number": 38,
+    "section": "E",
+    "question_type": "case_study",
+    "marks": 4,
+    "question_text": "Pooja has green eyes while her parents and brother have black eyes. Pooja’s husband Ravi has black eyes while his mother has green eyes and father has black eyes. (a) On the basis of the above given information, is the green eye colour a dominant or recessive trait? Justify your answer. (b) What is the possible genetic makeup of Pooja’s brother’s eye colour? (c) What is the probability that the offspring of Pooja and Ravi will have green eyes? Also, show the inheritance of eye colour in the offspring with the help of a suitable cross. OR (d) 50% of the offspring of Pooja’s brother are green eyed. With help of cross show how this is possible.",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "(a) Green eyes are recessive because black-eyed parents can have a green-eyed child, so both must carry the recessive allele. Let B=black, b=green; Pooja=bb. (b) Her black-eyed brother may be BB or Bb. (c) Ravi is Bb because his mother is bb and he is black-eyed. Cross bb×Bb gives 50% Bb black-eyed and 50% bb green-eyed. OR A 50% green-eyed outcome from the brother requires Bb×bb.",
+    "answer_explanation": "A recessive phenotype appears only in homozygous condition."
+  },
+  {
+    "question_number": 39,
+    "section": "E",
+    "question_type": "case_study",
+    "marks": 4,
+    "question_text": "The above images are that of a specialized slide projector. Slides are small transparencies mounted in sturdy frames ideally suited to magnification and projection, since they have a very high resolution and a high image quality. There is a tray where the slides are to be put into a particular orientation so that the viewers can see the enlarged erect images of the transparent slides. This means that the slides will have to be inserted upside down in the projector tray. To show her students the images of insects that she investigated in the lab, Mrs. Iyer brought a slide projector. Her slide projector produced a 500 times enlarged and inverted image of a slide on a screen 10 m away.",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "Magnification m=v/u=-500 (inverted), with v=10 m=1000 cm. Thus u=v/m=-2 cm. Using 1/f=1/v-1/u=1/1000+1/2=501/1000, f≈1.996 cm (about 2.0 cm). The slide must be placed just beyond the focal point of a convex lens to form a highly enlarged real inverted image on the screen.",
+    "answer_explanation": "A projector uses a convex lens and a real image, so the magnification is negative."
+  }
+]

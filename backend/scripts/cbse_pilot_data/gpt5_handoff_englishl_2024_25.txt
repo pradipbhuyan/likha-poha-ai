@@ -1,0 +1,672 @@
+You are answering questions from an official CBSE Class X English Language and Literature
+2024-25 Sample Question Paper, using CBSE's own official marking-scheme conventions.
+
+IMPORTANT — this paper's question_number is nested, not a flat sequence: each reading
+passage / grammar block / literature extract is a top-level question containing
+roman-numeral sub-parts (e.g. "1.I", "1.II") that restart per passage. Question 6 has
+an OR-choice between two whole literature extracts, each with its own sub-parts
+("6.A.I" vs "6.B.I"). Treat every array element as its own independently answerable
+question — do not merge sub-parts back together.
+
+For every question in the JSON array below, add exactly two fields:
+- "answer_text": the correct answer.
+    - For question_type "mcq": copy the correct option's text EXACTLY as it appears
+      in that question's own "options" array (character for character), not a
+      paraphrase, not just a letter. NOTE: unlike other subjects, this paper's MCQs do
+      NOT always have exactly 4 options — some are genuine 2-option or 3-option
+      choices (e.g. "Complete by selecting from those given in brackets" style
+      questions). Answer from whatever options are actually listed for that question.
+    - For "short_answer" or "long_answer": the worked answer, written the way a CBSE
+      marking scheme presents it — concise, points-based, matching the marks value.
+- "answer_explanation": 1-3 sentences on WHY that's correct, distinct from answer_text.
+
+Rules:
+- Return ONLY a JSON array, same length and same "question_number" values as the
+  input, each object containing ALL the original fields plus the two new ones. No
+  markdown code fences, no commentary before or after — just the raw JSON array.
+- Do not renumber, skip, merge, or reorder questions.
+- The first sub-part of each top-level question includes the full reading passage /
+  literature extract text prepended to it — use that passage to answer ALL sub-parts
+  of that same top-level question, not just the first one.
+- For any question with "diagram_dependent": true, do your best from the text alone;
+  if you genuinely cannot determine the answer without seeing a figure, set
+  "answer_text" to "NEEDS_MANUAL_REVIEW: <why>" instead of guessing.
+
+Here is the questions array:
+
+[
+{
+  "question_number": "1.I",
+  "section": "A",
+  "question_type": "short_answer",
+  "marks": 1,
+  "question_text": "(1) Water is one of the most essential resources on Earth, yet it is often taken for granted. Despite its abundance, the reality is that only a small fraction of the world’s water is fresh and available for human use. With increasing populations, climate change, and industrial demands, the pressure on our water resources is growing. This makes water conservation not just a collective responsibility but a crucial individual duty. Each person’s effort towards conserving water can significantly impact the preservation of this vital resource for future generations\n(2) One of the primary reasons individual water conservation efforts are so important is the cumulative effect of small actions which may seem trivial on their own. However, when multiplied by millions of people, these actions can lead to substantial water savings. For example, a single dripping tap can waste over 15 litres of water a day. Imagine the water saved if every household in a city repaired just one leaky faucet. This highlights the power of collective individual actions in reducing water waste.\n(3) Moreover, personal efforts towards water conservation often lead to greater awareness and education. When individuals take steps to conserve water, they become more conscious of their water usage and the importance of this resource. This awareness can then spread within communities, inspiring others to adopt similar practices. For instance, a family that installs water-saving devices in their home may encourage neighbours and friends to do the same, creating a ripple effect. This grassroots approach to conservation can be particularly effective in areas where larger-scale initiatives may be slow to implement or lacking in support.\n(4) In addition to daily habits, individuals can also make a difference through more significant lifestyle choices. For instance, opting for drought-resistant plants in gardens and supporting water-efficient agriculture can all contribute to water conservation. Agriculture, especially livestock farming, is one of the largest consumers of water globally. By supporting sustainable farming practices, individuals can indirectly reduce the water footprint of their food.\n(5) Critics might argue that individual efforts are negligible compared to the large-scale water consumption by industries and agriculture. However, this perspective overlooks the potential for individual actions to drive systemic change. When people collectively make water-conscious choices, they send a powerful message to businesses and policymakers about the importance of conservation.\n(6) Each person’s commitment to saving water, no matter how small, contributes to a larger culture of sustainability. By making conscious choices and spreading awareness, individuals can help ensure that future generations have access to the clean, fresh water they need to thrive. Water conservation is not just the responsibility of governments and industries; it is a shared duty that begins with each of us.\nIn paragraph 1, what does the phrase ‘each person’s effort towards conserving water can significantly impact the preservation of this vital resource’ emphasise?",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "1.II",
+  "section": "A",
+  "question_type": "mcq",
+  "marks": 1,
+  "question_text": "Complete the following with the correct option from the two given. Water is often taken for granted, despite its essential nature because _________. (paragraph 1)",
+  "options": [
+    "it is abundant and always easily accessible, making people less aware of its usage",
+    "its importance is not always recognised, leading people to overlook its value"
+  ],
+  "diagram_dependent": false
+},
+{
+  "question_number": "1.III",
+  "section": "A",
+  "question_type": "short_answer",
+  "marks": 2,
+  "question_text": "Support the writer's idea that small individual actions towards water conservation are not trivial. (paragraph 2)",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "1.IV",
+  "section": "A",
+  "question_type": "mcq",
+  "marks": 1,
+  "question_text": "Select the option that best reflects the concept of a ‘ripple effect’ in the context of student life at school. (paragraph 3)",
+  "options": [
+    "A student’s act of volunteering at a local charity leads to the school administration organising a large-scale fundraising event.",
+    "A student who consistently follows good study practices inspires classmates to improve their own study routines, creating a culture of academic excellence in the class."
+  ],
+  "diagram_dependent": false
+},
+{
+  "question_number": "1.V",
+  "section": "A",
+  "question_type": "short_answer",
+  "marks": 1,
+  "question_text": "State whether the following statement is True or False. (paragraph 3)",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "1.VI",
+  "section": "A",
+  "question_type": "mcq",
+  "marks": 1,
+  "question_text": "The writer mentions ‘sustainable farming practices’ in paragraph 4. Which of the following is a sustainable farming practice?",
+  "options": [
+    "Using chemical fertilizers and pesticides extensively to increase crop yields.",
+    "Clearing large areas of natural vegetation to expand farmland for organic farming.",
+    "Implementing crop rotation and using organic compost to maintain soil health.",
+    "Relying solely on monoculture farming to maximise production efficiency."
+  ],
+  "diagram_dependent": false
+},
+{
+  "question_number": "1.VII",
+  "section": "A",
+  "question_type": "short_answer",
+  "marks": 2,
+  "question_text": "List any two points that a powerful message sent to businesses and policy makers about the importance of water conservation might include. (paragraph 5)",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "1.VIII",
+  "section": "A",
+  "question_type": "mcq",
+  "marks": 1,
+  "question_text": "Fill in the blank with the correct option from those given. (paragraph 6) In the phrase ‘culture of sustainability,’ the word ‘culture’ refers to _________.",
+  "options": [
+    "A set of beliefs and practices shared by a group",
+    "The artistic and traditional practices specific to a community's heritage.",
+    "The lifestyle habits and choices that are popular among the urbane",
+    "The techniques and methods used in development efforts"
+  ],
+  "diagram_dependent": false
+},
+{
+  "question_number": "2.I",
+  "section": "A",
+  "question_type": "mcq",
+  "marks": 1,
+  "question_text": "(1) A thorough study conducted across several villages of north-west India unveiled fascinating insights into the mural landscape. It revealed that a significant majority, comprising around 80%, of these vibrant artworks are meticulously crafted by the villagers themselves. Approximately 15% of the murals stem from collaborative endeavours between villagers and local or visiting artists.\n(2) Surprisingly, a small fraction, about 5%, of the murals are the result of sponsored initiatives, often commissioned by governmental or non-governmental organisations. These murals convey social messages ranging from education and environmental conservation to public health awareness.\n(3) Among the locally crafted murals, nearly 55% depict scenes from mythology and folklore, celebrating the rich cultural heritage of the region. About 26 % of these murals showcase daily life in the villages, capturing moments of joy, struggle, and victory. The remaining 19% feature abstract or contemporary themes, reflecting evolving artistic expressions in rural settings.\n(4) Further analysis reveals that among the locally crafted murals, nearly 63% are found on the walls of community centres, temples, and other public spaces. Around 27 % adorn the exterior walls of residential houses. The remaining 10% are scattered across schools, health centres, and other institutional buildings, serving as educational tools and sources of inspiration for the younger generation.\n(5) To delve deeper, comparisons across various parameters such as demographic patterns, subject matter, techniques, community engagement, and impact are crucial. Analysing these facets not only provides a comprehensive understanding of mural creation in northwest Indian villages but also unveils avenues for cultural preservation, community development, and creative expression.\nWhat does the use of the phrase 'fascinating insights' by the writer, in paragraph 1, tell us about their feelings?",
+  "options": [
+    "The writer is expressing surprise.",
+    "The writer is conveying boredom and frustration.",
+    "The writer is indicating interest and enthusiasm.",
+    "The writer is showing disappointment."
+  ],
+  "diagram_dependent": false
+},
+{
+  "question_number": "2.II",
+  "section": "A",
+  "question_type": "mcq",
+  "marks": 1,
+  "question_text": "Select the option that is true for the assertion and reason given below. Assertion: The murals in northwest Indian villages are meticulously crafted. Reason: The murals are the result of collaborative endeavours.",
+  "options": [
+    "Both the assertion and reason are true, and the reason is the correct explanation of the assertion.",
+    "Both the assertion and reason are true, but the reason is not the correct explanation of the assertion.",
+    "The assertion is true, but the reason is false.",
+    "The assertion is false, but the reason is true."
+  ],
+  "diagram_dependent": false
+},
+{
+  "question_number": "2.III",
+  "section": "A",
+  "question_type": "short_answer",
+  "marks": 1,
+  "question_text": "Identify the word that indicates that the writer anticipated a higher percentage of sponsored initiative murals?",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "2.IV",
+  "section": "A",
+  "question_type": "short_answer",
+  "marks": 1,
+  "question_text": "How do the murals in northwest Indian villages contribute to community engagement and awareness?",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "2.V",
+  "section": "A",
+  "question_type": "mcq",
+  "marks": 1,
+  "question_text": "Read the given prompt and select the correct option in the brackets to fill in the blank. In Hari's village, a mural depicting sustainable farming practices is showcased on the Panchayat office wall. The percentage of mural type that this would be counted in is _________.",
+  "options": [
+    "26%",
+    "19%",
+    "55%"
+  ],
+  "diagram_dependent": false
+},
+{
+  "question_number": "2.VI",
+  "section": "A",
+  "question_type": "short_answer",
+  "marks": 1,
+  "question_text": "What does the highest percentage of different mural themes suggest about the artistic preferences and cultural priorities in northwest Indian villages?",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "2.VII",
+  "section": "A",
+  "question_type": "short_answer",
+  "marks": 1,
+  "question_text": "Complete the sentence suitably. The significant presence of murals on the exterior walls of residential houses highlight _________.",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "2.VIII",
+  "section": "A",
+  "question_type": "short_answer",
+  "marks": 1,
+  "question_text": "Complete the following with a suitable reason. The most likely reason the writer believes that a mural can serve as an ‘educational tool’ is because it can _________.",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "2.IX",
+  "section": "A",
+  "question_type": "short_answer",
+  "marks": 2,
+  "question_text": "In the context of the last paragraph, describe the significance of comparing various parameters such as demographic patterns, subject matter, techniques, community engagement, and impact in understanding the mural landscape in northwest Indian villages.",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "3.I",
+  "section": "B",
+  "question_type": "mcq",
+  "marks": 1,
+  "question_text": "Fill in the blank with the correct option to complete the opening line of a formal letter: Dear Mr. Patel, We are pleased to inform you that your proposal for the upcoming project by the board of directors_____________.",
+  "options": [
+    "had endorsed",
+    "will have been endorsed",
+    "has been endorsed",
+    "have endorsed"
+  ],
+  "diagram_dependent": false
+},
+{
+  "question_number": "3.II",
+  "section": "B",
+  "question_type": "short_answer",
+  "marks": 1,
+  "question_text": "Read the given sentence from a marketing report. Identify the error and supply the correction in the given format. The company continues to strives tirelessly to meet customer demands.",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "3.III",
+  "section": "B",
+  "question_type": "short_answer",
+  "marks": 1,
+  "question_text": "Rhea asked the following question to her colleague, Deepak. Have you finalised the magazine content to be submitted tomorrow? Report Rhea’s question correctly.",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "3.IV",
+  "section": "B",
+  "question_type": "mcq",
+  "marks": 1,
+  "question_text": "Fill in the blank by choosing the correct option, to complete an official announcement. Attention all prefects, Please be informed that the deadline for submitting your registrations for participation in the Art Exhibition has been extended; _________ should be communicated to all students of classes IX-X.",
+  "options": [
+    "that",
+    "these",
+    "this"
+  ],
+  "diagram_dependent": false
+},
+{
+  "question_number": "3.V",
+  "section": "B",
+  "question_type": "short_answer",
+  "marks": 1,
+  "question_text": "Read Sana’s reply to her team leader, regarding the preparation of an important presentation. I’m sorry I forgot ma’am. I’ll have the presentation ready for you very soon today. Report Sana’s reply by completing the following sentence correctly. Sana apologised for having forgotten and said _________.",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "3.VI",
+  "section": "B",
+  "question_type": "mcq",
+  "marks": 1,
+  "question_text": "Identify and correct the error in the given line taken from an online news report: Nearly most shop was closed for the public holiday.",
+  "options": [
+    "A. most -> every",
+    "B. shop -> shops",
+    "C. was -> were",
+    "D. the -> that"
+  ],
+  "diagram_dependent": false
+},
+{
+  "question_number": "3.VII",
+  "section": "B",
+  "question_type": "mcq",
+  "marks": 1,
+  "question_text": "Complete the given school announcement by selecting the correct option to fill in the blank. Good news, everyone! Our school's robotics team has successfully______________a place in the semi-finals.",
+  "options": [
+    "securing",
+    "secured",
+    "will secure",
+    "had secured"
+  ],
+  "diagram_dependent": false
+},
+{
+  "question_number": "3.VIII",
+  "section": "B",
+  "question_type": "short_answer",
+  "marks": 1,
+  "question_text": "Detect the error and supply the correction for the given observation by a child. That needn’t be Dad’s jacket. It’s too small.",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "3.IX",
+  "section": "B",
+  "question_type": "short_answer",
+  "marks": 1,
+  "question_text": "Report the dialogue between a teacher and a student, by completing sentence. Teacher: Did everyone understand the new assignment? Students: Yes, we all got it, thank you! The teacher asked if everyone had understood the new assignment, to which the students _________, expressing their gratitude.",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "3.X",
+  "section": "B",
+  "question_type": "mcq",
+  "marks": 1,
+  "question_text": "Select the correct option to complete the given sentence from a handbook for managers. The manager _________ consider the proposal before making a decision.",
+  "options": [
+    "will",
+    "should",
+    "might",
+    "can"
+  ],
+  "diagram_dependent": false
+},
+{
+  "question_number": "3.XI",
+  "section": "B",
+  "question_type": "mcq",
+  "marks": 1,
+  "question_text": "Complete the given sentence about the reaction of some friends, by selecting the correct option: The group of friends _________ excited at the prospect of their upcoming adventure.",
+  "options": [
+    "are",
+    "has",
+    "is",
+    "were"
+  ],
+  "diagram_dependent": false
+},
+{
+  "question_number": "3.XII",
+  "section": "B",
+  "question_type": "short_answer",
+  "marks": 1,
+  "question_text": "Read the conversation about social media, between a teacher and a student. Teacher: How do you think social media influences our perceptions of reality? Jagrit: I believe it distorts our perception of reality by only showing the highlight reels of people's lives. Report the student's response by completing the following. The student remarked _________ by only showing the highlight reels of people's lives.",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "4.A",
+  "section": "B",
+  "question_type": "long_answer",
+  "marks": 5,
+  "question_text": "You are Nirmal Pillai, a concerned citizen from Aluva, Kochi. Compose a letter in about 120 words, to the Project Head of the E-Waste Management Cell at Electronics Vatika, New Delhi, highlighting the adverse effects of e-waste* pollution. Suggest measures for addressing its management through community engagement and government initiatives. * Discarded electronic devices such as smartphones, computers, and televisions, which are no longer in use or have reached the end of their lifecycle.",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "4.B",
+  "section": "B",
+  "question_type": "long_answer",
+  "marks": 5,
+  "question_text": "You are Chhavi Pathak of Ranchi, Bihar. Write a letter in about 120 words addressing the Secretary of the City Municipal Authority. Detail the problem of overgrown trees and shrubs in the neighbourhood and request the delegation of personnel for regular pruning.",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "5.A",
+  "section": "B",
+  "question_type": "long_answer",
+  "marks": 5,
+  "question_text": "Read the product details on a label for a school bag: ECO-FRIENDLY SCHOOL BAG 1. Made from recycled materials 2. Ergonomic* design with padded shoulder straps and breathable mesh back panel 3. Spacious main compartment with multiple pockets and organisers 4. Reflective strips for visibility and safety 5. Water-resistant fabric 6. Available in various vibrant colours and patterns. Now, analyse why this school bag would be a beneficial purchase. Write the analytical paragraph in 120 words, considering factors such as its eco-friendliness, comfort features, functionality, safety aspects, and design options. * Design that is intended to maximise comfort, efficiency, and safety for the user",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "5.B",
+  "section": "B",
+  "question_type": "long_answer",
+  "marks": 5,
+  "question_text": "Read the given details of a playground intended for your resident area. • A central climbing structure inspired by traditional Indian architecture, such as a miniature fort, with multiple levels and slides. • Swings adorned with colorful Indian patterns, along with monkey bars and a zip line. • A water play feature inspired by Indian fountains or rivers • Shaded seating areas with benches and swings, resembling traditional chaupals or gazebos. • Trees, shrubs, and flower beds • Ample open space. Analyse the details and write an analytical paragraph in about 120 words about the suitability of this playground. Focus on factors such as safety, inclusivity, fun features, suitability for different age groups, and overall experience.",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "6.A.I",
+  "section": "C",
+  "question_type": "mcq",
+  "marks": 1,
+  "question_text": "With a loud scream he fell outwards and given downwards into space. Then a monstrous terror seized him and his heart stood still. He could hear nothing. But it only lasted a minute. The next moment he felt his wings spread outwards. The wind rushed against his breast feathers, then under his stomach, and against his wings. He could feel the tips of his wings cutting through the air. He was not falling headlong now. He was soaring gradually downwards and outwards. (His First Flight)\nWhat effect does the experience, as described in the lines below, has on the baby seagull?\nWith a loud scream he fell outwards and downwards into space. Then a monstrous terror seized him and his heart stood still.\nChose the most suitable option.",
+  "options": [
+    "exhilarates",
+    "overwhelms",
+    "energises",
+    "confuses"
+  ],
+  "diagram_dependent": false
+},
+{
+  "question_number": "6.A.II",
+  "section": "C",
+  "question_type": "short_answer",
+  "marks": 2,
+  "question_text": "How does the author's use of descriptive language enhance the narrative technique in the paragraph?",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "6.A.III",
+  "section": "C",
+  "question_type": "mcq",
+  "marks": 1,
+  "question_text": "Fill in the blank with the correct word from the bracket. The use of the word ‘rushed’ adds to a sense of _________, in the extract",
+  "options": [
+    "speed",
+    "relief"
+  ],
+  "diagram_dependent": false
+},
+{
+  "question_number": "6.A.IV",
+  "section": "C",
+  "question_type": "short_answer",
+  "marks": 1,
+  "question_text": "How does the seagull's feelings towards the end of the extract contrast with the initial feeling of terror?",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "6.B.I",
+  "section": "C",
+  "question_type": "mcq",
+  "marks": 1,
+  "question_text": "And suddenly Bholi noticed that the teacher was standing by her side, smiling at her. “What’s your name, little one?”\n“Bh-Bho-Bho-.” She could stammer no further than that.\nThen she began to cry and tears flowed from her eyes in a helpless flood. She kept her head down as she sat in her corner, not daring to look up at the girls who, she knew, were still laughing at her. When the school bell rang, all the girls scurried out of the classroom, but Bholi dared not leave her corner. Her head still lowered, she kept on sobbing.\n“Bholi.”\nThe teacher’s voice was so soft and soothing! In all her life she had never been called like that. It touched her heart. (Bholi)\nWhat is the tone the teacher is UNLIKELY to have used in the line, ‘“What’s your name, little one?”’",
+  "options": [
+    "reassuring",
+    "comforting",
+    "settling",
+    "calming"
+  ],
+  "diagram_dependent": false
+},
+{
+  "question_number": "6.B.II",
+  "section": "C",
+  "question_type": "short_answer",
+  "marks": 2,
+  "question_text": "How does the author's use of Bholi's perspective help build the narrative in the extract?",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "6.B.III",
+  "section": "C",
+  "question_type": "mcq",
+  "marks": 1,
+  "question_text": "Fill in the blank with the correct word from the bracket. The word ‘flood’ in the line ‘...tears flowed from her eyes in a helpless flood.’ Indicates that Bholi was crying _________.",
+  "options": [
+    "uncontrollably",
+    "unintentionally"
+  ],
+  "diagram_dependent": false
+},
+{
+  "question_number": "6.B.IV",
+  "section": "C",
+  "question_type": "short_answer",
+  "marks": 1,
+  "question_text": "How does the teacher's comforting demeanour contrast with the behaviour of the other girls in the classroom?",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "7.A.I",
+  "section": "C",
+  "question_type": "short_answer",
+  "marks": 1,
+  "question_text": "He stalks in his vivid stripes\nThe few steps of his cage,\nOn pads of velvet quiet,\nIn his quiet rage. (Tiger in the Zoo)\nWhat is the most likely reason the poet chooses to say ‘vivid’ stripes instead of just stating the colours of the stripes?",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "7.A.II",
+  "section": "C",
+  "question_type": "short_answer",
+  "marks": 1,
+  "question_text": "Fill the blank with ONE word. The tiger's stalking suggests a movement that is _________ within the confines of its cage.",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "7.A.III",
+  "section": "C",
+  "question_type": "short_answer",
+  "marks": 1,
+  "question_text": "How does the poet reinforce the contrast between the tiger's confined environment and its internal emotions?",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "7.A.IV",
+  "section": "C",
+  "question_type": "mcq",
+  "marks": 2,
+  "question_text": "Select the option that applies the same rhyme scheme as the lines of the given extract.",
+  "options": [
+    "A. This bird so small and sweet, Sings aloud in the morn, Perched on a branch green, Chirp, chirp, tweet, tweet.",
+    "B. Perched on a branch green, This bird so sweet and lean, Sings aloud in a voice sweet, Chirp, chirp, tweet, tweet.",
+    "C. This bird sings without a care, Perched on a branch green, A song with the world to share, With its feelings so keen.",
+    "D. This bird so small and sweet Sings aloud in the morn Perched on a green branch Singing its own melody"
+  ],
+  "diagram_dependent": false
+},
+{
+  "question_number": "7.B.I",
+  "section": "C",
+  "question_type": "short_answer",
+  "marks": 2,
+  "question_text": "Belinda paled, and she cried Help! Help!\nBut Mustard fled with a terrified yelp,\nInk trickled down to the bottom of the household,\nAnd little mouse Blink strategically mouseholed.\n(The Tale of Custard the Dragon)\nExamine the portrayal of Blink in the given lines.",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "7.B.II",
+  "section": "C",
+  "question_type": "short_answer",
+  "marks": 1,
+  "question_text": "Complete the following suitably. The word ‘paled’ implies that Belinda _________.",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "7.B.III",
+  "section": "C",
+  "question_type": "short_answer",
+  "marks": 1,
+  "question_text": "What kind of picture is painted by the poet through the line, ‘Ink trickled down to the bottom of the household’?",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "7.B.IV",
+  "section": "C",
+  "question_type": "mcq",
+  "marks": 1,
+  "question_text": "What kind of atmosphere is created through these lines? Select the correct option: 1. Urgency 2. Apprehension 3. Uncertainty 4. mystery 5. Aggression",
+  "options": [
+    "A. 1 and 4",
+    "B. Only 2",
+    "C. 1, 2 and 3",
+    "D. 4 and 5"
+  ],
+  "diagram_dependent": false
+},
+{
+  "question_number": "8.I",
+  "section": "C",
+  "question_type": "short_answer",
+  "marks": 3,
+  "question_text": "How does the ignorance about Mijbil as a creature in the urban environment of London reveal insights about people's perceptions and knowledge regarding animals? (Mijbil the Otter)",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "8.II",
+  "section": "C",
+  "question_type": "short_answer",
+  "marks": 3,
+  "question_text": "How does the imagery of the trees' movement from the house to the forest, in ‘Trees’, reflect broader themes of liberation and growth in human experiences?",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "8.III",
+  "section": "C",
+  "question_type": "short_answer",
+  "marks": 3,
+  "question_text": "What does the postmaster's reaction to Lencho's letter reveal about his character? (A Letter to God)",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "8.IV",
+  "section": "C",
+  "question_type": "short_answer",
+  "marks": 3,
+  "question_text": "Assess the narrative's effectiveness in portraying the tension between the comfort of familiarity and the allure of the unfamiliar in 'Madam Rides the Bus'.",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "8.V",
+  "section": "C",
+  "question_type": "short_answer",
+  "marks": 3,
+  "question_text": "Summarise the role of the use of parentheses in the poem ‘Amanda!’.",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "9.I",
+  "section": "C",
+  "question_type": "short_answer",
+  "marks": 3,
+  "question_text": "How does Matilda's desire for material wealth drive the plot of ‘The Necklace’?",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "9.II",
+  "section": "C",
+  "question_type": "short_answer",
+  "marks": 3,
+  "question_text": "Justify the opinion that Ebright's early successes were essential for his later achievements in science. (The Making of a Scientist)",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "9.III",
+  "section": "C",
+  "question_type": "short_answer",
+  "marks": 3,
+  "question_text": "How does 'The Book that Saved the Earth' include elements of satirical science fiction?",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "10.I",
+  "section": "C",
+  "question_type": "long_answer",
+  "marks": 6,
+  "question_text": "Both poems ‘Dust of Snow’ and ‘Fire and Ice’ use contrasting elements of nature to convey their respective messages about life and human emotions but they do it differently. Examine these differences.",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "10.II",
+  "section": "C",
+  "question_type": "long_answer",
+  "marks": 6,
+  "question_text": "Both the texts, ‘For Anne Gregory' and ‘The Sermon at Benares,’ grapple with the idea that external attributes are fleeting and subject to decay. Examine the similarities.",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "11.I",
+  "section": "C",
+  "question_type": "long_answer",
+  "marks": 6,
+  "question_text": "Evaluate how Griffin's character is shaped by a combination of personal ambition, the unintended consequences of his scientific pursuits, and the reactions of the society he faces.",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "11.II",
+  "section": "C",
+  "question_type": "long_answer",
+  "marks": 6,
+  "question_text": "Evaluate how James Herriot’s characterisation contributes significantly to the overarching theme of responsible pet ownership and animal welfare.",
+  "options": [],
+  "diagram_dependent": false
+}
+]

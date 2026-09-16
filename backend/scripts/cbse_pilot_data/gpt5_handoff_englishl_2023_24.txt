@@ -1,0 +1,642 @@
+You are answering questions from an official CBSE Class X English Language and Literature
+2023-24 Sample Question Paper, using CBSE's own official marking-scheme conventions.
+
+IMPORTANT — this paper's question_number is nested, not a flat sequence: each reading
+passage / grammar block / literature extract is a top-level question containing
+roman-numeral sub-parts (e.g. "1.I", "1.II") that restart per passage. Question 6 has
+an OR-choice between two whole literature extracts, each with its own sub-parts
+("6.A.I" vs "6.B.I"). Treat every array element as its own independently answerable
+question — do not merge sub-parts back together.
+
+For every question in the JSON array below, add exactly two fields:
+- "answer_text": the correct answer.
+    - For question_type "mcq": copy the correct option's text EXACTLY as it appears
+      in that question's own "options" array (character for character), not a
+      paraphrase, not just a letter. NOTE: unlike other subjects, this paper's MCQs do
+      NOT always have exactly 4 options — some are genuine 2-option or 3-option
+      choices (e.g. "Complete by selecting from those given in brackets" style
+      questions). Answer from whatever options are actually listed for that question.
+    - For "short_answer" or "long_answer": the worked answer, written the way a CBSE
+      marking scheme presents it — concise, points-based, matching the marks value.
+- "answer_explanation": 1-3 sentences on WHY that's correct, distinct from answer_text.
+
+Rules:
+- Return ONLY a JSON array, same length and same "question_number" values as the
+  input, each object containing ALL the original fields plus the two new ones. No
+  markdown code fences, no commentary before or after — just the raw JSON array.
+- Do not renumber, skip, merge, or reorder questions.
+- The first sub-part of each top-level question includes the full reading passage /
+  literature extract text prepended to it — use that passage to answer ALL sub-parts
+  of that same top-level question, not just the first one.
+- For any question with "diagram_dependent": true, do your best from the text alone;
+  if you genuinely cannot determine the answer without seeing a figure, set
+  "answer_text" to "NEEDS_MANUAL_REVIEW: <why>" instead of guessing.
+
+Here is the questions array:
+
+[
+{
+  "question_number": "1.I",
+  "section": "A",
+  "question_type": "mcq",
+  "marks": 1,
+  "question_text": "As a high school student, studying poetry can be a rollercoaster ride. This journey is punctuated by moments of profound appreciation for simpler pieces and intermittent frustration with more complex works. Let's be real here - some poems are just plain confusing and no amount of re-reading seems to help decipher the intended meaning. The puzzlement that results from such instances can be both vexing and demotivating. If solving a riddle is what was intended, then playing Sudoku is a better option. One is led to ponder if obscurity was the goal.\nConversely, some pieces resonate with the reader's soul, stirring feelings of warmth, happiness, and connection to the world. Often, these compositions centre on themes that are universally understood, such as love, nature, or faith. Being able to actually understand what the poet is trying to say can feel like a little victory and is a welcome relief after grappling with more perplexing poetry.\nThen there are poems that are emotionally charged; the ones that make the reader curl up in a ball and cry or jump up and down with joy. One is left in awe of the poet's ability to convey emotion through words. Let’s not forget the downright weird poems. These are the ones that defy categorization and leave the reader to their own devices in attempting to interpret meaning. The author's use of figurative language and unconventional imagery can create a sense of bewilderment that is either intriguing or off-putting. Regardless, the reader can appreciate the uniqueness of the work.\nDespite the wide range of emotions and reactions that come with studying poetry, it can be a rewarding pursuit. Not only does reading poetry allow one to appreciate the artistic beauty of the written word but also enables one to develop crucial critical thinking and analytical skills. The process of unlocking a poem's meaning can feel like cracking a code or solving a puzzle but the sense of accomplishment derived from mastering a challenging piece can be deeply gratifying. Finally, impressing an English teacher with a well-analysed poem can be a source of pride and validation.\nOverall, studying poetry is like a box of mixed chocolates, you never know what you're going to get. But whether it's complex, emotional, simple, or just downright weird, there's always something to be gained from the experience. So, let's applaud all the poets out there, for making us laugh, cry, scratch our heads, and occasionally feel like a genius.\n\nWhich of the following statements best describes the author's attitude towards studying poetry?",
+  "options": [
+    "Finds poetry to be a frustrating and meaningless endeavor.",
+    "Believes that the emotional rollercoaster of studying poetry is not worth the effort.",
+    "Recognizes the challenges of studying poetry but also acknowledges the rewards it offers.",
+    "Feels that poetry is too obscure and abstract for the average person to appreciate."
+  ],
+  "diagram_dependent": false
+},
+{
+  "question_number": "1.II",
+  "section": "A",
+  "question_type": "short_answer",
+  "marks": 2,
+  "question_text": "What is the tone of the writer in the given lines from paragraph (1)? Rationalise your response in about 40 words.\nIf solving a riddle is what was intended, then playing Sudoku is a better option. One is led to ponder if obscurity was the goal.",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "1.III",
+  "section": "A",
+  "question_type": "short_answer",
+  "marks": 1,
+  "question_text": "Complete the sentence appropriately.\nThe author's use of vivid imagery in the paragraph (3), such as \"curl up in a ball and cry\" and \"jump up and down with joy\", greatly affects the reader because ____________.",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "1.IV",
+  "section": "A",
+  "question_type": "short_answer",
+  "marks": 1,
+  "question_text": "The passage includes some words that are opposites of each other. From the sets (a)-(e) below, identify two sets of antonyms:\n(a) intriguing and off-putting\n(b) deciphering and interpreting\n(c) appreciate and applaud\n(d) simple and challenging\n(e) emotions and feelings",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "1.V",
+  "section": "A",
+  "question_type": "short_answer",
+  "marks": 1,
+  "question_text": "Complete the sentence appropriately.\nWe can say that the author's tone becomes more neutral and objective when discussing weird poems, compared to other types of poetry because __________.",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "1.VI",
+  "section": "A",
+  "question_type": "short_answer",
+  "marks": 2,
+  "question_text": "Based on the reading of the passage, examine, in about 40 words, how studying poetry can be like exploring a new city.",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "1.VII",
+  "section": "A",
+  "question_type": "mcq",
+  "marks": 1,
+  "question_text": "What is the message conveyed by Hina's experience, in the following case?\nHina spends hours trying to analyze a poem for her assignment and finally feels a sense of accomplishment and pride, once she understands.",
+  "options": [
+    "Only those with natural talent for poetry should engage with it.",
+    "Persistence makes studying poetry a rewarding pursuit.",
+    "Study of poetry is guaranteed to impress others.",
+    "The efforts of studying poetry is inversely proportional to the rewards gained."
+  ],
+  "diagram_dependent": false
+},
+{
+  "question_number": "1.VIII",
+  "section": "A",
+  "question_type": "short_answer",
+  "marks": 1,
+  "question_text": "State whether the following lines display an example of a simple / complex / emotionally charged / downright weird, poem.\nThe sun rises in the east,\nA new day begins, a fresh start.\nBirds chirp, nature wakes up,\nA peaceful feeling in my heart.",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "2.I",
+  "section": "A",
+  "question_type": "short_answer",
+  "marks": 1,
+  "question_text": "Reduction in green areas has caused various environmental problems. People squeezed between concrete structures are looking for various ways to meet their longing for green. One of the ways to do so, is vertical gardens and green walls. Vertical gardening is a unique method of gardening where plants are grown in a vertical position or upward, rather than in the traditional method of planting them on the ground.\nThe purpose of vertical gardens and green walls, which arises from the studies of different disciplines (landscape architects, architects, engineers, etc.), is to close the cold image of concrete and increase the visual value. In these systems, nature and structures are integrated, and thus, urban areas and the desired environment have become intertwined.\nVertical garden case studies often show that, though functionality should be in the foreground, when vertical gardens are planned, they are generally made as aesthetic elements in the city's underpasses and city squares, and decorative elements in residences, without seeking functionality.\nExperts support that the visual quality and evaluation of landscape architecture is determined based on the satisfaction of the users. Hence, a survey questionnaire was prepared for residents of varied age groups from of a metropolitan city. The given Table 1, displays these responses: Table 1 - Total number of participants : 400 (Survey statements on vertical gardens...)\nThe study acknowledged that vertical gardening has the potential to transform urban spaces into green, sustainable areas, and further research should explore the impact of vertical gardening on the environment and human well-being.\n\nComplete the following analogy appropriately, based on your understanding of paragraphs 1 & 2.\nWe can say that the situation of people living in concrete structures is comparable with a fish living in a fishbowl, and the need for vertical gardens to the need for decorations in the fishbowl because _______________.",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "2.II",
+  "section": "A",
+  "question_type": "short_answer",
+  "marks": 1,
+  "question_text": "Fill the blanks with the appropriate option from those given in brackets, based on your understanding of paragraph 2.\nThe statement that, urban spaces have become more closely connected with the desired natural surroundings through the incorporation of nature and structures in vertical gardens and green walls, is a ___________ (fact/ opinion) because it is a _____________ (subjective judgement/ objective detail).",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "2.III",
+  "section": "A",
+  "question_type": "short_answer",
+  "marks": 2,
+  "question_text": "Justify the following, in about 40 words.\nWhile the survey results suggest that vertical gardens may be effective in improving the quality of life in urban areas, further research and evaluation may be necessary to fully understand their effectiveness and potential drawbacks.",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "2.IV",
+  "section": "A",
+  "question_type": "short_answer",
+  "marks": 1,
+  "question_text": "Based on the survey results, which two concerns should a city government, looking to install vertical gardens, address?",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "2.V",
+  "section": "A",
+  "question_type": "short_answer",
+  "marks": 1,
+  "question_text": "In Table 1, the statement 3, \"Vertical gardens increase air quality - indoors and outdoors,\" received the most neutral responses from participants, with 51 respondents indicating a neutral stance. State any one inference that can be drawn from this.",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "2.VI",
+  "section": "A",
+  "question_type": "mcq",
+  "marks": 1,
+  "question_text": "Select the option that correctly displays what ‘intertwined’ signifies. (Reference-Paragraph 2)",
+  "options": [
+    "(i) , (iv) and (v)",
+    "Only (ii)",
+    "Only (iii)",
+    "(ii) and (v)"
+  ],
+  "diagram_dependent": false
+},
+{
+  "question_number": "2.VII",
+  "section": "A",
+  "question_type": "short_answer",
+  "marks": 2,
+  "question_text": "Infer one benefit and one drawback of vertical gardening, in comparison to other solutions, such as community gardens or parks. (Answer in about 40 words)",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "2.VIII",
+  "section": "A",
+  "question_type": "mcq",
+  "marks": 1,
+  "question_text": "Which of the following is the main takeaway from the study mentioned in the passage?",
+  "options": [
+    "Vertical gardening has minimal impact on the environment or human well-being.",
+    "Vertical gardening is a sustainable practice that can transform urban spaces into green areas.",
+    "The impact of vertical gardening on the environment and human well-being has already been thoroughly explored.",
+    "The study needs to include experts from horticultural firms to offer any recommendations for further research."
+  ],
+  "diagram_dependent": false
+},
+{
+  "question_number": "3.I",
+  "section": "B",
+  "question_type": "short_answer",
+  "marks": 1,
+  "question_text": "Fill in the blank by using the correct form of the word in the bracket, for the given portion of a letter:\nDear Sir\nThis is with reference to committee’s letter of recommendation that ________ (highlight) the nominations for ‘Safe Residential Area’ award for this current year.",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "3.II",
+  "section": "B",
+  "question_type": "short_answer",
+  "marks": 1,
+  "question_text": "Read the given sentence from a recipe review article. Identify the error and supply the correction in the sentence.\nThis delightful recipe must keep your hunger pangs at bay with its balanced spices and oriental flavour.",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "3.III",
+  "section": "B",
+  "question_type": "short_answer",
+  "marks": 1,
+  "question_text": "Abhilash and Neha had a conversation about the inauguration of Neha’s Dance Academy. Report Abhilash’s question.\nIs your best friend helping you in this venture?",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "3.IV",
+  "section": "B",
+  "question_type": "mcq",
+  "marks": 1,
+  "question_text": "Read the dialogue between Shabnam and her mentor, Sara, regarding her summer internship programme.\nSara: Why did you choose to participate in this internship programme?\nShabnam: Ah! I am convinced this programme has the potential to enhance my abilities.\nSelect the correct option to complete the reporting of the above dialogue.\nSara asked Shabnam _________________________________ in that internship programme.\nShabnam sighed and exclaimed that she was convinced that programme had the potential to enhance her abilities.",
+  "options": [
+    "why to choose to participate",
+    "to choose participation",
+    "why he had chosen to participate",
+    "with her choice in participating"
+  ],
+  "diagram_dependent": false
+},
+{
+  "question_number": "3.V",
+  "section": "B",
+  "question_type": "mcq",
+  "marks": 1,
+  "question_text": "Fill the blank by choosing the correct option, to complete the concluding line of an issued circular by an Organisation, to its Managers.\nA copy of the plan is enclosed and __________ (that/ then/ this) may be communicated to all Team Leaders for compliance.",
+  "options": [
+    "that",
+    "then",
+    "this"
+  ],
+  "diagram_dependent": false
+},
+{
+  "question_number": "3.VI",
+  "section": "B",
+  "question_type": "short_answer",
+  "marks": 1,
+  "question_text": "Identify the error and supply correction for the given sentence from a commercial company’s current marketing strategy.\nThe company aimed at increasing authority in areas frequently visited by the clients.",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "3.VII",
+  "section": "B",
+  "question_type": "mcq",
+  "marks": 1,
+  "question_text": "Select the option that identifies the error and supplies the correction for the closing line, from an analytical report.\nIn conclusion, this study explores the association among short-sleep pattern and overweight youngsters.",
+  "options": [
+    "A: explores -> explore",
+    "B: and -> or",
+    "C: among -> between",
+    "D: In -> for"
+  ],
+  "diagram_dependent": false
+},
+{
+  "question_number": "3.VIII",
+  "section": "B",
+  "question_type": "mcq",
+  "marks": 1,
+  "question_text": "Complete the given narrative, by filling the blank with the correct option.\nThe experience of nursing an injured bird left me _____________ grateful for knowing the importance of being kind and compassionate to all creatures.",
+  "options": [
+    "feeling",
+    "having felt",
+    "felt",
+    "feels"
+  ],
+  "diagram_dependent": false
+},
+{
+  "question_number": "3.IX",
+  "section": "B",
+  "question_type": "short_answer",
+  "marks": 1,
+  "question_text": "Report the dialogue between a vendor and his customer, by completing the sentence:\nVendor: It is nice to see you, Sir!\nCustomer: Yes, indeed! Unlike last month, I have been away for quite some time this month.\nThe vendor greeted his customer respectfully and mentioned that he was pleased to see him. The customer answered in the affirmative and explained that ______________________",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "3.X",
+  "section": "B",
+  "question_type": "mcq",
+  "marks": 1,
+  "question_text": "Fill the blank by choosing the correct option to complete the live feed on a school news channel.\nCongratulations Change Makers!\nThe regional competition awards have been announced and our school music club ___________ the first prize.",
+  "options": [
+    "had been won",
+    "will win",
+    "was winning",
+    "has won"
+  ],
+  "diagram_dependent": false
+},
+{
+  "question_number": "3.XI",
+  "section": "B",
+  "question_type": "mcq",
+  "marks": 1,
+  "question_text": "Complete the line from a self- awareness song, by filling the blank with the correct option.\nThe river runs through your veins\nThe trees and mountains ______ your name\nThe moon and stars watch over\nYou’re guiding your way back home\nTo dream the night away.",
+  "options": [
+    "will call",
+    "call",
+    "had called",
+    "calls"
+  ],
+  "diagram_dependent": false
+},
+{
+  "question_number": "3.XII",
+  "section": "B",
+  "question_type": "short_answer",
+  "marks": 1,
+  "question_text": "Identify the error and supply correction for the following note in a passengers’ flight instruction manual:\nNote- Passengers will not reach the airport late in order to avoid a fine equivalent to 5% of the basic fare.",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "4.A",
+  "section": "B",
+  "question_type": "long_answer",
+  "marks": 5,
+  "question_text": "As Vaishali Nathani of 214, Indrayani Apartments, Vaishali Street, Daipur, you believe that forming Ecology clubs and appointing Eco-minders in your city can aid in the preservation and conservation of nature.\nWrite a letter to the MLA of your city area, in about 120 words, suggesting the need to form such clubs. Share their importance and implications. Recommend the involvement of resident volunteers for implementation of eco-club activities that nurture and protect the local ecosystem.",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "4.B",
+  "section": "B",
+  "question_type": "long_answer",
+  "marks": 5,
+  "question_text": "As Armaan Khan, the School Literary Captain of Ujjwal Academy, Old City, Kiladerabad, you believe that languages can help bridge regional divides and promote unity.\nWrite a letter to the Editor of a national daily, in about 120 words, suggesting the introduction of an online regional language learning programme managed and run by student councils and language clubs in the city. The programme aims to help residents who have recently relocated to a new region in picking up the local language organically. Share the importance and credibility of such a programme and suggest a feasible way to execute it along with possible activities.",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "5.A",
+  "section": "B",
+  "question_type": "long_answer",
+  "marks": 5,
+  "question_text": "Tsering, of class X, is contesting for the post of the Junior School Captain, in the upcoming student council elections. Given below is her character traits’ graphic, shared in the public domain, by the school counsellor, for the awareness of student voters, at school.\nAll Tsering’s peers have been asked to write a paragraph in about 120 words, analysing these traits, to either support or oppose her candidature. As one of her peers, write this analytical paragraph, by selecting some of the traits that support your analysis.\nYou may begin like this :\nAs a responsible student voter, I believe Tesring possesses / does not possess the necessary traits to be a School Captain.\nYou may end like this:\nFor these reasons, I believe she has / does not have the potential to be a good School Captain and I support / oppose her candidature.",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "5.B",
+  "section": "B",
+  "question_type": "long_answer",
+  "marks": 5,
+  "question_text": "As the Captain of the school’s Cultural Club, you have been asked to study the given itinerary provided by a tour-organizing vendor. A 3N/2D Educational Tour for the Senior School Students: Jabalpur and Ranha National Park (Vandhya Pradesh). Analyse this itinerary to either approve or reject the tour proposal, while focusing on the students’ safety, interest, and physical wellness. Write this analytical paragraph in about 120 words, by selecting features that support your analysis.\nYou may begin like this :\nA thorough analysis of the itinerary provided by the tour organizing vendor reveals that the tour proposal should be accepted / rejected.\nYou may end like this:\nTherefore, the tour proposal for the educational trip should be approved / rejected.",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "6.A.I",
+  "section": "C",
+  "question_type": "short_answer",
+  "marks": 1,
+  "question_text": "The question he tried to answer was simple: What is the purpose of the twelve tiny gold spots on a monarch pupa?\n“Everyone assumed the spots were just ornamental,” Ebright said.\n“But Dr Urquhart didn’t believe it.”\nTo find the answer, Ebright and another excellent science student first had to build a device that showed that the spots were producing a hormone necessary for the butterfly’s full development. This project won Ebright first place in the county fair and entry into the International Science and Engineering Fair. There he won third place for zoology. He also got a chance to work during the summer at the entomology laboratory of the Walter Reed Army Institute of Research.\n(The Making of a Scientist)\n\nState any one inference about Dr Urquhart from the given context:\nEveryone assumed the spots were just ornamental,” Ebright said.\n“But Dr Urquhart didn’t believe it.”",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "6.A.II",
+  "section": "C",
+  "question_type": "short_answer",
+  "marks": 1,
+  "question_text": "State TRUE or FALSE.\nNone of the terms (a)-(d) below, can be applied to the question - What is the purpose of the twelve tiny gold spots on a monarch pupa?\n(a) A hypothesis - a proposed explanation for a phenomenon\n(b) An assumption - something that is taken for granted or assumed to be true without proof\n(c) A premise - a proposition that forms the basis of an argument\n(d) A theory - a well-substantiated explanation for a natural phenomenon",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "6.A.III",
+  "section": "C",
+  "question_type": "short_answer",
+  "marks": 2,
+  "question_text": "Ebright's approach towards finding the purpose of the gold spots on a monarch pupa was highly effective. Elaborate in about 40 words, with reference to the extract.",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "6.A.IV",
+  "section": "C",
+  "question_type": "short_answer",
+  "marks": 1,
+  "question_text": "Which phrase would correctly substitute 'a chance', in the given sentence from the extract.\nHe also got a chance to work during the summer at the entomology laboratory of the Walter Reed Army Institute of Research.",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "6.B.I",
+  "section": "C",
+  "question_type": "mcq",
+  "marks": 1,
+  "question_text": "LOMOV : It's cold... I'm trembling all over, just as if I’d got an examination before me. The great thing is , I must have my mind made up. If I give myself time to think, to hesitate, to talk a lot, to look for an ideal, or for real love, then I'll never get married. Brr...It’s cold! Natalya Stepanovna is an excellent housekeeper, not bad-looking, well-educated. What more do I want? But I'm getting a noise in my ears from excitement. (Drinks) And it’s impossible for me not to marry. In the first place, I'm already 35— a critical age, so to speak. In the second place, I ought to lead a quiet and regular life. I suffer from palpitations, I'm excitable and always getting awfully upset; at this very moment my lips are trembling, and there’s a twitch in my right eyebrow.\n(The Proposal)\n\nWhich of the following is NOT a reason why Lomov thinks he must marry?",
+  "options": [
+    "He is already 35 years old.",
+    "He suffers from palpitations.",
+    "He is excitable and easily upset.",
+    "He is in love with Natalya."
+  ],
+  "diagram_dependent": false
+},
+{
+  "question_number": "6.B.II",
+  "section": "C",
+  "question_type": "short_answer",
+  "marks": 2,
+  "question_text": "Why is it fair to say that Lomov's tone, when he says \"What more do I want?\", is uncertain and questioning? Answer in about 40 words.",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "6.B.III",
+  "section": "C",
+  "question_type": "short_answer",
+  "marks": 1,
+  "question_text": "Read the following descriptions (a)-(c) and identify which one correctly corresponds to the extract.\n(a) A debate is a formal discussion on a particular topic, usually with two or more people presenting different viewpoints and arguments.\n(b) A soliloquy is a speech given by a character alone on stage, which reveals their innermost thoughts and feelings to the audience.\n(c) An aside is a brief comment or remark made by a character directly to the audience, which is not intended to be heard by other characters on stage.",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "6.B.IV",
+  "section": "C",
+  "question_type": "short_answer",
+  "marks": 1,
+  "question_text": "If an actor were to enact this extract, what would he be required to focus on, while modulating his voice?",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "7.A.I",
+  "section": "C",
+  "question_type": "short_answer",
+  "marks": 1,
+  "question_text": "But if it had to perish twice,\nI think I know enough of hate\nTo say that for destruction ice\nIs also great\nAnd would suffice.\n(Fire and Ice)\n\nFill the blank with one word.\nWhen the speaker says that ice could also bring about the end of the world , he refers to __________ , as the means for destruction.",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "7.A.II",
+  "section": "C",
+  "question_type": "short_answer",
+  "marks": 1,
+  "question_text": "What does the speaker's alignment with those who favour ice, suggest?",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "7.A.III",
+  "section": "C",
+  "question_type": "mcq",
+  "marks": 1,
+  "question_text": "Which of the following best describes the speaker's attitude towards destruction caused by ice?",
+  "options": [
+    "Indifferent",
+    "Fearful",
+    "Dismissive",
+    "Respectful"
+  ],
+  "diagram_dependent": false
+},
+{
+  "question_number": "7.A.IV",
+  "section": "C",
+  "question_type": "short_answer",
+  "marks": 2,
+  "question_text": "Comment on the poet’s use of language in these lines.",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "7.B.I",
+  "section": "C",
+  "question_type": "short_answer",
+  "marks": 1,
+  "question_text": "The fog comes\non little cat feet.\nIt sits looking\nover harbour and city\non silent haunches\nand then moves on.\n(Fog)\n\nIn what way does the language used in this poem challenge traditional ideas of what poetry should be?",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "7.B.II",
+  "section": "C",
+  "question_type": "short_answer",
+  "marks": 2,
+  "question_text": "What is the significance of the use of the word \"little\" to describe the fog in the poem and how does this word choice contribute to the overall mood and tone of the poem? Answer in about 40 words.",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "7.B.III",
+  "section": "C",
+  "question_type": "mcq",
+  "marks": 1,
+  "question_text": "Complete the sentence with the appropriate option.\nThe lines from the poem tell us that the city is ______.",
+  "options": [
+    "hilly",
+    "coastal",
+    "industrial",
+    "under-developed"
+  ],
+  "diagram_dependent": false
+},
+{
+  "question_number": "7.B.IV",
+  "section": "C",
+  "question_type": "short_answer",
+  "marks": 1,
+  "question_text": "Identify the type of imagery used in the lines of the poem.",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "8.I",
+  "section": "C",
+  "question_type": "short_answer",
+  "marks": 3,
+  "question_text": "Justify the opinion that the traditional baker and his bread play a significant role in the cultural and social fabric of Goan society. (Glimpses of India-I)",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "8.II",
+  "section": "C",
+  "question_type": "short_answer",
+  "marks": 3,
+  "question_text": "How does Leslie Norris use vivid imagery and metaphorical language in A Tiger in the Zoo, to effectively depict the confinement and oppression, experienced by the captive tiger.",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "8.III",
+  "section": "C",
+  "question_type": "short_answer",
+  "marks": 3,
+  "question_text": "Explain how the description of the devastation caused by the hailstorm reflects the sadness within Lencho, in A Letter to God? Refer to the given lines, from the text - Not a leaf remained on the trees. The corn was totally destroyed. The flowers were gone from the plants. Lencho’s soul was filled with sadness.",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "8.IV",
+  "section": "C",
+  "question_type": "short_answer",
+  "marks": 3,
+  "question_text": "Kitty was a trusted friend to Anne. Elaborate. (From the Diary of Anne Frank)",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "8.V",
+  "section": "C",
+  "question_type": "short_answer",
+  "marks": 3,
+  "question_text": "How does Ogden Nash's The Tale of Custard the Dragon, challenge the notion that individuals should conform to societal expectations?",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "9.I",
+  "section": "C",
+  "question_type": "short_answer",
+  "marks": 3,
+  "question_text": "The story, A Triumph of Surgery is a powerful example of the importance of saying “no”. Explain.",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "9.II",
+  "section": "C",
+  "question_type": "short_answer",
+  "marks": 3,
+  "question_text": "How does education play a transformative role in Bholi's life? (Bholi)",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "9.III",
+  "section": "C",
+  "question_type": "short_answer",
+  "marks": 3,
+  "question_text": "The various elements of Robert Arthur's writing style work together to create a sense of tension, uncertainty, and suspense, well-suited to the mystery and suspense genre of the story, The Midnight Visitor. Comment, with reference to any one element.",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "10.A",
+  "section": "C",
+  "question_type": "long_answer",
+  "marks": 6,
+  "question_text": "You have been asked to present an evaluation of the approaches of the mothers of both, the baby seagull and Amanda, towards helping their children. Write this presentation draft including your insights, in about 120 words, comparing the approaches of both parents. You may begin this way: One acknowledges that both parents, Amanda’s mother and the baby seagull’s mother both....however, ... (Reference -Amanda! & His First Flight)",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "10.B",
+  "section": "C",
+  "question_type": "long_answer",
+  "marks": 6,
+  "question_text": "You have been chosen to address a student gathering from the neighbourhood schools, to speak on the resilience of human spirit required to transcend discrimination. Prepare the speech draft in not more than 120 words, with reference to the commonality of themes in Nelson Mandela: Long Walk to Freedom and The Trees by Adrienne Rich. You may begin this way: Good morning, everyone. Today, I'd like to discuss two pieces of literature that offer a powerful insight into the resilience of the human spirit required to transcend discrimination. You may end this way. To conclude, I’d like to say that ... Thank you",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "11.A",
+  "section": "C",
+  "question_type": "long_answer",
+  "marks": 6,
+  "question_text": "Imagine that M. Loisel, from The Necklace by Guy de Maupassant, writes a diary entry, exploring the theme of class and social status, and the nature of social mobility, in the context of his own experience. Write this diary entry , as M. Loisel, in about 120 words.",
+  "options": [],
+  "diagram_dependent": false
+},
+{
+  "question_number": "11.B",
+  "section": "C",
+  "question_type": "long_answer",
+  "marks": 6,
+  "question_text": "A character arc is the transformation or development of a character throughout a story and refers to the changes a character undergoes as a result of their experiences, challenges, and interactions with other characters. In the light of the above information, trace the character arc of the thief in Ruskin Bond’s The Thief’s Story, in about 120 words.",
+  "options": [],
+  "diagram_dependent": false
+}
+]

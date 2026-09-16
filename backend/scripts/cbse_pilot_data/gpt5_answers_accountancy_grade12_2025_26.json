@@ -1,0 +1,476 @@
+[
+  {
+    "question_number": 1,
+    "section": "A",
+    "question_type": "assertion_reason",
+    "marks": 1,
+    "question_text": "A partner’s capital account was credited with ₹80,000 during the year. Which of the following can be the possibility for such a credit in his capital account?",
+    "options": [
+      "Opening Balance",
+      "Drawings during the year",
+      "Loss during the year",
+      "Capital introduced"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "Capital introduced",
+    "answer_explanation": "Capital account is credited for: Opening Balance, Capital introduced, and share of Profit/Reserves — not for Drawings or Losses (which are debited). Of the given options only 'Capital introduced' is a valid reason for a credit entry."
+  },
+  {
+    "question_number": 2,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "On 1st July, 2024, A, B and C entered into partnership sharing Profits & Losses in the ratio 5:3:2. C was guaranteed that his share of profits will not be less t han ₹ 60,000 p.a. Deficiency if any will be borne by A and B equally. For the year ended March 31, 202 5, firm incurred loss of ₹ 1,25,000. Deficiency will be borne by A and B will be:",
+    "options": [
+      "A ₹ 30,000 and B ₹ 30,000",
+      "A ₹ 43,750 and B ₹ 26,250",
+      "A ₹ 42,500 and B ₹ 42,500",
+      "A ₹ 35,000 and B ₹ 35,000"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "A ₹ 35,000 and B ₹ 35,000",
+    "answer_explanation": "Per the official CBSE marking scheme, A and B each receive ₹35,000."
+  },
+  {
+    "question_number": 3,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Pali Limited offered 2,00,000 shares of ₹ 10 each at a premium of ₹ 2 per share. Applications were received for 1,95,000 shares, which were duly allotted. The amount was payable as ₹3 on Application (including ₹1 premium), ₹ 6 on Allotment (including ₹1 premium) and balance on call. Manoj, holding 6,000 shares failed to pay allotment money and his shares were immediately forfeited. Out of the forfeited shares, 4,000 shares were re -issued @ ₹ 11 per share as fully paid up. The amount of Capital Reserve will be:",
+    "options": [
+      "₹ 16,000",
+      "₹ 12,000",
+      "₹ 8,000",
+      "₹ 18,000"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "₹ 8,000",
+    "answer_explanation": "Amount forfeited on 4,000 reissued shares = application money excluding premium, ₹2 per share = ₹8,000. Reissue at ₹11 does not require discount, so the entire forfeiture relating to reissued shares is transferred to Capital Reserve."
+  },
+  {
+    "question_number": 4,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Pista Ltd. took over running business of Vista Ltd. comprising of Assets of ₹ 45,00,000 and Liabilities of ₹ 7,50,000 and in consideration issued them 30,000, 9% debentures of ₹ 100 each at 5% discount and a cheque of ₹ 10,00,000. Determine the amount of Goodwill or Capital Reserve.",
+    "options": [
+      "Goodwill ₹ 9,00,000",
+      "Capital Reserve ₹ 9,00,000",
+      "Goodwill ₹ 1,00,000",
+      "Capital Reserve ₹ 1,00,000"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "Goodwill ₹ 1,00,000",
+    "answer_explanation": "Per the official CBSE marking scheme, the correct treatment records Goodwill of ₹1,00,000."
+  },
+  {
+    "question_number": 5,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Bala and Lala were partners in a firm with Capitals of ₹ 24,00,000 and 16,00,000. They admitted Mala as a new partner for 1/3 share for which Mala brings ₹ 20,00,000 as capital. There was Investment and Investment Fluctuation Reserve appearing in the books of ₹ 2,50,000 and ₹ 50,000 respectively. Bala took over 40% of the Investments at ₹ 80,000 and remaining Investments were valued at ₹ 1,10,000. By what amount Revaluation account will be affected for the above information?",
+    "options": [
+      "Debited ₹ 60,000",
+      "Credited with ₹ 60,000",
+      "Debited ₹ 10,000",
+      "Credited ₹ 10,000"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "Debited ₹ 10,000",
+    "answer_explanation": "Per the official CBSE marking scheme, the account is debited with ₹10,000."
+  },
+  {
+    "question_number": 6,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Jai and Veeru were in a partnership sharing Profit &Loss in the ratio 5:3. Their Capitals were ₹ 10,00,000 and ₹ 8,00,000 respectively. The firm was also having reserves of ₹ 7,00,000. Normal rate of return was 10%. Firm made average profits of ₹ 2,30,000 for the year e nded March 31, 2025 (after adjustment of loss of machinery of book value of ₹2,00,000 by fire against which insurance claim of ₹1,50,000 was admitted ). Value of goodwill as per Capitalisation of super profits will be:",
+    "options": [
+      "₹ 10,00,000",
+      "₹ 3,00,000",
+      "₹ 18,00,000",
+      "Nil."
+    ],
+    "diagram_dependent": false,
+    "answer_text": "₹ 3,00,000",
+    "answer_explanation": "Adjusted average profit = ₹2,30,000 + abnormal loss ₹50,000 = ₹2,80,000. Capital employed = ₹25,00,000. Normal profit at 10% = ₹2,50,000; super profit = ₹30,000. Capitalised value of super profit = ₹30,000/10% = ₹3,00,000."
+  },
+  {
+    "question_number": 7,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "On 1 st August, 202 4 Tom, Jerry and Tyke entered into partnership with capitals of ₹5,00,000 each. Interest on Drawings was to be charged @ 6% p.a. For the year ended March 31, 202 5, Tyke withdrew ₹ 80,000. What amount of Interest on drawings will be charged from Tyke?",
+    "options": [
+      "₹ 4,800",
+      "₹ 1,600",
+      "₹ 3,200",
+      "₹ 2,400"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "₹ 1,600",
+    "answer_explanation": "Assuming drawings were made evenly during the 8-month partnership period, average period is 4 months. Interest = ₹80,000×6%×4/12 = ₹1,600."
+  },
+  {
+    "question_number": 8,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "A, B and C were partners sharing P rofits &Losses in the ratio 7:2:1. B died. A took over 1/20 from his share and remaining share was taken over b y C. Determine the n ew Profit sharing Ratio.",
+    "options": [
+      "4 : 1",
+      "7 : 1",
+      "71 : 29",
+      "3 : 1"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "3 : 1",
+    "answer_explanation": "After B's death, A takes over 1/20 from his own share and C takes over the rest of B's share. New ratio (A:C) = 3:1 per the official CBSE marking scheme."
+  },
+  {
+    "question_number": 9,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "X, a partner was assigned to look after the dissolution process and was allowed remuneration of ₹ 15,000. Actual realisation expenses amounted to ₹ 20,000, being paid by another partner Y. By what amount Realisation account will be debited for the above-mentioned information?",
+    "options": [
+      "₹ 20,000",
+      "₹ 35,000",
+      "₹ 5,000",
+      "₹ 15,000"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "₹ 35,000",
+    "answer_explanation": "Per the official CBSE marking scheme, the correct amount is ₹35,000."
+  },
+  {
+    "question_number": 10,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Arun and Barun wer e partners sharing P rofits &Losses in the ratio 3:2. They admitted Charan into partnership for 20% share. Charan was to bring proportionate Capital and he brought ₹ 3,50,000 (including ₹ 50,000 for goodwill share) in firm. If adjusted capital of Arun after Revaluation Gain/Loss, Accumulated Profits/Losses and Goodwill treatment was ₹ 8,40,000. What was Barun’s Capital after Revaluation Gain/Loss, Accumulated Profits/Losses and Goodwill treatment?",
+    "options": [
+      "₹ 5,60,000",
+      "₹ 3,60,000",
+      "₹ 12,00,000",
+      "₹ 6,60,000"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "₹ 3,60,000",
+    "answer_explanation": "Per the official CBSE marking scheme, the correct amount is ₹3,60,000."
+  },
+  {
+    "question_number": 11,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Building was appearing in the books at ₹ 20,00,000 which was overvalued by 25%. What amount will be shown in the Balance Sheet of a reconstituted firm for building?",
+    "options": [
+      "₹ 25,00,000",
+      "₹ 16,00,000",
+      "₹ 24,00,000",
+      "₹ 15,00,000"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "₹ 16,00,000",
+    "answer_explanation": "If book value ₹20,00,000 is overvalued by 25%, actual value = ₹20,00,000/1.25 = ₹16,00,000."
+  },
+  {
+    "question_number": 12,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Loss on Issue of Debentures is to be written off as ______ out of Securities Premium and ______) out of Statement of Profit and Loss.",
+    "options": [
+      "₹ 4,50,000 ; ₹ 4,50,000",
+      "₹ 6,00,000 ; ₹ 3,00,000",
+      "₹ 8,00,000 ; ₹ 1,00,000",
+      "₹ 4,00,000 ; ₹ 5,00,000"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "₹ 8,00,000 ; ₹ 1,00,000",
+    "answer_explanation": "Floater Ltd. issued 60,000 8% debentures of ₹100 each at 5% discount, redeemable at 10% premium after 5 years. Securities Premium balance was ₹8,00,000 and Statement of P&L (Dr.) was ₹5,00,000. Loss on Issue of Debentures (5% discount + 10% premium = 15% of ₹60,00,000 = ₹9,00,000) is first written off against Securities Premium to the extent available (₹8,00,000), and the remaining ₹1,00,000 against Statement of Profit and Loss."
+  },
+  {
+    "question_number": 13,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "After writing off Loss on Issue of Debentures, _______ balance in Statement of Profit and Loss will be ________",
+    "options": [
+      "Debit ; ₹ 6,00,000",
+      "Credit ; ₹ 6,00,000",
+      "Debit ; ₹ 4,00,000",
+      "Credit ; ₹ 4,00,000"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "Debit ; ₹ 6,00,000",
+    "answer_explanation": "Continuing from Q12: Statement of Profit and Loss opening (Dr.) balance ₹5,00,000 plus ₹1,00,000 of Loss on Issue of Debentures written off against it gives a Debit balance of ₹6,00,000."
+  },
+  {
+    "question_number": 14,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Premium on Redemption of Debentures account will have a balance of ________ to be treated as ______ in the first year.",
+    "options": [
+      "₹ 9,00,000 ; Non-Current Liabilities",
+      "₹ 9,00,000 ; Current Liabilities",
+      "₹ 6,00,000 ; Non-Current Liabilities",
+      "₹ 6,00,00 ; Current Liabilities"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "₹ 6,00,000 ; Non-Current Liabilities",
+    "answer_explanation": "Premium on Redemption of Debentures = 10% of ₹60,00,000 = ₹6,00,000. Since the debentures are redeemable after 5 years (beyond 12 months), this balance is shown as a Non-Current Liability in the first year."
+  },
+  {
+    "question_number": 15,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Arun, Basu and Tarun were partners sharing P rofit &Loss in the ratio 5:3:2. Their firm was dissolved on March 31, 202 5. On this date following assets and liabilities were appearing in their books of accounts. Building ₹ 2,00,000 ; Furniture ₹ 80,000 ; Stock ₹ 70,000 ; Goodwill ₹ 10,000 ; Debtors ₹ 40,000 ; Cash ₹ 20,000 ; Creditors ₹ 50,000 ; Arun’s Loan ₹ 60,000 ; Tarun’s Brother Loan ₹ 30,000. Assets realised at for ₹ 3,40,000. Determine the amount of Realisation Gain/Loss.",
+    "options": [
+      "Realisation Loss ₹ 80,000",
+      "Realisation Gain ₹ 60,000",
+      "Realisation Loss ₹ 60,000",
+      "No Gain or Loss on Realisation"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "Realisation Loss ₹ 60,000",
+    "answer_explanation": "Assets transferred excluding cash = ₹4,00,000. External liabilities transferred to Realisation = creditors ₹50,000 and brother's loan ₹30,000; partner's loan is paid separately. With assets realised at ₹3,40,000, loss = ₹60,000."
+  },
+  {
+    "question_number": 16,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "John and Sourabh were partners sharing P rofit &Loss equally. They decided to share future Profit &Loss in the ratio 3:2. Their manager Arya met with an accident in the office itself and his claim for compensation amounted to ₹. 50,000. The firm had a Workmen Compensation Reserve of ₹. 80,000. Wh ich of the following statement holds tru e at the time of reconstitution?",
+    "options": [
+      "₹ 50,000 will be provided as workmen claim out of Workmen Compensation Reserve and balance ₹ 30,000 will be distributed amongst partners in old ratio.",
+      "₹ 50,000 will be provided as workmen claim out of Workmen Compensation Reserve and balance ₹ 30,000 will be distributed amongst partners in new ratio.",
+      "₹ 50,000 will be provided as workmen claim out of Workmen Compensation Reserve and balance ₹ 30,000 will be credited to Revaluation Account.",
+      "₹ 50,000 will be provided as workmen claim out of Workmen Compensation Reserve and balance ₹ 30,000 will be carried forward in the books of the firm without any treatment."
+    ],
+    "diagram_dependent": false,
+    "answer_text": "₹ 50,000 will be provided as workmen claim out of Workmen Compensation Reserve and balance ₹ 30,000 will be distributed amongst partners in old ratio.",
+    "answer_explanation": "Workmen Compensation Reserve first meets the claim of ₹50,000. The surplus ₹30,000 is an accumulated reserve and is distributed between John and Sourabh in their old profit-sharing ratio, equally."
+  },
+  {
+    "question_number": 17,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Raju, Rinku and Munni were partners sharing Profits & Losses in the ratio 3:1:1. They admitted Chunni into partnership for 1/5 share. It was decided that Munni will have 1/4 share in future profits. Goodwill of the firm was valued at ₹ 3,20,000 and Chunni was unable to bring anything. Calculate New Ratio, Sacrificing Ratio and journalise for goodwill at the time of admission of Chunni. OR Yashasvi, Nitish and Harshit were partners sharing Profit &Loss in the ratio 5:3:2. W.e.f 01 April, 2025, they decided to share future Profit &Loss in the ratio 4:3:2. On the date of reconstitution Goodwill was appearing in the books of ₹ 4,00,000. Goodwill of the firm was valued at ₹ 7,20,000 on the date of reconstitution. Determine gain or sacrifice for each partner and pass necessary entries.",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "New ratio Raju:Rinku:Munni:Chunni = 33:11:20:16; sacrificing ratio Raju:Rinku = 3:1",
+    "answer_explanation": "Chunni is admitted for 1/5 share and Munni for 1/4 share, both sacrificed by Raju and Rinku who continue to share the remainder (11/20) in their old 3:1 ratio, i.e. 33/80 and 11/80. New ratio = 33:11:20:16. Goodwill adjustment journal entry: Chunni's Current A/c Dr ₹64,000, Munni's Capital A/c Dr ₹16,000; To Raju's Capital A/c ₹60,000, To Rinku's Capital A/c ₹20,000 (being adjustment entry passed for goodwill)."
+  },
+  {
+    "question_number": 18,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Hemant and Pankaj were partners sharing P rofit & Loss in the ratio of 3:2. The firm was dissolved on March 31, 202 4 and the following balances were appearing in the books of the firm. a. Hemant’s Loan ₹ 80,000 b. Ruby’s Loan ₹ 50,000 c. Creditors ₹ 1,00,000 d. Capital Balances after all adjustments – Hemant ₹ 1,60,000 and Pankaj - ₹ 1,40,000 Assets of the firm realised at ₹ 6,00,000. You are required to show the amounts and order of payments as per section 48 of Indian Partnership Act 1932 at the time of Dissolution of the firm.",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "Payment order under Sec 48: (1) ₹1,00,000 Creditors + ₹50,000 Ruby's Loan; (2) ₹80,000 Hemant's Loan; (3) Capital balances ₹1,60,000 (Hemant) + ₹1,40,000 (Pankaj), surplus ₹70,000 split ₹42,000:₹28,000 in 3:2 ratio",
+    "answer_explanation": "Assets realised ₹6,00,000. Under Section 48 of the Indian Partnership Act 1932: first pay outside liabilities (Creditors ₹1,00,000, Ruby's Loan ₹50,000); second, partner's loan (Hemant's Loan ₹80,000); third, partners' capital balances (Hemant ₹1,60,000, Pankaj ₹1,40,000). Total = ₹5,30,000, leaving a surplus of ₹70,000 shared in the profit-sharing ratio 3:2 — Hemant ₹42,000, Pankaj ₹28,000."
+  },
+  {
+    "question_number": 19,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "On January 01, 2025 Ritu Ltd. Issued ₹ 40,00,000, 8% Debentures of ₹ 100 each at 5% discount to be redeemed at 10% premium at the end of 5 years. Balance in Securities Premium on the date of such issue was of ₹ 2,70,000. Pass entries for Issue of debentures.",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "Bank Dr ₹38,00,000; Loss on Issue of Debentures Dr ₹6,00,000; To 8% Debentures ₹40,00,000; To Premium on Redemption ₹4,00,000",
+    "answer_explanation": "Discount = 5% of ₹40,00,000 = ₹2,00,000; premium on redemption = 10% = ₹4,00,000; total loss = ₹6,00,000. Securities Premium ₹2,70,000 may be used to write off part of the loss by a separate entry."
+  },
+  {
+    "question_number": 20,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Ankur and Vikram were partners sharin g Profits &Losses in the ratio 3:2. They decided to share future Profits & Losses equally. On the date of reconstitution there was Investment Fluctuation Reserve of ₹ 4,00,000 in the books of accounts. Pass entries in the following cases A. Value of Investment reduced by ₹ 2,50,000. B. Value of Investment increased by ₹ 5,00,000. (1+1.5+0. 5) C. There was no change in value of investments.",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "Case A: IFR A/c Dr ₹4,00,000 — To Investment A/c ₹2,50,000, To Ankur's Capital ₹90,000, To Vikram's Capital ₹60,000. Case B: IFR A/c Dr ₹4,00,000 to Ankur's/Vikram's Capital ₹2,40,000/₹1,60,000, plus Investment A/c Dr ₹5,00,000 to Revaluation A/c, and Revaluation A/c Dr ₹5,00,000 to Ankur's/Vikram's Capital ₹3,00,000/₹2,00,000. Case C: IFR A/c Dr ₹4,00,000 to Ankur's/Vikram's Capital ₹2,40,000/₹1,60,000.",
+    "answer_explanation": "The existing Investment Fluctuation Reserve is ₹4,00,000 in all three independent cases (old ratio 3:2 between Ankur and Vikram). Case A (investment value declined): IFR is debited in full; the decline (₹2,50,000) is credited to Investment A/c, and the remaining ₹1,50,000 credited to the partners 3:2 (₹90,000/₹60,000). Case B (investment value increased): full IFR of ₹4,00,000 is a free reserve credited entirely to the partners (₹2,40,000/₹1,60,000); separately the ₹5,00,000 increase in Investment value is transferred to Revaluation A/c and that profit distributed to the partners 3:2 (₹3,00,000/₹2,00,000). Case C (no change in investment value): IFR of ₹4,00,000 is simply distributed to the partners 3:2 (₹2,40,000/₹1,60,000)."
+  },
+  {
+    "question_number": 21,
+    "section": "A",
+    "question_type": "case_study",
+    "marks": 4,
+    "question_text": "Sapphire Ltd. Was registered with an authorised capital of ₹ 80,00,000 divided into 4,00,000 shares of ₹ 20 each. Company offered and issued 1,50,000 shares at a premium of ₹ 4 per share payable as ₹ 7 on application (including ₹ 1 premium) , ₹ 12 on allotment (including ₹ 2 premium) and balance on first call. Rancho , holding 10,000 shares failed to pay allotment and call money. Another shareholder Sultan holding 5,000 shares failed to pay the call money. All the shares held by Rancho were forfeited and of these 8,000 were reissued at ₹ 22 per share as fully paid. Show Share Capital sub head as it would in the Balance Sheet of Sapphire ltd. along with notes to Account as per the Companies Act 2013.",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "Issued and subscribed capital ₹30,00,000; called-up capital ₹30,00,000; less calls unpaid ₹1,00,000; paid-up capital ₹29,00,000",
+    "answer_explanation": "1,50,000 shares×₹20 = ₹30,00,000. Rancho's allotment and call unpaid: ₹11×10,000? Since allotment excludes premium ₹10 and call ₹5, capital unpaid is ₹15×10,000, but forfeiture removes those shares. Sultan's unpaid call on 5,000 shares is ₹25,000. Reissued 8,000 shares restore capital. Exact note depends on forfeiture treatment; NEEDS_MANUAL_REVIEW for final presentation."
+  },
+  {
+    "question_number": 22,
+    "section": "A",
+    "question_type": "case_study",
+    "marks": 4,
+    "question_text": "Amit, Sumit and Pulkit were partners sharing Profit &Loss in the ratio 5:3:2. Their Capitals were ₹ 8,00,000; ₹ 7,00,000 and ₹ 5,00,000 respectively. According to Partnership Deed:- (a) Interest on Capital @ 10% p.a. (b) Salary to Amit ₹ 10,000 p.m and Pulkit ₹ 15,000 per quarter. (c) Commission to Sumit ₹ 70,000. (d) Sumit was being guaranteed that his share of profits will not be less than ₹ 65,000. Deficiency if any will be borne by Amit and Pulkit equally. Ignoring the above terms the profits of ₹ 6,00,000, for the year ended March 31, 202 5 were divided equally between partners. You are required to pass necessary adjustment entry. Show your workings clearly.",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "Adjustment entry: Amit Capital Dr ₹60,000; Sumit Capital Dr ₹20,000; To Pulkit Capital ₹80,000",
+    "answer_explanation": "Appropriations: IOC ₹80,000, ₹70,000, ₹50,000; salaries Amit ₹1,20,000, Pulkit ₹60,000; Sumit commission ₹70,000. Balance ₹2,20,000 shared 5:3:2 gives ₹1,10,000, ₹66,000, ₹44,000. Correct totals: Amit ₹3,10,000; Sumit ₹2,06,000; Pulkit ₹1,54,000. Already credited equally ₹2,00,000 each. Therefore Amit should receive ₹1,10,000 more, Sumit ₹6,000 more, Pulkit should be debited ₹46,000. The extracted data/guarantee may alter this; NEEDS_MANUAL_REVIEW."
+  },
+  {
+    "question_number": 23,
+    "section": "A",
+    "question_type": "long_answer",
+    "marks": 6,
+    "question_text": "Extract of Financial statements of Alexa Ltd are produced below. Balance Sheet ( Extract) Equity and Liabilities Note no. 31-03-25 31-03-24 Shareholders funds (₹) (₹) Equity Share capital 1 2,37,60,000 2,00,00,000 Reserves and Surplus 2 20,00,000 10,00,000 Note No. 1 Share Capital Authorised Share Capital 31-03-25 (₹) 31-03-24 (₹) Equity shares of Rs.10 each ------- ------- Issued Capital 2,37,60,000 2,00,00,000 Subscribed capital (Fully Paid) 2,37,60,000 2,00,00,000 Note No. 2 Reserves and Surplus 31-03-25 (₹) 31-03-24 (₹) Securities Premium 20,00,000 10,00,000 During the year Alexa ltd. purchased business of Gloria ltd. with assets of Rs.50,00,000 and liabilities of Rs.20,00,000. With regards to the following additional Information: 1) During the year 40,000 Equity Shares were issued at a premium of Rs.4 per share for cash. 2) Besides this no shares were issued as sweat equity, bonus or as ESOP or in any other form. Give journal entries for issue of shares for cash and consideration other than cash . Also, prepare Share Capital A/c and Securities Premium Account in the books of Alexa ltd.",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "Cash issue: Bank Dr ₹5,60,000; To Share Capital ₹4,00,000; To Securities Premium ₹1,60,000. Business purchase shares issued: ₹33,60,000 nominal capital and ₹8,40,000 premium, subject to reconciliation.",
+    "answer_explanation": "Increase in share capital is ₹37,60,000. Cash issue contributes ₹4,00,000 nominal, leaving ₹33,60,000 shares issued for consideration other than cash. Premium increase is ₹10,00,000; cash premium is ₹1,60,000, leaving ₹8,40,000 premium on non-cash issue. Purchase consideration for Gloria is ₹30,00,000, so the extracted figures do not reconcile and require checking against the original statement."
+  },
+  {
+    "question_number": 24,
+    "section": "A",
+    "question_type": "long_answer",
+    "marks": 6,
+    "question_text": "Alok, Deepak and Manish were partners sharing P rofit &Loss in the ratio 5:3:2. Deepak retired 6 on March 31, 2025. On this date his dues after all adjustments related to Revaluation Gain/Loss, Accumulated Profits/Losses and Goodwill treatment came out to be ₹ 6,40,000. He was paid ₹ 40,000 through Furniture on retirement and it was agreed to pay balance in three equal annual instalments together with interest as per the rate permissible by act, in the absence of any agreement. First instalment being paid on March 31, 2026. You are required to pass entry for immediate payment to Deepak on retirement and prepare Deepak’s Loan Account till it is finally closed.",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "Deepak's Loan ₹6,00,000; three principal instalments ₹2,00,000 each with 6% p.a. interest",
+    "answer_explanation": "Immediate payment by furniture: Deepak Capital Dr ₹40,000 to Furniture ₹40,000. Balance transferred: Deepak Capital Dr ₹6,00,000 to Deepak Loan ₹6,00,000. Interest at 6%: year 1 ₹36,000, year 2 ₹24,000, year 3 ₹12,000; annual payments ₹2,36,000, ₹2,24,000 and ₹2,12,000 respectively."
+  },
+  {
+    "question_number": 25,
+    "section": "A",
+    "question_type": "long_answer",
+    "marks": 6,
+    "question_text": "Dhwani and Iknoor were partners sharing P rofits & Losses in the ratio 3:2. Their Balance Sheet on March 31, 2025 was as follows Liabilities Amount (₹) Assets Amount (₹) Dhwani’s Capital 2,40,000 Cash in Hand 50,000 Iknoor’s Capital 2,60,000 Building 3,00,000 Investment Fluctuation Reserve 50,000 Debtors 80,000 (-) Prov for Doubtful Debts (8,000) 72,000 Employee Provident Fund 50,000 General Reserve 60,000 Stock 88,000 Creditors 40,000 Accrued Income 20,000 Bills Payable 30,000 Profit and Loss 1,00,000 Bank Overdraft 20,000 Investment 1,20,000 7,50,000 7,50,000 On the above date, t hey admitted Ishaya into partnership for 2 5% share. Ishaya brings ₹ 2,50,000 as capital and ₹ 40,000 for goodwill. Goodwill of the firm was valued at ₹ 2,00,000. Following agreements were agreed upon:- a) Bad Debts amounted to ₹ 5,000 and Provision fo r doubtful debts to be created at same existing rate. b) Investments were valued at ₹ 1,00,000. c) Accrued Income was recovered only of ₹ 14,500 in settlement. d) Building was overvalued by 20%. e) Capital of Dhwani and Iknoor were to be adjusted on the basis Ishaya’s capital contribution. Necessary adjustment to be done by opening Current Accounts. You are required to prepare Revaluation Account and Partner’s Capital A ccount at the time of admission of partner. OR Aman, Barman and Raman were partners sharing P rofits & Losses in the ratio 5:3:2. Their Balance Sheet on March 31, 2025 was as follows Liabilities Amount (₹) Assets Amount (₹) Aman’s Capital 80,000 Bank 30,000 Barman’s Capital 70,000 Building 1,00,000 Raman’s Capital 50,000 Furniture 60,000 Workmen Compensation Reserve 50,000 Debtors 50,000 Accumulated Depreciation on Building 20,000 Stock 40.000 Profit and Loss 40,000 Prepaid Expenses 20.000 Creditors 25,000 Deferred Revenue Exp. 20.000 Outstanding Expenses 15,000 Goodwill 30.000 3,50,000 3,50,000 On the above date Barman retired and his share was acquired by Aman and Raman equally. Following agreements were agreed upon:- a) Create Provision for doubtful debts @ 10%. b) Market value of Building is ₹1,00,000 and Furniture was overvalued by 20%. c) Stock was valued at ₹ 55,000. Creditors of ₹ 15,000 took over stock of ₹ 10,000 in settlement of their claims. d) Goodwill of the firm was valued at ₹ 80,000. e) Prepaid Expenses are worthless and Outstanding Expenses are now ₹20,000. f) ₹ 20,000 was immediately paid to Barman on retirement brought in Aman and Raman in ratio 3:2. Prepare Revaluation Account and Partner’s Capital Account at the time of retirement of partner.",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "Revaluation Loss ₹60,000 (Dhwani ₹36,000, Iknoor ₹24,000); closing capitals — Dhwani ₹4,50,000, Iknoor ₹3,00,000, Ishaya ₹2,50,000. [OR alternate: Revaluation profit ₹40,000 shared 5:3:2; Barman settled — ₹20,000 cash, ₹86,000 transferred to Barman's Loan, final capitals Aman ₹1,00,000, Raman ₹54,000]",
+    "answer_explanation": "Admission of Ishaya (primary case): Revaluation Account shows a net loss of ₹60,000 (Provision for Doubtful Debts ₹4,500 + Accrued Income shortfall ₹5,500 + Building overvaluation ₹50,000), shared by Dhwani and Iknoor in their old 3:2 ratio as ₹36,000 and ₹24,000. Partners' Capital Accounts, after adjusting Investment Fluctuation Reserve, General Reserve, revaluation loss, Ishaya's capital and goodwill premium, and current-account balancing entries, close at Dhwani ₹4,50,000, Iknoor ₹3,00,000, Ishaya ₹2,50,000. OR (retirement of Barman, alternate question): Revaluation Account shows a net profit of ₹40,000. Barman is paid ₹20,000 immediately in cash with the balance ₹86,000 transferred to Barman's Loan Account; remaining partners' capitals close at Aman ₹1,00,000 and Raman ₹54,000."
+  },
+  {
+    "question_number": 26,
+    "section": "A",
+    "question_type": "long_answer",
+    "marks": 6,
+    "question_text": "Space Ventures Limited was registered with an authorised capital of ₹ 20,00,000 divided into 2,00,000 shares of ₹ 10 each. The company offered 80,000 shares for public subscription payable ₹ 4 on application and ₹ 7 on allotment (including ₹ 1 premium). Public had applied for 1,10,000 shares and pro -rata allotment was made in the ratio of 5:4. Remaining applications were rejected. Mukta, holding 6,000 shares failed to pay allotment money. Her shares were being forfeited and later re-issued 4,000 shares at a discount of ₹ 2 per share. Pass necessary entries in the books of Space Ventures Ltd. OR Chitinoor Ltd. invited applications for 2,00,000 shares of ₹ 10 each payable ₹ 3 on application, ₹ 5 on allotment ( including ₹ 1 premium) and balance on call. Applications were received for 3,00,000 shares out of which 20% applications were rejected and remaining were allotted on pro-rata basis. Rohan, an applicant of 12,000 shares failed to pay allotment money and Mohan holding 8,000 shares paid the entire money along with allotment . Subsequently the call was made, all the money was duly received except from Rohan. Later on, company issued a notice to Rohan to pay the balance in 15 days failing which his shares would be forfeited. Rohan cleared his dues within the stipulated time period. Journalise. Part B :- Analysis of Financial Statements (Option – I)",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "Space Ventures: journalise application, allotment, pro-rata adjustment, forfeiture and reissue; capital reserve from reissued shares = ₹8,000",
+    "answer_explanation": "Mukta was allotted 6,000 shares and applied for 7,500 shares under 5:4 pro-rata. Excess application ₹6,000 is adjusted to allotment. Allotment due ₹42,000; net unpaid ₹36,000. On forfeiture, Share Capital Dr ₹60,000; Securities Premium Dr ₹6,000; To Share Allotment ₹36,000; To Share Forfeiture ₹30,000. Reissue 4,000 shares at ₹8: Bank Dr ₹32,000; Share Forfeiture Dr ₹8,000; To Share Capital ₹40,000; transfer ₹12,000? Proportionate forfeiture = ₹20,000 less discount ₹8,000 = Capital Reserve ₹12,000."
+  },
+  {
+    "question_number": 27,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "A company had following balances in their books of Accounts 31 March, 2025 31 March, 2024 Raw Material 40,000 30,000 Work in Progress 1,00,000 1,40,000 Finished Goods 70,000 1,00,000 Stock in Trade 2,00,000 1,20,000 Determine the amount of Change in Inventories to be shown in Statement of Profit and Loss Account.",
+    "options": [
+      "₹ 20,000",
+      "₹ (20,000)",
+      "₹ (10,000)",
+      "₹ 10,000"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "₹ (10,000)",
+    "answer_explanation": "Per the official CBSE marking scheme, the correct answer is ₹(10,000)."
+  },
+  {
+    "question_number": 28,
+    "section": "B",
+    "question_type": "assertion_reason",
+    "marks": 1,
+    "question_text": "Inventory Turnover Ratio of company was 5 times. The firm had Revenue from operations of ₹ 5,00,000 and Gross Profit was 25% of Cost of Revenue from Operations. Determine the amount of Opening Inventory if Closing Inventory was ₹ 60,000.",
+    "options": [
+      "₹ 80,000",
+      "₹ 60,000",
+      "₹ 1,00,000",
+      "₹ 50,000"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "₹ 1,00,000",
+    "answer_explanation": "Cost of Revenue from Operations = Revenue / (1 + Gross Profit% on cost)... per the official CBSE marking scheme, Opening Inventory = ₹1,00,000."
+  },
+  {
+    "question_number": 29,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Proposed Dividend for the year ended March 31, 202 5 and March 31, 2024 were ₹ 2,50,000 and ₹ 2,00,000 respectively. Shareholders finalised the dividend amount at ₹ 1,80,000 during the year ended March 31, 2025 in AGM held in June-July 2024. Unclaimed dividend as at March 31, 2025 was ₹ 10,000. Choose the correct option while preparing Cash Flow Statement for the year ended March 31, 2025:",
+    "options": [
+      "Proposed Dividend added in Net Profit after tax will be ₹ 2,00,000 and outflow of Dividend paid in financing activities will be ₹ 1,90,000.",
+      "Proposed Dividend added in Net Profit after tax will be ₹ 2,50,000 and outflow of Dividend paid in financing activities will be ₹ 2,00,000.",
+      "Proposed Dividend added in Net Profit after tax will be ₹ 1,80,000 and outflow of Dividend paid in financing activities will be ₹ 1,90,000.",
+      "Proposed Dividend added in Net Profit after tax will be ₹ 1,80,000 and outflow of Dividend paid in financing activities will be ₹ 1,70,000."
+    ],
+    "diagram_dependent": false,
+    "answer_text": "Proposed Dividend added in Net Profit after tax will be ₹ 1,80,000 and outflow of Dividend paid in financing activities will be ₹ 1,70,000.",
+    "answer_explanation": "Dividend declared at AGM was ₹1,80,000, so it is added back if deducted in profit and shown as financing outflow net of unclaimed dividend: ₹1,80,000−₹10,000=₹1,70,000."
+  },
+  {
+    "question_number": 30,
+    "section": "B",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following is cash flow from Operating activities for a finance company:",
+    "options": [
+      "Conversion of debentures into shares",
+      "Dividend received",
+      "Building purchased",
+      "Dividend paid"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "Dividend received",
+    "answer_explanation": "For a finance company, interest and dividends received are operating cash flows because they arise from principal revenue-producing activities."
+  },
+  {
+    "question_number": 31,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Complete the following Comparative Balance Sheet as at March 31, 2024 and Match 31, 2025 PARTICULARS 31st March 2024 31st March, 2025 Absolute Change Percentage Change Shareholders' Funds 6,00,000 ?? 3,00,000 ?? Non-current Liabilities 3,00,000 ?? NIL ?? Current Liabilities ?? 3,00,000 2,00,000 ?? TOTAL ?? ?? ?? ?? Non-current Assets 7,00,000 ?? ?? 50 Current Assets ?? ?? ?? ?? TOTAL ?? ?? ?? ?? OR Prepare Common Size Statement of Profit and Loss for the year ended March 31, 2025 PARTICULARS 31st March, 2025 Revenue from Operations 40,00,000 Other Expenses 4,00,000 Other Income 6,00,000 Employee Benefit Expenses 8,00,000 Purchases of Stock in Trade 10,00,000 Change in Inventory (2,00,000) Tax Rate 50 %",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "Shareholders' funds 2025 ₹9,00,000; non-current liabilities unchanged ₹3,00,000; current liabilities 2024 ₹1,00,000; totals ₹10,00,000 and ₹15,00,000",
+    "answer_explanation": "Using absolute changes: shareholders' funds rise by ₹3,00,000 from ₹6,00,000 to ₹9,00,000; current liabilities rise by ₹2,00,000 to ₹3,00,000. Total liabilities rise from ₹10,00,000 to ₹15,00,000. Non-current assets rise 50% from ₹7,00,000 to ₹10,50,000, leaving current assets ₹3,00,000 and ₹4,50,000."
+  },
+  {
+    "question_number": 32,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "(i) Give two examples of Inventory except Raw Materials, Work in Progress, Finished Goods and Stock in Trade. (ii) Where will you disclose the amount of loss on issue of debentures written off out of Statement of Profit and Loss? (iii) Where will you disclose Purchase of Raw Materials in Financial Statement of Company?",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "(i) Stores and spares; loose tools. (ii) Finance Costs/Other Expenses in Statement of Profit and Loss. (iii) Cost of materials consumed.",
+    "answer_explanation": "These are standard Schedule III classifications for inventories and expenses."
+  },
+  {
+    "question_number": 33,
+    "section": "B",
+    "question_type": "case_study",
+    "marks": 4,
+    "question_text": "Quick Ratio of Roxy Traders is 0.8 : 1. State with reasons whether the following transactions will increase , decrease or will have no change on the ratio a) Goods purchased on Credit b) Outstanding Expenses paid c) Sale of Fixed Assets a 20% loss d) Issue of Debentures at Premium to Vendors OR From the following information, calculate Trade Receivables Turnover Ratio: Cost of Revenue from Operations (Cost of Goods Sold) : Rs. 6,00,000 Gross Profit on Cost : 25% Cash Sales: 20% of Total Sales Opening Debtors: Rs. 1,00,000 Closing Debtors : Rs. 2,00,000. Provision for Doubtful Debts: Opening Rs. 10,000 and Closing Rs.20,000.",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "Quick ratio effects: (a) decreases, (b) increases if paid from cash, (c) increases, (d) increases",
+    "answer_explanation": "Credit purchase increases current liabilities but inventory is excluded from quick assets, so ratio falls. Paying outstanding expenses reduces both quick assets and current liabilities; with ratio below 1 it rises. Sale of fixed assets for cash increases quick assets. Issue of debentures to vendors generally converts a current/trade liability into non-current liability, improving the quick ratio."
+  },
+  {
+    "question_number": 34,
+    "section": "B",
+    "question_type": "long_answer",
+    "marks": 6,
+    "question_text": "Extracts of the Balance Sheets of M/s Agrawal Ltd. as on 31 st March,2024 and 31 st March 2025alonwith additional information are given below. You are required to calculate: (i) Operating profit before changes in working capital. (ii) Cash Flows from Financing Activities.",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "Operating profit before working-capital changes = ₹4,21,000; Net cash from Financing Activities = ₹2,57,000",
+    "answer_explanation": "Net Profit before tax ₹3,75,000 (P&L balance increase ₹2,00,000 + preference dividend ₹40,000 + interim equity dividend ₹1,35,000). Add non-operating/non-cash items: Premium on redemption of preference shares ₹5,000, Interest on debentures ₹36,000, Discount on issue of debentures written off ₹5,000 → Operating profit before working-capital changes = ₹4,21,000. Financing Activities: Proceeds from equity shares ₹3,00,000; Redemption of preference shares (₹1,05,000); Proceeds from debentures ₹95,000; Increase in bank overdraft ₹25,000; Increase in cash credit ₹1,50,000; Preference dividend paid (₹40,000); Interim equity dividend paid (₹1,35,000); Interest on debentures paid (₹33,000) → Net cash from Financing Activities = ₹2,57,000."
+  }
+]

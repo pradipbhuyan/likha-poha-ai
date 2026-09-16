@@ -1,0 +1,469 @@
+[
+  {
+    "question_number": 1,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If 𝑎 = 22 × 3𝑥 ,𝑏 = 22 × 3 × 5,𝑐 = 22 × 3 × 7 and LCM (𝑎, 𝑏, 𝑐) = 3780, then 𝑥 is equal to",
+    "options": [
+      "1",
+      "2",
+      "3",
+      "0"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 2,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The shortest distance (in units) of the point (2,3) from y-axis is",
+    "options": [
+      "2",
+      "3",
+      "5",
+      "1"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 3,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If the lines given by 3x +2ky =2 and 2x+5y +1=0 are not parallel, then k has to be",
+    "options": [
+      "15",
+      "≠",
+      "any rational number",
+      "any rational number having 4 as denominator"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 4,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "A quadrilateral ABCD is drawn to circumscribe a circle. If BC=7cm, CD=4cm and AD=3cm, then the length of AB is",
+    "options": [
+      "3cm",
+      "4cm",
+      "6cm",
+      "7cm"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 5,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If 𝑠𝑒𝑐𝛳 + 𝑡𝑎𝑛𝛳 = 𝑥 ,then 𝑠𝑒𝑐𝛳 − 𝑡𝑎𝑛𝛳 will be",
+    "options": [
+      "𝑥",
+      "𝑥2",
+      "2",
+      "1"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 6,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which one of the following is not a quadratic equation?",
+    "options": [
+      "(𝑥 +2)2 =2(𝑥 +3)",
+      "𝑥 2 +3𝑥 =(- 1)(1- 3𝑥)2",
+      "𝑥 3 - 𝑥 2 +2 𝑥 +1 =( 𝑥 +1)3",
+      "( 𝑥 +2)( 𝑥 +1)  = 𝑥 2+ 2𝑥 +3"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 7,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Given below is the picture of the Olympic rings made by taking five congruent circles of radius 1cm each, intersecting in such a way that the chord formed by joining the point of intersection of two circles is also of length 1cm.Total area of all the dotted regions (assuming the thickness of the rings to be negligible) is",
+    "options": [
+      "4[",
+      "[",
+      "4[",
+      "8[",
+      "36𝜋cm2",
+      "18𝜋cm2",
+      "12𝜋cm2",
+      "9𝜋cm2"
+    ],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 8,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "A pair of dice is tossed. The probability of not getting the sum eight is",
+    "options": [
+      "5",
+      "31",
+      "5",
+      "5"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 9,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If 2sin5𝑥 = √3 ,0˚≤ 𝑥 ≤90o, then 𝑥 is equal to",
+    "options": [
+      "10o",
+      "12o",
+      "20o",
+      "50o"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 10,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The sum of two numbers is 1215 and their HCF is 81, then the possible pairs of such numbers are",
+    "options": [
+      "2",
+      "3                 (C ) 4",
+      "5"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 11,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If the area of the base of a right circular cone is 51cm2 and it's volume is 85cm2, then the height of the cone is given as",
+    "options": [
+      "5",
+      "5",
+      "5",
+      "5cm"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 12,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If zeroes of the quadratic polynomial a𝑥2 + b𝑥 +c (a, c ≠0) are equal, then",
+    "options": [
+      "c and b must have opposite signs",
+      "c and a must have opposite signs",
+      "c and b must have same signs",
+      "c and a must have same signs"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 13,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The area (in cm 2) of a sector of a circle of radius 21cm cut off by an arc of length 22cm is",
+    "options": [
+      "441",
+      "321",
+      "231",
+      "221"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 14,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If ∆ABC ~∆DEF, AB=6cm, DE=9cm, EF=6cm and FD=12cm, then the perimeter of ∆ABC is",
+    "options": [
+      "28cm",
+      "28.5cm",
+      "18cm",
+      "23cm"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 15,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If the probability of the letter chosen at random from the letters of the word “Mathematics” to be a vowel is 2𝑥+1, then 𝑥 is equal to",
+    "options": [
+      "4",
+      "9",
+      "11",
+      "4"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 16,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The points A(9,0), B(9, -6) ,C(-9,0) and D(-9,6) are the vertices of a",
+    "options": [
+      "Square",
+      "Rectangle",
+      "Parallelogram",
+      "Trapezium"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 17,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The median of a set of 9 distinct observation is 20.5. If each of the observations of a set is increased by 2,then the median of a new set",
+    "options": [
+      "is increased by 2",
+      "is decreased by 2",
+      "is two times the original number",
+      "Remains same as that of original observations"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 18,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The length of a tangent drawn to a circle of radius 9 cm from a point at a distance of 41cm from the centre of the circle is",
+    "options": [
+      "40cm",
+      "9cm",
+      "41cm",
+      "50cm",
+      "is"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 19,
+    "section": "A",
+    "question_type": "assertion_reason",
+    "marks": 1,
+    "question_text": "Assertion (A): The number 5 n cannot end with the digit 0, where n is a natural number Reason (R): A number ends with 0, if its prime factorization contains both 2 and 5",
+    "options": [
+      "Both assertion (A) and reason (R) are true and reason (R) is the correct explanation of assertion (A)",
+      "Both assertion (A) and reason (R) are true but reason (R) is not the correct explanation of assertion (A)",
+      "Assertion (A) is true but reason (R) is false",
+      "Assertion (A) is false but reason (R) is true"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 20,
+    "section": "A",
+    "question_type": "assertion_reason",
+    "marks": 1,
+    "question_text": "Assertion (A): If cosA + cos2A=1, then sin2A + sin4A =1 Reason (R): sin2A + cos2A =1 (Section – B) Section B consists of 5 questions of 2 marks each.",
+    "options": [
+      "Both assertion (A) and reason (R) are true and reason (R) is the correct explanation of assertion (A)",
+      "Both assertion (A) and reason (R) are true but reason (R) is not the correct explanation of assertion (A)",
+      "Assertion (A) is true but reason (R) is false",
+      "Assertion (A) is false but reason (R) is true"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 21,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "",
+    "options": [
+      "The A.P 8, 10, 12,……. has 60 terms. Find the sum of last 10 terms."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 22,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "If 𝑠𝑖𝑛(𝐴 + 𝐵) = 1 and 𝑐𝑜𝑠(𝐴 − 𝐵) = √3 2 ,0° < 𝐴, 𝐵 < 90°, find the measure of angles 𝐴 and 𝐵.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 23,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "If AP and DQ are medians of triangles ABC and DEF respectively, where ∆ABC~ ∆DEF, then prove that 𝐴𝐵 𝐷𝐸 = 𝐴𝑃 𝐷𝑄",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 24,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "",
+    "options": [
+      "A horse, a cow and a goat are tied, each by ropes of length 14m, at the corners A, B"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 25,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "A ∆ABC is drawn to circumscribe a circle of radius 4 cm such that the segments BD and DC are of lengths 10 cm and 8 cm respectively. Find the lengths of the sides AB and AC, if it is given that ar(∆ABC) = 90cm2 For Visually Impaired candidates: A circle is inscribed in a right-angled triangle ABC, right angled at B. If BC=7cm and AB=24cm, find the radius of the circle (Section – C) Section C consists of 6 questions of 3 marks each.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 26,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "In Figure, XY and X′Y′ are two parallel tangents to a circle with centre O and another tangent AB with point of contact C intersecting XY at A and X′Y′ at B. Prove that ∠ AOB = 90° For Visually Impaired candidates: Two tangents PA and PB are drawn to a circle with centre O from an external point P. Prove that ∠APB= 2(∠OAB)",
+    "options": [],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 27,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "In a workshop, the number of teachers of English, Hindi and Science are 36, 60 and 84 respectively. Find the minimum number of rooms required, if in each room the same number of teachers are to be seated and all of them being of the same subject.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 28,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Find the zeroes of the quadratic polynomial 2𝑥2 – (1 + 2√2) 𝑥 + √2 and verify the relationship between the zeroes and coefficents of the polynomial.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 29,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "If 𝑠𝑖𝑛𝛳 + 𝑐𝑜𝑠𝛳 = √3 ,then prove that 𝑡𝑎𝑛𝛳 + 𝑐𝑜𝑡𝛳 = 1 OR Prove that 𝑐𝑜𝑠𝐴−𝑠𝑖𝑛𝐴+1 𝑐𝑜𝑠𝐴+𝑠𝑖𝑛𝐴−1 =cosecA + cotA",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 30,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "On a particular day, Vidhi and Unnati couldn’t decide on who wo uld get to drive the car. They had one coin each and flipped their coin exactly three times. The following was agreed upon: 1. If Vidhi gets two heads in a row, she would drive the car 2. If Unnati gets a head immediately followed by a tail, she would drive the car. Who has greater probability to drive the car that day? Justify your answer.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 31,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "",
+    "options": [
+      "The monthly income of Aryan and Babban are in the ratio 3:4 and their monthly"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 32,
+    "section": "D",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "A train travels at a certain average speed for a distance of 63km and then travels at a distance of 72km at an average speed of 6km/h r more than its original speed. If it takes 3 hours to complete the total journey, what is the original average speed?",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 33,
+    "section": "D",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "Prove that if a line is drawn parallel to one side of a triangle to intersect the other two sides in distinct points, the other two sides are divided in the sameratio. Hence in ΔPQR, prove that a line ℓ intersects the sides PQ and PR of a ∆PQR at L and M respectively such that LM II QR. If PL = 5.7cm, PQ=15.2cm and MR=5.5cm, then find the length of PM (in cm)",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 34,
+    "section": "D",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "",
+    "options": [
+      "From a solid right circular cone, whose height is 6cm and radius of base is 12cm, a"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 35,
+    "section": "D",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "",
+    "options": [
+      "If the mode of the following distribution is 55, then find the value of 𝑥. Hence, find the"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 36,
+    "section": "E",
+    "question_type": "case_study",
+    "marks": 4,
+    "question_text": "In a class, the teacher asks every student to write an example of A.P. Two boys Aryan and Roshan writes the progression as −5, −2,1,4, …… and 187, 184, 181, …. respectively. Now the teacher ask s his various students the following questions on progression. Help the students to find answers for the following: i. Find the sum of the common difference of two progressions. ii. Find the 34th term of progression written by Roshan. iii.",
+    "options": [
+      "Find the sum of first 10 terms of the progression written by Aryan.",
+      "Which term of the progressions will have the same value?"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 37,
+    "section": "E",
+    "question_type": "case_study",
+    "marks": 4,
+    "question_text": "A group of class X students goes to picnic during winter holidays. The position of three friends Aman, Kirti and Chahat are shown by the points P, Q and R (i) Find the distance between P and R. (ii) Is Q, the midpoint of PR? Justify by finding midpoint of PR. (iii)",
+    "options": [
+      "Find the point on x-axis which is equidistant from P and Q.",
+      "Let S be a po int which divides the line joining PQ in ratio 2:3.  Find the",
+      "Find the point on x-axis which is equidistant from P and Q.",
+      "Let S be a point which divides the line joining PQ in ratio 2:3.  Find the"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 38,
+    "section": "E",
+    "question_type": "case_study",
+    "marks": 4,
+    "question_text": "India gate (formerly known as All India war memorial) is located near Karthavya path. (formerly Rajpath) at New Delhi. It stands as a memorial to 74187 soldiers of Indian Army, who gave their life in the first world war. This 42m tall structure was desi gned by Sir Edwin Lutyens in the style of Roman triumphal arches. A student Shreya of height 1 m visited India Gate as a part of her study tour. i. What is the angle of elevation from Shreya’s eye to the top of India Gate, if she is standing at a distance of 41m away from the India Gate? ii. If Shreya observes the angle of elevation from her eye to the top of India Gate to be 60o, then how far is the she standing from the base of the India Gate? iii.",
+    "options": [
+      "If the angle of elevation from Shreya’s eye changes from 45° to 30°, when",
+      "If Shreya moves to a point which is at a distance  of"
+    ],
+    "diagram_dependent": false
+  }
+]

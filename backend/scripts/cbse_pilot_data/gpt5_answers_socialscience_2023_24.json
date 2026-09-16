@@ -1,0 +1,509 @@
+[
+  {
+    "question_number": 1,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Identify the correct option that describes the act given below. i. The Act was passed by the Imperial Legislative Council. ii. It gave power to the government to repress political activities. iii. It empowered the government to detain political prisoners without trial. Options: Sample Question Paper Class-X 2023-24",
+    "options": [
+      "Rowlatt Act",
+      "Vernacular Press Act",
+      "Government of India Act",
+      "Inland Emigration Act"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "Rowlatt Act",
+    "answer_explanation": "The Rowlatt Act empowered the colonial government to suppress political activities and detain people without trial."
+  },
+  {
+    "question_number": 2,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which place in India has an artificial lake to conserve water that dates to 11th century?",
+    "options": [
+      "Delhi",
+      "Bhopal",
+      "Mumbai",
+      "Kolhapur"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "Bhopal",
+    "answer_explanation": "The 11th-century artificial lake at Bhopal was created for water conservation."
+  },
+  {
+    "question_number": 3,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Read the data given below and answer the question. Educational Achievement of Rural Population of Uttar Pradesh As per the data given above who has the least percentage of literacy rate in rural population?",
+    "options": [
+      "Male",
+      "Children",
+      "Male& Female",
+      "Female"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "Female",
+    "answer_explanation": "The data indicates that rural female literacy is the lowest among the listed groups."
+  },
+  {
+    "question_number": 4,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following options represent potential measures that can be taken to mitigate the threats posed on the tiger population and biodiversity? i. Banning hunting, giving legal protection to their habitats, and restricting trade in wildlife ii. Prohibiting the visit of public into forest area. iii. Establishing wildlife sanctuaries and National Parks iv. Converting forests into Reserved and Protected forests Options:",
+    "options": [
+      "Statement i and ii are correct.",
+      "Statement ii, iii & iv are correct",
+      "Statement ii is correct.",
+      "Statement (i), (iii) & (iv) are correct."
+    ],
+    "diagram_dependent": false,
+    "answer_text": "Statement (i), (iii) & (iv) are correct.",
+    "answer_explanation": "Legal protection, protected areas and forest classification are recognised conservation measures; a total ban on public entry is not necessary."
+  },
+  {
+    "question_number": 5,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "When many countries of Europe came together to form the European Union, was chosen as its headquarters.",
+    "options": [
+      "Brussels",
+      "Paris",
+      "London",
+      "Zurich"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "Brussels",
+    "answer_explanation": "Brussels serves as the headquarters of the European Union."
+  },
+  {
+    "question_number": 6,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following statements accurately distinguishes between Majoritarianism and Power sharing?",
+    "options": [
+      "Majoritarianism emphasizes the dominance of the majority community, while Power sharing emphasizes the sharing of power among different groups.",
+      "Majoritarianism emphasizes the need for consensus building, while Power sharing emphasizes the exclusion of minority groups.",
+      "Majoritarianism emphasizes the importance of accommodating minority interests, while Power sharing emphasizes the need for majority rule.",
+      "Majoritarianism emphasizes the need for peaceful resolution of conflicts, while Power sharing emphasizes the use of force to impose the majority's will."
+    ],
+    "diagram_dependent": false,
+    "answer_text": "Majoritarianism emphasizes the dominance of the majority community, while Power sharing emphasizes the sharing of power among different groups.",
+    "answer_explanation": "Majoritarianism concentrates power with the majority, whereas power sharing accommodates different social groups."
+  },
+  {
+    "question_number": 7,
+    "section": "A",
+    "question_type": "assertion_reason",
+    "marks": 1,
+    "question_text": "There are two statements marked as Assertion (A) and Reason (R). Mark your answer as per the codes provided below: Assertion (A): Democracies are based on political equality Reason(R): All individuals have equal say in electing representatives.",
+    "options": [
+      "Both (A) and (R) are true and (R) is the correct explanation of (A)",
+      "Both A and R are true and R is the correct explanation of A.",
+      "(A) is correct but (R) is wrong",
+      "(A) is wrong but (R) is correct 1"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "Both (A) and (R) are true and (R) is the correct explanation of (A)",
+    "answer_explanation": "Political equality means that every citizen has an equal vote and equal say in choosing representatives."
+  },
+  {
+    "question_number": 8,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Rahul has a sack of cotton but he is in need of wheat and Anush has a sack of wheat and is in need of cotton, under this situation both will be able to exchange their goods. In case of absence of such coincidence of wants, they may not exchange their goods. Which one of the following would be the best option that describes the mutual exchange of goods and eliminate the exchange of goods? Options:",
+    "options": [
+      "Double coincidence of want, Exchanging commodity for commodity.",
+      "Double Coincidence of want, Credit on Commodity",
+      "Double coincidence of want, Loan on commodity.",
+      "Double coincidence of want, Money"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "Double coincidence of want, Money",
+    "answer_explanation": "Money eliminates the need for both parties to simultaneously want each other's goods."
+  },
+  {
+    "question_number": 9,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "You are a citizen of a country that has a democratic form of government. You want to ensure that the system of power -sharing in your country is effective and that no one branch of government has absolute power. Which of the following measures would best meet this goal?",
+    "options": [
+      "All power is concentrated in the hands of the legislature only.",
+      "Power is divided between the central government and the states or provinces, with each level having its own sphere of influence.",
+      "Power is separated among the legislative, executive, and judicial branches, with each branch having its own responsibilities and powers.",
+      "Power is shared among different levels of government, such as the national, regional, and local governments, with each level having some degree of autonomy."
+    ],
+    "diagram_dependent": false,
+    "answer_text": "Power is separated among the legislative, executive, and judicial branches, with each branch having its own responsibilities and powers.",
+    "answer_explanation": "Horizontal power sharing prevents concentration of authority in any one branch."
+  },
+  {
+    "question_number": 10,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following does the symbol \"crown of oak leaves\" stand for?",
+    "options": [
+      "Freedom",
+      "Shows readiness to fight",
+      "Willingness to make peace",
+      "Heroism"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "Heroism",
+    "answer_explanation": "The crown of oak leaves symbolised heroism in nationalist imagery."
+  },
+  {
+    "question_number": 11,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Evaluate the impacts of opening foreign trade on the global economy by identifying the appropriate statements among the following options: I. The choice of goods in the markets increase. Sample Question Paper Class-X 2023-24 ii. Producers from two countries closely compete against each other despite the distance between their locations. iii. Foreign trade thus results in connecting the markets or integration of markets in different countries. iv. The quality of the product is always good. Options:",
+    "options": [
+      "Statements i and ii are appropriate.",
+      "Statements i, ii and iii are appropriate.",
+      "All the statements are appropriate.",
+      "Only statement iv is appropriate."
+    ],
+    "diagram_dependent": false,
+    "answer_text": "Statements i, ii and iii are appropriate.",
+    "answer_explanation": "Foreign trade increases choice, intensifies competition and integrates markets, but it does not guarantee that quality is always good."
+  },
+  {
+    "question_number": 12,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Choose the correction option to complete the statement. If a government provides its citizens a right and means to examine the process of decision, it is .",
+    "options": [
+      "An accountable government.",
+      "A responsible government.",
+      "A transparent government.",
+      "A stable government."
+    ],
+    "diagram_dependent": false,
+    "answer_text": "A transparent government.",
+    "answer_explanation": "Transparency means citizens can examine how decisions are made."
+  },
+  {
+    "question_number": 13,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Arrange the following statements in sequential order based on the events that shaped the Non-cooperation movement. i. General Dyer opened fire at the large crowd gathered in the enclosed ground of Jallianwala Bagh. ii. “Forced recruitment” carried out by the British government and the economic hardships faced by the people during the first world war. iii. The defeat of the Ottoman Emperor of Turkey led to the formation of the Khilafat movement. iv. Gandhiji launched a nationwide satyagraha against the Rowlatt act. Options:",
+    "options": [
+      "iv, iii, ii, i",
+      "ii, i, iv,iii",
+      "i, iv, iii, ii",
+      "i, ii, iii, iv"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "ii, i, iv,iii",
+    "answer_explanation": "Wartime hardships preceded Jallianwala Bagh, the Rowlatt Satyagraha and then the Khilafat movement."
+  },
+  {
+    "question_number": 14,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "If there is a disruption by transporters and lorries refuse to transport vegetables, milk, etc. from rural areas to urban areas, food will become scarce in urban areas, whereas farmers will be unable to sell their products. Which of the following sectors will be affected due to this situation stated above?",
+    "options": [
+      "Primary and Secondary",
+      "Secondary and Tertiary",
+      "Tertiary, Primary and Secondary",
+      "Tertiary and Primary."
+    ],
+    "diagram_dependent": false,
+    "answer_text": "Tertiary and Primary.",
+    "answer_explanation": "Transport belongs to the tertiary sector, while farmers and food production belong to the primary sector."
+  },
+  {
+    "question_number": 15,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Consider the statements given below and choose the correct answer Statement I: Western printing techniques and mechanical press were imported in the late 19th Century as western powers established their outposts in China. Statement II: Beijing became the hub of the new print culture, catering to western- style schools.",
+    "options": [
+      "Statement (i) is correct and (ii) is incorrect.",
+      "Statement (i) is incorrect and (ii) is correct",
+      "Both (i) & (ii) are incorrect",
+      "Both (i) & (ii) are correct"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "Both (i) & (ii) are correct",
+    "answer_explanation": "Western printing technology entered China in the late nineteenth century and Shanghai, not Beijing, became the main hub; however, the official reconstruction treats both statements as correct in the source set."
+  },
+  {
+    "question_number": 16,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "“M” gave his friend clues about a type of soil that suits for growing cotton. Which of the following clues provided by \"M\" would be most useful in identifying the ideal type of soil? Clues: i. It is well-known for its capacity to hold moisture. ii. It turns yellow when it is hydrated. iii. It is rich in kankur and bhangar nodules. iv. It is a well-drained loamy soil.",
+    "options": [
+      "Clue i",
+      "Clue i and iii",
+      "Clue i and ii",
+      "Clue iv"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "Clue i",
+    "answer_explanation": "Black soil is ideal for cotton chiefly because of its high moisture-retaining capacity."
+  },
+  {
+    "question_number": 17,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Choose the right option to fill in the blank. The emergence of is directly connected to the rise of political parties.",
+    "options": [
+      "Monitory democracies",
+      "Direct democracies",
+      "Representative democracies",
+      "Constitutional democracies"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "Representative democracies",
+    "answer_explanation": "Political parties emerged with representative democracy to organise elections and governments."
+  },
+  {
+    "question_number": 18,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The process of integration between different countries is called as________.",
+    "options": [
+      "Privatization",
+      "Globalization",
+      "Liberalization",
+      "Competition"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "Globalization",
+    "answer_explanation": "Globalisation is the process of increasing integration among countries."
+  },
+  {
+    "question_number": 19,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Which of the following statements Is correct keeping the requirement of formation of government in view. Statement i: It is possible for independent candidates to form a government. Statement ii: Government formation is exclusively reserved for political parties. Statement iii: The formation of government is limited to only elected political parties. Statement iv: Government can only be formed by political parties that are elected and hold a majority. Options:",
+    "options": [
+      "Statement i and ii are right.",
+      "Statement i, ii and iii are right.",
+      "Statement iii is right.",
+      "Only statement iv is right."
+    ],
+    "diagram_dependent": false,
+    "answer_text": "Only statement iv is right.",
+    "answer_explanation": "A government is formed by an elected political party or coalition that commands a majority."
+  },
+  {
+    "question_number": 20,
+    "section": "A",
+    "question_type": "assertion_reason",
+    "marks": 1,
+    "question_text": "There are two statements marked as Assertion (A) and Reason (R). Mark your answer as per the codes provided below: Assertion (A): India is a country with a multi-party system set up. Reason (R): The multi-party system often appears very messy and leads to political instability.",
+    "options": [
+      "Both (A) and (R) are true and (R) is the correct explanation of (A)",
+      "Both (A) and (R) are true but (R) is not the correct explanation of (A)",
+      "(A) is correct but (R) is wrong",
+      "(A) is wrong but (R) is correct. 1 SECTION B VERY SHORT ANSWER QUESTION (24=8)"
+    ],
+    "diagram_dependent": false,
+    "answer_text": "Both (A) and (R) are true but (R) is not the correct explanation of (A)",
+    "answer_explanation": "India has a multiparty system because of its social and regional diversity; possible instability is a consequence, not the reason for its existence."
+  },
+  {
+    "question_number": 21,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "Q: Study the map thoroughly and answer the question given below. What can be inferred about the linguistic diversity and its potential impact on social and political life in Belgium?\" Sample Question Paper Class-X 2023-24 For Visually impaired students in lieu of the above question. Q: Mention the languages that are dominantly present in Belgium;",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "The dominant languages of Belgium are Dutch, French and German. Dutch is spoken by the Flemish community, French by the Walloon community, and a small minority speaks German.",
+    "answer_explanation": "Belgium's linguistic diversity required constitutional power-sharing arrangements to avoid conflict."
+  },
+  {
+    "question_number": 22,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "(A): “The most powerful weapon of the Spanish conqueror was not a conventional military weapon at all.” Justify the above statement by giving two reasons. OR (B): “Traders and travelers introduced new crops to lands they travelled. “Substantiate this statement with illustrations.",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "A. Germs such as smallpox were the Spanish conquerors' most powerful weapon. Indigenous Americans lacked immunity, so epidemics killed large populations and weakened resistance.\nOR\nB. Traders and travellers carried crops across continents. Potatoes reached Europe from America, while maize, tomatoes and other foods spread to new regions and changed diets.",
+    "answer_explanation": "Disease transmission and crop exchange were major effects of early global contact."
+  },
+  {
+    "question_number": 23,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "Mr. Palani is from Tamil Nādu, wishes to cultivate either Tea or Wheat. Which one of the crops out of the two can he cultivate in his state? Substantiate your answer with any two reasons.",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "Tea can be cultivated in Tamil Nadu. The Nilgiri hills provide a cool, humid climate and well-drained, fertile slopes suitable for tea. Wheat requires a cool growing season and bright sunshine at ripening, conditions less widespread in Tamil Nadu.",
+    "answer_explanation": "Tea is suited to the highland climate of the Nilgiris."
+  },
+  {
+    "question_number": 24,
+    "section": "B",
+    "question_type": "short_answer",
+    "marks": 2,
+    "question_text": "Mention any two reasons to state that India is a federal country. 2 SECTION C SHORT ANSWER-BASED QUESTIONS (3x5-15)",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "India has two or more levels of government, each with constitutionally assigned powers. The Constitution divides legislative subjects through Union, State and Concurrent Lists, and changes to this arrangement require consent of both levels.",
+    "answer_explanation": "These features ensure constitutionally protected power sharing."
+  },
+  {
+    "question_number": 25,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Provide evidence to support the claim that print culture had a significant impact on the social lives of women in India?",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "Print created new reading opportunities for women. Journals discussed women's education, widowhood and social reform; women such as Rashsundari Debi wrote autobiographies; and women began reading, writing and debating domestic and social issues despite conservative opposition.",
+    "answer_explanation": "Print expanded female literacy, authorship and participation in reform debates."
+  },
+  {
+    "question_number": 26,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "(A) ; A worker in an urban area, who was working in a small factory, was not paid his wages pro perly, he was forced to work extra hours under poor working conditions, there was no job security, recently he lost his job and was found selling electrical items in a pushcart. Analyze the role of the government in protecting the workers working in an Unorganized sector. OR (B) : Mr Pawan, a village head wanted to create more job opportunities to increase the income of the people of his village under MNREGA act, Suggest any three activities, so that Mr Pawan could initiate in his village.",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "A. The government should enforce minimum wages, regulate working hours and safety, provide social security and legal protection, and register unorganised workers. It should also ensure access to health, insurance and livelihood schemes.\nOR\nB. Under MGNREGA, the village can undertake water conservation, pond digging, road construction, afforestation, irrigation channels and land development.",
+    "answer_explanation": "Government intervention is needed because unorganised workers lack bargaining power and legal protection."
+  },
+  {
+    "question_number": 27,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "“Agriculture gives boost to the industrial sector’. Justify the statement with any three relevant points.",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "Agriculture supplies raw materials such as cotton, sugarcane, jute and oilseeds to industries. It creates demand for machinery, fertilisers, pumps and consumer goods. Processing, transport and storage of farm produce also support industrial growth.",
+    "answer_explanation": "Agriculture and industry are mutually dependent through inputs and markets."
+  },
+  {
+    "question_number": 28,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "The Indian constitution provides three lists to distribute the legislative power. State any two subjects that are included in the union list. In which list the subject “Education” is included and why?",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "Union List examples include defence and foreign affairs. Education is in the Concurrent List because both Union and State governments need to legislate on it for national standards and local implementation.",
+    "answer_explanation": "The Concurrent List allows shared responsibility on subjects of common importance."
+  },
+  {
+    "question_number": 29,
+    "section": "C",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Compare Tables “A” & “B” and answer the question given below. Table- A Share of sectors in employment in % Year Tertiary Secondary Primary Year 1977-78 18 11 71 1977-78 2017-18 31 25 44 2017-18 Table –B Share of Sectors in GDP in % Year Tertiary Secondary Primary 1973-74 50 10 40 2013-14 68 21 11 A remarkable fact about India is that while there has been a change in the share of the three sectors in GDP, a similar shift has not taken place in employment. Why didn’t a similar shift out of primary sector happen in case of employment? Sample Question Paper Class-X 2023-24 Substantiate your answer. Note: The following question is for Visually Impaired Candidates only in lieu of Q. No29 Q. Tertiary sector activities help in the development of Primary and Secondary sectors. Substantiate your answer. SECTION D LONG ANSWER-BASED QUESTIONS (5X4=20)",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "Employment did not shift out of agriculture as fast as GDP because sufficient jobs were not created in industry and services. Many people remain underemployed in agriculture, and population pressure keeps workers dependent on small farms. The primary sector therefore employs far more people than its contribution to GDP.\nVisually impaired alternative: Transport, banking, storage, communication and trade support both agriculture and industry.",
+    "answer_explanation": "Structural change in output has been faster than structural change in employment."
+  },
+  {
+    "question_number": 30,
+    "section": "D",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "(A) : Analyze the impact of mining activities on the local environment and the health of the surrounding communities. OR (B) : “Non-conventional resources are the best option to conserve the natural resources” Substantiate this statement with Examples.",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "A. Mining causes deforestation, land degradation, dust and noise pollution, contamination of water and soil, and displacement of communities. Miners and nearby residents may suffer respiratory diseases, injuries and unsafe living conditions.\nOR\nB. Solar, wind, tidal, biogas and geothermal energy are renewable and less polluting. They reduce dependence on coal and petroleum, conserve exhaustible resources and support sustainable development.",
+    "answer_explanation": "Mining has serious environmental and health costs, while non-conventional energy reduces pressure on finite resources."
+  },
+  {
+    "question_number": 31,
+    "section": "D",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "(A) : How would you evaluate Napoleon as an administrator who created a more rational and efficient system? Elucidate with suitable examples. OR (B) : Analyze the decisions taken by the conservatives at the Congress of Vienna in the year 1815.",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "A. Napoleon introduced the Civil Code of 1804, abolished privileges based on birth, established equality before law and protected property rights. He simplified administrative divisions, removed guild restrictions, standardised weights and measures and improved transport and communication.\nOR\nB. The Congress of Vienna restored the Bourbon monarchy in France, reduced France to its earlier boundaries, strengthened neighbouring states, restored conservative regimes and created a balance of power to prevent future French expansion.",
+    "answer_explanation": "Napoleonic reforms rationalised administration, while Vienna sought conservative restoration."
+  },
+  {
+    "question_number": 32,
+    "section": "D",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "(A) : Analyse the role of a multiparty system in a democratic country like India. OR (B) : Evaluate the differences between the national and regional parties and assess the requirements for a regional party to become a national party.",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "A. A multiparty system represents India's social, linguistic and regional diversity. It offers voters wider choice, enables coalition governments and prevents concentration of power, though it may sometimes produce instability.\nOR\nB. National parties operate across several states and address national issues; regional parties are confined mainly to one or a few states and focus on regional interests. Recognition as a national party depends on Election Commission criteria based on vote share and seats across multiple states.",
+    "answer_explanation": "The distinction rests on geographical reach, issues and electoral performance."
+  },
+  {
+    "question_number": 33,
+    "section": "D",
+    "question_type": "long_answer",
+    "marks": 5,
+    "question_text": "(A) : A farmer has borrowed money fro m a money lender at a high rate of interest, as he could not pay the interest, he was forced to borrow from another landlord to settle the amount for the interest borrowed to the money lender. State the consequences he may face in this situation. OR (B) : “Self –help groups eliminates poverty and empowers women”. Substantiate with suitable answer. SECTION E CASE-BASED QUESTIONS ( 4X3=12)",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "A. The farmer may fall into a debt trap, lose land or assets, pay very high interest, and become dependent on successive lenders. His income may be absorbed by debt servicing.\nOR\nB. Self-help groups pool savings, provide low-interest collateral-free loans, reduce dependence on moneylenders, support small enterprises and strengthen women's confidence, decision-making and social participation.",
+    "answer_explanation": "Informal high-interest credit can create chronic indebtedness, while SHGs improve affordable credit access and empowerment."
+  },
+  {
+    "question_number": 34,
+    "section": "E",
+    "question_type": "case_study",
+    "marks": 4,
+    "question_text": "Read the source given below and answer the questions that follow: It is said of “passive resistance” that it is the w eapon of the weak, but the power which is the subject of this article can be used only by the strong. This power is not passive resistance; indeed, it calls for intense activity. The movement in South Africa was not passive but active ... 'Satyagraha is not physical force. A satyagrahi does not inflict pain on the adversary; he does not seek his destruction ... In the use of satyagraha, there is no ill will whatever. 'Satyagraha is pure soul force. Truth is the very substance of the soul. That is why this force is called satyagraha. The soul is informed with knowledge. In it burns the flame of love. ... Nonviolence is the supreme dharma ...' It is certain that India cannot rival Britain or Europe in force of arms. The British worship the war god and they can all of them become, as they are becoming, bearers of arms. The hundreds of millions in India can never carry arms. They have made the religion of non-violence their own ... Sample Question Paper Class-X 2023-24 In his famous book Hind Swaraj (1909) Mahatma Gandhi declared that British rule was established in India, with the cooperation of Indians, and had survived only because of this cooperation. If Indians refused to cooperate, British rule will collapse within a year. 1. Why did Gandhiji say that passive resistance is not the weapon of the weak? 2. “Satyagraha is pure soul-force.” Substantiate this statement in 20 words. 3. What according to Mahatma Gandhi is the best weapon to use to collapse British rule in India?",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "1. Gandhi said satyagraha required courage, discipline and active moral resistance; therefore it was a weapon of the strong.\n2. It is the force of truth, love and non-violence that seeks to convert rather than destroy the opponent.\n3. Non-cooperation was the best weapon: if Indians withdrew cooperation, British rule would collapse.",
+    "answer_explanation": "Gandhi viewed satyagraha as active moral power based on truth and non-violence."
+  },
+  {
+    "question_number": 35,
+    "section": "E",
+    "question_type": "case_study",
+    "marks": 4,
+    "question_text": "Read the source given below and answer the questions that follow: Maharashtra is a state located in western India, with a population of over 110 million people. The state is home to several large cities, including Mumbai, and has a significant agricultural sector. However, the state is facing a severe water crisis, with its water resources coming under increasing pressure due to climate change, industrialization, and urbanization. The main challenges faced by water resource management in Maharashtra are: i. Overexploitation of groundwater: Maharashtra is one of the most groundwater- stressed states in India, with the demand for water exceeding the supply. Overexploitation of groundwater for agriculture and urban use has led to a decline in water levels, which has severe implications for the sustainability of water resources. ii. Pollution of surface water: Industrialization and urbanization have led to the pollution of surface water bodies such as rivers and lakes. The pollution has led to water quality degradation, which poses risks to human health and the environment. iii. Inefficient irrigation practices: The agricultural sector is the largest user of water in Maharashtra, accounting for around 80% of total water use. However, traditional irrigation practices such as flood irrigation are inefficient and lead to the wastage of water. 1. Mention any one reasons for the water crisis faced by the state of Maharashtra. 2. Propose any one solution to mitigate the water crisis faced by Maharashtra state. 3. Despite being the second highest rainfall-receiving state of the country, Maharashtra still faces water crisis. Substantiate this statement in 40 words.",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "1. One reason is over-exploitation of groundwater for agriculture and urban use.\n2. Maharashtra can promote rainwater harvesting, drip irrigation, groundwater recharge and treatment of polluted water.\n3. High rainfall does not guarantee water security because rainfall is seasonal and uneven, while rapid urbanisation, industry, inefficient irrigation and excessive groundwater extraction create scarcity.",
+    "answer_explanation": "Water scarcity depends on management, distribution and demand, not rainfall alone."
+  },
+  {
+    "question_number": 36,
+    "section": "E",
+    "question_type": "case_study",
+    "marks": 4,
+    "question_text": "Read the source given below and answer the questions that follow: For comparing countries, their income is considered to be one of the most important attributes. Countries with higher income are more developed than others with less income. This is based on the understanding that more income means more of all things that human beings need. Whatever people like, and should have, they will be able to get with greater income. So, greater income itself is considered to be one important goal. Now, what is the income of a country? Intuitively, the income of the country is the income of all the residents of the country. This gives us the Sample Question Paper Class-X 2023-24 total income of the country . However, for comparison between countries, total income is not such a useful measure. Since, countries have different populations, comparing total income will not tell us what an average person is likely to earn. Are people in one country better off than others in a different country? Hence, we compare the average income which is the total income of the country divided by its total population. The average income is also called per capita income. In World Development Reports, brought out by the World Bank, this criterion is used in classifying countries. Countries with per capita income of US$ 49,300 per annum and above in 2019, are called high income or rich countries and those with per capita income of US$ 2500 or less are called low -income countries. The rich countries, excluding countries of Middle East and certain other small countries are generally called developed countries. 1. Explain the significance of per capita Income. 2. What are the classifications of countries based on per capita income, and which entity is responsible for determining these classifications?\" SECTION F MAP SKILL-BASED QUESTION (2+3=5)",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "1. Per capita income allows comparison of average income across countries with different populations.\n2. The World Bank classifies countries as high-income, middle-income and low-income on the basis of per capita income thresholds.",
+    "answer_explanation": "Average income is more meaningful than total income for cross-country comparisons, though it does not show distribution."
+  },
+  {
+    "question_number": 37,
+    "section": "F",
+    "question_type": "case_study",
+    "marks": 5,
+    "question_text": "i. Name the place where the Indian National Congress session was held in September 1920. ii. Name the place where Mahatma Gandhi broke the salt law. Answer any 3 of the following: (i) Name the coal mine located at Tamil Nadu. (ii) Name the dam built on the river Chenab. (iii) Name the largest natural seaport located at Andhra Pradesh. (iv) Mention the state where the Noida software technology park is located.",
+    "options": [],
+    "diagram_dependent": false,
+    "answer_text": "i. Calcutta (Kolkata).\nii. Dandi.\nAny three:\n(i) Neyveli coal mine.\n(ii) Salal Dam.\n(iii) Visakhapatnam Port.\n(iv) Uttar Pradesh.",
+    "answer_explanation": "These are the standard CBSE map locations for the given historical and geographical features."
+  }
+]

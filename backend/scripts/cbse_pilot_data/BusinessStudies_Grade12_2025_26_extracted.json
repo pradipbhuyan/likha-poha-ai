@@ -1,0 +1,408 @@
+[
+  {
+    "question_number": 1,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The project managers in an organisation set targets for the upcoming months and outline strategies to achieve them. At the same time, they assign specific roles and responsibilities to their team members. They motivate them to meet the deadline, by celebrating their achievements and taking their feedback. Thus, various functions are simultaneously performed by all managers all the time. Name the characteristic of Management discussed above.",
+    "options": [
+      "Management is a dynamic function",
+      "Management is a continuous process",
+      "Management is an intangible force",
+      "Management is goal oriented"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 2,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Henri Fayol's principle of discipline which emphasizes obedience to organisational rules and employment agreement, is evolved out of the experience and collective wisdom of managers. The nature of principle of management reflected through the above statement is—-------------",
+    "options": [
+      "Universal applicability",
+      "Flexible",
+      "Mainly behavioral",
+      "Formed by practice and experimentation"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 3,
+    "section": "A",
+    "question_type": "assertion_reason",
+    "marks": 1,
+    "question_text": "Read the following statements: Assertion",
+    "options": [
+      "Both Assertion (A) and Reason (R) are true.",
+      "Both Assertion (A) and Reason (R) are false.",
+      "Both Assertion (A) and Reason (R) are true, but Reason (R) is not the correct explanation of the Assertion.",
+      "Both Assertion (A) and Reason (R) are true, and Reason (R) is the correct explanation of the Assertion"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 4,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Read the following statements carefully: Statement- I Values are basic truths or guidelines for behaviour which are formed after research in work situations. Statement- lI While practising Principles of Management, values cannot be neglected as business organisations have to fulfil social and ethical responsibility towards society. In the light of given statements , choose the correct alternative from the following:",
+    "options": [
+      "Both the statements are true.",
+      "Both the statements are false.",
+      "Statement I is true, Statement II is false.",
+      "Statement II is true,  Statement I is false"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 5,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Manu Priya is working as the Human Resource Manager of EDT Limited at an annual salary of ₹ 8 lakh per annum and is also offered shares of the company at a set price which is lower than the market price. The method being used to calculate the compensation provided to her is— ------.",
+    "options": [
+      "Time based direct financial payment",
+      "Indirect financial payment",
+      "Time based Pay Plus incentives",
+      "Performance based direct financial payment"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 6,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Out of the following, which is/are the component(s) of the social environment. 1) Rate of inflation has increased by 2% leading to a higher total cost for business enterprises. 2)Various specialty health food and grocery shops have opened in an area where fitness and health enthusiasts live. 3) Life expectancy rate in India has improved over the past 20 years due to adequate health facilities and infrastructure. 4) A company in its human resource manual discloses a zero tolerance policy for racial discrimination and discriminatory practices against employees with disability. 5) The Advertising Standards Council of India prohibits the advertisement that promotes products or services that are banned by law. Choose the correct option :",
+    "options": [
+      "only 2",
+      "1,2,3",
+      "2,4,5",
+      "2,3,4"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 7,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Name the element of marketing mix which includes deciding about the features, quality, packaging, labelling and branding of goods or services or ‘anything of value’ which is offered to the market for sale.",
+    "options": [
+      "promotion",
+      "place",
+      "product",
+      "price"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 8,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Choose the correct statement about the controlling function of management.",
+    "options": [
+      "No corrective action is required when the deviation goes beyond the acceptable range in important areas.",
+      "Deviations should be analysed for their causes.",
+      "Measurement of actual performance should be done only after the task is complete.",
+      "Managers must keep a check on each and every activity, otherwise the entire organisation may suffer."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 9,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Look at the picture given below and answer the question that follows: Identify the incorrect statement about the type of source of recruitment depicted above.",
+    "options": [
+      "Management can attract qualified people to apply for vacant positions in the organisation.",
+      "It may lead to dissatisfaction and frustration among existing employees.",
+      "Such employees are not likely to be good employees as their background is not sufficiently known.",
+      "Management has a wider choice while selecting people for employment."
+    ],
+    "diagram_dependent": true
+  },
+  {
+    "question_number": 10,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Arrange the following elements of communication process in the correct sequence: i) Media ii) Message iii)Sender iv) Decoding v) Receiver vi) Feedback vii) Encoding Choose the correct option:",
+    "options": [
+      "iii,i,vii,ii,v,iv,vi",
+      "iii,ii,vii,i,iv,v,vi",
+      "ii,iii,vii,vi,iv,v,i",
+      "ii,i,vii,iii,v,iv,vi"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 11,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Choose the correct statement about the meaning of depository.",
+    "options": [
+      "Depository holds and transfers securities in the Demat Form.",
+      "Depository serves as an intermediary and buys and sells securities on the instructions of clients.",
+      "Depository is like a bank and keeps securities in electronic form on behalf of investors.",
+      "Depository buys securities from a company and sells to the public at a higher price."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 12,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "A product will be purchased only if it is perceived to be giving the greatest benefit for the money. Name the feature of marketing reflected in this statement",
+    "options": [
+      "Creating a market offering",
+      "Customer value",
+      "Exchange mechanism",
+      "Needs and wants"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 13,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Match the concepts of management given in column I with their meaning given in column II COLUMN I COLUMN II A Management Hierarchy i Involves defining and grouping of activities, resource allocation and establishment of authority relationships. B Coordination ii Involves establishing performance standards measuring actual performance and taking corrective action C Organising iii It shows orderly arrangement of individual and group efforts to ensure unity of action in realisation of common objectives. D Controlling iv Refers to different levels in the organisation created as a result of authority responsibility relationships binding individuals as superiors and subordinates. Choose the correct option from the following:",
+    "options": [
+      "Aiv,B iii, Cii, Di",
+      "ii, B iii, Civ, Dii",
+      "Aiv, B iii,Ci ,Dii",
+      "Aiii, Biv, Ci, Dii"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 14,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Mr Gun Amroha, the General Manager of Welworth Textiles scans the business environment and adapts the organisation to the changes taking place in different dimensions of the business environment. However, it is still difficult for him to accurately assess the future trends. Identify the limitation of planning related to the above.",
+    "options": [
+      "Planning leads to rigidity.",
+      "Planning may not work in a dynamic environment.",
+      "Planning does not guarantee success.",
+      "Planning reduces creativity."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 15,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Name the step in the staffing process which enables the organizations to offer opportunities for career advancement to their employees by facilitating learning, thereby helping the organisations to not only attract but also retain its talented people in the organisation.",
+    "options": [
+      "Placement and Orientation",
+      "Recruitment",
+      "Training and Development",
+      "Performance Appraisal"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 16,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "‘Game of Clones’ , a reputed amusement company has decided to run an advertising campaign for which it is hiring various celebrities. The campaign involves an expenditure of ₹ 150 Crores. Identify the financial decision involved in the above case.",
+    "options": [
+      "Long term investment decision",
+      "Financing decision",
+      "Working capital decision",
+      "Dividend decision"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 17,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Arth Nivesh Limited has a high fixed operating cost. The Finance Manager informs the Chief Finance Officer that, in case the company decides to take a loan, for its future financial needs, its fixed financial cost will also increase leading to an overall increase in cost. Identify the factor affecting choice of capital structure discussed above.",
+    "options": [
+      "Cost of debt",
+      "Floatation cost",
+      "Risk consideration",
+      "Control"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 18,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "The Finance Manager of Elle Pharma Limited, Mr Ashish Manjrekar wants to raise funds through debt or equity to the extent of ₹2 crores. For this purpose, he approaches a well regulated financial market that facilitates the mobilisation of long term capital for companies. Identify the market where Mr Ashish Manjrekar can raise the funds.",
+    "options": [
+      "Money market",
+      "Secondary market",
+      "Capital market",
+      "Wholesale debt market"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 19,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "‘Companies are required to ensure that the dividend does not violate the terms of loan agreement. ’ Identify the relevant factor affecting dividend decisions being discussed above.",
+    "options": [
+      "Access to capital market",
+      "Legal constraints",
+      "Stock market reaction",
+      "Contractual constraints"
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 20,
+    "section": "A",
+    "question_type": "mcq",
+    "marks": 1,
+    "question_text": "Read the following statements carefully: Statement I- The objective of financial management is to maximize the wealth of directors of the company Statement II- The financing decision of the company is unaffected by the extent of retained earnings. In the light of given statements , choose the correct alternative from the following:",
+    "options": [
+      "Both the statements are true.",
+      "Both the statements are false.",
+      "Statement I is true, Statement II is false.",
+      "Statement II is true, Statement I is false."
+    ],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 21,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "A) State any three points of significance of decentralization. OR B) State any three limitations of formal organisation.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 22,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Anabel Creations, an apparel designing company has a huge pile of young men’s and women’s garments to be sold across its branches in various cities. In order to clear the stock, the company has decided to give a heavy discount on its garments, with a view to lure the buyers. It is also visiting various colleges for sponsoring fashion shows in order to push its sales. However ,the garments are not liked by the customers as they have not been made as per their needs and preferences. a) Identify and state the Marketing Management philosophy being followed by Anabel Creations. b) Name and state any two other philosophies of Marketing apart from the one identified in part a.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 23,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "A) Give any three points of distinction between the money market and capital market. OR B) Give any three protective functions performed by Securities and Exchange Board of India.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 24,
+    "section": "A",
+    "question_type": "short_answer",
+    "marks": 3,
+    "question_text": "Muralidhar Parekh started textile printing business in Gujarat in the year 2022 by using practices like eco-friendly dyeing and printing processes in order to ensure environmental sustainability. Soon the business started flourishing. For the financial year 2024-25, Muralidhar formulated the organisational goal of increasing sales by 10% and framed strategies for their achievement. Since his job was complex and stressful, he appointed subordinates to carry out the main task of implementing and controlling the plans and strategies made by him. Identify the level at which the necessary workforce was appointed for implementing and controlling the plans and strategies made by Muralidhar Parekh. What will they need to do to carry out this main task? State any two points.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 25,
+    "section": "A",
+    "question_type": "case_study",
+    "marks": 4,
+    "question_text": "A) Explain the following functions of Marketing: a. Customer support services b. Packaging and labelling OR B) Explain two features of the following: a. Personal selling b. Advertising",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 26,
+    "section": "A",
+    "question_type": "case_study",
+    "marks": 4,
+    "question_text": "A) Explain why planning is considered as a) pervasive b) futuristic function of management. OR B) Explain the following as a type of plans : a) strategy b) procedure",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 27,
+    "section": "A",
+    "question_type": "case_study",
+    "marks": 4,
+    "question_text": "The Marketing Research Manager of ‘Trendy Textiles’ has been assigned the task of analysing the influence of Generation Z on fashion trends. On studying the forces that affect business, he observed that increased awareness amongst Generation Z, with respect to, environmental protection, preference of individuality over trends, rejection of traditional norms in clothing, greater use of social media have increased the demand for sustainable and innovative styles in clothing, ‘Do It Yourself’ (DIY) products, promotion of products on various social media platforms by companies. a) In context of the above case, identify and explain the feature of the business environment highlighted above. b) Explain any two features of the business environment, apart from the one identified in part a).",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 28,
+    "section": "A",
+    "question_type": "case_study",
+    "marks": 4,
+    "question_text": "‘A good control system helps the organisation in various ways’ . State any four points to support the statement.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 29,
+    "section": "A",
+    "question_type": "case_study",
+    "marks": 4,
+    "question_text": "The Factory Manager of Manik Steel Plant, Mussadi Lal was in dilemma over workers shirking work. It was becoming difficult for him to identify the workers who sometimes faked illness to skip work and on various other times, intentionally wasted time, which led to underutilisation of resources. The job of the workers was complex and intricate. He discussed the problem with one of his retired friends, Kantilal, who suggested him to appoint eight supervisors who would be specialists in their own fields and would be assigned work according to his/her qualities. Identify and explain the technique of scientific management discussed above.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 30,
+    "section": "A",
+    "question_type": "case_study",
+    "marks": 4,
+    "question_text": "PP Motors is a reputed automobile company known for manufacturing high performance four wheelers. The company plans to hire eight new engineers. Akhilesh Banerjee, the Human Resource Manager has eliminated unfit job seekers based on the information supplied in the application forms, conducted various tests and interviews and verified the information of the applicants. Identify and explain the remaining steps that Mr Banerjee must undertake in order to ensure that the organisation gets the best among the available, from the pool of prospective job candidates.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 31,
+    "section": "A",
+    "question_type": "long_answer",
+    "marks": 6,
+    "question_text": "Satya Prakash has been successfully running a dry fruit wholesale business in Rajasthan for the past five years. He makes sufficient investments in current assets in order to facilitate smooth day-to-day operations of the business. The company has recently sold dry fruits worth ₹ 50 lakhs to one of its corporate customers, ‘Deshmukh Pure Grains’ on a strict credit policy. Satya Prakash then immediately placed an additional order for replenishment of stock. However, he received the dry fruits from his supplier after a large time lag. a) State the concept of Financial Management discussed above. b) Briefly explain the factors highlighted above that will affect the requirement of the concept identified in part a).",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 32,
+    "section": "A",
+    "question_type": "long_answer",
+    "marks": 6,
+    "question_text": "Mr Pankaj Kumar is working as the Human Resource Manager in Alankaar Fabrics Limited heading a team of fifteen people in his department. He has played a key role in the success of his organisation by maintaining good interpersonal relations with his subordinates and influencing their behaviour. The subordinates willingly cooperate with him and his working style to increase the output of the organisation. a) Identify and explain the element involved in one of the functions of management discussed in the above case. b)State any four features of the element identified in part a).",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 33,
+    "section": "A",
+    "question_type": "long_answer",
+    "marks": 6,
+    "question_text": "Malini and Shalini recently completed their web designing course from a reputed University in Mumbai. Malini opened her own website development company ’ Rapid Software Private Limited’ .In order to ensure a smooth flow of communication and better control over the operations of her business, she divided the entire work of a company into four departments i.e web designing, accounting, research and development and customer service. All departments are required to report to a coordinating head. The company became successful in the market as all operations were carried out with a high degree of specialisation. Shalini joined a big group named Babylon.com,Inc. which offered a variety of services like Babylon Web Services, Babylon Prime, Babylon Retail. She was appointed as the head of Babylon Web Services division and was made responsible for the profit or loss of her service division.She was happy to take the responsibility as the division would function as an autonomous unit, thus enabling her to make faster decisions. (a). Identify the types of the framework within which managerial and operating tasks are performed, in the organisations, of which, Malini and Shalini were a part of. (b). Give any four differences between the frameworks identified above.",
+    "options": [],
+    "diagram_dependent": false
+  },
+  {
+    "question_number": 34,
+    "section": "A",
+    "question_type": "long_answer",
+    "marks": 6,
+    "question_text": "A) State any six reliefs available to a consumer under Consumer Protection Act, 2019. OR B) State the rights available under Consumer Protection Act, 2019 for the protection and promotion of interest of consumers.",
+    "options": [],
+    "diagram_dependent": false
+  }
+]
