@@ -2248,6 +2248,23 @@ body.dark-mode .lesson-sections.style-C .lesson-section-header::before { backgro
   font-size: 16px;
 }
 
+/* Fix: on mobile the fixed 4x150px result-grid forced a ~654px min width,
+   which stretched the whole page column and got clipped by body's
+   overflow-x:hidden — this is what caused Mock Test result cards and
+   review options to appear "cut off" on mobile web/app. */
+@media (max-width: 640px) {
+  .mock-test-page .result-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 420px) {
+  .mock-test-page .result-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
 .mock-test-page .review-card {
   border-radius: 20px;
   padding: 20px;
