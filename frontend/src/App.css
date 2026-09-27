@@ -64,6 +64,13 @@ body {
 .app-shell {
   display: flex;
   min-height: 100vh;
+  /* Sidebar is position:fixed and removed from normal flow (see .sidebar
+     below) so it no longer occupies a flex column here. This padding
+     reserves the same 270px of horizontal space it used to take up as a
+     flex child, keeping .main-content from being covered by the fixed
+     sidebar while still letting the sidebar itself stay pinned in place
+     and not scroll away when the right-hand content is long. */
+  padding-left: 270px;
 }
 
 .sidebar {
@@ -73,10 +80,12 @@ body {
   background: #0f172a;
   color: white;
   padding: 24px 18px;
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
   height: 100vh;
   overflow: hidden;
+  z-index: 50;
   box-shadow: 8px 0 24px rgba(15, 23, 42, 0.16);
 }
 
@@ -480,6 +489,7 @@ textarea:focus {
 @media (max-width: 900px) {
   .app-shell {
     flex-direction: column;
+    padding-left: 0;
   }
 
   .sidebar {
@@ -2851,6 +2861,7 @@ body.dark-mode .lesson-sections.style-C .lesson-section-header::before { backgro
 
   .app-shell {
     display: block;
+    padding-left: 0;
   }
 
   .topbar {
