@@ -119,6 +119,7 @@ import PrincipalDashboardPage from "./pages/PrincipalDashboardPage";
 import AdminSchoolOutreachPage from "./pages/AdminSchoolOutreachPage";
 import BlogPage from "./pages/BlogPage";
 import BlogPostPage from "./pages/BlogPostPage";
+import SchoolOsAccountLinkPage from "./pages/SchoolOsAccountLinkPage";
 
 import "./App.css";
 import { resolveSubscription, ACCESS_SOURCE, computeDaysRemaining } from "./utils/resolveSubscription";
@@ -1054,8 +1055,14 @@ function App() {
     }
 
     setUser(enrichedUser);
-    setRoutePath("/");
     localStorage.setItem("tutor_user", JSON.stringify(enrichedUser));
+
+    if (window.location.pathname === "/school-os/account-link") {
+      setRoutePath("/school-os/account-link");
+      return;
+    }
+
+    setRoutePath("/");
   
     if (enrichedUser.role === "admin") {
       setActivePage("adminControl");
@@ -1254,6 +1261,10 @@ function App() {
      */
     setPendingLessonTarget({ subject, chapter });
     handlePageChange("lessons");
+  }
+
+  if (routePath === "/school-os/account-link") {
+    return <SchoolOsAccountLinkPage />;
   }
 
   if (routePath === "/reset-password") {

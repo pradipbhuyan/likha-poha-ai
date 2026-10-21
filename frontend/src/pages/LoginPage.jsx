@@ -15,10 +15,15 @@ async function signInWithGoogle() {
     await signInWithGoogleNative();
     return;
   }
+  const redirectTo =
+    window.location.pathname === "/school-os/account-link"
+      ? `${window.location.origin}/school-os/account-link`
+      : window.location.origin;
+
   await supabase.auth.signInWithOAuth({
     provider: "google",
     options: {
-      redirectTo: window.location.origin,
+      redirectTo,
       queryParams: { access_type: "offline", prompt: "select_account" },
     },
   });
