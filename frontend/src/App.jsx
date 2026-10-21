@@ -120,6 +120,7 @@ import AdminSchoolOutreachPage from "./pages/AdminSchoolOutreachPage";
 import BlogPage from "./pages/BlogPage";
 import BlogPostPage from "./pages/BlogPostPage";
 import SchoolOsAccountLinkPage from "./pages/SchoolOsAccountLinkPage";
+import SchoolOsSsoPage from "./pages/SchoolOsSsoPage";
 
 import "./App.css";
 import { resolveSubscription, ACCESS_SOURCE, computeDaysRemaining } from "./utils/resolveSubscription";
@@ -385,7 +386,7 @@ const PAGE_META = {
   },
 };
 
-function App() {
+function MainApp() {
   /** Owns global session, navigation, and theme state for the single-page app shell. */
   const [user, setUser] = useState(() => {
     // If ?u= is in URL, the link is a "sign in as child" link.
@@ -2270,6 +2271,14 @@ function App() {
     </FeedbackPromptProvider>
     </ToastProvider>
   );
+}
+
+function App() {
+  if (window.location.pathname === "/school-os/sso") {
+    return <SchoolOsSsoPage />;
+  }
+
+  return <MainApp />;
 }
 
 export default App;
