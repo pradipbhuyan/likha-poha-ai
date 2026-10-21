@@ -125,6 +125,11 @@ from app.routes.exam_prep import router as exam_prep_router, admin_router as exa
 from app.routes.study_planner import router as study_planner_router
 from app.routes.lesson_lab import router as lesson_lab_router
 from app.routes.lesson_experience import router as lesson_experience_router
+from app.routes.school_os_account_link import (
+  internal_router as school_os_account_link_internal_router,
+  proof_router as school_os_account_link_proof_router,
+)
+from app.routes.school_os_sso import router as school_os_sso_router
 
 
 frontend_url = os.getenv(
@@ -579,6 +584,22 @@ app.include_router(
 app.include_router(exam_prep_router)
 app.include_router(exam_prep_admin_router)
 app.include_router(study_planner_router)
+
+app.include_router(
+    school_os_account_link_proof_router,
+    prefix="/api/account-link",
+    tags=["School OS Account Link"],
+)
+app.include_router(
+    school_os_sso_router,
+    prefix="/api/sso",
+    tags=["School OS SSO"],
+)
+app.include_router(
+    school_os_account_link_internal_router,
+    prefix="/api/internal",
+    tags=["School OS Internal"],
+)
 
 @app.get("/api/platform-settings/lesson-card")
 def get_lesson_card_settings_public():
