@@ -256,11 +256,13 @@ def test_exchange_rejects_malformed_and_invalid_signature_assertions(client, fak
         headers={account_link.SERVICE_ASSERTION_HEADER: "not-a-jwt", "content-type": "application/json"},
     )
     signed = school_signer(body=body)
+    signed_prefix, signature = signed.rsplit(".", 1)
+    invalid_signature_assertion = f"{signed_prefix}.{'a' if signature[0] != 'a' else 'b'}{signature[1:]}"
     invalid_signature = client.post(
         account_link.EXCHANGE_PATH,
         content=body,
         headers={
-            account_link.SERVICE_ASSERTION_HEADER: signed[:-1] + ("a" if signed[-1] != "a" else "b"),
+            account_link.SERVICE_ASSERTION_HEADER: invalid_signature_assertion,
             "content-type": "application/json",
         },
     )
