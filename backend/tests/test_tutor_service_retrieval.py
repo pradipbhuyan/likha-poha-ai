@@ -192,7 +192,7 @@ def test_answer_doubt_uses_wider_llm_knowledge_when_textbook_rag_misses(monkeypa
         captured.update(kwargs)
         return "The chemical formula of benzene is C6H6."
 
-    monkeypatch.setattr(tutor_service, "ask_llm", _fake_ask_llm)
+    monkeypatch.setattr(tutor_service, "ask_gemini_direct", _fake_ask_llm)
 
     stored = {"called": False}
     monkeypatch.setattr(
@@ -227,7 +227,7 @@ def test_answer_doubt_uses_wider_knowledge_for_weak_rag_matches(monkeypatch):
         captured.update(kwargs)
         return "The chemical formula of benzene is C6H6."
 
-    monkeypatch.setattr(tutor_service, "ask_llm", _fake_ask_llm)
+    monkeypatch.setattr(tutor_service, "ask_gemini_direct", _fake_ask_llm)
 
     result = tutor_service.answer_doubt(
         grade="Grade 11", mode="CBSE", subject="Chemistry", chapter="",

@@ -1,7 +1,7 @@
 
 import logging
 import os as _os
-from app.services.openai_service import DEFAULT_TEXT_MODEL, ask_llm
+from app.services.openai_service import DEFAULT_TEXT_MODEL, ask_gemini_direct, ask_llm
 from app.services.rag_service import search_textbook_content, strip_chapter_number_prefix
 from app.services.rag_visual_service import (
     find_visual_assets_for_question,
@@ -229,7 +229,7 @@ guessing.
 
 
 def build_wider_knowledge_doubt_answer(
-    question: str, grade: str, subject: str, chapter: str
+    question: str, grade: str, subject: str, chapter: str, username: str = "unknown"
 ) -> str:
     """Answer a paid student's academic RAG miss from wider LLM knowledge.
 
@@ -245,11 +245,15 @@ Student question: {question}
 
 Give a clear, accurate answer appropriate for a {grade} student.
 """
-    return ask_llm(
+    # The platform-wide NVIDIA provider is presently unavailable (retired
+    # model/404). Gemini 2.5 Flash is verified for this concise, stable-fact
+    # fallback and is intentionally used only for non-textbook-grounded paid
+    # answers, leaving the configured provider unchanged for other features.
+    return ask_gemini_direct(
         DOUBT_WIDER_KNOWLEDGE_SYSTEM,
         user_prompt,
+        username=username,
         feature="doubt_answer_wider_knowledge",
-        model=DEFAULT_TEXT_MODEL,
     )
 
 
@@ -1553,7 +1557,9 @@ IMPORTANT:
         # for its chemical formula. Use the clearly disclosed wider-knowledge
         # path instead of presenting an unreliable match as textbook-grounded.
         try:
-            answer = build_wider_knowledge_doubt_answer(question, grade, subject, chapter)
+            answer = build_wider_knowledge_doubt_answer(
+                question, grade, subject, chapter, username=	username
+            )
             source_type = "WIDER_LLM_KNOWLEDGE"
         except Exception as exc:
             logger.warning("Wider-knowledge doubt answer failed, using NCERT fallback: %s", exc)

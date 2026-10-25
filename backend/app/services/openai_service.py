@@ -244,6 +244,8 @@ def get_effective_settings() -> dict:
                 "google/gemma-2-2b-it",
                 "google/gemma-2-9b-it",
                 "google/gemma-2-27b-it",
+                # NVIDIA retired Llama 3.1 70B on 2026-08-26 (HTTP 410).
+                "meta/llama-3.1-70b-instruct",
             }
             _settings_cache["nvidia_model"] = (
                 DEFAULT_NVIDIA_MODEL
@@ -648,6 +650,67 @@ def ask_openai_direct(
         prompt_tokens=prompt_tokens,
         completion_tokens=completion_tokens,
         total_tokens=prompt_tokens + completion_tokens,
+        estimated_cost=estimated_cost,
+    )
+    return response.choices[0].message.content
+
+
+def ask_gemini_direct(
+    system_prompt: str,
+    user_prompt: str,
+    username: str = "unknown",
+    feature: str = "wider_knowledge",
+) -> str:
+    """Call the configured Gemini model directly and log the resulting usage.
+
+    Used for narrowly scoped paths that need a verified provider even when the
+    platform-wide provider is temporarily unavailable or misconfigured.
+    """
+    from fastapi import HTTPException  # noqa: PLC0415
+
+    current = get_effective_settings()
+    if not current.get("api_enabled", True):
+        raise HTTPException(
+            status_code=503,
+            detail="AI API is currently disabled. The admin can re-enable it from the Admin Control page.",
+        )
+
+    model = current.get("gemini_model") or DEFAULT_GEMINI_MODEL
+    t_start = time.perf_counter()
+    response = get_gemini_client().chat.completions.create(
+        model=model,
+        messages=[
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_prompt},
+        ],
+        temperature=0.4,
+    )
+    duration_ms = round((time.perf_counter() - t_start) * 1000)
+    usage = getattr(response, "usage", None)
+    prompt_tokens = getattr(usage, "prompt_tokens", 0) if usage else 0
+    completion_tokens = getattr(usage, "completion_tokens", 0) if usage else 0
+    total_tokens = prompt_tokens + completion_tokens
+    estimated_cost = estimate_cost(prompt_tokens, completion_tokens, model=model)
+
+    _log.info(
+        "llm.call_success",
+        provider="gemini_direct",
+        model=model,
+        feature=feature,
+        username=username,
+        prompt_tokens=prompt_tokens,
+        completion_tokens=completion_tokens,
+        total_tokens=total_tokens,
+        estimated_cost_usd=estimated_cost,
+        duration_ms=duration_ms,
+    )
+    log_ai_usage(
+        username=username,
+        feature=feature,
+        model=model,
+        prompt_tokens=prompt_tokens,
+        completion_tokens=completion_tokens,
+        total_tokens=total_tokens,
         estimated_cost=estimated_cost,
     )
     return response.choices[0].message.content
