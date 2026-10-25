@@ -120,6 +120,18 @@ DOUBT_SYNTHESIS_SYSTEM = (
 # This preserves the anti-hallucination guarantee (the model must not invent
 # facts) while no longer forcing every low-similarity doubt into a generic
 # canned "I couldn't find an exact match" message.
+DOUBT_WIDER_KNOWLEDGE_SYSTEM = (
+    "You are an expert CBSE tutor answering an academic question for a CBSE "
+    "student using wider general AI knowledge because no relevant uploaded "
+    "textbook content was found. Answer directly, accurately, and in "
+    "student-appropriate language for the stated grade. Do not claim the "
+    "answer comes from the student's textbook or NCERT. Do not invent "
+    "citations, experimental results, quotations, or precise facts you are "
+    "uncertain about. For time-sensitive, political, financial, medical, or "
+    "legal questions, state that a current authoritative source is needed. "
+    "Keep the answer concise unless the question needs a short explanation."
+)
+
 DOUBT_WEAK_GROUNDING_SYSTEM = (
     "You are an expert CBSE tutor answering a student's doubt. You have been "
     "given textbook context that may or may not directly contain the answer "
@@ -212,6 +224,31 @@ guessing.
         DOUBT_WEAK_GROUNDING_SYSTEM,
         user_prompt,
         feature="doubt_answer_weak_grounding",
+        model=DEFAULT_TEXT_MODEL,
+    )
+
+
+def build_wider_knowledge_doubt_answer(
+    question: str, grade: str, subject: str, chapter: str
+) -> str:
+    """Answer a paid student's academic RAG miss from wider LLM knowledge.
+
+    This intentionally has no textbook context and callers must label the
+    response as non-textbook-grounded. It is never auto-cached into the DKB.
+    """
+    user_prompt = f"""
+Grade: {grade}
+Subject: {subject or "Not specified"}
+Chapter: {chapter or "Not specified"}
+
+Student question: {question}
+
+Give a clear, accurate answer appropriate for a {grade} student.
+"""
+    return ask_llm(
+        DOUBT_WIDER_KNOWLEDGE_SYSTEM,
+        user_prompt,
+        feature="doubt_answer_wider_knowledge",
         model=DEFAULT_TEXT_MODEL,
     )
 
@@ -1395,8 +1432,9 @@ def answer_doubt(
          via one LLM call as a last resort (falling back to a raw extractive
          excerpt if that call fails), then cache the result in the DKB so
          the same question never costs an LLM call again for ANY tier.
-    3. If nothing relevant is found (paid tier only), return a warm
-       NCERT-reference fallback.
+    3. If textbook retrieval returns no chunks (paid tier only), answer from
+       wider LLM knowledge and label it as non-textbook-grounded. If that
+       provider call fails, return a warm NCERT-reference fallback.
     4. Auto-store new excerpt answers in DKB for future reuse.
     """
     # ----------------------------------------------------------------- DKB
@@ -1508,25 +1546,19 @@ IMPORTANT:
             logger.warning("Doubt answer synthesis failed, using extractive fallback: %s", exc)
             answer = build_textbook_excerpt_answer(good_chunks)
         source_type = "TEXTBOOK_EXCERPT"
-    elif rag_results:
-        # Weak grounding: RAG found chunks for this chapter/subject, but none
-        # cleared RAG_ANSWER_THRESHOLD. Rather than skipping the LLM entirely
-        # (which used to force every low-similarity question into the canned
-        # NCERT-reference fallback even for full-access paid users), still
-        # make one LLM call using those weaker chunks, with an explicit
-        # instruction to admit when the context doesn't contain the fact
-        # asked for instead of guessing. See build_weak_grounding_doubt_answer
-        # docstring for the motivating case.
+    else:
+        # No chunk crossed the relevance threshold. Below-threshold retrieval
+        # can be topically related but still answer a different question — for
+        # example, returning benzene's six pi electrons when the student asks
+        # for its chemical formula. Use the clearly disclosed wider-knowledge
+        # path instead of presenting an unreliable match as textbook-grounded.
         try:
-            answer = build_weak_grounding_doubt_answer(question, rag_results, grade, subject, chapter)
-            source_type = "TEXTBOOK_EXCERPT_WEAK"
+            answer = build_wider_knowledge_doubt_answer(question, grade, subject, chapter)
+            source_type = "WIDER_LLM_KNOWLEDGE"
         except Exception as exc:
-            logger.warning("Weak-grounding doubt synthesis failed, using NCERT fallback: %s", exc)
+            logger.warning("Wider-knowledge doubt answer failed, using NCERT fallback: %s", exc)
             answer = build_ncert_fallback_answer(grade, subject, chapter)
             source_type = "NO_MATCH_FALLBACK"
-    else:
-        answer = build_ncert_fallback_answer(grade, subject, chapter)
-        source_type = "NO_MATCH_FALLBACK"
 
     answer = remove_mermaid_blocks(answer)
 

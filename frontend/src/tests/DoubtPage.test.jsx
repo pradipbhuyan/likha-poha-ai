@@ -82,6 +82,27 @@ describe("DoubtPage", () => {
     });
   });
 
+  test("labels a wider-knowledge answer as not textbook-grounded", async () => {
+    answerDoubt.mockResolvedValueOnce({
+      success: true,
+      answer: "The chemical formula of benzene is C6H6.",
+      source_type: "WIDER_LLM_KNOWLEDGE",
+      sources: [],
+      mentor_suggestions: [],
+    });
+
+    render(<DoubtPage user={studentUser} />);
+
+    await screen.findByLabelText(/mode/i);
+    fireEvent.change(screen.getByRole("textbox"), {
+      target: { value: "What is the chemical formula for benzene?" },
+    });
+    fireEvent.click(screen.getByRole("button", { name: /ask ai tutor/i }));
+
+    expect(await screen.findByText("Wider AI knowledge")).toBeInTheDocument();
+    expect(screen.getByText(/not textbook-grounded/i)).toBeInTheDocument();
+  });
+
   test("loads a saved doubt answer from history", async () => {
     getDoubtHistory.mockResolvedValue({
       success: true,

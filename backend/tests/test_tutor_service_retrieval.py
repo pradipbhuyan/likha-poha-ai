@@ -20,6 +20,7 @@ import pytest
 
 import app.services.tutor_service as tutor_service
 import app.services.doubt_kb_service as doubt_kb_service
+from app.services.offer_access_service import PAID_TIER_DOUBT_LLM_FEATURES
 
 
 def _explode_if_llm_called(monkeypatch):
@@ -41,6 +42,10 @@ def _quiet_side_effects(monkeypatch):
 # ---------------------------------------------------------------------------
 # Pure helper functions
 # ---------------------------------------------------------------------------
+
+def test_wider_knowledge_answers_share_the_paid_doubt_llm_cap():
+    assert "doubt_answer_wider_knowledge" in PAID_TIER_DOUBT_LLM_FEATURES
+
 
 def test_filter_relevant_chunks_drops_weak_matches():
     chunks = [
@@ -178,10 +183,16 @@ def test_answer_doubt_falls_back_to_extractive_excerpt_when_synthesis_fails(monk
     assert "Matter is anything with mass and volume." in result["answer"]
 
 
-def test_answer_doubt_fallback_when_no_relevant_chunks(monkeypatch):
-    _explode_if_llm_called(monkeypatch)  # a true miss must cost zero LLM calls
+def test_answer_doubt_uses_wider_llm_knowledge_when_textbook_rag_misses(monkeypatch):
     monkeypatch.setattr(doubt_kb_service, "search_doubt_kb", lambda **kwargs: None)
     monkeypatch.setattr(tutor_service, "search_textbook_content", lambda **kwargs: [])
+
+    captured = {}
+    def _fake_ask_llm(*args, **kwargs):
+        captured.update(kwargs)
+        return "The chemical formula of benzene is C6H6."
+
+    monkeypatch.setattr(tutor_service, "ask_llm", _fake_ask_llm)
 
     stored = {"called": False}
     monkeypatch.setattr(
@@ -191,33 +202,41 @@ def test_answer_doubt_fallback_when_no_relevant_chunks(monkeypatch):
     )
 
     result = tutor_service.answer_doubt(
-        grade="Grade 9", mode="CBSE", subject="Science", chapter="Matter",
-        question="What is the capital of Mars?", username="test_user", board="CBSE",
+        grade="Grade 11", mode="CBSE", subject="Chemistry", chapter="",
+        question="What is the chemical formula for benzene?", username="test_user", board="CBSE",
     )
 
-    assert result["source_type"] == "NO_MATCH_FALLBACK"
-    assert "NCERT" in result["answer"] or "ncert" in result["answer"].lower()
-    assert stored["called"] is False, "A fallback answer must never be cached in the DKB"
+    assert result["source_type"] == "WIDER_LLM_KNOWLEDGE"
+    assert result["answer"] == "The chemical formula of benzene is C6H6."
+    assert captured["feature"] == "doubt_answer_wider_knowledge"
+    assert stored["called"] is False, "Wider-knowledge answers must never be cached in the DKB"
     assert result["textbook_visuals"] == []
 
 
-def test_answer_doubt_ignores_weak_rag_matches(monkeypatch):
-    """A low-similarity chunk must not be shown as if it were a real answer."""
-    _explode_if_llm_called(monkeypatch)
+def test_answer_doubt_uses_wider_knowledge_for_weak_rag_matches(monkeypatch):
+    """Low-similarity chunks must not steer a paid answer as textbook-grounded."""
     monkeypatch.setattr(doubt_kb_service, "search_doubt_kb", lambda **kwargs: None)
     monkeypatch.setattr(
         tutor_service,
         "search_textbook_content",
-        lambda **kwargs: [{"chunk_text": "Unrelated passage.", "similarity": 0.05}],
+        lambda **kwargs: [{"chunk_text": "Benzene has six pi electrons.", "similarity": 0.05}],
     )
+
+    captured = {}
+    def _fake_ask_llm(*args, **kwargs):
+        captured.update(kwargs)
+        return "The chemical formula of benzene is C6H6."
+
+    monkeypatch.setattr(tutor_service, "ask_llm", _fake_ask_llm)
 
     result = tutor_service.answer_doubt(
-        grade="Grade 9", mode="CBSE", subject="Science", chapter="Matter",
-        question="What is matter?", username="test_user", board="CBSE",
+        grade="Grade 11", mode="CBSE", subject="Chemistry", chapter="",
+        question="What is the chemical formula for benzene?", username="test_user", board="CBSE",
     )
 
-    assert result["source_type"] == "NO_MATCH_FALLBACK"
-    assert "Unrelated passage." not in result["answer"]
+    assert result["source_type"] == "WIDER_LLM_KNOWLEDGE"
+    assert result["answer"] == "The chemical formula of benzene is C6H6."
+    assert captured["feature"] == "doubt_answer_wider_knowledge"
 
 
 def test_answer_doubt_free_tier_never_touches_rag_or_llm_on_dkb_miss(monkeypatch):

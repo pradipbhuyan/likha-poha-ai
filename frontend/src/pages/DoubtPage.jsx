@@ -875,14 +875,17 @@ Important:
                     ? "From your textbook"
                     : sourceInfo?.sourceType === "DOUBT_KB"
                     ? "From a previous answer"
+                    : sourceInfo?.sourceType === "WIDER_LLM_KNOWLEDGE"
+                    ? "Wider AI knowledge"
                     : sourceInfo?.sourceType === "NO_MATCH_FALLBACK"
                     ? "No exact match found"
                     : "Answer"}
                 </p>
                 <h3>Answer</h3>
                 <p>
-                  Your AI tutor response using your question as the main
-                  context.
+                  {sourceInfo?.sourceType === "WIDER_LLM_KNOWLEDGE"
+                    ? "This answer uses wider AI knowledge because no relevant uploaded textbook content was found. It is not textbook-grounded."
+                    : "Your AI tutor response using your question as the main context."}
                 </p>
               </div>
 

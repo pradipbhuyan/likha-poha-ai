@@ -208,15 +208,17 @@ def build_daily_limit_response() -> dict:
 #   10 calls/day x 30 days x $0.0031/call (gpt-4.1 typical answer)
 #   = $0.93/month =~ Rs 78/month -- comfortably within the Rs 100 budget.
 # DKB hits are unlimited/free and never count toward this cap -- it only
-# limits genuine LLM-backed answers (TEXTBOOK_EXCERPT / TEXTBOOK_EXCERPT_WEAK).
+# limits genuine LLM-backed answers (TEXTBOOK_EXCERPT /
+# TEXTBOOK_EXCERPT_WEAK / WIDER_LLM_KNOWLEDGE).
 PAID_TIER_DAILY_LLM_CAP = 10
 
-# Feature keys logged by build_synthesized_doubt_answer() /
-# build_weak_grounding_doubt_answer() in tutor_service.py -- both must count
-# toward the SAME daily cap (see usage_service.enforce_daily_limit_multi).
+# Feature keys logged by the paid Ask Doubt LLM paths in tutor_service.py.
+# All must count toward the SAME daily cap (see
+# usage_service.enforce_daily_limit_multi).
 PAID_TIER_DOUBT_LLM_FEATURES = [
-    "doubt_answer_live_synthesis",
-    "doubt_answer_weak_grounding",
+  "doubt_answer_live_synthesis",
+  "doubt_answer_weak_grounding",
+  "doubt_answer_wider_knowledge",
 ]
 
 PAID_TIER_DAILY_LIMIT_MESSAGE = (
