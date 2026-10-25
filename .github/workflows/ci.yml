@@ -134,7 +134,10 @@ jobs:
   # no backend, no real Supabase project.
   frontend-e2e:
     name: "🎭 Frontend · E2E"
-    runs-on: ubuntu-latest
+    # Playwright's bundled ffmpeg is not yet available for Ubuntu 26.04,
+    # which ubuntu-latest now resolves to. Pin this browser-test job to the
+    # supported runner until the installed Playwright version adds 26.04 support.
+    runs-on: ubuntu-24.04
     needs: frontend-tests
     defaults:
       run:
