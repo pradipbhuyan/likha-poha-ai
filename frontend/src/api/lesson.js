@@ -59,6 +59,28 @@ export function getChapterDoc({ grade, mode, subject, chapter, board = "CBSE", r
   return authFetch(`/api/lesson/chapter-doc?${params.toString()}`);
 }
 
+export function getChapterNarration({
+  grade,
+  mode,
+  subject,
+  chapter,
+  milestoneIndex,
+  board = "CBSE",
+}) {
+  /** Request cached Neerja MP3 audio for an approved chapter milestone.
+   * Returns { success, audio_url, cached, voice }. The avatar uses its
+   * browser Tara fallback when this neural-audio request cannot succeed. */
+  const params = new URLSearchParams({
+    grade,
+    mode,
+    subject,
+    chapter,
+    board,
+    milestone_index: String(milestoneIndex),
+  });
+  return authFetch(`/api/lesson/chapter-narration?${params.toString()}`);
+}
+
 export function getLessonDoubtSuggestions({ grade, mode, subject, chapter, board = "CBSE" }) {
   /** Fetch DKB-backed suggestion cards for a saved lesson (progress restore).
    *  Returns the same doubt_suggestions format as generateLesson so chips

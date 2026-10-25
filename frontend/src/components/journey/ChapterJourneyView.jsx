@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { MessageCircle } from "lucide-react";
 
+import AvatarNarrator from "../AvatarNarrator";
 import { ensureLessonKbChips } from "../../api/lesson";
 import { saveChapterProgress } from "../../api/progress";
 import { logStudentActivity } from "../../api/profile";
@@ -341,6 +342,15 @@ function ChapterJourneyView({ doc, user, grade, mode, subject, chapter }) {
         )}
       </div>
       )}
+
+      <AvatarNarrator
+        grade={grade}
+        mode={mode}
+        subject={subject}
+        chapter={chapter}
+        milestone={doc.milestones[activeMilestone] || doc.milestones[0]}
+        milestoneIndex={activeMilestone}
+      />
 
       {isJunior ? (
         <JourneyRenderer

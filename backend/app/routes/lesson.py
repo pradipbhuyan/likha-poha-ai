@@ -1,3 +1,6 @@
+import os
+import re
+
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 from app.services.logger_service import get_logger
@@ -705,6 +708,115 @@ def get_chapter_doc(
     if doc is None:
         return {"success": True, "available": False, "doc": None}
     return {"success": True, "available": True, "doc": doc}
+
+
+@router.get("/chapter-narration")
+def get_chapter_narration(
+    grade: str,
+    mode: str,
+    subject: str,
+    chapter: str,
+    milestone_index: int = 0,
+    board: str = "CBSE",
+    user=Depends(get_current_user),
+):
+    """
+    Return a cached Neerja MP3 for one approved chapter milestone.
+
+    The narration text is derived exclusively from the stored chapter document;
+    callers cannot submit arbitrary text for synthesis. Audio is cached in
+    Supabase Storage, so subsequent student playback is instant and does not
+    call the TTS provider again.
+    """
+    validate_required_text(grade, "grade")
+    validate_required_text(mode, "mode")
+    validate_required_text(subject, "subject")
+    validate_required_text(chapter, "chapter")
+
+    profile = get_profile_by_user_id(user.id)
+    request_board = resolve_request_board(mode, board)
+    enforce_profile_grade(profile, grade)
+    enforce_profile_board(profile, request_board)
+    if not is_offer_code_user(user.id):
+        enforce_learning_access(profile, mode, subject)
+
+    try:
+        from app.services.chapter_doc_service import get_or_convert_chapter_doc  # noqa: PLC0415
+        from app.services.tts_service import clean_text_for_tts, generate_speech_file  # noqa: PLC0415
+        from app.services.audio_cache_service import get_cached_audio_url, store_audio  # noqa: PLC0415
+
+        doc = get_or_convert_chapter_doc(
+            board=request_board,
+            grade=grade,
+            subject=subject,
+            chapter=chapter,
+            mode=mode,
+        )
+        milestones = (doc or {}).get("milestones") or []
+        if milestone_index < 0 or milestone_index >= len(milestones):
+            return {"success": False, "audio_url": None, "message": "Narration is unavailable for this section."}
+
+        milestone = milestones[milestone_index]
+        title = str(milestone.get("title") or f"Section {milestone_index + 1}").strip()
+        sections = [title]
+        for block in milestone.get("blocks") or []:
+            block_type = block.get("type")
+            if block_type == "hook":
+                sections.append(str(block.get("text") or ""))
+            elif block_type in ("concept", "watchout"):
+                sections.extend([str(block.get("title") or ""), str(block.get("body_md") or "")])
+            elif block_type == "example":
+                sections.extend([str(block.get("question") or ""), str(block.get("body_md") or "")])
+            elif block_type == "vocab":
+                sections.extend(
+                    f"{word.get('term', '')} means {word.get('meaning', '')}."
+                    for word in block.get("words") or []
+                )
+            elif block_type in ("quickcheck", "freetext_qa"):
+                sections.append(f"Quick check. {block.get('question') or ''}")
+
+        narration_text = "\n".join(part for part in sections if part.strip())
+        narration_text = re.sub(r"\s+", " ", narration_text).strip()
+        if not narration_text:
+            return {"success": False, "audio_url": None, "message": "Narration is unavailable for this section."}
+
+        voice = "en-IN-NeerjaNeural"
+        rate = "+5%"
+        step_title = f"__avatar_narration__{milestone_index}_{title}"[:180]
+        cached_url = get_cached_audio_url(grade, subject, chapter, step_title, voice, rate)
+        if cached_url:
+            return {"success": True, "audio_url": cached_url, "cached": True, "voice": voice}
+
+        mp3_path = generate_speech_file(
+            clean_text_for_tts(narration_text),
+            voice=voice,
+            rate=rate,
+            pitch="+5Hz",
+        )
+        try:
+            with open(mp3_path, "rb") as audio_file:
+                audio_url = store_audio(
+                    grade, subject, chapter, step_title, audio_file.read(), voice, rate
+                )
+        finally:
+            try:
+                os.remove(mp3_path)
+            except OSError:
+                pass
+
+        return {"success": True, "audio_url": audio_url, "cached": False, "voice": voice}
+    except Exception as exc:
+        _log.warning(
+            "chapter_narration.unavailable",
+            grade=grade,
+            subject=subject,
+            chapter=chapter[:80],
+            milestone_index=milestone_index,
+            error=str(exc)[:160],
+        )
+        # This endpoint deliberately returns a graceful result: the web client
+        # falls back to its local Tara speech path when neural audio is absent.
+        return {"success": False, "audio_url": None, "message": "Neural narration is temporarily unavailable."}
 
 
 @router.get("/doubt-suggestions")
