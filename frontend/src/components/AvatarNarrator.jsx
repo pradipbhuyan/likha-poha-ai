@@ -289,6 +289,7 @@ function AvatarNarrator({
   return (
     <section
       aria-label="Likha narrated lesson preview"
+      className="likha-narrator"
       style={{
         display: "grid",
         gridTemplateColumns: "minmax(120px, 180px) minmax(0, 1fr)",
@@ -296,9 +297,10 @@ function AvatarNarrator({
         alignItems: "center",
         marginBottom: 16,
         padding: "12px 16px 12px 8px",
-        border: "1.5px solid rgba(59, 130, 246, .3)",
+        border: "1.5px solid var(--likha-narrator-border, rgba(59, 130, 246, .3))",
         borderRadius: 16,
-        background: "linear-gradient(120deg, rgba(239, 246, 255, .92), rgba(248, 250, 252, .95))",
+        background: "var(--likha-narrator-background, linear-gradient(120deg, rgba(239, 246, 255, .92), rgba(248, 250, 252, .95)))",
+        color: "var(--text, #0f172a)",
       }}
     >
       <div style={{ alignSelf: "stretch", minHeight: 150, display: "flex", alignItems: "flex-end", justifyContent: "center" }}>
@@ -319,7 +321,7 @@ function AvatarNarrator({
 
       <div style={{ minWidth: 0 }}>
         <div style={{ display: "flex", alignItems: "center", gap: 7, marginBottom: 5 }}>
-          <Volume2 size={17} color="#2563eb" aria-hidden="true" />
+          <Volume2 size={17} color="var(--likha-narrator-accent, #2563eb)" aria-hidden="true" />
           <strong style={{ fontSize: ".98rem" }}>Listen with Likha</strong>
         </div>
 
@@ -343,7 +345,7 @@ function AvatarNarrator({
                 border: "none",
                 borderRadius: 9,
                 color: "#fff",
-                background: "#2563eb",
+                background: "var(--likha-narrator-accent, #2563eb)",
                 cursor: narrationText ? "pointer" : "not-allowed",
                 font: "inherit",
                 fontSize: ".84rem",
@@ -400,7 +402,7 @@ function AvatarNarrator({
               <button
                 type="button"
                 onClick={speak}
-                style={{ display: "inline-flex", alignItems: "center", gap: 4, border: "none", background: "none", color: "#2563eb", cursor: "pointer", font: "inherit", fontSize: ".8rem", fontWeight: 700 }}
+                style={{ display: "inline-flex", alignItems: "center", gap: 4, border: "none", background: "none", color: "var(--likha-narrator-accent, #2563eb)", cursor: "pointer", font: "inherit", fontSize: ".8rem", fontWeight: 700 }}
               >
                 <RotateCcw size={14} /> Replay
               </button>
@@ -408,7 +410,7 @@ function AvatarNarrator({
           </div>
 
         {status !== "idle" && (
-          <p aria-live="polite" style={{ margin: "9px 0 0", fontSize: ".76rem", color: status === "error" ? "#b91c1c" : "var(--muted, #64748b)" }}>
+          <p aria-live="polite" style={{ margin: "9px 0 0", fontSize: ".76rem", color: status === "error" ? "var(--likha-narrator-error, #b91c1c)" : "var(--muted, #64748b)" }}>
             {status === "loading" && "Preparing narration…"}
           {status === "speaking" && "Likha is narrating…"}
             {status === "paused" && "Narration paused."}

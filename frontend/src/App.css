@@ -11,6 +11,10 @@
   --primary: #4f46e5;
   --primary-dark: #4338ca;
   --accent: #7c3aed;
+  --likha-narrator-background: linear-gradient(120deg, rgba(239, 246, 255, 0.92), rgba(248, 250, 252, 0.95));
+  --likha-narrator-border: rgba(59, 130, 246, 0.3);
+  --likha-narrator-accent: #2563eb;
+  --likha-narrator-error: #b91c1c;
   --danger: #dc2626;
   --success: #059669;
   --warning: #b45309;
@@ -3046,6 +3050,10 @@ body.dark-mode {
   --primary-dark: #4f46e5;
   --accent: #7c3aed;
   --accent-soft: rgba(124, 58, 237, 0.18);
+  --likha-narrator-background: linear-gradient(120deg, rgba(15, 23, 42, 0.98), rgba(30, 41, 59, 0.96));
+  --likha-narrator-border: rgba(96, 165, 250, 0.42);
+  --likha-narrator-accent: #60a5fa;
+  --likha-narrator-error: #fca5a5;
   /* Previously undefined in dark mode — every element still using the
      light-mode red/green/amber below (which is dim on a near-black
      background) had to be individually re-patched with an inline
@@ -15090,6 +15098,12 @@ body.dark-mode .formula-memory-box {
 
 body.dark-mode .formula-memory-box p {
   color: #e2e8f0 !important;
+}
+
+/* Likha lesson narrator — uses its own theme variables so the lightly
+   tinted lesson-audio card remains readable in both theme modes. */
+body.dark-mode .likha-narrator {
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.22);
 }
 
 /* ── Global markdown / lesson text — prevent horizontal overflow on mobile ── */
