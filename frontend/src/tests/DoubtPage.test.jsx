@@ -126,6 +126,16 @@ describe("DoubtPage", () => {
     expect(screen.getByText(/suggested-question library/i)).toBeInTheDocument();
   });
 
+  test("does not render answer-style prompt cards", async () => {
+    render(<DoubtPage user={studentUser} />);
+
+    expect(await screen.findByLabelText(/mode/i)).toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "Explain simply" })).not.toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "Give example" })).not.toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "Step by step" })).not.toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "Create practice question" })).not.toBeInTheDocument();
+  });
+
   test("leaves the composer enabled for a paid-access user", async () => {
     render(<DoubtPage user={studentUser} />);
 

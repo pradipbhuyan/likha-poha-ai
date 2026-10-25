@@ -30,29 +30,6 @@ import { filterAllowedSubjects, isSchoolBoardMode } from "../utils/subjectAccess
 import { useFeedbackPrompt } from "../context/useFeedbackPrompt";
 import { isAllAccessTestUser } from "../utils/testAccounts";
 
-const ANSWER_STYLE_OPTIONS = [
-  {
-    key: "simple",
-    label: "Explain simply",
-    instruction: "Explain this in simple language first.",
-  },
-  {
-    key: "example",
-    label: "Give example",
-    instruction: "Include one clear example.",
-  },
-  {
-    key: "steps",
-    label: "Step by step",
-    instruction: "Show the answer step by step.",
-  },
-  {
-    key: "practice",
-    label: "Create practice question",
-    instruction: "End with one similar practice question.",
-  },
-];
-
 function DoubtPage({ user, setActivePage }) {
   /** Student doubt-solving page with syllabus context, RAG/LLM answers, images, and follow-ups. */
   const { triggerFeedbackPrompt } = useFeedbackPrompt();
@@ -64,7 +41,6 @@ function DoubtPage({ user, setActivePage }) {
   const [mode, setMode] = useState("CBSE");
   const [subject, setSubject] = useState("");
   const [chapter, setChapter] = useState("");
-  const [answerStyle, setAnswerStyle] = useState("simple");
   const [doubtSuggestions, setDoubtSuggestions] = useState([]);
 
   const [question, setQuestion] = useState("");
@@ -189,20 +165,6 @@ function DoubtPage({ user, setActivePage }) {
     return subject;
   }
 
-  function buildQuestionWithContext(questionText) {
-    /** Combine the typed question, answer style, and OCR text into one backend prompt. */
-    const selectedStyle = ANSWER_STYLE_OPTIONS.find(
-      (option) => option.key === answerStyle
-    );
-    const contextParts = [questionText.trim()];
-
-    if (selectedStyle?.instruction) {
-      contextParts.push(`Preferred answer style: ${selectedStyle.instruction}`);
-    }
-
-    return contextParts.join("\n\n");
-  }
-
   function buildDoubtPayload(questionText, options = {}) {
     /** Build the authenticated doubt payload with syllabus context and enriched question text. */
     return {
@@ -212,7 +174,7 @@ function DoubtPage({ user, setActivePage }) {
       board: requestBoard,
       subject: getDoubtSubject(),
       chapter,
-      question: buildQuestionWithContext(questionText),
+      question: questionText.trim(),
       display_question:
         options.displayQuestion ?? questionText.trim() ?? question.trim(),
       save_to_history: options.saveToHistory !== false,
@@ -775,24 +737,6 @@ Important:
                 </div>
               </div>
             )}
-
-            <div className="prompt-chip-row answer-style-row">
-              {ANSWER_STYLE_OPTIONS.map((option) => (
-                <button
-                  key={option.key}
-                  type="button"
-                  className={
-                    answerStyle === option.key
-                      ? "prompt-chip selected"
-                      : "prompt-chip"
-                  }
-                  disabled={!mode}
-                  onClick={() => setAnswerStyle(option.key)}
-                >
-                  {option.label}
-                </button>
-              ))}
-            </div>
 
             {!isFreeTierDoubtUser && (
               <button
