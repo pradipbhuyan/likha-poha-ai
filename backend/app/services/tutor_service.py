@@ -88,6 +88,24 @@ def _filter_relevant_chunks(rag_results, threshold: float = RAG_ANSWER_THRESHOLD
     return [r for r in (rag_results or []) if float(r.get("similarity") or 0) >= threshold]
 
 
+_CHEMICAL_FORMULA_ANSWER_RE = _re.compile(
+    r"(?:[A-Z][a-z]?(?:[0-9₀₁₂₃₄₅₆₇₈₉]+)?){2,}"
+)
+
+
+def _is_incomplete_chemical_formula_answer(question: str, answer: str) -> bool:
+    """Reject cached replies that answer a related chemistry fact but omit a formula.
+
+    A DKB semantic match can be topically close while answering a different
+    request, such as giving benzene's six pi electrons for "What is benzene's
+    chemical formula?". Such a reply must not be served or perpetuated.
+    """
+    asks_for_formula = bool(
+        _re.search(r"\b(?:chemical\s+)?formula\b", question or "", _re.IGNORECASE)
+    )
+    return asks_for_formula and not _CHEMICAL_FORMULA_ANSWER_RE.search(answer or "")
+
+
 def build_textbook_excerpt_answer(chunks, max_chunks: int = 3) -> str:
     """Build a purely extractive answer from the top RAG chunks -- no LLM synthesis.
     Used only as a fallback if LLM synthesis fails or the API is disabled."""
@@ -102,7 +120,10 @@ def build_textbook_excerpt_answer(chunks, max_chunks: int = 3) -> str:
 DOUBT_SYNTHESIS_SYSTEM = (
     "You are an expert CBSE tutor answering a student's follow-up doubt. "
     "Answer the student's actual question directly and clearly, grounded ONLY "
-    "in the provided textbook context -- never invent facts, numbers, or "
+    "in the provided textbook context. State the requested fact or value in "
+    "the first sentence; when asked for a chemical formula, explicitly write "
+    "the formula using element symbols and subscripts or digits, rather than "
+    "only describing a related property. Never invent facts, numbers, or "
     "examples that aren't in it. Use student-appropriate language for the "
     "grade given. Answer in 3-6 sentences unless the question genuinely needs "
     "more. Never mention 'the textbook context', 'the excerpt', or any "
@@ -124,7 +145,11 @@ DOUBT_WIDER_KNOWLEDGE_SYSTEM = (
     "You are an expert CBSE tutor answering an academic question for a CBSE "
     "student using wider general AI knowledge because no relevant uploaded "
     "textbook content was found. Answer directly, accurately, and in "
-    "student-appropriate language for the stated grade. Do not claim the "
+    "student-appropriate language for the stated grade. State the direct "
+    "answer in the first sentence before adding explanation. When the "
+    "student asks for a chemical formula, explicitly write the formula using "
+    "element symbols and subscripts or digits; do not answer only with a "
+    "related property such as electron count or aromaticity. Do not claim the "
     "answer comes from the student's textbook or NCERT. Do not invent "
     "citations, experimental results, quotations, or precise facts you are "
     "uncertain about. For time-sensitive, political, financial, medical, or "
@@ -1461,7 +1486,9 @@ def answer_doubt(
             mode=mode,
             board=board,
         )
-        if dkb_hit:
+        if dkb_hit and not _is_incomplete_chemical_formula_answer(
+            raw_question_for_dkb, dkb_hit["answer"]
+        ):
             save_mentor_memory(
                 username=username,
                 grade=grade,
@@ -1641,7 +1668,10 @@ IMPORTANT:
                 pass  # Never block doubt delivery
             # Only cache genuine textbook-excerpt answers — never cache a
             # "couldn't find it" fallback message.
-            if source_type == "TEXTBOOK_EXCERPT":
+            if (
+                source_type == "TEXTBOOK_EXCERPT"
+                and not _is_incomplete_chemical_formula_answer(question, answer)
+            ):
                 store_in_doubt_kb(
                     question=question,
                     answer=answer,

@@ -1,7 +1,10 @@
 from fastapi import APIRouter, HTTPException, Depends
 
 from app.models.schemas import DoubtRequest
-from app.services.tutor_service import answer_doubt
+from app.services.tutor_service import (
+    answer_doubt,
+    _is_incomplete_chemical_formula_answer,
+)
 from app.services.usage_service import enforce_daily_limit, enforce_daily_limit_multi, log_ai_usage
 from app.services.doubt_history_service import (
     list_doubt_history,
@@ -275,6 +278,10 @@ def answer_student_doubt(
     # Manual questions fall back to text search.
     # Return DKB answer to ANY user at zero LLM cost.
     dkb_result = None
+    dkb_search_query = (
+        data.display_question
+        or data.question.split("Preferred answer style:", 1)[0]
+    ).strip()
 
     # Pass A: direct ID lookup (suggestion chip tapped)
     if data.dkb_id:
@@ -303,10 +310,6 @@ def answer_student_doubt(
 
     # Pass B: text search (manual questions or dkb_id lookup missed)
     if not dkb_result:
-        dkb_search_query = (
-            data.display_question
-            or data.question.split("Preferred answer style:", 1)[0]
-        ).strip()
         dkb_result = search_doubt_kb(
             question=dkb_search_query,
             grade=data.grade,
@@ -315,6 +318,15 @@ def answer_student_doubt(
             mode=data.mode,
             board=request_board,
         )
+    if dkb_result and _is_incomplete_chemical_formula_answer(
+        dkb_search_query, dkb_result["answer"]
+    ):
+        # A semantically related DKB record (or a tapped suggestion card) may
+        # answer aromaticity/structure while the student asked for a chemical
+        # formula. Do not label that stale answer as a "previous answer" or
+        # return it; let the normal paid-tier live-answer path continue.
+        dkb_result = None
+
     if dkb_result:
         if is_free:
             log_ai_usage(username=canonical_username, feature="doubt_answer_free_tier", model="none")

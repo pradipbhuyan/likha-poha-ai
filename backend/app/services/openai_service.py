@@ -101,6 +101,7 @@ _settings_cache: dict = {
     "api_key": None,
     "api_enabled": True,
     "provider": "openai",
+    "openai_model": DEFAULT_TEXT_MODEL,
     "fallback_provider": "",
     "venice_api_key": None,
     "venice_model": "llama-3.3-70b",
@@ -190,6 +191,7 @@ def get_effective_settings() -> dict:
             _settings_cache["api_key"] = db_key if db_key else settings.OPENAI_API_KEY
             _settings_cache["api_enabled"] = db.get("api_enabled", True)
             _settings_cache["provider"] = db.get("provider", "openai") or "openai"
+            _settings_cache["openai_model"] = db.get("openai_model") or DEFAULT_TEXT_MODEL
             _settings_cache["venice_api_key"] = db.get("venice_api_key") or settings.VENICE_API_KEY
             _settings_cache["venice_model"] = db.get("venice_model") or "llama-3.3-70b"
             _settings_cache["groq_api_key"] = db.get("groq_api_key") or settings.GROQ_API_KEY
@@ -259,6 +261,7 @@ def get_effective_settings() -> dict:
             _settings_cache["api_key"] = settings.OPENAI_API_KEY
             _settings_cache["api_enabled"] = True
             _settings_cache["provider"] = "openai"
+            _settings_cache["openai_model"] = DEFAULT_TEXT_MODEL
             _settings_cache["fallback_provider"] = ""
             _settings_cache["venice_api_key"] = settings.VENICE_API_KEY
             _settings_cache["venice_model"] = "llama-3.3-70b"
@@ -828,7 +831,9 @@ def ask_llm(
     # When an alternative provider is active, override the model with the
     # admin-configured model for that provider.
     active_model = model
-    if provider == "venice":
+    if provider == "openai":
+        active_model = current.get("openai_model") or DEFAULT_TEXT_MODEL
+    elif provider == "venice":
         active_model = current.get("venice_model") or "llama-3.3-70b"
     elif provider == "groq":
         active_model = current.get("groq_model") or DEFAULT_GROQ_MODEL

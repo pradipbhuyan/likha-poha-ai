@@ -309,6 +309,21 @@ export async function getAiSettings(accessToken) {
   return response.json();
 }
 
+export async function testAskDoubtModel(question, accessToken) {
+  /** Test a doubt through the currently saved platform provider/model. */
+  const response = await adminFetch("/api/admin-control/ai-settings/test-ask-doubt", {
+    method: "POST",
+    headers: authHeaders(accessToken),
+    body: JSON.stringify({ question }),
+  });
+
+  if (!response.ok) {
+    throw new Error(await parseError(response, "Model test failed"));
+  }
+
+  return response.json();
+}
+
 export async function updateAiSettings(payload, accessToken) {
   /**
    * Persist the master API on/off switch and optionally a new OpenAI API key.

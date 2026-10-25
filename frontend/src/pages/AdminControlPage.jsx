@@ -32,6 +32,7 @@ import {
   getEgressHealth,
   deleteUser,
   getAiSettings,
+  testAskDoubtModel,
   updateAiSettings,
   listOfferCodes,
   createOfferCode,
@@ -141,10 +142,8 @@ function AdminControlPage({ user }) {
   const [aiKeyPrefix, setAiKeyPrefix] = useState("");
   const [aiKeySource, setAiKeySource] = useState("environment");
   const [newApiKey, setNewApiKey] = useState("");
+  const [openaiModel, setOpenaiModel] = useState("gpt-5-nano");
   const [aiProvider, setAiProvider] = useState("openai");
-  const [veniceKeyPrefix, setVeniceKeyPrefix] = useState("");
-  const [veniceModel, setVeniceModel] = useState("llama-3.3-70b");
-  const [newVeniceKey, setNewVeniceKey] = useState("");
   const [groqKeyPrefix, setGroqKeyPrefix] = useState("");
   const [groqModel, setGroqModel] = useState("llama-3.3-70b-versatile");
   const [newGroqKey, setNewGroqKey] = useState("");
@@ -157,7 +156,7 @@ function AdminControlPage({ user }) {
   const [sambanovaKeyPrefix, setSambanovaKeyPrefix] = useState("");
   const [sambanovaModel, setSambanovaModel] = useState("Meta-Llama-3.3-70B-Instruct");
   const [nvidiaKeyPrefix, setNvidiaKeyPrefix] = useState("");
-  const [nvidiaModel, setNvidiaModel] = useState("meta/llama-3.1-8b-instruct");
+  const [nvidiaModel, setNvidiaModel] = useState("meta/llama-4-scout-17b-16e-instruct");
   const [newNvidiaKey, setNewNvidiaKey] = useState("");
   const [ollamaCloudKeyPrefix, setOllamaCloudKeyPrefix] = useState("");
   const [ollamaCloudModel, setOllamaCloudModel] = useState("gemma3:4b");
@@ -167,6 +166,10 @@ function AdminControlPage({ user }) {
   const [aiSettingsSaving, setAiSettingsSaving] = useState(false);
   const [aiSettingsMessage, setAiSettingsMessage] = useState("");
   const [aiSettingsError, setAiSettingsError] = useState("");
+  const [modelTestQuestion, setModelTestQuestion] = useState("");
+  const [modelTestMessages, setModelTestMessages] = useState([]);
+  const [modelTestLoading, setModelTestLoading] = useState(false);
+  const [modelTestError, setModelTestError] = useState("");
 
   // Logging settings
   const [loggingEnabled, setLoggingEnabled] = useState(true);
@@ -264,18 +267,17 @@ function AdminControlPage({ user }) {
       setAiKeyPrefix(data.api_key_prefix || "");
       setAiKeySource(data.key_source || "environment");
       setAiProvider(data.provider || "openai");
-      setVeniceKeyPrefix(data.venice_key_prefix || "");
-      setVeniceModel(data.venice_model || "llama-3.3-70b");
+      setOpenaiModel(data.openai_model || "gpt-5-nano");
       setGroqKeyPrefix(data.groq_key_prefix || "");
       setGroqModel(data.groq_model || "llama-3.3-70b-versatile");
       setCerebrasKeyPrefix(data.cerebras_key_prefix || "");
       setCerebrasModel(data.cerebras_model || "gpt-oss-120b");
       setGeminiKeyPrefix(data.gemini_key_prefix || "");
-      setGeminiModel(data.gemini_model || "gemini-2.0-flash-lite");
+      setGeminiModel(data.gemini_model || "gemini-2.5-flash");
       setSambanovaKeyPrefix(data.sambanova_key_prefix || "");
       setSambanovaModel(data.sambanova_model || "Meta-Llama-3.3-70B-Instruct");
       setNvidiaKeyPrefix(data.nvidia_key_prefix || "");
-      setNvidiaModel(data.nvidia_model || "meta/llama-3.1-8b-instruct");
+      setNvidiaModel(data.nvidia_model || "meta/llama-4-scout-17b-16e-instruct");
       setOllamaCloudKeyPrefix(data.ollama_cloud_key_prefix || "");
       setOllamaCloudModel(data.ollama_cloud_model || "gemma3:4b");
     } catch (err) {
@@ -295,12 +297,11 @@ function AdminControlPage({ user }) {
       const payload = {
         api_enabled: enabledValue,
         provider: aiProvider,
-        venice_model: veniceModel,
+        openai_model: openaiModel,
         groq_model: groqModel,
         cerebras_model: cerebrasModel,
       };
       if (newApiKey.trim()) payload.openai_api_key = newApiKey.trim();
-      if (newVeniceKey.trim()) payload.venice_api_key = newVeniceKey.trim();
       if (newGroqKey.trim()) payload.groq_api_key = newGroqKey.trim();
       if (newCerebrasKey.trim()) payload.cerebras_api_key = newCerebrasKey.trim();
       if (newGeminiKey.trim()) payload.gemini_api_key = newGeminiKey.trim();
@@ -316,14 +317,12 @@ function AdminControlPage({ user }) {
       setAiKeyPrefix(data.api_key_prefix || "");
       setAiKeySource(data.key_source || "database");
       setAiProvider(data.provider || "openai");
-      setVeniceKeyPrefix(data.venice_key_prefix || "");
-      setVeniceModel(data.venice_model || "llama-3.3-70b");
+      setOpenaiModel(data.openai_model || "gpt-5-nano");
       setGroqKeyPrefix(data.groq_key_prefix || "");
       setGroqModel(data.groq_model || "llama-3.3-70b-versatile");
       setCerebrasKeyPrefix(data.cerebras_key_prefix || "");
       setCerebrasModel(data.cerebras_model || "gpt-oss-120b");
       setNewApiKey("");
-      setNewVeniceKey("");
       setNewGroqKey("");
       setNewCerebrasKey("");
       setNewSambanovaKey("");
@@ -332,13 +331,13 @@ function AdminControlPage({ user }) {
       if (data.ollama_cloud_key_prefix !== undefined) setOllamaCloudKeyPrefix(data.ollama_cloud_key_prefix || "");
       if (data.ollama_cloud_model) setOllamaCloudModel(data.ollama_cloud_model);
       const providerLabel =
-        data.provider === "venice" ? `Venice AI (${data.venice_model})` :
         data.provider === "groq" ? `Groq (${data.groq_model})` :
         data.provider === "cerebras" ? `Cerebras (${data.cerebras_model})` :
         data.provider === "gemini" ? `Gemini (${data.gemini_model})` :
         data.provider === "sambanova" ? `SambaNova (${data.sambanova_model})` :
         data.provider === "nvidia" ? `NVIDIA NIM (${data.nvidia_model})` :
-        data.provider === "ollama_cloud" ? `Ollama Cloud (${data.ollama_cloud_model || ollamaCloudModel})` : "OpenAI";
+        data.provider === "ollama_cloud" ? `Ollama Cloud (${data.ollama_cloud_model || ollamaCloudModel})` :
+        `OpenAI (${data.openai_model || openaiModel})`;
       setAiSettingsMessage(
         data.api_enabled
           ? `AI API is ON — using ${providerLabel}.`
@@ -348,6 +347,36 @@ function AdminControlPage({ user }) {
       setAiSettingsError(err.message || "Unable to save AI settings.");
     } finally {
       setAiSettingsSaving(false);
+    }
+  }
+
+  async function sendModelTestQuestion() {
+    const question = modelTestQuestion.trim();
+    if (!question || modelTestLoading) return;
+
+    setModelTestLoading(true);
+    setModelTestError("");
+    setModelTestMessages((previous) => [
+      ...previous,
+      { role: "user", content: question },
+    ]);
+    setModelTestQuestion("");
+
+    try {
+      const result = await testAskDoubtModel(question, user.accessToken);
+      setModelTestMessages((previous) => [
+        ...previous,
+        {
+          role: "assistant",
+          content: result.answer,
+          provider: result.provider,
+          model: result.model,
+        },
+      ]);
+    } catch (err) {
+      setModelTestError(err.message || "Unable to test the selected model.");
+    } finally {
+      setModelTestLoading(false);
     }
   }
 
@@ -1071,7 +1100,7 @@ function AdminControlPage({ user }) {
       <div className="premium-header">
         <p className="eyebrow">Platform Configuration</p>
         <h3><KeyRound size={16} style={{display:"inline",verticalAlign:"middle",marginRight:6}} />AI API Settings</h3>
-        <p>Control the OpenAI master switch and set the API key used across the entire platform.</p>
+        <p>Choose reviewed free-tier models for supported providers. OpenAI GPT-4 and GPT-5 Nano are available as requested, but require billed OpenAI API usage.</p>
       </div>
 
       {aiSettingsLoading ? (
@@ -1128,12 +1157,11 @@ function AdminControlPage({ user }) {
           <div style={{ marginBottom: 20 }}>
             <strong>AI Provider</strong>
             <p style={{ fontSize: "0.82rem", color: "#888", margin: "4px 0 10px" }}>
-              Groq, Cerebras, Gemini and SambaNova are <strong style={{color:"#22c55e"}}>100% free</strong> — no credit card needed.
+              Available providers expose reviewed free-tier models only. OpenAI is retained for GPT-4 and GPT-5 Nano and is billed by OpenAI.
             </p>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 8 }}>
               {[
                 ["openai",        "🤖 OpenAI",          "#6366f1"],
-                ["venice",        "🎨 Venice AI",        "#8b5cf6"],
                 ["groq",          "⚡ Groq",             "#10b981"],
                 ["cerebras",      "🧠 Cerebras",         "#a855f7"],
                 ["gemini",        "✨ Gemini",            "#f59e0b"],
@@ -1150,9 +1178,6 @@ function AdminControlPage({ user }) {
                     transition: "all .18s", textAlign: "center",
                   }}>
                   {label}
-                  {["groq","cerebras","gemini","sambanova","nvidia","ollama_cloud"].includes(val) && (
-                    <span style={{ display:"block", fontSize:".68rem", color:"#22c55e", fontWeight:800, marginTop:2 }}>FREE</span>
-                  )}
                 </button>
               ))}
             </div>
@@ -1173,16 +1198,28 @@ function AdminControlPage({ user }) {
             </div>
           )}
 
-          {/* New OpenAI key input */}
+          {/* OpenAI settings */}
           {aiProvider === "openai" && (
-            <label style={{ display: "block", marginBottom: 16 }}>
-              <strong>Update OpenAI API Key</strong>
+            <div style={{ marginBottom: 16 }}>
+              <label style={{ display: "block", marginBottom: 12 }}>
+                <strong>OpenAI Model</strong>
+                <select value={openaiModel} onChange={(e) => setOpenaiModel(e.target.value)} style={{ width: "100%", marginTop: 4 }}>
+                  <option value="gpt-5-nano">GPT-5 Nano — requested OpenAI model</option>
+                  <option value="gpt-4">GPT-4 — requested OpenAI model</option>
+                </select>
+                <p style={{ fontSize: ".75rem", color: "#b45309", marginTop: 4 }}>
+                  OpenAI API calls are paid usage. These are the requested exceptions to the free-tier-only catalog.
+                </p>
+              </label>
+              <label style={{ display: "block" }}>
+                <strong>Update OpenAI API Key</strong>
               <p style={{ fontSize: "0.82rem", color: "#888", margin: "4px 0 8px" }}>
                 Paste a new OpenAI key to replace the current one. Leave blank to keep the existing key.
               </p>
-              <input type="password" value={newApiKey} onChange={(e) => setNewApiKey(e.target.value)}
-                placeholder="sk-proj-… or sk-…" style={{ width: "100%", fontFamily: "monospace" }} autoComplete="new-password" />
-            </label>
+                <input type="password" value={newApiKey} onChange={(e) => setNewApiKey(e.target.value)}
+                  placeholder="sk-proj-… or sk-…" style={{ width: "100%", fontFamily: "monospace" }} autoComplete="new-password" />
+              </label>
+            </div>
           )}
 
           {/* Groq settings */}
@@ -1259,7 +1296,7 @@ function AdminControlPage({ user }) {
             <div style={{ background: "rgba(245,158,11,.07)", border: "1px solid rgba(245,158,11,.3)", borderRadius: 10, padding: "14px 16px", marginBottom: 16 }}>
               <strong>Google Gemini Settings</strong>
               <p style={{ fontSize: "0.82rem", color: "#888", margin: "4px 0 12px" }}>
-                Gemini Flash has a <strong>1M token/day free tier</strong> — no credit card.
+                Gemini 2.5 Flash has a <strong>free tier</strong> with provider-enforced usage limits — no credit card.
                 Get your key at{" "}
                 <a href="https://aistudio.google.com/apikey" target="_blank" rel="noreferrer" style={{ color: "var(--accent,#6366f1)" }}>aistudio.google.com/apikey</a>.
                 Key starts with <code>AIza…</code>
@@ -1277,11 +1314,10 @@ function AdminControlPage({ user }) {
               <label style={{ display: "block" }}>
                 <strong style={{ fontSize: ".85rem" }}>Gemini Model</strong>
                 <select value={geminiModel} onChange={(e) => setGeminiModel(e.target.value)} style={{ width: "100%", marginTop: 4 }}>
-                  <option value="gemini-2.5-flash">Gemini 2.5 Flash — Fast, free, best quality (recommended ✅)</option>
-                  <option value="gemini-2.5-pro">Gemini 2.5 Pro — Highest quality, more thoughtful</option>
+                  <option value="gemini-2.5-flash">Gemini 2.5 Flash — Free tier, fast, best quality (recommended ✅)</option>
                 </select>
                 <p style={{ fontSize: ".75rem", color: "#888", marginTop: 4 }}>
-                  💡 Use <strong>Flash Lite</strong> for everything — 1M tokens/day free. Flash has 1M token context window — great for long lessons.
+                  💡 Gemini 2.5 Flash is the reviewed free-tier option for this provider. Usage limits are set by Google and may change.
                 </p>
               </label>
             </div>
@@ -1315,10 +1351,9 @@ function AdminControlPage({ user }) {
                   <option value="DeepSeek-V3.1">✅ FREE — DeepSeek-V3.1 (strong reasoning, prev)</option>
                   <option value="gemma-4-31B-it">✅ FREE — gemma-4-31B-it (Google Gemma 4 31B)</option>
                   <option value="gpt-oss-120b">✅ FREE — gpt-oss-120b (large open-source)</option>
-                  <option value="MiniMax-M2.7">💳 PAID — MiniMax-M2.7 (requires payment method)</option>
                 </select>
                 <p style={{ fontSize: "0.78rem", color: "var(--text-muted)", marginTop: 6 }}>
-                  💡 5 models are <strong>completely free</strong>. <strong>Meta-Llama-3.3-70B-Instruct</strong> gives best lesson quality. MiniMax-M2.7 requires a paid SambaNova account.
+                  💡 These five reviewed models are available on SambaNova's free tier, subject to provider usage limits.
                 </p>
               </label>
             </div>
@@ -1347,12 +1382,10 @@ function AdminControlPage({ user }) {
               <label style={{ display: "block" }}>
                 <strong style={{ fontSize: ".85rem" }}>NVIDIA Model</strong>
                 <select value={nvidiaModel} onChange={(e) => setNvidiaModel(e.target.value)} style={{ width: "100%", marginTop: 4 }}>
-                  <option value="meta/llama-3.1-8b-instruct">✅ meta/llama-3.1-8b-instruct — Llama 3.1 8B (fastest · recommended for batch)</option>
-                  <option value="meta/llama-3.1-70b-instruct">✅ meta/llama-3.1-70b-instruct — Llama 3.1 70B (best quality)</option>
-                  <option value="meta/llama-3.2-3b-instruct">✅ meta/llama-3.2-3b-instruct — Llama 3.2 3B (ultra-fast, smallest)</option>
+                  <option value="meta/llama-4-scout-17b-16e-instruct">✅ meta/llama-4-scout-17b-16e-instruct — Llama 4 Scout (reviewed free-tier model)</option>
                 </select>
                 <p style={{ fontSize: "0.78rem", color: "var(--text-muted)", marginTop: 6 }}>
-                  💡 <strong>meta/llama-3.1-8b-instruct</strong> is confirmed working on this account. Use <strong>llama-3.1-70b-instruct</strong> for best lesson quality. Get your free key at{" "}
+                  💡 <strong>meta/llama-4-scout-17b-16e-instruct</strong> is the reviewed free-tier model for this provider. Get your free key at{" "}
                   <a href="https://build.nvidia.com/settings/api-keys" target="_blank" rel="noreferrer" style={{ color: "#76b900" }}>build.nvidia.com</a>.
                 </p>
               </label>
@@ -1385,9 +1418,6 @@ function AdminControlPage({ user }) {
                   <option value="gemma3:4b">gemma3:4b — Free tier, fast (recommended ✅)</option>
                   <option value="gemma3:12b">gemma3:12b — Free tier, higher quality</option>
                   <option value="gpt-oss:20b">gpt-oss:20b — Free tier, GPT-OSS</option>
-                  <option value="glm-5.2">glm-5.2 — Premium (subscription required)</option>
-                  <option value="minimax-m2.1">minimax-m2.1 — Premium (subscription required)</option>
-                  <option value="kimi-k2.6">kimi-k2.6 — Premium (subscription required)</option>
                 </select>
                 <p style={{ fontSize: ".75rem", color: "#888", marginTop: 4 }}>
                   💡 Free models: <strong>gemma3:4b</strong>, <strong>gemma3:12b</strong>, <strong>gpt-oss:20b</strong> — confirmed working.
@@ -1397,41 +1427,80 @@ function AdminControlPage({ user }) {
             </div>
           )}
 
-          {/* Venice settings */}
-          {aiProvider === "venice" && (
-            <div style={{ background: "rgba(99,102,241,.07)", border: "1px solid rgba(99,102,241,.25)", borderRadius: 10, padding: "14px 16px", marginBottom: 16 }}>
-              <strong>Venice AI Settings</strong>
-              <p style={{ fontSize: "0.82rem", color: "#888", margin: "4px 0 12px" }}>
-                Venice credits are used for all lessons, doubts, and pre-warm generation when Venice is active.
-                Get your API key at <a href="https://venice.ai" target="_blank" rel="noreferrer" style={{ color: "var(--accent,#6366f1)" }}>venice.ai</a>.
-              </p>
-
-              <label style={{ display: "block", marginBottom: 12 }}>
-                <strong style={{ fontSize: ".85rem" }}>Venice API Key</strong>
-                <div style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 4, marginBottom: 6 }}>
-                  <code style={{ background: "var(--surface2,#111827)", padding: "4px 10px", borderRadius: 6, fontFamily: "monospace", fontSize: ".82rem", letterSpacing: 1 }}>
-                    {veniceKeyPrefix ? `${veniceKeyPrefix}••••••••••` : "No key stored"}
-                  </code>
-                </div>
-                <input type="password" value={newVeniceKey} onChange={(e) => setNewVeniceKey(e.target.value)}
-                  placeholder="your-venice-api-key" style={{ width: "100%", fontFamily: "monospace" }} autoComplete="new-password" />
-              </label>
-
-              <label style={{ display: "block" }}>
-                <strong style={{ fontSize: ".85rem" }}>Venice Model</strong>
-                <select value={veniceModel} onChange={(e) => setVeniceModel(e.target.value)} style={{ width: "100%", marginTop: 4 }}>
-                  <option value="llama-3.3-70b">Llama 3.3 70B — Best quality (recommended)</option>
-                  <option value="llama-3.2-3b">Llama 3.2 3B — Fastest + cheapest (prewarm)</option>
-                  <option value="mistral-31-24b">Mistral 3.1 24B — Mid-size, fast</option>
-                  <option value="qwen-2.5-72b">Qwen 2.5 72B — Strong STEM</option>
-                  <option value="deepseek-r1-671b">DeepSeek R1 671B — Best reasoning</option>
-                </select>
-                <p style={{ fontSize: ".75rem", color: "#888", marginTop: 4 }}>
-                  💡 Use Llama 3.2 3B for prewarm (cheap). Use Llama 3.3 70B for live student requests.
-                </p>
-              </label>
+          <div style={{ marginBottom: 18, padding: "16px", border: "1px solid var(--border)", borderRadius: 12, background: "var(--surface2,#111827)" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: 12, flexWrap: "wrap", marginBottom: 6 }}>
+              <strong>💬 Ask Doubt Model Test</strong>
+              <span style={{ fontSize: ".75rem", color: "var(--muted)" }}>
+                Save settings first, then test the active provider/model.
+              </span>
             </div>
-          )}
+            <p style={{ fontSize: ".8rem", color: "var(--muted)", margin: "0 0 12px" }}>
+              Uses the same platform routing, API switch, retry, and fallback behavior as Ask Doubts.
+            </p>
+
+            <div style={{ minHeight: modelTestMessages.length ? 120 : 0, maxHeight: 360, overflowY: "auto", display: "flex", flexDirection: "column", gap: 10, marginBottom: 12 }}>
+              {modelTestMessages.map((message, index) => (
+                <div key={`${message.role}-${index}`} style={{
+                  alignSelf: message.role === "user" ? "flex-end" : "flex-start",
+                  maxWidth: "88%",
+                  padding: "10px 12px",
+                  borderRadius: 12,
+                  whiteSpace: "pre-wrap",
+                  lineHeight: 1.5,
+                  fontSize: ".88rem",
+                  background: message.role === "user" ? "var(--accent,#6366f1)" : "var(--panel,#fff)",
+                  color: message.role === "user" ? "#fff" : "var(--text)",
+                  border: message.role === "user" ? "none" : "1px solid var(--border)",
+                }}>
+                  {message.role === "assistant" && (
+                    <small style={{ display: "block", marginBottom: 5, opacity: .7, fontWeight: 700 }}>
+                      {message.provider} · {message.model}
+                    </small>
+                  )}
+                  {message.content}
+                </div>
+              ))}
+              {modelTestLoading && (
+                <div style={{ alignSelf: "flex-start", padding: "10px 12px", borderRadius: 12, background: "var(--panel,#fff)", border: "1px solid var(--border)", color: "var(--muted)", fontSize: ".88rem" }}>
+                  Testing active model…
+                </div>
+              )}
+            </div>
+
+            <textarea
+              value={modelTestQuestion}
+              onChange={(event) => setModelTestQuestion(event.target.value)}
+              onKeyDown={(event) => {
+                if (event.key === "Enter" && !event.shiftKey) {
+                  event.preventDefault();
+                  sendModelTestQuestion();
+                }
+              }}
+              placeholder="Ask a CBSE doubt, for example: Why does an object accelerate when force is applied?"
+              disabled={modelTestLoading}
+              rows={3}
+              style={{ width: "100%", resize: "vertical", fontFamily: "inherit", marginBottom: 8 }}
+            />
+            <div style={{ display: "flex", justifyContent: "space-between", gap: 8, alignItems: "center" }}>
+              <button
+                className="secondary-btn"
+                type="button"
+                disabled={!modelTestMessages.length || modelTestLoading}
+                onClick={() => { setModelTestMessages([]); setModelTestError(""); }}
+              >
+                Clear chat
+              </button>
+              <button
+                className="primary-btn"
+                type="button"
+                disabled={!modelTestQuestion.trim() || modelTestLoading}
+                onClick={sendModelTestQuestion}
+              >
+                {modelTestLoading ? "Testing…" : "Send test"}
+              </button>
+            </div>
+            {modelTestError && <div className="error-box" style={{ marginTop: 10 }}>{modelTestError}</div>}
+          </div>
 
           <button
             className="primary-btn"

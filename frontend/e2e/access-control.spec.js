@@ -39,6 +39,13 @@ test.describe("free-tier access restrictions", () => {
     await page.route("**/api/student/exams", (route) =>
       route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ success: true, exams: [] }) })
     );
+    await page.route("**/api/parent-dashboard/subscription-plans", (route) =>
+      route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify({ success: true, plans: {}, plan_order: [] }),
+      })
+    );
 
     await page.goto("/");
     await page.getByRole("button", { name: "Login" }).click();
