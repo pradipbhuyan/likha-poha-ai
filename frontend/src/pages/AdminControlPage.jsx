@@ -1100,7 +1100,7 @@ function AdminControlPage({ user }) {
       <div className="premium-header">
         <p className="eyebrow">Platform Configuration</p>
         <h3><KeyRound size={16} style={{display:"inline",verticalAlign:"middle",marginRight:6}} />AI API Settings</h3>
-        <p>Choose reviewed free-tier models for supported providers. OpenAI GPT-4 and GPT-5 Nano are available as requested, but require billed OpenAI API usage.</p>
+        <p>Choose reviewed free-tier models for supported providers. The listed OpenAI GPT-4 and GPT-5 models are paid OpenAI API options.</p>
       </div>
 
       {aiSettingsLoading ? (
@@ -1157,7 +1157,7 @@ function AdminControlPage({ user }) {
           <div style={{ marginBottom: 20 }}>
             <strong>AI Provider</strong>
             <p style={{ fontSize: "0.82rem", color: "#888", margin: "4px 0 10px" }}>
-              Available providers expose reviewed free-tier models only. OpenAI is retained for GPT-4 and GPT-5 Nano and is billed by OpenAI.
+              Available providers expose reviewed free-tier models only. The listed GPT-4 and GPT-5 OpenAI models are intentionally available and billed by OpenAI.
             </p>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 8 }}>
               {[
@@ -1204,11 +1204,23 @@ function AdminControlPage({ user }) {
               <label style={{ display: "block", marginBottom: 12 }}>
                 <strong>OpenAI Model</strong>
                 <select value={openaiModel} onChange={(e) => setOpenaiModel(e.target.value)} style={{ width: "100%", marginTop: 4 }}>
-                  <option value="gpt-5-nano">GPT-5 Nano — requested OpenAI model</option>
-                  <option value="gpt-4">GPT-4 — requested OpenAI model</option>
+                  <optgroup label="GPT-5">
+                    <option value="gpt-5">GPT-5 — flagship reasoning and quality</option>
+                    <option value="gpt-5-mini">GPT-5 Mini — balanced speed and quality</option>
+                    <option value="gpt-5-nano">GPT-5 Nano — fastest, lowest-cost GPT-5</option>
+                  </optgroup>
+                  <optgroup label="GPT-4">
+                    <option value="gpt-4">GPT-4 — original GPT-4 model</option>
+                    <option value="gpt-4-turbo">GPT-4 Turbo — faster GPT-4</option>
+                    <option value="gpt-4o">GPT-4o — multimodal GPT-4 Omni</option>
+                    <option value="gpt-4o-mini">GPT-4o Mini — economical GPT-4 Omni</option>
+                    <option value="gpt-4.1">GPT-4.1 — flagship GPT-4.1</option>
+                    <option value="gpt-4.1-mini">GPT-4.1 Mini — balanced GPT-4.1</option>
+                    <option value="gpt-4.1-nano">GPT-4.1 Nano — fastest GPT-4.1</option>
+                  </optgroup>
                 </select>
                 <p style={{ fontSize: ".75rem", color: "#b45309", marginTop: 4 }}>
-                  OpenAI API calls are paid usage. These are the requested exceptions to the free-tier-only catalog.
+                  OpenAI API calls are paid usage. GPT-4 and GPT-5 family models are the approved exceptions to the free-tier-only catalog.
                 </p>
               </label>
               <label style={{ display: "block" }}>

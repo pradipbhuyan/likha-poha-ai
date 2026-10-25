@@ -31,10 +31,23 @@ def _requires_missing_formula_correction(question: str, answer: str) -> bool:
 
 
 # Models exposed in Admin → AI & Settings. Entries are limited to models with
-# an available free tier, except for the two explicitly requested OpenAI models.
-# OpenAI API usage is billable; GPT-4 and GPT-5 Nano are retained as requested.
+# an available free tier, except for the requested GPT-4 and GPT-5 OpenAI
+# families. OpenAI API usage is billable.
 ALLOWED_AI_MODELS: dict[str, frozenset[str]] = {
-    "openai": frozenset({"gpt-4", "gpt-5-nano"}),
+    "openai": frozenset({
+        # GPT-4 family
+        "gpt-4",
+        "gpt-4-turbo",
+        "gpt-4o",
+        "gpt-4o-mini",
+        "gpt-4.1",
+        "gpt-4.1-mini",
+        "gpt-4.1-nano",
+        # GPT-5 family
+        "gpt-5",
+        "gpt-5-mini",
+        "gpt-5-nano",
+    }),
     "groq": frozenset({"llama-3.3-70b-versatile", "llama-3.1-8b-instant"}),
     "cerebras": frozenset({"gpt-oss-120b", "zai-glm-4.7"}),
     "gemini": frozenset({"gemini-2.5-flash"}),
@@ -102,8 +115,8 @@ def _validate_provider_models(data: UpdateAiSettingsRequest) -> None:
         raise HTTPException(
             status_code=422,
             detail=(
-                "Only reviewed free-tier models may be saved "
-                "(with requested OpenAI exceptions): " + ", ".join(invalid)
+                "Only reviewed free-tier models or approved OpenAI GPT-4/GPT-5 "
+                "models may be saved: " + ", ".join(invalid)
             ),
         )
 
