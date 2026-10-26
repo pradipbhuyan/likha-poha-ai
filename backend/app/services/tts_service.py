@@ -1,12 +1,16 @@
 import asyncio
 import os
 import re
+import ssl
 import uuid
+from pathlib import Path
 
 import edge_tts
+import edge_tts.communicate as edge_tts_communicate
 
 
 AUDIO_DIR = os.getenv("AUDIO_DIR", "generated_audio")
+EDGE_TTS_CA_BUNDLE = os.getenv("EDGE_TTS_CA_BUNDLE", "").strip()
 
 
 def clean_text_for_tts(text: str) -> str:
@@ -302,15 +306,41 @@ def clean_text_for_tts(text: str) -> str:
     return text.strip()
 
 
+def _get_edge_tts_ssl_context():
+    """
+    Return a verified SSL context for Edge TTS.
+
+    Set EDGE_TTS_CA_BUNDLE to a PEM bundle when the local network performs
+    TLS inspection (for example, a corporate Zscaler root CA). The default
+    Edge TTS verification behavior is retained when no bundle is configured.
+    """
+    if not EDGE_TTS_CA_BUNDLE:
+        return edge_tts_communicate._SSL_CTX
+
+    bundle_path = Path(EDGE_TTS_CA_BUNDLE)
+    if not bundle_path.is_file():
+        raise RuntimeError(
+            "EDGE_TTS_CA_BUNDLE must point to an existing PEM certificate bundle."
+        )
+
+    return ssl.create_default_context(cafile=str(bundle_path))
+
+
 async def _generate_edge_tts(text, output_file, voice, rate, pitch):
     """Call Edge TTS asynchronously and save the MP3 to disk."""
-    communicate = edge_tts.Communicate(
-        text=text,
-        voice=voice,
-        rate=rate,
-        pitch=pitch,
-    )
-    await communicate.save(output_file)
+    original_ssl_context = edge_tts_communicate._SSL_CTX
+    edge_tts_communicate._SSL_CTX = _get_edge_tts_ssl_context()
+
+    try:
+        communicate = edge_tts.Communicate(
+            text=text,
+            voice=voice,
+            rate=rate,
+            pitch=pitch,
+        )
+        await communicate.save(output_file)
+    finally:
+        edge_tts_communicate._SSL_CTX = original_ssl_context
 
 
 def generate_speech_file(

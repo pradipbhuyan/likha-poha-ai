@@ -49,6 +49,12 @@ class ClearChapterCacheRequest(BaseModel):
     chapter: str
     board: str = "CBSE"
 
+
+class LikhaNarrationPrewarmRequest(BaseModel):
+    grade: str
+    subject: str
+
+
 router = APIRouter()
 
 # Cache & Question Bank management only covers Grades 5–10.
@@ -771,6 +777,93 @@ def clear_chapter_questions(
         "grade": data.grade,
         "subject": data.subject,
         "chapter": data.chapter,
+    }
+
+
+# ── Likha chapter-path narration prewarm ───────────────────────────────────────
+
+@router.post("/prewarm/likha-narration")
+def start_likha_narration_prewarm(
+    data: LikhaNarrationPrewarmRequest,
+    admin=Depends(require_admin),
+):
+    """Prewarm milestone and Wrap-up narration MP3s for one grade/subject."""
+    if data.grade not in ALL_GRADES:
+        raise HTTPException(status_code=400, detail=f"Invalid grade: {data.grade}")
+    if data.subject not in ("English", "Hindi"):
+        raise HTTPException(status_code=400, detail="Likha narration supports English or Hindi only.")
+
+    job_key = f"likha_audio_{data.grade.replace(' ', '')}_{data.subject}"
+    if is_job_running(job_key):
+        return {"success": False, "message": "Likha narration prewarm is already running.", "job_key": job_key}
+
+    def _run():
+        import os  # noqa: PLC0415
+        import time  # noqa: PLC0415
+        from app.services.audio_cache_service import get_cached_audio_url, store_audio  # noqa: PLC0415
+        from app.services.chapter_doc_service import get_stored_chapter_doc  # noqa: PLC0415
+        from app.services.prewarm_service import get_chapters_for_grade  # noqa: PLC0415
+        from app.services.tts_service import clean_text_for_tts, generate_speech_file  # noqa: PLC0415
+        from app.routes.lesson import get_avatar_narration_voice  # noqa: PLC0415
+
+        def _text_for_milestone(milestone):
+            parts = [str(milestone.get("title") or "Lesson section")]
+            for block in milestone.get("blocks") or []:
+                kind = block.get("type")
+                if kind == "hook":
+                    parts.append(str(block.get("text") or ""))
+                elif kind in ("concept", "watchout"):
+                    parts.extend([str(block.get("title") or ""), str(block.get("body_md") or "")])
+                elif kind == "example":
+                    parts.extend([str(block.get("question") or ""), str(block.get("body_md") or "")])
+                elif kind == "vocab":
+                    parts.extend(f"{word.get('term', '')} means {word.get('meaning', '')}." for word in block.get("words") or [])
+                elif kind in ("quickcheck", "freetext_qa"):
+                    parts.append(f"Quick check. {block.get('question') or ''}")
+            return " ".join(part.strip() for part in parts if str(part).strip())
+
+        set_job_status(job_key, "running")
+        try:
+            voice = get_avatar_narration_voice(data.subject)
+            for item in get_chapters_for_grade(data.grade):
+                if item["subject"] != data.subject:
+                    continue
+                doc = get_stored_chapter_doc("CBSE", data.grade, data.subject, item["chapter"], item["mode"])
+                if not doc:
+                    continue
+                paths = []
+                for index, milestone in enumerate(doc.get("milestones") or []):
+                    title = str(milestone.get("title") or f"Section {index + 1}").strip()
+                    paths.append((f"__avatar_narration__milestone_{index}_{title}"[:180], _text_for_milestone(milestone)))
+                recap = (doc.get("recap") or {}).get("body_md")
+                if recap and str(recap).strip():
+                    paths.append(("__avatar_narration__wrap_up_Wrap-up", f"Wrap-up. {recap}"))
+
+                for step_title, text in paths:
+                    if not text or get_cached_audio_url(data.grade, data.subject, item["chapter"], step_title, voice, "+5%"):
+                        continue
+                    try:
+                        mp3_path = generate_speech_file(clean_text_for_tts(text), voice=voice, rate="+5%", pitch="+5Hz")
+                        try:
+                            with open(mp3_path, "rb") as audio_file:
+                                store_audio(data.grade, data.subject, item["chapter"], step_title, audio_file.read(), voice, "+5%")
+                        finally:
+                            try:
+                                os.remove(mp3_path)
+                            except OSError:
+                                pass
+                    except Exception as exc:
+                        _threading.current_thread().name
+                        print(f"Likha narration prewarm failed [{item['chapter']} | {step_title}]: {exc}")
+                    time.sleep(0.5)
+        finally:
+            set_job_status(job_key, "idle")
+
+    _threading.Thread(target=_run, daemon=True, name=job_key).start()
+    return {
+        "success": True,
+        "message": f"Likha {data.subject} narration prewarm started for {data.grade}.",
+        "job_key": job_key,
     }
 
 

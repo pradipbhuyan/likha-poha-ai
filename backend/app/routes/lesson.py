@@ -43,6 +43,19 @@ from app.services.academic_guardrail_service import (
 
 router = APIRouter()
 
+AVATAR_NARRATION_VOICES = {
+    "english": "en-IN-NeerjaNeural",
+    "hindi": "hi-IN-SwaraNeural",
+}
+
+
+def get_avatar_narration_voice(subject: str) -> str:
+    """Choose the dedicated Likha neural voice for supported Grade 6 subjects."""
+    return AVATAR_NARRATION_VOICES.get(
+        str(subject or "").strip().casefold(),
+        AVATAR_NARRATION_VOICES["english"],
+    )
+
 
 def call_with_optional_board(func, board: str, **kwargs):
     """
@@ -717,13 +730,15 @@ def get_chapter_narration(
     subject: str,
     chapter: str,
     milestone_index: int = 0,
+    narration_path: str = "milestone",
     board: str = "CBSE",
     user=Depends(get_current_user),
 ):
     """
-    Return a cached Neerja MP3 for one approved chapter milestone.
+    Return a cached Likha neural MP3 for one approved chapter milestone.
 
-    The narration text is derived exclusively from the stored chapter document;
+    English uses Neerja and Hindi uses Swara. The narration text is derived
+    exclusively from the stored chapter document;
     callers cannot submit arbitrary text for synthesis. Audio is cached in
     Supabase Storage, so subsequent student playback is instant and does not
     call the TTS provider again.
@@ -743,23 +758,57 @@ def get_chapter_narration(
     try:
         from app.services.chapter_doc_service import get_or_convert_chapter_doc  # noqa: PLC0415
         from app.services.tts_service import clean_text_for_tts, generate_speech_file  # noqa: PLC0415
-        from app.services.audio_cache_service import get_cached_audio_url, store_audio  # noqa: PLC0415
-
-        doc = get_or_convert_chapter_doc(
-            board=request_board,
-            grade=grade,
-            subject=subject,
-            chapter=chapter,
-            mode=mode,
+        from app.services.audio_cache_service import (  # noqa: PLC0415
+            get_cached_audio_url,
+            get_likha_welcome_audio_url,
+            store_audio,
+            store_likha_welcome_audio,
         )
-        milestones = (doc or {}).get("milestones") or []
-        if milestone_index < 0 or milestone_index >= len(milestones):
-            return {"success": False, "audio_url": None, "message": "Narration is unavailable for this section."}
 
-        milestone = milestones[milestone_index]
-        title = str(milestone.get("title") or f"Section {milestone_index + 1}").strip()
-        sections = [title]
-        for block in milestone.get("blocks") or []:
+        is_welcome = narration_path == "welcome"
+        voice = get_avatar_narration_voice(subject)
+        if is_welcome:
+            shared_welcome_url = get_likha_welcome_audio_url(voice)
+            if shared_welcome_url:
+                return {
+                    "success": True,
+                    "audio_url": shared_welcome_url,
+                    "cached": True,
+                    "voice": voice,
+                }
+        if is_welcome:
+            doc = None
+            milestones = []
+            title = "Likha welcome"
+            sections = [
+                (
+                    "नमस्ते! मैं लिखा हूँ। मैं इस पाठ को एक-एक भाग करके आपको पढ़कर सुना सकती हूँ।"
+                    if str(subject).strip().casefold() == "hindi"
+                    else "Hello! I’m Likha. I can read this lesson aloud, one chapter path at a time."
+                )
+            ]
+        else:
+            doc = get_or_convert_chapter_doc(
+                board=request_board,
+                grade=grade,
+                subject=subject,
+                chapter=chapter,
+                mode=mode,
+            )
+            milestones = (doc or {}).get("milestones") or []
+        is_wrap_up = narration_path == "wrap_up"
+        if is_wrap_up:
+            recap = (doc or {}).get("recap") or {}
+            title = "Wrap-up"
+            sections = [title, str(recap.get("body_md") or "")]
+        elif not is_welcome:
+            if milestone_index < 0 or milestone_index >= len(milestones):
+                return {"success": False, "audio_url": None, "message": "Narration is unavailable for this section."}
+
+            milestone = milestones[milestone_index]
+            title = str(milestone.get("title") or f"Section {milestone_index + 1}").strip()
+            sections = [title]
+        for block in ([] if is_wrap_up or is_welcome else milestone.get("blocks") or []):
             block_type = block.get("type")
             if block_type == "hook":
                 sections.append(str(block.get("text") or ""))
@@ -780,9 +829,15 @@ def get_chapter_narration(
         if not narration_text:
             return {"success": False, "audio_url": None, "message": "Narration is unavailable for this section."}
 
-        voice = "en-IN-NeerjaNeural"
         rate = "+5%"
-        step_title = f"__avatar_narration__{milestone_index}_{title}"[:180]
+        path_key = (
+            "welcome"
+            if is_welcome
+            else "wrap_up"
+            if is_wrap_up
+            else f"milestone_{milestone_index}"
+        )
+        step_title = f"__avatar_narration__{path_key}_{title}"[:180]
         cached_url = get_cached_audio_url(grade, subject, chapter, step_title, voice, rate)
         if cached_url:
             return {"success": True, "audio_url": cached_url, "cached": True, "voice": voice}
@@ -803,14 +858,17 @@ def get_chapter_narration(
                 pass
 
         try:
-            audio_url = store_audio(
-                grade, subject, chapter, step_title, mp3_bytes, voice, rate
-            )
+            if is_welcome:
+                audio_url = store_likha_welcome_audio(voice, mp3_bytes)
+            else:
+                audio_url = store_audio(
+                    grade, subject, chapter, step_title, mp3_bytes, voice, rate
+                )
             cached = False
         except RuntimeError as storage_error:
             # Do not discard a successful Edge TTS result solely because the
             # optional shared cache is unavailable. This mirrors teacher
-            # lecture audio and lets Likha play the generated Neerja MP3 now.
+            # lecture audio and lets Likha play the generated neural MP3 now.
             import base64  # noqa: PLC0415
 
             _log.warning(

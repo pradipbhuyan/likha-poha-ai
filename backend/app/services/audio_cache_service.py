@@ -33,6 +33,12 @@ _log = get_logger("audio_cache_service")
 BUCKET_NAME = os.getenv("LESSON_AUDIO_BUCKET", "lesson-audio")
 
 
+WELCOME_AUDIO_PATHS = {
+    "en-IN-NeerjaNeural": "likha/welcome/en-in-neerja.mp3",
+    "hi-IN-SwaraNeural": "likha/welcome/hi-in-swara.mp3",
+}
+
+
 def _upload_to_supabase_storage(file_path: str, mp3_bytes: bytes) -> str:
     """
     Upload MP3 bytes to the Supabase Storage bucket and return its public URL.
@@ -90,6 +96,35 @@ def _make_file_path(
 
 
 # ── Public API ────────────────────────────────────────────────────────────────
+
+def get_likha_welcome_audio_url(voice: str) -> str | None:
+    """Return the shared pre-warmed Likha welcome MP3 for a neural voice."""
+    file_path = WELCOME_AUDIO_PATHS.get(voice)
+    if not file_path:
+        return None
+
+    try:
+        file_name = file_path.rsplit("/", 1)[-1]
+        entries = admin_client.storage.from_(BUCKET_NAME).list(
+            path="likha/welcome",
+            options={"search": file_name},
+        )
+        if not any(entry.get("name") == file_name for entry in entries or []):
+            return None
+        return admin_client.storage.from_(BUCKET_NAME).get_public_url(file_path)
+    except Exception as exc:
+        _log.warning("audio_cache.welcome_get_failed", error=str(exc)[:120])
+        return None
+
+
+def store_likha_welcome_audio(voice: str, mp3_bytes: bytes) -> str:
+    """Upload or replace the shared Likha welcome MP3 for one neural voice."""
+    file_path = WELCOME_AUDIO_PATHS.get(voice)
+    if not file_path:
+        raise ValueError(f"Unsupported Likha welcome voice: {voice}")
+
+    return _upload_to_supabase_storage(file_path, mp3_bytes)
+
 
 def get_cached_audio_url(
     grade: str,

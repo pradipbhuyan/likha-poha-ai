@@ -304,6 +304,72 @@ def test_paid_user_never_capped_on_lesson_follow_up(monkeypatch):
     assert response.json()["success"] is True
 
 
+def test_avatar_narration_voice_uses_swara_for_hindi_and_neerja_for_english():
+    assert lesson_route.get_avatar_narration_voice("Hindi") == "hi-IN-SwaraNeural"
+    assert lesson_route.get_avatar_narration_voice(" english ") == "en-IN-NeerjaNeural"
+
+
+def test_chapter_narration_wrap_up_uses_recap_with_a_distinct_cache_path(
+    monkeypatch,
+):
+    """Wrap-up narration must be generated on demand from only the recap text."""
+    from types import SimpleNamespace
+
+    from app.services import audio_cache_service, chapter_doc_service, tts_service
+
+    captured = {}
+    monkeypatch.setattr(
+        lesson_route,
+        "get_profile_by_user_id",
+        lambda _user_id: {"role": "admin"},
+    )
+    monkeypatch.setattr(lesson_route, "is_offer_code_user", lambda _user_id: True)
+    monkeypatch.setattr(
+        chapter_doc_service,
+        "get_or_convert_chapter_doc",
+        lambda **_kwargs: {
+            "milestones": [
+                {
+                    "title": "Milestone title",
+                    "blocks": [{"type": "hook", "text": "Milestone-only text."}],
+                }
+            ],
+            "recap": {"body_md": "Kind words make people feel respected."},
+        },
+    )
+    monkeypatch.setattr(tts_service, "clean_text_for_tts", lambda text: text)
+    monkeypatch.setattr(
+        tts_service,
+        "generate_speech_file",
+        lambda *_args, **_kwargs: (_ for _ in ()).throw(
+            AssertionError("Cached Wrap-up audio must not be regenerated.")
+        ),
+    )
+
+    def cached_audio(*args):
+        captured["cache_args"] = args
+        return "https://cdn.example.com/wrap-up.mp3"
+
+    monkeypatch.setattr(audio_cache_service, "get_cached_audio_url", cached_audio)
+
+    result = lesson_route.get_chapter_narration(
+        grade="Grade 6",
+        mode="CBSE",
+        subject="English",
+        chapter="The Power of Kind Words",
+        narration_path="wrap_up",
+        user=SimpleNamespace(id="admin-user"),
+    )
+
+    assert result == {
+        "success": True,
+        "audio_url": "https://cdn.example.com/wrap-up.mp3",
+        "cached": True,
+        "voice": "en-IN-NeerjaNeural",
+    }
+    assert "__avatar_narration__wrap_up_Wrap-up" in captured["cache_args"][3]
+
+
 def test_chapter_narration_returns_edge_audio_when_cache_is_unavailable(
     monkeypatch, tmp_path
 ):

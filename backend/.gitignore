@@ -1,5 +1,9 @@
 .coverage
 
+# Local certificates (for example, a corporate TLS-inspection CA bundle).
+# Never commit machine- or organization-specific trust material.
+.local-certs/
+
 # graphify-axet
 .graphify/
 

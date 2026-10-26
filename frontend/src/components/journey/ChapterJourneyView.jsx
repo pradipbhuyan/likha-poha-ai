@@ -291,6 +291,28 @@ function ChapterJourneyView({ doc, user, grade, mode, subject, chapter }) {
     });
   }
 
+  const narrationPaths = useMemo(() => {
+    const paths = (doc.milestones || []).map((milestone, index) => ({
+      id: `milestone-${index}`,
+      label: milestone.title || `Chapter path ${index + 1}`,
+      milestone,
+      milestoneIndex: index,
+      narrationPath: "milestone",
+    }));
+
+    if (doc.recap?.body_md?.trim()) {
+      paths.push({
+        id: "wrap-up",
+        label: "Wrap-up",
+        milestoneIndex: 0,
+        narrationPath: "wrap_up",
+        text: `Wrap-up. ${doc.recap.body_md}`,
+      });
+    }
+
+    return paths;
+  }, [doc]);
+
   const totalQuickChecks = useMemo(
     () =>
       doc.milestones.reduce(
@@ -348,8 +370,9 @@ function ChapterJourneyView({ doc, user, grade, mode, subject, chapter }) {
         mode={mode}
         subject={subject}
         chapter={chapter}
-        milestone={doc.milestones[activeMilestone] || doc.milestones[0]}
-        milestoneIndex={activeMilestone}
+        milestone={doc.milestones[0]}
+        milestoneIndex={0}
+        narrationPaths={narrationPaths}
       />
 
       {isJunior ? (

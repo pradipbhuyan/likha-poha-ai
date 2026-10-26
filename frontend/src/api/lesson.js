@@ -65,9 +65,10 @@ export function getChapterNarration({
   subject,
   chapter,
   milestoneIndex,
+  narrationPath = "milestone",
   board = "CBSE",
 }) {
-  /** Request cached Neerja MP3 audio for an approved chapter milestone.
+  /** Request cached neural audio for one approved chapter narration path.
    * Returns { success, audio_url, cached, voice }. The avatar uses its
    * browser Tara fallback when this neural-audio request cannot succeed. */
   const params = new URLSearchParams({
@@ -77,6 +78,7 @@ export function getChapterNarration({
     chapter,
     board,
     milestone_index: String(milestoneIndex),
+    narration_path: narrationPath,
   });
   return authFetch(`/api/lesson/chapter-narration?${params.toString()}`);
 }
