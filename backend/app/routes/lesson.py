@@ -795,16 +795,36 @@ def get_chapter_narration(
         )
         try:
             with open(mp3_path, "rb") as audio_file:
-                audio_url = store_audio(
-                    grade, subject, chapter, step_title, audio_file.read(), voice, rate
-                )
+                mp3_bytes = audio_file.read()
         finally:
             try:
                 os.remove(mp3_path)
             except OSError:
                 pass
 
-        return {"success": True, "audio_url": audio_url, "cached": False, "voice": voice}
+        try:
+            audio_url = store_audio(
+                grade, subject, chapter, step_title, mp3_bytes, voice, rate
+            )
+            cached = False
+        except RuntimeError as storage_error:
+            # Do not discard a successful Edge TTS result solely because the
+            # optional shared cache is unavailable. This mirrors teacher
+            # lecture audio and lets Likha play the generated Neerja MP3 now.
+            import base64  # noqa: PLC0415
+
+            _log.warning(
+                "chapter_narration.cache_unavailable",
+                grade=grade,
+                subject=subject,
+                chapter=chapter[:80],
+                milestone_index=milestone_index,
+                error=str(storage_error)[:160],
+            )
+            audio_url = f"data:audio/mpeg;base64,{base64.b64encode(mp3_bytes).decode('ascii')}"
+            cached = False
+
+        return {"success": True, "audio_url": audio_url, "cached": cached, "voice": voice}
     except Exception as exc:
         _log.warning(
             "chapter_narration.unavailable",

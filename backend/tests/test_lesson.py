@@ -302,3 +302,58 @@ def test_paid_user_never_capped_on_lesson_follow_up(monkeypatch):
 
     assert response.status_code == 200
     assert response.json()["success"] is True
+
+
+def test_chapter_narration_returns_edge_audio_when_cache_is_unavailable(
+    monkeypatch, tmp_path
+):
+    """A successful Neerja MP3 must still reach Likha if Supabase caching fails."""
+    from types import SimpleNamespace
+
+    from app.services import audio_cache_service, chapter_doc_service, tts_service
+
+    mp3_bytes = b"edge-tts-neerja-mp3"
+    mp3_path = tmp_path / "likha-neerja.mp3"
+    mp3_path.write_bytes(mp3_bytes)
+
+    monkeypatch.setattr(
+        lesson_route,
+        "get_profile_by_user_id",
+        lambda _user_id: {"role": "admin"},
+    )
+    monkeypatch.setattr(lesson_route, "is_offer_code_user", lambda _user_id: True)
+    monkeypatch.setattr(
+        chapter_doc_service,
+        "get_or_convert_chapter_doc",
+        lambda **_kwargs: {
+            "milestones": [
+                {
+                    "title": "Kind words",
+                    "blocks": [{"type": "hook", "text": "Words can help."}],
+                }
+            ]
+        },
+    )
+    monkeypatch.setattr(tts_service, "generate_speech_file", lambda *_args, **_kwargs: str(mp3_path))
+    monkeypatch.setattr(tts_service, "clean_text_for_tts", lambda text: text)
+
+    def cache_unavailable(*_args, **_kwargs):
+        raise RuntimeError("Supabase Storage unavailable")
+
+    monkeypatch.setattr(audio_cache_service, "get_cached_audio_url", lambda *_args, **_kwargs: None)
+    monkeypatch.setattr(audio_cache_service, "store_audio", cache_unavailable)
+
+    result = lesson_route.get_chapter_narration(
+        grade="Grade 6",
+        mode="CBSE",
+        subject="English",
+        chapter="The Power of Kind Words",
+        milestone_index=0,
+        user=SimpleNamespace(id="admin-user"),
+    )
+
+    assert result["success"] is True
+    assert result["voice"] == "en-IN-NeerjaNeural"
+    assert result["cached"] is False
+    assert result["audio_url"] == "data:audio/mpeg;base64,ZWRnZS10dHMtbmVlcmphLW1wMw=="
+    assert not mp3_path.exists()
