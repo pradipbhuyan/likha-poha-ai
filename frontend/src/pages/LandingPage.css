@@ -132,6 +132,49 @@
 .lp-closing{background:linear-gradient(135deg,rgba(99,102,241,.12),rgba(16,185,129,.08));border:1.5px solid rgba(99,102,241,.3);border-radius:18px;padding:32px 36px;text-align:center;margin-top:8px}
 .lp-closing p{font-size:.98rem;color:#c7d2fe;line-height:1.75;font-style:italic;max-width:680px;margin:0 auto}
 .lp-closing p strong{color:#a5b4fc}
+
+/* Local black-theme landing-page preview */
+.lp{background:#000;color:#f8fafc}
+.lp-nav{background:rgba(0,0,0,.96);border-bottom-color:#262626}
+.lp-langswitch{background:#050505;border-color:#333}
+.lp-btn-ghost{border-color:#3f3f46;color:#93c5fd}
+.lp-hero{background:radial-gradient(ellipse 90% 60% at 50% -10%,rgba(91,33,182,.30) 0%,rgba(14,165,233,.10) 38%,transparent 70%),#000}
+.lp-bol{border-color:#3f3f46}
+.lp-stat{background:rgba(8,8,8,.84);border-color:rgba(191,219,254,.2)}
+.lp-sf{background:#050505}
+.lp-sf#features{background:radial-gradient(ellipse 70% 55% at 50% 0%,rgba(91,33,182,.14) 0%,transparent 60%),#050505}
+.lp-sf.lp-gamified{background:radial-gradient(ellipse 70% 55% at 50% 100%,rgba(245,158,11,.10) 0%,transparent 60%),#050505}
+.lp-dc,.lp-fc,.lp-pcard.prob,.lp-pcard.sol,.lp-tc,.lp-skcard,.lp-faq-item{background-color:#080808}
+.lp-dc,.lp-fc,.lp-tc,.lp-skcard,.lp-faq-item{border-color:#303030}
+.lp-voice-section{background:radial-gradient(ellipse 62% 100% at 84% 42%,rgba(14,165,233,.13),transparent 64%),radial-gradient(ellipse 55% 100% at 20% 50%,rgba(109,40,217,.18),transparent 70%),#000;border-color:rgba(148,163,184,.22)}
+.lp-voice-window{background:linear-gradient(160deg,#111827,#030303 75%);border-color:rgba(147,197,253,.32)}
+.lp-voice-input{background:rgba(0,0,0,.86);border-color:#444}
+.lp-ctasec{background:radial-gradient(ellipse 80% 70% at 50% 100%,rgba(109,40,217,.22) 0%,rgba(14,165,233,.10) 50%,transparent 75%),#000;border-top-color:rgba(124,58,237,.32)}
+.lp-footer{background:#050505;border-top-color:#303030}
+.lp-closing p strong{color:#a5b4fc}
+
+/* Local solid-black / blue-accent preview — intentionally no decorative gradients. */
+.lp{background:#000}
+.lp-nav,.lp-hero,.lp-sf,.lp-sf#features,.lp-sf.lp-gamified,.lp-voice-section,.lp-ctasec,.lp-footer{background:#000}
+.lp-badge{background:#071a33;border-color:#1d4ed8;color:#93c5fd}
+.lp-gr{background:none;-webkit-background-clip:initial;-webkit-text-fill-color:#60a5fa;background-clip:initial;color:#60a5fa}
+.lp-langswitch button.active,.lp-btn-cta,.lp-bc{background:#2563eb}
+.lp-btn-cta:hover,.lp-bc:hover{background:#1d4ed8}
+.lp-dc,.lp-fc,.lp-pcard.prob,.lp-pcard.sol,.lp-tc,.lp-skcard,.lp-faq-item,.lp-stat{background:#080808}
+.lp-pcard.prob,.lp-pcard.sol{background:#080808}
+.lp-voice-section{border-color:#262626}
+.lp-voice-window{background:#080808;border-color:#334155;box-shadow:0 24px 55px -34px rgba(37,99,235,.7)}
+.lp-voice-window::before,.lp-voice-stage::before{background:none}
+.lp-voice-message.student{background:#2563eb;box-shadow:0 9px 22px rgba(37,99,235,.22)}
+.lp-voice-input button{background:#2563eb}
+.lp-voice-floating-chip{background:#f8fafc;color:#1e3a8a}
+.lp-voice-floating-chip span{background:#dbeafe;color:#2563eb}
+.lp-rcard,.lp-closing{background:#080808;border-color:#1e3a8a}
+.lp-closing p{color:#dbeafe}
+.lp-closing p strong,.lp-voice-message strong{color:#93c5fd}
+.lp-stat .lp-sn,.lp-stat .lp-sl{color:#fff;font-weight:800}
+.lp-footer{background:#050505;border-top-color:#303030}
+.lp-closing p strong{color:#a5b4fc}
 @media(max-width:768px){
 .lp-nav{padding:14px 20px}
   .lp-nav-links{display:none}
