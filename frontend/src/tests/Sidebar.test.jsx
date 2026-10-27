@@ -35,6 +35,7 @@ const STUDENT_PAGE_ORDER = [
   "Dashboard",
   "Lessons",
   "Ask Doubt",
+  "Likha Voice Tutor",
   "Mock Test",
   "Exam Prep Center",
   "Board Papers",

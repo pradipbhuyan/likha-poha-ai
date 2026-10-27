@@ -24,6 +24,7 @@ Flow:
 import hashlib
 import os
 import re
+import unicodedata
 
 from app.services.auth_service import admin_client
 from app.services.logger_service import get_logger
@@ -78,21 +79,47 @@ def _make_file_path(
     subject: str,
     chapter: str,
     step_title: str,
+    voice: str = "en-IN-NeerjaNeural",
+    rate: str = "+0%",
 ) -> str:
-    """Build a human-readable storage path inside the Supabase Storage bucket."""
+    """
+    Build a human-readable, voice-specific Storage path.
+
+    Cache records are keyed by grade, subject, chapter, step, voice, and rate.
+    The object path must include voice/rate too, otherwise a Hindi Swara upload
+    can overwrite another narration asset that shares the same lesson path.
+    """
     def slugify(s: str) -> str:
-        s = s.lower().strip()
-        s = re.sub(r"[^\w\s-]", "", s)
-        s = re.sub(r"[\s_]+", "-", s)
-        s = re.sub(r"-+", "-", s)
-        return s[:60].strip("-")
+        """
+        Produce an ASCII-only path segment accepted by Supabase Storage.
 
-    grade_slug   = slugify(grade)        # grade-9
-    subject_slug = slugify(subject)      # english
-    chapter_slug = slugify(chapter)      # chapter-1-how-i-taught-my-grandmother
-    step_slug    = slugify(step_title)   # concept-introduction
+        Python's ``\\w`` includes Devanagari and other Unicode letters, but the
+        Storage API rejects those object keys. A stable hash suffix retains
+        uniqueness whenever normalization strips non-ASCII chapter text.
+        """
+        original = str(s).strip()
+        has_non_ascii = any(ord(char) > 127 for char in original)
+        normalized = unicodedata.normalize("NFKD", original)
+        ascii_text = normalized.encode("ascii", "ignore").decode("ascii").lower()
+        ascii_text = re.sub(r"[^a-z0-9\s-]", "", ascii_text)
+        ascii_text = re.sub(r"[\s_]+", "-", ascii_text)
+        ascii_text = re.sub(r"-+", "-", ascii_text).strip("-")
+        if has_non_ascii:
+            digest = hashlib.sha256(original.encode("utf-8")).hexdigest()[:10]
+            ascii_text = f"{ascii_text or 'item'}-{digest}"
+        return ascii_text[:60].strip("-")
 
-    return f"{grade_slug}/{subject_slug}/{chapter_slug}/{step_slug}.mp3"
+    grade_slug = slugify(grade)          # grade-5
+    subject_slug = slugify(subject)      # hindi
+    chapter_slug = slugify(chapter)
+    step_slug = slugify(step_title)
+    voice_slug = slugify(voice)          # hi-in-swaraneural
+    rate_slug = slugify(rate.replace("+", "plus").replace("%", "percent"))
+
+    return (
+        f"{grade_slug}/{subject_slug}/{chapter_slug}/"
+        f"{voice_slug}/{rate_slug}/{step_slug}.mp3"
+    )
 
 
 # ── Public API ────────────────────────────────────────────────────────────────
@@ -180,7 +207,7 @@ def store_audio(
     Raises RuntimeError on upload or DB failure.
     """
     cache_key = _make_cache_key(grade, subject, chapter, step_title, voice, rate)
-    file_path = _make_file_path(grade, subject, chapter, step_title)
+    file_path = _make_file_path(grade, subject, chapter, step_title, voice, rate)
 
     # ── Upload to Supabase Storage ──────────────────────────────────────────
     public_url = _upload_to_supabase_storage(file_path, mp3_bytes)

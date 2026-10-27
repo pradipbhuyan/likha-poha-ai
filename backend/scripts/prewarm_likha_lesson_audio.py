@@ -7,6 +7,7 @@ Wrap-up, skipping paths that already exist in Supabase Storage/cache.
 Usage:
     python3 scripts/prewarm_likha_lesson_audio.py --dry-run
     python3 scripts/prewarm_likha_lesson_audio.py
+    python3 scripts/prewarm_likha_lesson_audio.py --grade "Grade 5" --subject Hindi --force
 """
 
 from __future__ import annotations
@@ -68,8 +69,17 @@ def chapter_paths(doc: dict) -> list[tuple[str, str]]:
     return paths
 
 
-def prewarm_path(grade: str, subject: str, chapter: str, step_title: str, text: str, voice: str, dry_run: bool) -> str:
-    if get_cached_audio_url(grade, subject, chapter, step_title, voice, RATE):
+def prewarm_path(
+    grade: str,
+    subject: str,
+    chapter: str,
+    step_title: str,
+    text: str,
+    voice: str,
+    dry_run: bool,
+    force: bool,
+) -> str:
+    if not force and get_cached_audio_url(grade, subject, chapter, step_title, voice, RATE):
         return "skipped"
 
     if dry_run:
@@ -98,6 +108,11 @@ def main() -> None:
     parser.add_argument("--grade", choices=GRADES, help="Prewarm one grade only.")
     parser.add_argument("--subject", choices=("English", "Hindi"), help="Prewarm one subject only.")
     parser.add_argument("--delay", type=float, default=0.3, help="Seconds to wait between TTS requests.")
+    parser.add_argument(
+        "--force",
+        action="store_true",
+        help="Regenerate and replace cached paths; use once to migrate legacy assets.",
+    )
     args = parser.parse_args()
 
     totals = {"stored_docs": 0, "pending": 0, "skipped": 0, "generated": 0, "failed": 0}
@@ -122,7 +137,16 @@ def main() -> None:
                 if not text.strip():
                     continue
                 try:
-                    result = prewarm_path(grade, subject, chapter, step_title, text, voice, args.dry_run)
+                    result = prewarm_path(
+                        grade,
+                        subject,
+                        chapter,
+                        step_title,
+                        text,
+                        voice,
+                        args.dry_run,
+                        args.force,
+                    )
                     totals[result] += 1
                     print(f"{result:9} | {grade} | {subject} | {chapter} | {step_title}")
                 except Exception as exc:

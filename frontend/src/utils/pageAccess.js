@@ -21,7 +21,14 @@ export const ADMIN_ONLY_PAGES = new Set([
   "productCatalogue", "paymentLogs", "usage", "salesIncentives", "adminChat",
 ]);
 
+export const STUDENT_ONLY_PAGES = new Set([
+  "likhaVoiceTutor",
+]);
+
 /** Return true when `role` must not render `activePage`. */
 export function isPageBlockedForRole(activePage, role) {
-  return ADMIN_ONLY_PAGES.has(activePage) && role !== "admin";
+  return (
+    (ADMIN_ONLY_PAGES.has(activePage) && role !== "admin") ||
+    (STUDENT_ONLY_PAGES.has(activePage) && role !== "student")
+  );
 }

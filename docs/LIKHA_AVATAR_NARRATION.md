@@ -41,7 +41,16 @@ The normal audio cache separates assets by:
 - Voice
 - Rate
 
-A later request for the same path returns the cached Supabase URL instead of generating audio again.
+Supabase object paths also include the voice and rate. For example, Grade 5 Hindi
+Swara audio is stored beneath:
+
+```text
+grade-5/hindi/<chapter>/hi-in-swaraneural/plus5percent/<milestone>.mp3
+```
+
+This prevents a Swara MP3 from overwriting another narrator's asset for the same
+lesson path. A later request for the same path returns the cached Supabase URL
+instead of generating audio again.
 
 Shared welcome assets use fixed Storage paths:
 
@@ -90,6 +99,12 @@ A local inspection/generation script is also available:
 cd backend
 python3 scripts/prewarm_likha_lesson_audio.py --grade "Grade 6" --subject English --dry-run
 python3 scripts/prewarm_likha_lesson_audio.py --grade "Grade 6" --subject English
+
+# Inspect Grade 5 Hindi narration scope without generating audio
+python3 scripts/prewarm_likha_lesson_audio.py --grade "Grade 5" --subject Hindi --dry-run
+
+# Generate/replace all Grade 5 Hindi Swara assets in their voice-specific paths
+python3 scripts/prewarm_likha_lesson_audio.py --grade "Grade 5" --subject Hindi --force
 ```
 
 Use the admin API for production prewarming because it runs within the configured backend process. The standalone script is useful for dry-run scope inspection.

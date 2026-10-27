@@ -44,6 +44,7 @@ import {
   Trash2,
   Upload,
   Mail,
+  Mic,
 } from "lucide-react";
 
 import logo from "../assets/AITutorLogo1.png";
@@ -385,6 +386,14 @@ function Sidebar({
       label: "Ask Doubt",
       icon: HelpCircle,
       roles: ["student", "admin"],
+      hideForAdmin: true,
+      group: "Learn",
+    },
+    {
+      key: "likhaVoiceTutor",
+      label: "Likha Voice Tutor",
+      icon: Mic,
+      roles: ["student"],
       hideForAdmin: true,
       group: "Learn",
     },

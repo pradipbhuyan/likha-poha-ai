@@ -71,6 +71,7 @@ from app.routes.board_papers import router as board_papers_router
 from app.routes.analytics import router as analytics_router
 from app.routes.progress import router as progress_router
 from app.routes.doubt import router as doubt_router
+from app.routes.likha import router as likha_router
 from app.routes.resources import router as resources_router
 from app.routes.rag import router as rag_router
 from app.routes.rag_bulk_book_upload import router as rag_bulk_book_upload_router
@@ -248,6 +249,12 @@ app.include_router(
     doubt_router,
     prefix="/api/doubt",
     tags=["Doubt"]
+)
+
+app.include_router(
+    likha_router,
+    prefix="/api/likha",
+    tags=["Likha Voice Tutor"],
 )
 
 app.include_router(

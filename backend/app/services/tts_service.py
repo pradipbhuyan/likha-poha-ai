@@ -5,6 +5,13 @@ import ssl
 import uuid
 from pathlib import Path
 
+from app.services.ssl_service import enable_system_truststore
+
+# Must run before Edge TTS initializes its SSL context. This makes Python use
+# macOS/enterprise trusted CAs (including corporate TLS-inspection roots)
+# without disabling certificate verification.
+enable_system_truststore()
+
 import edge_tts
 import edge_tts.communicate as edge_tts_communicate
 

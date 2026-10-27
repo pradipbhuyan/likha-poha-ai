@@ -328,6 +328,33 @@ def answer_student_doubt(
         dkb_result = None
 
     if dkb_result:
+        history_item = None
+        if data.save_to_history:
+            display_question = (
+                data.display_question
+                or data.question.split("Preferred answer style:", 1)[0]
+                or data.question
+            ).strip()
+            try:
+                history_item = save_doubt_history(
+                    client=admin_client,
+                    profile_id=profile.get("id"),
+                    username=canonical_username,
+                    grade=data.grade,
+                    mode=data.mode,
+                    board=request_board,
+                    subject=data.subject,
+                    chapter=data.chapter,
+                    question=display_question,
+                    prompt_question=data.question,
+                    answer=dkb_result["answer"],
+                    source_type="DOUBT_KB",
+                    sources=[],
+                    mentor_suggestions=[],
+                )
+            except Exception as history_error:
+                print(f"Doubt history save failed: {history_error}")
+
         if is_free:
             log_ai_usage(username=canonical_username, feature="doubt_answer_free_tier", model="none")
         return {
@@ -337,7 +364,7 @@ def answer_student_doubt(
             "sources": [],
             "textbook_visuals": [],
             "mentor_suggestions": [],
-            "history_id": None,
+            "history_id": history_item.get("id") if history_item else None,
             "message": "Answered from knowledge base",
         }
 

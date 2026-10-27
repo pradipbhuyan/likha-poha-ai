@@ -52,6 +52,7 @@ import {
 
 import LessonsPage from "./pages/LessonsPage";
 import DoubtPage from "./pages/DoubtPage";
+import LikhaVoiceTutorPage from "./pages/LikhaVoiceTutorPage";
 import MockTestPage from "./pages/MockTestPage";
 import BoardPapersPage from "./pages/BoardPapersPage";
 import ResourcesPage from "./pages/ResourcesPage";
@@ -146,6 +147,11 @@ const PAGE_META = {
     title: "Ask Doubt",
     subtitle: "Ask chapter-specific doubts and get guided explanations.",
     icon: "❓",
+  },
+  likhaVoiceTutor: {
+    title: "Likha Voice Tutor",
+    subtitle: "Ask an academic question and hear Likha explain it clearly.",
+    icon: "🎙️",
   },
   mockTest: {
     title: "Mock Test",
@@ -1927,6 +1933,8 @@ function App() {
         );
       case "doubt":
         return <DoubtPage user={user} setActivePage={handlePageChange} />;
+      case "likhaVoiceTutor":
+        return <LikhaVoiceTutorPage user={user} />;
       case "mockTest":
         return <MockTestPage user={user} setActivePage={handlePageChange} />;
       case "boardPapers":
