@@ -84,6 +84,27 @@
     "mocktest": { "label": "MOCK TEST", "caption": "CBSE mock tests with instant scoring and AI explanations" },
     "parent": { "label": "PARENT DASHBOARD", "caption": "Real-time progress, score trends and weak area alerts for parents" }
   },
+  "voiceTutor": {
+    "eyebrow": "Meet Likha Voice Tutor",
+    "title": "A tutor who listens, explains, and stays with you",
+    "subtitle": "Ask your academic doubt naturally by voice or text. Likha understands your learning context, gives a clear explanation, then reads it aloud so you can learn your way.",
+    "benefits": [
+      { "title": "Speak naturally", "description": "Tap the microphone and ask a question just as you would ask a teacher." },
+      { "title": "Listen and learn", "description": "Hear Likha’s explanation in English or Hindi while following the written answer." },
+      { "title": "Stay on your chapter", "description": "Choose your grade, subject and chapter for context-aware, textbook-grounded help." }
+    ],
+    "cta": "Start learning with Likha",
+    "previewLabel": "Preview of a conversation with Likha Voice Tutor",
+    "windowLabel": "Likha Voice Tutor",
+    "liveLabel": "READY",
+    "name": "Likha",
+    "avatarAlt": "Likha, the LikhaPoha AI voice tutor",
+    "question": "Why does an object fall faster as it gets closer to Earth?",
+    "reply": "Great question! Gravity pulls objects toward Earth. As an object gets closer, the pull becomes slightly stronger — let’s understand it step by step.",
+    "listenLabel": "Listen to explanation",
+    "inputPlaceholder": "Ask Likha by voice or text…",
+    "languageChip": "English + Hindi voice support"
+  },
   "features": {
     "eyebrow": "Everything You Need",
     "title": "Complete Study Toolkit for CBSE",

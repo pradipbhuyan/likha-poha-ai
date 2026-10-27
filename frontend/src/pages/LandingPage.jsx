@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import logoImg from "../assets/AITutorLogo1.png";
-import { BookOpen, MessageCircle, MessagesSquare, ClipboardList, Users, TrendingUp, Zap, Leaf, ShieldCheck, Globe, GraduationCap, HelpCircle, BarChart2, Trophy, Award, Target, Monitor, FlaskConical, Landmark, Heart, Calculator, Languages, Headphones, Check, X, FileText } from "lucide-react";
+import { BookOpen, MessageCircle, MessagesSquare, ClipboardList, Users, TrendingUp, Zap, Leaf, ShieldCheck, Globe, GraduationCap, HelpCircle, BarChart2, Trophy, Award, Target, Monitor, FlaskConical, Landmark, Heart, Calculator, Languages, Headphones, Check, X, FileText, Mic, Volume2, Sparkles } from "lucide-react";
 import NoticeboardPricingTable from "../components/NoticeboardPricingTable";
+import likhaAvatar from "../assets/avatar/likha/idle-neutral.png";
 import "./LandingPage.css";
 
 const MISSION_ICONS = [BookOpen, ShieldCheck, Globe, GraduationCap];
@@ -138,6 +139,46 @@ export default function LandingPage({ onShowLogin, onShowSignup }) {
           <div className="lp-dc"><div className="lp-dh"><span className="lp-dh-dots"><span></span><span></span><span></span></span><div className="lp-di" style={{background:"rgba(16,185,129,.2)"}}><Users size={16} strokeWidth={2}/></div>{t("demo.parent.label")}</div><img src="/screenshots/2026-08-parentdashboard.png" alt="Parent Dashboard" style={{width:"100%",display:"block"}} loading="lazy" /><div className="lp-dcap">{t("demo.parent.caption")}</div></div>
         </div>
       </div>
+      <section className="lp-voice-section" aria-labelledby="voice-tutor-heading">
+        <div className="lp-voice-inner">
+          <div className="lp-voice-copy">
+            <div className="lp-ey">{t("voiceTutor.eyebrow")}</div>
+            <h2 id="voice-tutor-heading">{t("voiceTutor.title")}</h2>
+            <p className="lp-voice-lead">{t("voiceTutor.subtitle")}</p>
+            <div className="lp-voice-benefits">
+              {t("voiceTutor.benefits", { returnObjects: true }).map((benefit, index) => {
+                const Icon = [Mic, Volume2, BookOpen][index];
+                return <div className="lp-voice-benefit" key={benefit.title}>
+                  <span className="lp-voice-benefit-icon"><Icon size={18} strokeWidth={2.4} /></span>
+                  <div><h3>{benefit.title}</h3><p>{benefit.description}</p></div>
+                </div>;
+              })}
+            </div>
+            <button className="lp-bc lp-voice-cta" onClick={() => handleCta("free")}>
+              <Sparkles size={18} strokeWidth={2.5} /> {t("voiceTutor.cta")}
+            </button>
+          </div>
+          <div className="lp-voice-demo" aria-label={t("voiceTutor.previewLabel")}>
+            <div className="lp-voice-window">
+              <div className="lp-voice-window-bar">
+                <span className="lp-dh-dots"><span></span><span></span><span></span></span>
+                <span><Volume2 size={14} /> {t("voiceTutor.windowLabel")}</span>
+                <span className="lp-voice-live"><i /> {t("voiceTutor.liveLabel")}</span>
+              </div>
+              <div className="lp-voice-stage">
+                <img className="lp-voice-full-avatar" src={likhaAvatar} alt={t("voiceTutor.avatarAlt")} />
+                <div className="lp-voice-chat-stack">
+                  <div className="lp-voice-message likha"><strong>{t("voiceTutor.name")}</strong><p>{t("voiceTutor.reply")}</p><span><Volume2 size={13} /> {t("voiceTutor.listenLabel")}</span></div>
+                  <div className="lp-voice-message student"><p>{t("voiceTutor.question")}</p><Mic size={15} /></div>
+                </div>
+              </div>
+              <div className="lp-voice-input"><Mic size={18} /><span>{t("voiceTutor.inputPlaceholder")}</span><button type="button" tabIndex="-1" aria-hidden="true"><Sparkles size={15} /></button></div>
+            </div>
+            <div className="lp-voice-floating-chip"><span><Languages size={15} /></span>{t("voiceTutor.languageChip")}</div>
+          </div>
+        </div>
+      </section>
+
       <div className="lp-sf" id="features"><div className="lp-si">
         <div className="lp-sh"><div className="lp-ey">{t("features.eyebrow")}</div><h2>{t("features.title")}</h2><p>{t("features.subtitle")}</p></div>
         <div className="lp-fg">

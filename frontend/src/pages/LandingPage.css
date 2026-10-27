@@ -54,6 +54,39 @@
 .lp-dh-dots span{width:7px;height:7px;border-radius:50%;background:#334155}
 .lp-di{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:.95rem}
 .lp-dcap{padding:10px 14px;font-size:.76rem;color:#cbd5e1;border-top:1px solid #334155}
+.lp-voice-section{padding:88px 20px;background:radial-gradient(ellipse 62% 100% at 84% 42%,rgba(14,165,233,.14),transparent 64%),radial-gradient(ellipse 55% 100% at 20% 50%,rgba(124,58,237,.17),transparent 70%),#0f172a;border-top:1px solid rgba(99,102,241,.18);border-bottom:1px solid rgba(99,102,241,.18)}
+.lp-voice-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(360px,.95fr);gap:58px;align-items:center}
+.lp-voice-copy h2{font-size:clamp(2rem,4vw,3rem);font-weight:900;line-height:1.12;max-width:590px}
+.lp-voice-lead{color:#cbd5e1;font-size:1.03rem;line-height:1.75;max-width:620px;margin:18px 0 25px}
+.lp-voice-benefits{display:grid;gap:16px;margin-bottom:28px}
+.lp-voice-benefit{display:flex;gap:13px;align-items:flex-start}
+.lp-voice-benefit-icon{display:inline-flex;align-items:center;justify-content:center;width:37px;height:37px;flex:0 0 37px;border-radius:11px;color:#93c5fd;background:rgba(59,130,246,.13);border:1px solid rgba(96,165,250,.24)}
+.lp-voice-benefit h3{font-size:.95rem;font-weight:800;margin:0 0 2px}
+.lp-voice-benefit p{color:#cbd5e1;font-size:.84rem;line-height:1.55;margin:0}
+.lp-voice-cta{font-size:.92rem;padding:12px 21px}
+.lp-voice-demo{position:relative;padding:16px 0 16px 14px}
+.lp-voice-window{position:relative;overflow:hidden;border:1px solid rgba(147,197,253,.26);border-radius:20px;background:linear-gradient(160deg,#172554,#0f172a 75%);box-shadow:0 30px 70px -35px rgba(14,165,233,.75),0 16px 30px -20px #020617}
+.lp-voice-window::before{content:"";position:absolute;width:190px;height:190px;right:-70px;top:-80px;border-radius:50%;background:rgba(99,102,241,.25);filter:blur(12px)}
+.lp-voice-window-bar{position:relative;z-index:1;min-height:55px;padding:0 16px;display:flex;gap:9px;align-items:center;border-bottom:1px solid rgba(148,163,184,.2);font-size:.72rem;font-weight:800;letter-spacing:.035em;color:#dbeafe}
+.lp-voice-window-bar>.lp-dh-dots{margin-right:0}
+.lp-voice-live{margin-left:auto;display:flex;align-items:center;gap:6px;font-size:.63rem;color:#86efac;letter-spacing:.09em}
+.lp-voice-live i{display:block;width:7px;height:7px;border-radius:99px;background:#4ade80;box-shadow:0 0 0 4px rgba(74,222,128,.12)}
+.lp-voice-stage{position:relative;z-index:1;min-height:355px;padding:22px 18px 14px;display:flex;align-items:flex-end}
+.lp-voice-stage::before{content:"";position:absolute;left:4%;bottom:2px;width:47%;height:42%;border-radius:50%;background:radial-gradient(ellipse,rgba(56,189,248,.24),transparent 68%);filter:blur(6px)}
+.lp-voice-full-avatar{position:relative;z-index:1;align-self:flex-end;width:47%;max-height:327px;object-fit:contain;object-position:bottom center;filter:drop-shadow(0 15px 18px rgba(2,6,23,.38))}
+.lp-voice-chat-stack{position:relative;z-index:2;width:62%;margin-left:-4%;margin-bottom:22px;display:flex;flex-direction:column;gap:11px}
+.lp-voice-message{font-size:.8rem;line-height:1.55}
+.lp-voice-message.likha{padding:13px 14px;border-radius:4px 15px 15px;background:rgba(30,41,59,.84);border:1px solid rgba(148,163,184,.2);color:#e2e8f0}
+.lp-voice-message strong{display:block;font-size:.72rem;color:#a5b4fc;margin-bottom:4px}
+.lp-voice-message p{margin:0}
+.lp-voice-message.likha span{display:flex;align-items:center;gap:5px;color:#93c5fd;font-size:.67rem;font-weight:700;margin-top:9px}
+.lp-voice-message.student{align-self:flex-end;margin-top:5px;display:flex;align-items:flex-end;gap:8px;max-width:86%;padding:11px 13px;border-radius:15px 4px 15px 15px;background:linear-gradient(135deg,#4f46e5,#2563eb);color:white;box-shadow:0 9px 22px rgba(37,99,235,.22)}
+.lp-voice-input{position:relative;z-index:1;margin:0 16px 16px;height:47px;border:1px solid rgba(148,163,184,.28);border-radius:12px;background:rgba(15,23,42,.78);display:flex;align-items:center;gap:9px;padding:0 8px 0 13px;color:#94a3b8;font-size:.76rem}
+.lp-voice-input>svg{color:#a5b4fc;flex-shrink:0}
+.lp-voice-input span{overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.lp-voice-input button{margin-left:auto;border:0;width:31px;height:31px;display:grid;place-items:center;border-radius:9px;background:#4f46e5;color:#fff;flex-shrink:0}
+.lp-voice-floating-chip{position:absolute;z-index:2;right:-15px;bottom:0;display:flex;align-items:center;gap:8px;padding:9px 12px;border-radius:99px;background:#f8fafc;color:#312e81;font-size:.7rem;font-weight:800;box-shadow:0 12px 26px rgba(2,6,23,.35)}
+.lp-voice-floating-chip span{display:grid;place-items:center;width:24px;height:24px;border-radius:99px;background:#e0e7ff;color:#4f46e5}
 .lp-fg{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start}
 .lp-fc{background:#0f172a;border:1px solid #334155;border-radius:18px;padding:28px;margin-bottom:20px}
 .lp-fi{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:16px;color:#f8fafc}
@@ -103,7 +136,9 @@
 .lp-nav{padding:14px 20px}
   .lp-nav-links{display:none}
   .lp-hero{padding:72px 20px 48px}
-  .lp-pvs,.lp-demo,.lp-fg,.lp-tgrid,.lp-skg,.lp-2col,.lp-results,.lp-examgrid{grid-template-columns:1fr}
+  .lp-pvs,.lp-demo,.lp-fg,.lp-tgrid,.lp-skg,.lp-2col,.lp-results,.lp-examgrid,.lp-voice-inner{grid-template-columns:1fr}
+  .lp-voice-inner{gap:38px}
+  .lp-voice-demo{max-width:570px;width:100%;margin:0 auto;padding-right:14px}
 }
 @media(max-width:480px){
   .lp-nav{padding:12px 14px;gap:8px}
@@ -117,4 +152,17 @@
   .lp-stat{min-width:0;padding:16px 10px}
   .lp-badge{display:block;max-width:300px;margin:0 auto 28px;border-radius:14px;font-size:.68rem;line-height:1.6;text-align:center;padding:8px 14px}
   .lp-sn{font-size:1.9rem}
+  .lp-voice-section{padding:62px 20px}
+  .lp-voice-copy h2{font-size:2rem}
+  .lp-voice-lead{font-size:.94rem}
+  .lp-voice-demo{padding-left:0}
+  .lp-voice-window-bar{padding:0 12px;font-size:.66rem}
+  .lp-voice-window-bar>.lp-dh-dots{display:none}
+  .lp-voice-live{font-size:.57rem}
+  .lp-voice-stage{min-height:310px;padding:15px 10px 8px}
+  .lp-voice-full-avatar{width:47%;max-height:285px}
+  .lp-voice-chat-stack{width:63%;margin-left:-3%;margin-bottom:16px;gap:8px}
+  .lp-voice-message{font-size:.74rem}
+  .lp-voice-input{margin:0 12px 13px;font-size:.68rem}
+  .lp-voice-floating-chip{right:0;font-size:.62rem;padding:7px 10px}
 }
