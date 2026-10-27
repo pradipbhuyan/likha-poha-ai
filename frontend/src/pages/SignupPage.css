@@ -1,8 +1,91 @@
-/* SignupPage responsive layout */
+/* SignupPage black and blue theme */
 
-/* Spin animation for loading indicator */
-@keyframes spin {
-  to { transform: rotate(360deg); }
+.signup-page-wrapper {
+  --text: #f8fafc;
+  --text-muted: #94a3b8;
+  --border: #26354a;
+  --surface2: #151b26;
+}
+
+.signup-page-wrapper .signup-right-panel {
+  background: #080b12;
+}
+
+.signup-page-wrapper .ait-form-card {
+  background: #10151f;
+  border-color: #26354a;
+}
+
+.signup-page-wrapper label {
+  color: #e2e8f0;
+}
+
+.signup-page-wrapper .ait-input {
+  color: #f8fafc;
+  background: #151b26;
+  border-color: #334155;
+}
+
+.signup-page-wrapper .ait-input::placeholder {
+  color: #718096;
+}
+
+.signup-page-wrapper .ait-input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.18);
+}
+
+.signup-page-wrapper select.ait-input option {
+  color: #f8fafc;
+  background: #151b26;
+}
+
+.signup-page-wrapper [data-testid^="role-card-"] {
+  border-color: #334155 !important;
+  background: #151b26 !important;
+  color: #e2e8f0;
+}
+
+.signup-page-wrapper [data-testid^="role-card-"]:has(span[style*="rgb(124, 58, 237)"]),
+.signup-page-wrapper [data-testid^="role-card-"][style*="124, 58, 210"] {
+  border-color: #3b82f6 !important;
+  background: rgba(37, 99, 235, 0.18) !important;
+}
+
+.signup-page-wrapper [data-testid^="stream-card-"] {
+  border-color: #334155 !important;
+  background: #151b26 !important;
+}
+
+.signup-page-wrapper [data-testid^="stream-card-"][style*="99, 102, 241"] {
+  border-color: #3b82f6 !important;
+  background: rgba(37, 99, 235, 0.14) !important;
+}
+
+.signup-page-wrapper [data-testid="signup-submit"] {
+  background: #2563eb !important;
+  box-shadow: 0 14px 28px rgba(37, 99, 235, 0.28);
+}
+
+.signup-page-wrapper [data-testid="signup-submit"]:hover:not(:disabled) {
+  background: #1d4ed8 !important;
+}
+
+.signup-page-wrapper [data-testid="signup-error"] {
+  color: #fecaca !important;
+  background: rgba(239, 68, 68, 0.12) !important;
+  border-color: rgba(248, 113, 113, 0.5) !important;
+}
+
+.signup-page-wrapper [data-testid="signup-info"] {
+  color: #bbf7d0 !important;
+  background: rgba(34, 197, 94, 0.12) !important;
+  border-color: rgba(74, 222, 128, 0.5) !important;
+}
+
+.signup-page-wrapper [data-testid="signup-signin-link"],
+.signup-page-wrapper a {
+  color: #60a5fa !important;
 }
 
 /* Mobile: stack vertically, hide left brand panel */
@@ -36,6 +119,7 @@
   .signup-left-panel {
     padding: 36px 28px !important;
   }
+
   .signup-right-panel {
     padding: 36px 28px !important;
   }

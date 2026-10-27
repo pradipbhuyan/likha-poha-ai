@@ -298,7 +298,6 @@ export default function LandingPage({ onShowLogin, onShowSignup }) {
           <a href="#home">{t("footer.home")}</a>
           <a href="#features">{t("footer.features")}</a>
           <a href="#pricing">{t("footer.pricing")}</a>
-          <a href="/blog">{t("footer.blog")}</a>
           <a href={`mailto:${contactEmail}`}>{t("footer.contact")}</a>
           <a href="/refund-policy">{t("footer.refund")}</a>
           <a href="/privacy-policy">{t("footer.privacy")}</a>

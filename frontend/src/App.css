@@ -4449,9 +4449,8 @@ body.dark-mode .login-logo {
   place-items: center;
   padding: 40px;
   background:
-    radial-gradient(circle at top left, rgba(37, 99, 235, 0.35), transparent 30%),
-    radial-gradient(circle at top right, rgba(147, 51, 234, 0.35), transparent 30%),
-    #020617;
+    radial-gradient(circle at 10% 12%, rgba(37, 99, 235, 0.16), transparent 32%),
+    #030712;
 }
 
 .ait-login-shell {
@@ -4461,9 +4460,9 @@ body.dark-mode .login-logo {
   grid-template-columns: 1fr 1fr;
   border-radius: 36px;
   overflow: hidden;
-  background: #071225;
-  border: 2px solid rgba(59, 130, 246, 0.5);
-  box-shadow: 0 0 60px rgba(59, 130, 246, 0.28);
+  background: #080b12;
+  border: 1px solid #1e3a5f;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.48);
 }
 
 .ait-login-left,
@@ -4526,8 +4525,9 @@ body.dark-mode .login-logo {
   max-width: 520px;
   padding: 48px;
   border-radius: 30px;
-  border: 1px solid rgba(148, 163, 184, 0.24);
-  background: rgba(15, 23, 42, 0.72);
+  border: 1px solid #26354a;
+  background: #10151f;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.24);
 }
 
 .ait-form-card h2 {
@@ -4668,7 +4668,12 @@ body.dark-mode .login-logo {
   color: white;
   font-size: 20px;
   font-weight: 900;
-  background: linear-gradient(135deg, #4d41c5, #5a84e6);
+  background: #2563eb;
+  box-shadow: 0 14px 28px rgba(37, 99, 235, 0.28);
+}
+
+.ait-signin-btn:hover:not(:disabled) {
+  background: #1d4ed8;
 }
 
 .ait-divider {
