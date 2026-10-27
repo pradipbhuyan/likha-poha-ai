@@ -210,7 +210,9 @@ function LikhaVoiceTutorPage({ user }) {
         suggestions: result.mentor_suggestions || [],
         historyId: result.history_id,
       });
-      setTimeout(() => answerRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 80);
+      setTimeout(() => {
+        answerRef.current?.scrollIntoView?.({ behavior: "smooth", block: "start" });
+      }, 80);
     } catch (error) {
       setPageError(error?.status === 429
         ? "You have reached today’s doubt limit. Please try again tomorrow or review your plan."
