@@ -50,6 +50,7 @@ function LikhaVoiceTutorPage({ user }) {
   const recognitionRef = useRef(null);
   const voiceTranscriptRef = useRef("");
   const answerRef = useRef(null);
+  const hasReceivedFirstAnswerRef = useRef(false);
 
   useEffect(() => {
     async function loadSyllabus() {
@@ -200,9 +201,13 @@ function LikhaVoiceTutorPage({ user }) {
         return;
       }
 
+      const includeFirstAnswerGreeting = !hasReceivedFirstAnswerRef.current;
+      hasReceivedFirstAnswerRef.current = true;
       setQuestion(askedQuestion);
       setAnswerData({
         question: askedQuestion,
+        includeFirstAnswerGreeting,
+        firstAnswerGreeting: `Great question, ${user.username || "there"}.`,
         answer: normalizeTutorMarkdown(result.answer || ""),
         sourceType: result.source_type,
         sources: result.sources || [],
@@ -338,6 +343,8 @@ function LikhaVoiceTutorPage({ user }) {
             answer={answerData.answer}
             language={language}
             autoPlay
+            includeFirstAnswerGreeting={answerData.includeFirstAnswerGreeting}
+            firstAnswerGreeting={answerData.firstAnswerGreeting}
             onFollowUpReady={() => setFollowUpReady(true)}
           />
 

@@ -11,6 +11,7 @@ from app.services.tts_service import clean_text_for_tts, generate_speech_file
 router = APIRouter()
 
 MAX_SPOKEN_CHARACTERS = 1800
+PROGRESSIVE_SEGMENT_MAX_CHARS = 360
 SUPPORTED_LANGUAGES = {
     "en-IN": "en-IN",
     "en": "en-IN",
@@ -30,6 +31,9 @@ class SpeakDoubtAnswerRequest(BaseModel):
     history_id: str = Field(min_length=1, max_length=128)
     language: str = Field(default="en-IN", max_length=16)
     reply_style: Literal["full", "concise", "full_follow_up"] = "full"
+    include_first_answer_greeting: bool = False
+    progressive: bool = False
+    segment_index: int = Field(default=0, ge=0, le=30)
 
 
 def _get_profile(user_id: str) -> dict:
@@ -37,7 +41,7 @@ def _get_profile(user_id: str) -> dict:
     response = (
         admin_client
         .table("profiles")
-        .select("id, role, account_status")
+        .select("id, role, account_status, username")
         .eq("id", user_id)
         .single()
         .execute()
@@ -71,7 +75,21 @@ def _normalize_language(language: str) -> str:
     return normalized
 
 
-def _spoken_text(answer: str, reply_style: str) -> str:
+def _student_display_name(profile: dict) -> str:
+    """Return a safe, short name from the authenticated student profile."""
+    for field in ("username",):
+        value = str(profile.get(field) or "").strip()
+        if value:
+            return value.split()[0][:60]
+    return "there"
+
+
+def _spoken_text(
+    answer: str,
+    reply_style: str,
+    include_first_answer_greeting: bool = False,
+    profile: dict | None = None,
+) -> str:
     """Clean server-owned answer text and enforce predictable speech limits."""
     cleaned = clean_text_for_tts(answer or "").strip()
     if not cleaned:
@@ -81,10 +99,39 @@ def _spoken_text(answer: str, reply_style: str) -> str:
     if len(cleaned) > limit:
         cleaned = f"{cleaned[:limit].rsplit(' ', 1)[0].strip()}."
 
+    if include_first_answer_greeting:
+        cleaned = f"Great question, {_student_display_name(profile or {})}. {cleaned}"
+
     if reply_style == "full_follow_up":
         cleaned = f"{cleaned} Do you have a follow-up question? Tap Speak follow-up to continue with Likha."
 
     return cleaned
+
+
+def _progressive_segments(text: str) -> list[str]:
+    """Split speech at sentence boundaries for low-latency voice playback."""
+    import re
+
+    sentences = [
+        sentence.strip()
+        for sentence in re.split(r"(?<=[.!?।])\s+", text)
+        if sentence.strip()
+    ]
+    segments: list[str] = []
+    current = ""
+
+    for sentence in sentences:
+        candidate = f"{current} {sentence}".strip()
+        if current and len(candidate) > PROGRESSIVE_SEGMENT_MAX_CHARS:
+            segments.append(current)
+            current = sentence
+        else:
+            current = candidate
+
+    if current:
+        segments.append(current)
+
+    return segments or [text]
 
 
 def _generate_audio_data_url(text: str, voice: str) -> str:
@@ -148,23 +195,38 @@ def speak_doubt_answer(
             detail="This answer is unavailable for voice playback.",
         )
 
-    spoken_text = _spoken_text(history.get("answer") or "", data.reply_style)
+    spoken_text = _spoken_text(
+        history.get("answer") or "",
+        data.reply_style,
+        include_first_answer_greeting=data.include_first_answer_greeting,
+        profile=profile,
+    )
     if not spoken_text:
         raise HTTPException(
             status_code=400,
             detail="There is no answer available to read aloud.",
         )
 
+    segments = _progressive_segments(spoken_text) if data.progressive else [spoken_text]
+    if data.segment_index >= len(segments):
+        raise HTTPException(
+            status_code=400,
+            detail="That voice segment is unavailable.",
+        )
+
+    segment_text = segments[data.segment_index]
     voice = VOICE_BY_LANGUAGE[language]
     try:
-        audio_url = _generate_audio_data_url(spoken_text, voice)
+        audio_url = _generate_audio_data_url(segment_text, voice)
     except Exception:
         # Browser Speech Synthesis is the intentional client fallback.
         return {
             "success": False,
             "audio_url": None,
             "voice": voice,
-            "spoken_text": spoken_text,
+            "spoken_text": segment_text,
+            "has_more": data.segment_index < len(segments) - 1,
+            "next_segment_index": data.segment_index + 1,
             "cached": False,
             "message": "Likha's neural voice is temporarily unavailable.",
         }
@@ -173,6 +235,8 @@ def speak_doubt_answer(
         "success": True,
         "audio_url": audio_url,
         "voice": voice,
-        "spoken_text": spoken_text,
+        "spoken_text": segment_text,
+        "has_more": data.segment_index < len(segments) - 1,
+        "next_segment_index": data.segment_index + 1,
         "cached": False,
     }

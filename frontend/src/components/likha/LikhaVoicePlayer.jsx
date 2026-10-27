@@ -22,14 +22,28 @@ function preferredBrowserVoice(language) {
   );
 }
 
-function LikhaVoicePlayer({ historyId, answer, language, autoPlay = false, onStatusChange, onFollowUpReady }) {
+function LikhaVoicePlayer({
+  historyId,
+  answer,
+  language,
+  autoPlay = false,
+  includeFirstAnswerGreeting = false,
+  firstAnswerGreeting = "",
+  onStatusChange,
+  onFollowUpReady,
+}) {
   const [status, setStatus] = useState("idle");
   const [rate, setRate] = useState(1);
   const [mouthFrame, setMouthFrame] = useState("a");
   const audioRef = useRef(null);
   const utteranceRef = useRef(null);
   const intervalRef = useRef(null);
+  const animationFrameRef = useRef(null);
+  const audioContextRef = useRef(null);
+  const analyserRef = useRef(null);
   const requestIdRef = useRef(0);
+  const firstGreetingPlayedRef = useRef(false);
+  const nextSegmentRef = useRef(null);
 
   const speechSupported =
     typeof window !== "undefined" &&
@@ -52,14 +66,88 @@ function LikhaVoicePlayer({ historyId, answer, language, autoPlay = false, onSta
   function stopMouthAnimation() {
     window.clearInterval(intervalRef.current);
     intervalRef.current = null;
+    window.cancelAnimationFrame(animationFrameRef.current);
+    animationFrameRef.current = null;
+    analyserRef.current = null;
+
+    if (audioContextRef.current) {
+      audioContextRef.current.close?.().catch?.(() => {});
+      audioContextRef.current = null;
+    }
+
     setMouthFrame("a");
   }
 
-  function beginMouthAnimation() {
+  function beginTimerMouthAnimation() {
     stopMouthAnimation();
     intervalRef.current = window.setInterval(() => {
       setMouthFrame((frame) => (frame === "a" ? "o" : "a"));
-    }, 170);
+    }, 240);
+  }
+
+  function beginAudioReactiveMouthAnimation(audio) {
+    stopMouthAnimation();
+
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    if (!AudioContext || !audio) {
+      beginTimerMouthAnimation();
+      return;
+    }
+
+    try {
+      const context = new AudioContext();
+      const analyser = context.createAnalyser();
+      const source = context.createMediaElementSource(audio);
+      const samples = new Uint8Array(analyser.fftSize);
+
+      analyser.fftSize = 256;
+      analyser.smoothingTimeConstant = 0.72;
+      source.connect(analyser);
+      analyser.connect(context.destination);
+
+      audioContextRef.current = context;
+      analyserRef.current = analyser;
+      context.resume?.().catch?.(() => {});
+
+      let lastFrameChangeAt = 0;
+      let currentFrame = "a";
+
+      const animateMouth = (now) => {
+        if (!analyserRef.current || audio.paused || audio.ended) return;
+
+        analyser.getByteTimeDomainData(samples);
+        const averageAmplitude = samples.reduce(
+          (total, sample) => total + Math.abs(sample - 128),
+          0
+        ) / samples.length;
+
+        // Generated narration has a consistently non-zero signal, so choosing
+        // a single frame from a fixed threshold made the mouth stay at "O".
+        // Instead, energy controls the rhythm: louder speech changes frames
+        // faster, quieter gaps settle on the smaller "A" mouth.
+        if (averageAmplitude < 2.5) {
+          if (currentFrame !== "a") {
+            currentFrame = "a";
+            setMouthFrame("a");
+          }
+        } else {
+          const frameInterval = averageAmplitude >= 10 ? 180 : 250;
+          if (now - lastFrameChangeAt >= frameInterval) {
+            currentFrame = currentFrame === "a" ? "o" : "a";
+            setMouthFrame(currentFrame);
+            lastFrameChangeAt = now;
+          }
+        }
+
+        animationFrameRef.current = window.requestAnimationFrame(animateMouth);
+      };
+
+      animationFrameRef.current = window.requestAnimationFrame(animateMouth);
+    } catch {
+      // Browser speech and restrictive Web Audio environments still receive
+      // the original lightweight animation rather than losing all movement.
+      beginTimerMouthAnimation();
+    }
   }
 
   function stop() {
@@ -70,6 +158,7 @@ function LikhaVoicePlayer({ historyId, answer, language, autoPlay = false, onSta
       audioRef.current.src = "";
       audioRef.current = null;
     }
+    nextSegmentRef.current = null;
     utteranceRef.current = null;
     stopMouthAnimation();
     updateStatus("idle");
@@ -88,7 +177,7 @@ function LikhaVoicePlayer({ historyId, answer, language, autoPlay = false, onSta
     utterance.voice = preferredBrowserVoice(language);
     utterance.onstart = () => {
       updateStatus("speaking");
-      beginMouthAnimation();
+      beginTimerMouthAnimation();
     };
     utterance.onend = () => {
       utteranceRef.current = null;
@@ -106,51 +195,114 @@ function LikhaVoicePlayer({ historyId, answer, language, autoPlay = false, onSta
     window.speechSynthesis.speak(utterance);
   }
 
+  async function requestSegment(segmentIndex, includeGreeting) {
+    return speakDoubtAnswer({
+      historyId,
+      language,
+      replyStyle: "full_follow_up",
+      includeFirstAnswerGreeting: includeGreeting,
+      progressive: true,
+      segmentIndex,
+    });
+  }
+
+  function finishNarration(requestId) {
+    if (requestId !== requestIdRef.current) return;
+    audioRef.current = null;
+    nextSegmentRef.current = null;
+    stopMouthAnimation();
+    updateStatus("complete");
+    onFollowUpReady?.();
+  }
+
+  async function playSegment(
+    result,
+    requestId,
+    browserFallbackText,
+    includeGreetingForStream
+  ) {
+    if (requestId !== requestIdRef.current) return;
+
+    if (!result?.success || !result.audio_url) {
+      speakWithBrowser(browserFallbackText);
+      return;
+    }
+
+    const audio = new Audio(result.audio_url);
+    audio.playbackRate = rate;
+    audioRef.current = audio;
+
+    if (result.has_more) {
+      nextSegmentRef.current = requestSegment(
+        result.next_segment_index,
+        includeGreetingForStream
+      ).catch(() => null);
+    }
+
+    audio.onplay = () => {
+      if (requestId !== requestIdRef.current) return;
+      updateStatus("speaking");
+      beginAudioReactiveMouthAnimation(audio);
+    };
+    audio.onended = async () => {
+      if (requestId !== requestIdRef.current) return;
+
+      // Only await a prefetched segment when this segment explicitly has a
+      // successor. The final segment deliberately has no queued request;
+      // reusing the previous resolved promise would replay it indefinitely.
+      if (!result.has_more) {
+        finishNarration(requestId);
+        return;
+      }
+
+      const nextRequest = nextSegmentRef.current;
+      nextSegmentRef.current = null;
+      const nextResult = await nextRequest;
+      if (requestId !== requestIdRef.current) return;
+
+      if (nextResult) {
+        await playSegment(
+          nextResult,
+          requestId,
+          browserFallbackText,
+          includeGreetingForStream
+        );
+      } else {
+        // Keep the completed portion intact if a later segment cannot load.
+        finishNarration(requestId);
+      }
+    };
+    audio.onerror = () => {
+      if (requestId !== requestIdRef.current) return;
+      audioRef.current = null;
+      stopMouthAnimation();
+      speakWithBrowser(browserFallbackText);
+    };
+    await audio.play();
+  }
+
   async function listen() {
     if (!answer || !historyId) return;
 
     stop();
     const requestId = requestIdRef.current;
+    const useFirstAnswerGreeting =
+      includeFirstAnswerGreeting && !firstGreetingPlayedRef.current;
+    const browserFallbackText = `${useFirstAnswerGreeting ? `${firstAnswerGreeting} ` : ""}${answer} ${FOLLOW_UP_PROMPT}`;
+    if (useFirstAnswerGreeting) firstGreetingPlayedRef.current = true;
     updateStatus("loading");
 
     try {
-      const result = await speakDoubtAnswer({
-        historyId,
-        language,
-        replyStyle: "full_follow_up",
-      });
-      if (requestId !== requestIdRef.current) return;
-
-      if (!result?.success || !result.audio_url) {
-        speakWithBrowser(result?.spoken_text || `${answer} ${FOLLOW_UP_PROMPT}`);
-        return;
-      }
-
-      const audio = new Audio(result.audio_url);
-      audio.playbackRate = rate;
-      audioRef.current = audio;
-      audio.onplay = () => {
-        if (requestId !== requestIdRef.current) return;
-        updateStatus("speaking");
-        beginMouthAnimation();
-      };
-        audio.onended = () => {
-          if (requestId !== requestIdRef.current) return;
-          audioRef.current = null;
-          stopMouthAnimation();
-          updateStatus("complete");
-          onFollowUpReady?.();
-        };
-      audio.onerror = () => {
-        if (requestId !== requestIdRef.current) return;
-        audioRef.current = null;
-        stopMouthAnimation();
-        speakWithBrowser(result.spoken_text || `${answer} ${FOLLOW_UP_PROMPT}`);
-      };
-      await audio.play();
+      const firstSegment = await requestSegment(0, useFirstAnswerGreeting);
+      await playSegment(
+        firstSegment,
+        requestId,
+        browserFallbackText,
+        useFirstAnswerGreeting
+      );
     } catch {
       if (requestId === requestIdRef.current) {
-        speakWithBrowser(`${answer} ${FOLLOW_UP_PROMPT}`);
+        speakWithBrowser(browserFallbackText);
       }
     }
   }
@@ -169,7 +321,7 @@ function LikhaVoicePlayer({ historyId, answer, language, autoPlay = false, onSta
         audioRef.current.play().catch(() => speakWithBrowser(answer));
       } else {
         window.speechSynthesis.resume();
-        beginMouthAnimation();
+        beginTimerMouthAnimation();
         updateStatus("speaking");
       }
       return;
