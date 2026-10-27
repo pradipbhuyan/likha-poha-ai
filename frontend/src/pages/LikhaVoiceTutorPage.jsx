@@ -232,7 +232,7 @@ function LikhaVoiceTutorPage({ user }) {
 
   return (
     <div className="doubt-page premium-page premium-doubt-page">
-      <section className="premium-section" style={{ display: "grid", gridTemplateColumns: "minmax(110px, 145px) minmax(0, 1fr)", gap: 16, alignItems: "center", marginBottom: 14 }}>
+      <section className="premium-section likha-voice-hero" style={{ display: "grid", gridTemplateColumns: "minmax(110px, 145px) minmax(0, 1fr)", gap: 16, alignItems: "center", marginBottom: 14 }}>
         <img src={idleNeutral} alt="Likha, your voice tutor" style={{ width: "100%", maxHeight: 150, objectFit: "contain" }} />
         <div>
           <p className="eyebrow">Your AI learning companion</p>
@@ -349,7 +349,7 @@ function LikhaVoiceTutorPage({ user }) {
           />
 
           {followUpReady && (
-            <section aria-live="polite" style={{
+            <section className="likha-voice-followup" aria-live="polite" style={{
               display: "flex", alignItems: "center", justifyContent: "space-between",
               gap: 14, flexWrap: "wrap", marginTop: 16, padding: "14px 16px",
               borderRadius: 12, background: "rgba(99,102,241,.08)",

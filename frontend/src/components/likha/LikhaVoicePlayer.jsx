@@ -356,19 +356,19 @@ function LikhaVoicePlayer({
   }, [historyId, autoPlay]);
 
   return (
-    <section aria-label="Listen to Likha" style={{
+    <section className="likha-voice-player" aria-label="Listen to Likha" style={{
       display: "grid", gridTemplateColumns: "189px minmax(0, 1fr)", gap: 20,
       alignItems: "center", marginTop: 18, padding: "18px 20px", borderRadius: 14,
       background: "rgba(99,102,241,.08)", border: "1px solid rgba(99,102,241,.24)",
     }}>
-      <div style={{ alignSelf: "stretch", display: "flex", alignItems: "center", justifyContent: "center" }}>
+      <div className="likha-voice-player-avatar" style={{ alignSelf: "stretch", display: "flex", alignItems: "center", justifyContent: "center" }}>
         <img
           src={avatar}
           alt={isSpeaking ? "Likha is speaking" : status === "loading" ? "Likha is preparing audio" : "Likha, your voice tutor"}
           style={{ width: "100%", maxWidth: 166, maxHeight: 211, objectFit: "contain", objectPosition: "bottom center" }}
         />
       </div>
-      <div style={{ minWidth: 0 }}>
+      <div className="likha-voice-player-content" style={{ minWidth: 0 }}>
         <div style={{ display: "flex", alignItems: "center", gap: 7, marginBottom: 5 }}>
           <Volume2 size={17} color="#6366f1" />
           <strong>Listen to Likha</strong>
@@ -376,7 +376,7 @@ function LikhaVoicePlayer({
         <p style={{ margin: "0 0 14px", color: "var(--text-muted,#64748b)", fontSize: ".83rem", lineHeight: 1.45 }}>
           Likha starts explaining as soon as your answer is ready. Your written answer stays visible while she speaks.
         </p>
-        <div style={{ display: "flex", alignItems: "stretch", gap: 10, flexWrap: "wrap", minHeight: 56 }}>
+        <div className="likha-voice-player-controls" style={{ display: "flex", alignItems: "stretch", gap: 10, flexWrap: "wrap", minHeight: 56 }}>
           <button type="button" onClick={togglePlayback} disabled={!historyId || status === "loading"} className="primary-btn" style={{ alignSelf: "stretch", height: 56, minHeight: 56, margin: 0, boxSizing: "border-box", display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 8, padding: "0 20px", lineHeight: 1, verticalAlign: "middle", whiteSpace: "nowrap" }}>
             {isSpeaking ? <Pause size={18} fill="currentColor" style={{ flexShrink: 0 }} /> : <Play size={18} fill="currentColor" style={{ flexShrink: 0 }} />}
             {status === "loading" ? "Preparing…" : isSpeaking ? "Pause" : isPaused ? "Resume" : status === "complete" ? "Listen again" : "Listen to Likha"}

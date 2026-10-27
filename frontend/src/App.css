@@ -1555,6 +1555,144 @@ textarea:focus {
   text-align: center;
 }
 
+/* Likha Voice Tutor — compact, touch-friendly phone layout */
+@media (max-width: 640px) {
+  .likha-voice-hero {
+    grid-template-columns: 1fr !important;
+    justify-items: center;
+    padding: 18px !important;
+    text-align: center;
+  }
+
+  .likha-voice-hero > img {
+    width: min(150px, 48vw) !important;
+    max-height: 132px !important;
+  }
+
+  .likha-voice-hero .eyebrow,
+  .likha-voice-hero h2,
+  .likha-voice-hero p {
+    text-align: center;
+  }
+
+  .likha-voice-hero > div > div {
+    justify-content: center;
+  }
+
+  .premium-doubt-page > .premium-section {
+    min-width: 0;
+  }
+
+  .premium-doubt-page > .premium-section .form-grid {
+    grid-template-columns: 1fr !important;
+    gap: 14px;
+  }
+
+  .likha-voice-composer-actions {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    min-height: 0 !important;
+    overflow: visible !important;
+    gap: 10px !important;
+  }
+
+  .likha-voice-composer-actions > button,
+  .likha-voice-composer-actions > div {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .likha-voice-composer-actions > div {
+    height: auto !important;
+    min-height: 56px !important;
+    padding: 0 !important;
+    border-left: 0 !important;
+  }
+
+  .likha-voice-composer-actions > div label {
+    display: none;
+  }
+
+  .likha-voice-composer-actions > div select {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .likha-voice-composer-actions > button:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .likha-voice-followup {
+    align-items: stretch !important;
+    flex-direction: column;
+  }
+
+  .likha-voice-followup .primary-btn {
+    width: 100%;
+  }
+
+  .likha-voice-player {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 12px !important;
+    padding: 16px !important;
+  }
+
+  .likha-voice-player-avatar {
+    min-height: 132px;
+    max-height: 150px;
+  }
+
+  .likha-voice-player-avatar img {
+    width: auto !important;
+    max-width: min(150px, 52vw) !important;
+    max-height: 150px !important;
+  }
+
+  .likha-voice-player-content {
+    width: 100%;
+  }
+
+  .likha-voice-player-controls {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    min-height: 0 !important;
+    gap: 10px !important;
+  }
+
+  .likha-voice-player-controls > button,
+  .likha-voice-player-controls > label {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .likha-voice-player-controls > label {
+    grid-column: 1 / -1;
+    padding: 0 !important;
+  }
+
+  .likha-voice-player-controls > label select {
+    flex: 1 1 auto;
+    min-width: 0 !important;
+  }
+
+  .premium-doubt-answer {
+    padding: 18px !important;
+  }
+
+  .premium-doubt-answer .markdown-content {
+    padding: 0 !important;
+  }
+
+  .premium-doubt-answer .prompt-chip-row,
+  .premium-doubt-answer .followup-chip {
+    width: 100%;
+  }
+
+  .premium-doubt-answer .followup-chip {
+    justify-content: center;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .quick-check-flip-inner {
     transition: none;

@@ -38,7 +38,7 @@ function LikhaVoiceTutorComposer({
         disabled={asking}
       />
 
-      <div style={{ display: "flex", alignItems: "stretch", gap: 12, marginTop: 12, minHeight: 56, flexWrap: "nowrap", overflowX: "auto", overflowY: "hidden", paddingBottom: 2 }}>
+      <div className="likha-voice-composer-actions" style={{ display: "flex", alignItems: "stretch", gap: 12, marginTop: 12, minHeight: 56, flexWrap: "nowrap", overflowX: "auto", overflowY: "hidden", paddingBottom: 2 }}>
         <button
           type="button"
           className="primary-btn"
