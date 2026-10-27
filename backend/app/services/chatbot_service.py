@@ -25,17 +25,22 @@ PLATFORM_FAQ: list[dict] = [
                      "who developed", "when was it created", "history of likhapoha",
                      "mission", "why was it created", "origin"],
         "answer": (
-            "**LikhaPoha AI** was created by a parent-engineer in Bangalore to solve "
-            "a real problem: good CBSE tutoring is expensive, generic YouTube videos "
-            "don't follow the syllabus, and parents have no visibility into what their "
-            "child is actually learning.\n\n"
-            "The platform was built on a simple idea — *what if a student had a patient "
-            "AI teacher available any time, one that actually uses their NCERT textbook?*\n\n"
-            "Today, LikhaPoha AI supports **Class 5 to Class 12 CBSE** students — including "
-            "a Grade 11–12 Exam Prep Center for JEE Main, NEET UG, CUET UG, SAT, IELTS, and "
-            "TOEFL iBT — with step-wise AI lessons, instant doubt answering, 140,000+ practice "
-            "questions, mock tests, and a real-time parent dashboard.\n\n"
-            "It is an independent, affordable AI learning companion built for Indian families."
+            "**LikhaPoha AI** was created by a parent-engineer in Bangalore to make "
+            "curriculum-aware learning support more accessible for Indian families. It "
+            "addresses a common challenge: quality tutoring can be expensive, generic "
+            "video content may not follow the syllabus, and parents need a clearer view "
+            "of a child's learning.\n\n"
+            "The platform is built around a simple idea: every student should have access "
+            "to a patient AI tutor that explains concepts in the context of their NCERT "
+            "learning journey, whenever they need help.\n\n"
+            "LikhaPoha AI supports **Class 5 to Class 12 CBSE** students with step-wise "
+            "lessons, textbook-grounded doubt support, Likha Voice Tutor for listening to "
+            "saved explanations, practice and mock-test tools, revision resources, and "
+            "parent progress tracking. Grade 11–12 students can also use the **Exam Prep "
+            "Center** for JEE Main, NEET UG, CUET UG, SAT, IELTS, and TOEFL preparation.\n\n"
+            "It is an independent AI learning companion, not an official CBSE product. "
+            "Students should continue to use their school, teachers, and prescribed "
+            "textbooks as their primary academic guidance."
         ),
         "suggestions": ["Which grades are supported?", "How much does it cost?", "How do lessons work?"],
     },

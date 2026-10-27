@@ -7,19 +7,25 @@ LIKHA_POHA_FOUNDER_STORY = """
 Likha Poha AI — About the Platform
 
 Likha Poha AI was created by a parent-engineer in Bangalore to solve a real
-problem: good CBSE tutoring is expensive, generic video content doesn't follow
-the syllabus, and parents have no visibility into what their child is learning.
+problem: quality tutoring can be expensive, generic video content often misses
+the syllabus, and parents need a clearer view of their child's learning.
 
-The platform was built on a simple idea — what if a student had a patient AI
-teacher available any time, one that actually uses their NCERT textbook, not
-random internet content?
+The platform is built around a simple idea: every student should have access
+to a patient, curriculum-aware AI tutor that explains concepts in the context
+of their NCERT learning journey — whenever they need help.
 
-Today, Likha Poha AI supports Grade 5 to Grade 10 CBSE students across all
-core subjects — Science, Maths, English, Social Science, and Hindi. It
-provides step-wise AI lessons, instant doubt answering, 42,000+ practice
-questions, CBSE mock tests, and a parent dashboard with real-time progress
-tracking and weak-area alerts.
+Likha Poha AI supports CBSE learners from Grade 5 through Grade 12. Students
+can use step-wise lessons, textbook-grounded doubt support, Likha Voice Tutor
+for listening to saved explanations, practice and mock-test tools, revision
+resources, and progress tracking. Grade 11 and 12 students can also choose
+their stream and use the Exam Prep Center for JEE Main, NEET UG, CUET UG, SAT,
+IELTS, and TOEFL preparation.
 
-Likha Poha AI is not an official CBSE product. It is an independent,
-affordable AI learning companion built for Indian families.
+Parents can follow learning activity, subject performance, test history, and
+areas that may need revision through the Parent Dashboard. Teachers also have
+tools for lesson planning, test-paper creation, and student analytics.
+
+Likha Poha AI is an independent AI learning companion for Indian families. It
+is not an official CBSE product; students should continue to use their school,
+teachers, and prescribed textbooks as their primary academic guidance.
 """.strip()
