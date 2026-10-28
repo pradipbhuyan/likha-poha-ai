@@ -267,9 +267,9 @@ export default function ChatWidget() {
           width: 58, height: 58, borderRadius: "50%", border: "none",
           background: open
             ? "#334155"
-            : "linear-gradient(135deg, #7c3aed, #2563eb)",
+            : "linear-gradient(135deg, #0f2a5f, #071a3b)",
           color: "#fff", cursor: "pointer",
-          boxShadow: "0 4px 20px rgba(124,58,237,0.45)",
+          boxShadow: "0 4px 20px rgba(7,26,59,0.45)",
           display: "flex", alignItems: "center", justifyContent: "center",
           transition: "all 0.2s",
         }}

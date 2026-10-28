@@ -523,7 +523,7 @@ export default function PlatformChat({ user }) {
       {/* ── FLOATING BUTTON — hidden on mobile when panel is open ── */}
       {(!open || !isMobile) && (
         <button onClick={() => setOpen(v => !v)}
-          style={{ position: "fixed", bottom: 20, right: isMobile ? 20 : 84, zIndex: 9998, width: 54, height: 54, borderRadius: "50%", border: "none", background: open ? "#334155" : "linear-gradient(135deg,#0ea5e9,#6366f1)", color: "#fff", cursor: "pointer", boxShadow: "0 4px 20px rgba(99,102,241,.5)", display: "flex", alignItems: "center", justifyContent: "center", transition: "all .2s" }}
+          style={{ position: "fixed", bottom: 20, right: isMobile ? 20 : 84, zIndex: 9998, width: 54, height: 54, borderRadius: "50%", border: "none", background: open ? "#334155" : "linear-gradient(135deg,#0f2a5f,#071a3b)", color: "#fff", cursor: "pointer", boxShadow: "0 4px 20px rgba(7,26,59,.5)", display: "flex", alignItems: "center", justifyContent: "center", transition: "all .2s" }}
           title="Messages">
           {open ? <X size={22} strokeWidth={2.5} /> : <MessagesSquare size={24} strokeWidth={2} />}
           {!open && totalUnread > 0 && (

@@ -2249,9 +2249,9 @@ function App() {
             onClick={() => setReportBugOpen(true)}
             title="Report an issue"
             style={{ position:"fixed", bottom:88, right:20, zIndex:900,
-              background:"#6366f1", color:"#fff", border:"none", borderRadius:28,
+              background:"linear-gradient(135deg, #0f2a5f, #071a3b)", color:"#fff", border:"none", borderRadius:28,
               padding:"10px 18px", fontFamily:"inherit", fontWeight:700, fontSize:".82rem",
-              cursor:"pointer", boxShadow:"0 4px 16px rgba(99,102,241,0.4)",
+              cursor:"pointer", boxShadow:"0 4px 16px rgba(7,26,59,0.4)",
               display:"flex", alignItems:"center", gap:6 }}>
             🐛 Report Issue
           </button>
