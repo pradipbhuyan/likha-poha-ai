@@ -46,9 +46,37 @@ def _strip_chapter_source_prefix(chapter: str) -> str:
 # guess when there is no textbook grounding for the requested chapter.
 STORY_DEPENDENT_SUBJECTS = {
     "english", "hindi", "sanskrit",
-    "social science", "social studies", "history", "geography",
-    "economics", "civics", "political science",
 }
+
+# Voice Tutor must not invent a chapter summary when the chapter text is
+# unavailable, regardless of subject. Individual factual questions in subjects
+# such as History, Geography, Civics, and Science are different: after the
+# selected lesson has been scanned, stable facts may be answered from clearly
+# disclosed wider knowledge.
+_TEXTBOOK_DEPENDENT_REQUEST_RE = _re.compile(
+    r"\b(?:summari[sz]e|summary|summarise|retell|story|plot|passage|"
+    r"stanza|paragraph|line by line|line-by-line|what happens in (?:this|the) "
+    r"(?:lesson|chapter)|main events?|characters?|theme|moral)\b",
+    _re.IGNORECASE,
+)
+
+
+def _requires_textbook_only_answer(subject: str, question: str) -> bool:
+    """Return True when model memory cannot safely replace lesson evidence.
+
+    Language/literature subjects are passage-specific by nature. Any request to
+    summarise or retell the selected lesson is also text-dependent, even in a
+    factual subject. This intentionally allows stable factual questions such as
+    "Who is Shivaji?" in a History chapter to use disclosed wider knowledge
+    only after a complete chapter-scoped retrieval assessment has failed.
+    """
+    subject_lower = (subject or "").lower()
+    is_language_or_literature = any(
+        name in subject_lower for name in STORY_DEPENDENT_SUBJECTS
+    )
+    return is_language_or_literature or bool(
+        _TEXTBOOK_DEPENDENT_REQUEST_RE.search(question or "")
+    )
 
 # Minimum cosine similarity for a RAG chunk to be shown to a student as a
 # textbook-excerpt answer. search_textbook_content()/match_rag_chunks has no
@@ -1611,6 +1639,34 @@ IMPORTANT:
 
     good_chunks = _filter_relevant_chunks(rag_results)
 
+    # A narrow semantic lookup can miss a chapter-relevant fact when the
+    # wording differs from the uploaded lesson. Before saying that selected
+    # lesson content is unavailable, inspect a wider set of chunks from that
+    # same grade/subject/chapter. This remains chapter-scoped: it never
+    # substitutes unrelated subject material for Voice Tutor evidence.
+    if require_textbook_grounding and not good_chunks and chapter:
+        lesson_scan_query = f"""
+Grade: {grade}
+Subject: {subject}
+Selected chapter: {chapter}
+
+Scan this entire selected lesson for its people, places, events, concepts,
+definitions, causes, effects, examples, and key facts. Assess whether this
+student question can be answered from the lesson:
+{question}
+"""
+        lesson_scan_results = search_textbook_content(
+            query=lesson_scan_query,
+            board=board,
+            grade=grade,
+            subject=subject if subject else None,
+            chapter=chapter,
+            match_count=18,
+        )
+        if lesson_scan_results:
+            rag_results = lesson_scan_results
+            good_chunks = _filter_relevant_chunks(rag_results)
+
     if good_chunks:
         try:
             answer = build_synthesized_doubt_answer(
@@ -1625,10 +1681,10 @@ IMPORTANT:
             logger.warning("Doubt answer synthesis failed, using extractive fallback: %s", exc)
             answer = build_textbook_excerpt_answer(good_chunks)
         source_type = "TEXTBOOK_EXCERPT"
-    elif require_textbook_grounding:
-        # Voice Tutor lesson summaries must never invent content from model
-        # memory. Retrieval is deliberately chapter-scoped above, and weak
-        # matches are rejected rather than being paraphrased as lesson facts.
+    elif require_textbook_grounding and _requires_textbook_only_answer(subject, question):
+        # Passage-dependent language/literature questions and all requested
+        # chapter summaries must remain grounded in the uploaded lesson text.
+        # The full chapter scan above has already been attempted.
         answer = build_grounding_required_fallback(grade, subject, chapter)
         source_type = "TEXTBOOK_CONTENT_UNAVAILABLE"
     else:

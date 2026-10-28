@@ -242,9 +242,12 @@ def test_answer_doubt_requires_selected_chapter_evidence_without_wider_llm_fallb
 
     assert result["source_type"] == "TEXTBOOK_CONTENT_UNAVAILABLE"
     assert "won’t make up" in result["answer"]
-    assert len(search_calls) == 1
+    assert len(search_calls) == 2
     assert search_calls[0]["subject"] == "English"
     assert search_calls[0]["chapter"] == "The Fun They Had"
+    assert search_calls[1]["subject"] == "English"
+    assert search_calls[1]["chapter"] == "The Fun They Had"
+    assert search_calls[1]["match_count"] == 18
 
 
 def test_answer_doubt_uses_selected_chapter_evidence_when_grounding_is_required(monkeypatch):
@@ -268,6 +271,42 @@ def test_answer_doubt_uses_selected_chapter_evidence_when_grounding_is_required(
 
     assert result["source_type"] == "TEXTBOOK_EXCERPT"
     assert result["answer"] == "The lesson contrasts old books with future learning."
+
+
+def test_answer_doubt_scans_the_selected_lesson_then_answers_factual_history_questions_from_wider_knowledge(monkeypatch):
+    """A stable fact such as Shivaji may be answered after a chapter-only scan
+    misses; it must be explicitly labelled as wider knowledge, not textbook text."""
+    monkeypatch.setattr(doubt_kb_service, "search_doubt_kb", lambda **kwargs: None)
+    search_calls = []
+    monkeypatch.setattr(
+        tutor_service,
+        "search_textbook_content",
+        lambda **kwargs: search_calls.append(kwargs) or [],
+    )
+    monkeypatch.setattr(
+        tutor_service,
+        "ask_gemini_direct",
+        lambda *args, **kwargs: "Shivaji, also known as Chhatrapati Shivaji Maharaj, founded the Maratha kingdom in western India.",
+    )
+
+    result = tutor_service.answer_doubt(
+        grade="Grade 9",
+        mode="CBSE",
+        subject="Social Science",
+        chapter="Rise of the Marathas",
+        question="Who is Shivaji?",
+        username="test_user",
+        board="CBSE",
+        require_textbook_grounding=True,
+    )
+
+    assert result["source_type"] == "WIDER_LLM_KNOWLEDGE"
+    assert "founded the Maratha kingdom" in result["answer"]
+    assert len(search_calls) == 2
+    assert all(call["subject"] == "Social Science" for call in search_calls)
+    assert all(call["chapter"] == "Rise of the Marathas" for call in search_calls)
+    assert search_calls[0]["match_count"] == 6
+    assert search_calls[1]["match_count"] == 18
 
 
 def test_answer_doubt_uses_wider_llm_knowledge_when_textbook_rag_misses(monkeypatch):
