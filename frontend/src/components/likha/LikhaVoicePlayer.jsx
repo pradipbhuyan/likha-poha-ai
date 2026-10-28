@@ -85,69 +85,14 @@ function LikhaVoicePlayer({
     }, 240);
   }
 
-  function beginAudioReactiveMouthAnimation(audio) {
-    stopMouthAnimation();
-
-    const AudioContext = window.AudioContext || window.webkitAudioContext;
-    if (!AudioContext || !audio) {
-      beginTimerMouthAnimation();
-      return;
-    }
-
-    try {
-      const context = new AudioContext();
-      const analyser = context.createAnalyser();
-      const source = context.createMediaElementSource(audio);
-      const samples = new Uint8Array(analyser.fftSize);
-
-      analyser.fftSize = 256;
-      analyser.smoothingTimeConstant = 0.72;
-      source.connect(analyser);
-      analyser.connect(context.destination);
-
-      audioContextRef.current = context;
-      analyserRef.current = analyser;
-      context.resume?.().catch?.(() => {});
-
-      let lastFrameChangeAt = 0;
-      let currentFrame = "a";
-
-      const animateMouth = (now) => {
-        if (!analyserRef.current || audio.paused || audio.ended) return;
-
-        analyser.getByteTimeDomainData(samples);
-        const averageAmplitude = samples.reduce(
-          (total, sample) => total + Math.abs(sample - 128),
-          0
-        ) / samples.length;
-
-        // Generated narration has a consistently non-zero signal, so choosing
-        // a single frame from a fixed threshold made the mouth stay at "O".
-        // Instead, energy controls the rhythm: louder speech changes frames
-        // faster, quieter gaps settle on the smaller "A" mouth.
-        if (averageAmplitude < 2.5) {
-          if (currentFrame !== "a") {
-            currentFrame = "a";
-            setMouthFrame("a");
-          }
-        } else {
-          const frameInterval = averageAmplitude >= 10 ? 180 : 250;
-          if (now - lastFrameChangeAt >= frameInterval) {
-            currentFrame = currentFrame === "a" ? "o" : "a";
-            setMouthFrame(currentFrame);
-            lastFrameChangeAt = now;
-          }
-        }
-
-        animationFrameRef.current = window.requestAnimationFrame(animateMouth);
-      };
-
-      animationFrameRef.current = window.requestAnimationFrame(animateMouth);
-    } catch {
-      // Browser speech and restrictive Web Audio environments still receive
-      // the original lightweight animation rather than losing all movement.
-      beginTimerMouthAnimation();
-    }
+  function beginAudioReactiveMouthAnimation() {
+    // Do not create a MediaElementSource/AudioContext graph for narration
+    // playback. Chrome permits only one such source per HTMLAudioElement; a
+    // pause → resume cycle previously tore down and recreated that graph,
+    // which could leave the UI "speaking" while its audio output was silent.
+    // The lightweight timer keeps the avatar expressive without altering the
+    // browser's native audio routing or resumability.
+    beginTimerMouthAnimation();
   }
 
   function stop() {
