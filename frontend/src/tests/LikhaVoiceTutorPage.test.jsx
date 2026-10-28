@@ -34,6 +34,13 @@ const user = {
   accessCbse: true,
 };
 
+async function selectLessonContext() {
+  fireEvent.change(await screen.findByLabelText("Subject"), { target: { value: "Science" } });
+  fireEvent.change(screen.getByLabelText("Chapter"), {
+    target: { value: "Matter in Our Surroundings" },
+  });
+}
+
 describe("LikhaVoiceTutorPage", () => {
   beforeEach(() => {
     vi.clearAllMocks();
@@ -53,6 +60,7 @@ describe("LikhaVoiceTutorPage", () => {
 
   test("submits typed questions through the existing secured doubt pipeline", async () => {
     render(<LikhaVoiceTutorPage user={user} />);
+    await selectLessonContext();
 
     const input = await screen.findByLabelText(/your question for likha/i);
     fireEvent.change(input, { target: { value: "Why is a shadow dark?" } });
@@ -67,12 +75,14 @@ describe("LikhaVoiceTutorPage", () => {
         question: "Why is a shadow dark?",
         display_question: "Why is a shadow dark?",
         save_to_history: true,
+        require_textbook_grounding: true,
       }));
     });
   });
 
   test("shows source information and only enables response playback after an answer", async () => {
     render(<LikhaVoiceTutorPage user={user} />);
+    await selectLessonContext();
 
     fireEvent.change(await screen.findByLabelText(/your question for likha/i), {
       target: { value: "Why is a shadow dark?" },
@@ -95,6 +105,7 @@ describe("LikhaVoiceTutorPage", () => {
     });
 
     render(<LikhaVoiceTutorPage user={user} />);
+    await selectLessonContext();
 
     fireEvent.change(await screen.findByLabelText(/your question for likha/i), {
       target: { value: "Explain reflection" },
@@ -120,6 +131,7 @@ describe("LikhaVoiceTutorPage", () => {
     window.SpeechRecognition = MockRecognition;
 
     render(<LikhaVoiceTutorPage user={user} />);
+    await selectLessonContext();
 
     fireEvent.click(await screen.findByRole("button", { name: /speak your question/i }));
 
@@ -128,8 +140,58 @@ describe("LikhaVoiceTutorPage", () => {
         question: "Why is a shadow dark?",
         display_question: "Why is a shadow dark?",
         save_to_history: true,
+        require_textbook_grounding: true,
       }));
     });
+  });
+
+  test("sends the active session history with a voice follow-up", async () => {
+    let recognitionCount = 0;
+    class MockRecognition {
+      start() {
+        recognitionCount += 1;
+        const transcript = recognitionCount === 1 ? "What is reflection?" : "Why does that happen?";
+        this.onstart?.();
+        this.onresult?.({ results: [[{ transcript }]] });
+        this.onend?.();
+      }
+
+      stop() {}
+      abort() {}
+    }
+    window.SpeechRecognition = MockRecognition;
+
+    render(<LikhaVoiceTutorPage user={user} />);
+    await selectLessonContext();
+
+    fireEvent.click(await screen.findByRole("button", { name: /speak your question/i }));
+    await waitFor(() => expect(answerDoubt).toHaveBeenCalledTimes(1));
+
+    fireEvent.click(await screen.findByRole("button", { name: /finish explanation/i }));
+    fireEvent.click(screen.getByRole("button", { name: /speak follow-up/i }));
+
+    await waitFor(() => {
+      expect(answerDoubt).toHaveBeenLastCalledWith(expect.objectContaining({
+        question: "Why does that happen?",
+        is_follow_up: true,
+        conversation_history: [{
+          question: "What is reflection?",
+          answer: "A shadow is dark because an opaque object blocks light.",
+        }],
+      }));
+    });
+  });
+
+  test("requires a selected subject and chapter before asking Likha", async () => {
+    render(<LikhaVoiceTutorPage user={user} />);
+
+    fireEvent.change(await screen.findByLabelText(/your question for likha/i), {
+      target: { value: "Summarise this lesson." },
+    });
+    fireEvent.click(screen.getByRole("button", { name: /^ask likha$/i }));
+
+    expect(await screen.findByRole("alert")).toHaveTextContent(/choose both a subject and chapter/i);
+    expect(answerDoubt).not.toHaveBeenCalled();
   });
 
   test("does not submit Hindi-script speech while English recognition is selected", async () => {

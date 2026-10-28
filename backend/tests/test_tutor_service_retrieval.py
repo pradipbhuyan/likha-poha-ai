@@ -183,6 +183,93 @@ def test_answer_doubt_falls_back_to_extractive_excerpt_when_synthesis_fails(monk
     assert "Matter is anything with mass and volume." in result["answer"]
 
 
+def test_answer_doubt_follow_up_uses_session_history_not_standalone_dkb(monkeypatch):
+    monkeypatch.setattr(
+        doubt_kb_service,
+        "search_doubt_kb",
+        lambda **kwargs: (_ for _ in ()).throw(
+            AssertionError("Standalone DKB lookup must not answer a contextual follow-up")
+        ),
+    )
+    monkeypatch.setattr(
+        tutor_service,
+        "search_textbook_content",
+        lambda **kwargs: [{"chunk_text": "Light changes direction when it reflects from a surface.", "similarity": 0.8}],
+    )
+    captured = {}
+
+    def _fake_ask_llm(system_prompt, user_prompt, **kwargs):
+        captured["prompt"] = user_prompt
+        return "It happens because reflected light changes direction at the surface."
+
+    monkeypatch.setattr(tutor_service, "ask_llm", _fake_ask_llm)
+
+    result = tutor_service.answer_doubt(
+        grade="Grade 9", mode="CBSE", subject="Science", chapter="Light",
+        question="Why does that happen?", username="test_user", board="CBSE",
+        require_textbook_grounding=True,
+        is_follow_up=True,
+        conversation_history=[{
+            "question": "What is reflection?",
+            "answer": "Reflection is the change in direction of light after it strikes a surface.",
+        }],
+    )
+
+    assert result["source_type"] == "TEXTBOOK_EXCERPT"
+    assert "What is reflection?" in captured["prompt"]
+    assert "Reflection is the change in direction" in captured["prompt"]
+    assert "Why does that happen?" in captured["prompt"]
+
+
+def test_answer_doubt_requires_selected_chapter_evidence_without_wider_llm_fallback(monkeypatch):
+    monkeypatch.setattr(doubt_kb_service, "search_doubt_kb", lambda **kwargs: None)
+    search_calls = []
+    monkeypatch.setattr(
+        tutor_service,
+        "search_textbook_content",
+        lambda **kwargs: search_calls.append(kwargs) or [],
+    )
+
+    def _boom(*args, **kwargs):
+        raise AssertionError("General-knowledge fallback must not run for grounded requests")
+    monkeypatch.setattr(tutor_service, "ask_gemini_direct", _boom)
+
+    result = tutor_service.answer_doubt(
+        grade="Grade 9", mode="CBSE", subject="English", chapter="The Fun They Had",
+        question="Summarise this lesson.", username="test_user", board="CBSE",
+        require_textbook_grounding=True,
+    )
+
+    assert result["source_type"] == "TEXTBOOK_CONTENT_UNAVAILABLE"
+    assert "won’t make up" in result["answer"]
+    assert len(search_calls) == 1
+    assert search_calls[0]["subject"] == "English"
+    assert search_calls[0]["chapter"] == "The Fun They Had"
+
+
+def test_answer_doubt_uses_selected_chapter_evidence_when_grounding_is_required(monkeypatch):
+    monkeypatch.setattr(doubt_kb_service, "search_doubt_kb", lambda **kwargs: None)
+    monkeypatch.setattr(
+        tutor_service,
+        "search_textbook_content",
+        lambda **kwargs: [{"chunk_text": "Margie and Tommy find an old printed book.", "similarity": 0.8}],
+    )
+    monkeypatch.setattr(
+        tutor_service,
+        "ask_llm",
+        lambda *args, **kwargs: "The lesson contrasts old books with future learning.",
+    )
+
+    result = tutor_service.answer_doubt(
+        grade="Grade 9", mode="CBSE", subject="English", chapter="The Fun They Had",
+        question="Summarise this lesson.", username="test_user", board="CBSE",
+        require_textbook_grounding=True,
+    )
+
+    assert result["source_type"] == "TEXTBOOK_EXCERPT"
+    assert result["answer"] == "The lesson contrasts old books with future learning."
+
+
 def test_answer_doubt_uses_wider_llm_knowledge_when_textbook_rag_misses(monkeypatch):
     monkeypatch.setattr(doubt_kb_service, "search_doubt_kb", lambda **kwargs: None)
     monkeypatch.setattr(tutor_service, "search_textbook_content", lambda **kwargs: [])

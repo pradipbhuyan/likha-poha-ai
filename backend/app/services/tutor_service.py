@@ -177,8 +177,25 @@ DOUBT_WEAK_GROUNDING_SYSTEM = (
 )
 
 
+def _format_conversation_history(conversation_history: list[dict] | None) -> str:
+    """Return a bounded, display-safe transcript for an explicit tutor follow-up."""
+    turns = []
+    for turn in (conversation_history or [])[-3:]:
+        question = str(turn.get("question") or "").strip()[:800]
+        answer = str(turn.get("answer") or "").strip()[:1800]
+        if question and answer:
+            turns.append(f"Student: {question}\nLikha: {answer}")
+    return "\n\n".join(turns)
+
+
 def build_synthesized_doubt_answer(
-    question: str, chunks: list, grade: str, subject: str, chapter: str, max_chunks: int = 3
+    question: str,
+    chunks: list,
+    grade: str,
+    subject: str,
+    chapter: str,
+    max_chunks: int = 3,
+    conversation_history: list[dict] | None = None,
 ) -> str:
     """Synthesize a direct answer to the student's question from the top RAG
     chunks via one live LLM call, instead of pasting raw textbook text. Uses
@@ -200,9 +217,15 @@ Chapter: {chapter}
 Textbook context:
 {context}
 
-Student question: {question}
+Recent conversation in this Voice Tutor session:
+{_format_conversation_history(conversation_history) or "No earlier turns in this session."}
 
-Answer the question clearly for a {grade} student.
+Student's current question: {question}
+
+Answer the current question clearly for a {grade} student. When it refers to
+an earlier explanation, use the session conversation to resolve the reference.
+Stay grounded only in the textbook context above; do not introduce unsupported
+details from the earlier conversation.
 """
     return ask_llm(
         DOUBT_SYNTHESIS_SYSTEM,
@@ -297,6 +320,17 @@ def build_ncert_fallback_answer(grade: str, subject: str, chapter: str) -> str:
         f"- Ask about one smaller part of the topic at a time — specific questions "
         f"are much easier for me to match to the right textbook passage.\n\n"
         f"I'm continuously learning from new questions, so this will get better over time!"
+    )
+
+
+def build_grounding_required_fallback(grade: str, subject: str, chapter: str) -> str:
+    """Explain that a selected lesson cannot be answered safely without evidence."""
+    return (
+        f"I can’t give a reliable answer or summary for **{chapter}** yet because I "
+        f"couldn’t find enough matching material from the selected {grade} {subject} "
+        f"lesson. I won’t make up story details or textbook points.\n\n"
+        f"Please try a more specific question from this chapter, or check the chapter "
+        f"in your NCERT textbook and try again."
     )
 
 
@@ -1445,6 +1479,9 @@ def answer_doubt(
     username: str = "unknown",
     board: str = "CBSE",
     allow_llm: bool = True,
+    require_textbook_grounding: bool = False,
+    conversation_history: list[dict] | None = None,
+    is_follow_up: bool = False,
 ):
     """
     Answer a student doubt, preferring the free/instant DKB cache over an LLM call.
@@ -1461,10 +1498,12 @@ def answer_doubt(
          via one LLM call as a last resort (falling back to a raw extractive
          excerpt if that call fails), then cache the result in the DKB so
          the same question never costs an LLM call again for ANY tier.
-    3. If textbook retrieval returns no chunks (paid tier only), answer from
-       wider LLM knowledge and label it as non-textbook-grounded. If that
-       provider call fails, return a warm NCERT-reference fallback.
-    4. Auto-store new excerpt answers in DKB for future reuse.
+    3. If `require_textbook_grounding` is enabled, search only the selected
+       chapter and return a transparent unavailable response when its evidence
+       is weak or missing. This protects lesson summaries from fabricated
+       content.
+    4. Otherwise, paid RAG misses may use clearly disclosed wider LLM knowledge.
+    5. Auto-store new excerpt answers in DKB for future reuse.
     """
     # ----------------------------------------------------------------- DKB
     try:
@@ -1476,7 +1515,9 @@ def answer_doubt(
         # We search with the clean raw question; the full enriched text is still
         # sent to the LLM if the DKB misses.
         raw_question_for_dkb = question.split("\n\nPreferred answer style:", 1)[0].strip()
-        dkb_hit = search_doubt_kb(
+        # A cached standalone answer cannot resolve pronouns or references such
+        # as "why did that happen?" from the active Voice Tutor session.
+        dkb_hit = None if is_follow_up else search_doubt_kb(
             question=raw_question_for_dkb,
             grade=grade,
             # Treat empty string as None so the DKB subject filter is bypassed
@@ -1558,7 +1599,7 @@ IMPORTANT:
         match_count=6,
     )
 
-    if not rag_results:
+    if not rag_results and not require_textbook_grounding:
         rag_results = search_textbook_content(
             query=rag_query,
             board=board,
@@ -1572,11 +1613,24 @@ IMPORTANT:
 
     if good_chunks:
         try:
-            answer = build_synthesized_doubt_answer(question, good_chunks, grade, subject, chapter)
+            answer = build_synthesized_doubt_answer(
+                question,
+                good_chunks,
+                grade,
+                subject,
+                chapter,
+                conversation_history=conversation_history if is_follow_up else None,
+            )
         except Exception as exc:
             logger.warning("Doubt answer synthesis failed, using extractive fallback: %s", exc)
             answer = build_textbook_excerpt_answer(good_chunks)
         source_type = "TEXTBOOK_EXCERPT"
+    elif require_textbook_grounding:
+        # Voice Tutor lesson summaries must never invent content from model
+        # memory. Retrieval is deliberately chapter-scoped above, and weak
+        # matches are rejected rather than being paraphrased as lesson facts.
+        answer = build_grounding_required_fallback(grade, subject, chapter)
+        source_type = "TEXTBOOK_CONTENT_UNAVAILABLE"
     else:
         # No chunk crossed the relevance threshold. Below-threshold retrieval
         # can be topically related but still answer a different question — for
@@ -1585,7 +1639,7 @@ IMPORTANT:
         # path instead of presenting an unreliable match as textbook-grounded.
         try:
             answer = build_wider_knowledge_doubt_answer(
-                question, grade, subject, chapter, username=	username
+                question, grade, subject, chapter, username=username
             )
             source_type = "WIDER_LLM_KNOWLEDGE"
         except Exception as exc:

@@ -3,7 +3,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
-import { BookOpen, Brain, MessageCircle, Mic, Sparkles } from "lucide-react";
+import { BookOpen, Mic, Sparkles } from "lucide-react";
 
 import idleNeutral from "../assets/avatar/likha/idle-neutral.png";
 import { getSyllabus } from "../api/syllabus";
@@ -26,6 +26,7 @@ const SOURCE_LABELS = {
   DOUBT_KB: "Knowledge-base answer",
   TEXTBOOK_EXCERPT: "Textbook-grounded answer",
   TEXTBOOK_EXCERPT_WEAK: "Textbook-related answer",
+  TEXTBOOK_CONTENT_UNAVAILABLE: "Selected lesson content unavailable",
   WIDER_LLM_KNOWLEDGE: "Wider AI knowledge",
   NO_MATCH_FALLBACK: "No exact match found",
   PLATFORM_RAG: "Platform information",
@@ -47,6 +48,7 @@ function LikhaVoiceTutorPage({ user }) {
   const [recognitionState, setRecognitionState] = useState("idle");
   const [recognitionMessage, setRecognitionMessage] = useState("");
   const [followUpReady, setFollowUpReady] = useState(false);
+  const [conversationHistory, setConversationHistory] = useState([]);
   const recognitionRef = useRef(null);
   const voiceTranscriptRef = useRef("");
   const answerRef = useRef(null);
@@ -104,6 +106,7 @@ function LikhaVoiceTutorPage({ user }) {
     setGrade(nextGrade);
     setSubject("");
     setChapter("");
+    setConversationHistory([]);
     resetAnswer();
   }
 
@@ -173,15 +176,17 @@ function LikhaVoiceTutorPage({ user }) {
       setPageError("Please type or speak an academic question first.");
       return;
     }
+    if (!subject || !chapter) {
+      setPageError("Choose both a subject and chapter so Likha can answer only from that selected lesson.");
+      return;
+    }
 
     recognitionRef.current?.stop?.();
     setAsking(true);
     setFollowUpReady(false);
     resetAnswer();
 
-    const requestQuestion = followUp && answerData
-      ? `Student's original question:\n${answerData.question}\n\nPrevious answer:\n${answerData.answer}\n\nFollow-up question:\n${askedQuestion}\n\nAnswer the follow-up directly, using the previous answer as context.`
-      : askedQuestion;
+    const sessionHistory = followUp ? conversationHistory : [];
 
     try {
       const result = await answerDoubt({
@@ -191,9 +196,12 @@ function LikhaVoiceTutorPage({ user }) {
         board: mode,
         subject,
         chapter,
-        question: requestQuestion,
+        question: askedQuestion,
         display_question: askedQuestion,
         save_to_history: true,
+        require_textbook_grounding: true,
+        conversation_history: sessionHistory,
+        is_follow_up: followUp,
       });
 
       if (!result?.success) {
@@ -204,6 +212,10 @@ function LikhaVoiceTutorPage({ user }) {
       const includeFirstAnswerGreeting = !hasReceivedFirstAnswerRef.current;
       hasReceivedFirstAnswerRef.current = true;
       setQuestion(askedQuestion);
+      setConversationHistory((current) => [
+        ...current.slice(-2),
+        { question: askedQuestion, answer: result.answer || "" },
+      ]);
       setAnswerData({
         question: askedQuestion,
         includeFirstAnswerGreeting,
@@ -265,19 +277,21 @@ function LikhaVoiceTutorPage({ user }) {
             </select>
           </label>
           <label>Subject
-            <select value={subject} onChange={(event) => { setSubject(event.target.value); setChapter(""); resetAnswer(); }}>
-              <option value="">Open subject</option>
+            <select value={subject} onChange={(event) => { setSubject(event.target.value); setChapter(""); setConversationHistory([]); resetAnswer(); }}>
+              <option value="">Choose a subject</option>
               {subjects.map((item) => <option key={item} value={item}>{item}</option>)}
             </select>
           </label>
           <label>Chapter
-            <select value={chapter} onChange={(event) => { setChapter(event.target.value); resetAnswer(); }} disabled={!subject}>
-              <option value="">Open chapter</option>
+            <select value={chapter} onChange={(event) => { setChapter(event.target.value); setConversationHistory([]); resetAnswer(); }} disabled={!subject}>
+              <option value="">Choose a chapter</option>
               {chapters.map((item) => <option key={item} value={item}>{item}</option>)}
             </select>
           </label>
         </div>
       </section>
+
+      {pageError && <div className="error-box" role="alert" style={{ marginBottom: 14 }}>{pageError}</div>}
 
       <LikhaVoiceTutorComposer
         question={question}
@@ -300,15 +314,13 @@ function LikhaVoiceTutorPage({ user }) {
         </section>
       )}
 
-      {pageError && <div className="error-box" role="alert" style={{ marginTop: 14 }}>{pageError}</div>}
-
       {answerData && (
         <section ref={answerRef} className="premium-section lesson-output premium-doubt-answer" style={{ marginTop: 14 }}>
           <div className="premium-header">
             <p className="eyebrow">{SOURCE_LABELS[answerData.sourceType] || "Answer"}</p>
             <h3>Likha’s explanation</h3>
-            <p>{answerData.sourceType === "WIDER_LLM_KNOWLEDGE"
-              ? "This answer uses wider AI knowledge because no relevant textbook content was found."
+            <p>{answerData.sourceType === "TEXTBOOK_CONTENT_UNAVAILABLE"
+              ? "Likha could not verify enough material from the selected lesson, so she did not create an answer."
               : "Read the written explanation at your own pace, then choose Listen when you want audio."}</p>
           </div>
 
@@ -376,18 +388,6 @@ function LikhaVoiceTutorPage({ user }) {
             </p>
           )}
 
-          {answerData.suggestions.length > 0 && (
-            <div className="mentor-suggestion-section">
-              <h4><Brain size={16} /> Continue learning</h4>
-              <div className="prompt-chip-row">
-                {answerData.suggestions.map((suggestion) => (
-                  <button key={suggestion} type="button" className="followup-chip" onClick={() => setQuestion(suggestion)}>
-                    <MessageCircle size={14} /> {suggestion}
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
         </section>
       )}
     </div>

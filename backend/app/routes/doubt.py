@@ -163,6 +163,9 @@ def answer_student_doubt(
     """
     validate_required_text(data.username, "username")
     validate_required_text(data.question, "question")
+    if data.require_textbook_grounding:
+        validate_required_text(data.subject, "subject")
+        validate_required_text(data.chapter, "chapter")
 
     profile = get_profile_by_user_id(user.id)
     canonical_username = profile.get("username") or data.username
@@ -284,7 +287,7 @@ def answer_student_doubt(
     ).strip()
 
     # Pass A: direct ID lookup (suggestion chip tapped)
-    if data.dkb_id:
+    if data.dkb_id and not data.is_follow_up:
         try:
             from app.services.grade_db_router import get_content_db as _get_db  # noqa: PLC0415
             _supabase = _get_db(data.grade)
@@ -309,7 +312,7 @@ def answer_student_doubt(
             _log.getLogger(__name__).warning("DKB ID lookup failed: %s", _dkb_id_exc)
 
     # Pass B: text search (manual questions or dkb_id lookup missed)
-    if not dkb_result:
+    if not dkb_result and not data.is_follow_up:
         dkb_result = search_doubt_kb(
             question=dkb_search_query,
             grade=data.grade,
@@ -431,6 +434,9 @@ def answer_student_doubt(
             question=data.question,
             username=canonical_username,
             allow_llm=not is_free,
+            require_textbook_grounding=data.require_textbook_grounding,
+            conversation_history=data.conversation_history,
+            is_follow_up=data.is_follow_up,
         )
         history_item = None
 

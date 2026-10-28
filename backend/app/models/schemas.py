@@ -105,6 +105,13 @@ class DoubtRequest(BaseModel):
     display_question: str | None = None
     dkb_id: str | None = None          # suggestion chip ID — enables direct DKB lookup by PK
     save_to_history: bool = True
+    # Voice Tutor lesson summaries must use only the selected chapter's
+    # approved learning material and must never fall back to general LLM knowledge.
+    require_textbook_grounding: bool = False
+    # Short-lived client session context for an explicit Voice Tutor follow-up.
+    # The backend still grounds the response in the selected chapter material.
+    conversation_history: list[dict[str, str]] = Field(default_factory=list)
+    is_follow_up: bool = False
 
 
 class DoubtResponse(BaseModel):
