@@ -224,4 +224,48 @@ describe("LikhaVoiceTutorPage", () => {
     expect(screen.getByLabelText(/your question for likha/i)).not.toBeDisabled();
     expect(screen.getByRole("button", { name: /speak your question/i })).toBeDisabled();
   });
+
+  test("explains how to enable Edge microphone permission when preflight access is denied", async () => {
+    class MockRecognition {
+      start() {}
+      stop() {}
+      abort() {}
+    }
+    window.SpeechRecognition = MockRecognition;
+    const originalMediaDevices = navigator.mediaDevices;
+    Object.defineProperty(navigator, "mediaDevices", {
+      configurable: true,
+      value: {
+        getUserMedia: vi.fn().mockRejectedValue({ name: "NotAllowedError" }),
+      },
+    });
+
+    render(<LikhaVoiceTutorPage user={user} />);
+    fireEvent.click(await screen.findByRole("button", { name: /speak your question/i }));
+
+    expect(await screen.findByText(/select the lock icon beside the address bar/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/your question for likha/i)).not.toBeDisabled();
+
+    Object.defineProperty(navigator, "mediaDevices", {
+      configurable: true,
+      value: originalMediaDevices,
+    });
+  });
+
+  test("explains Edge speech-service network failures", async () => {
+    class MockRecognition {
+      start() {
+        this.onerror?.({ error: "network" });
+      }
+      stop() {}
+      abort() {}
+    }
+    window.SpeechRecognition = MockRecognition;
+
+    render(<LikhaVoiceTutorPage user={user} />);
+    fireEvent.click(await screen.findByRole("button", { name: /speak your question/i }));
+
+    expect(await screen.findByText(/could not reach its speech-recognition service/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/your question for likha/i)).not.toBeDisabled();
+  });
 });

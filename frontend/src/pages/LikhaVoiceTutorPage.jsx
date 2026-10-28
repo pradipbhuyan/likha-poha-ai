@@ -32,6 +32,23 @@ const SOURCE_LABELS = {
   PLATFORM_RAG: "Platform information",
 };
 
+function getVoiceInputErrorMessage(error) {
+  /** Explain browser speech-recognition failures with an actionable recovery step. */
+  switch (error) {
+    case "not-allowed":
+    case "service-not-allowed":
+      return "Microphone access is blocked. In Edge, select the lock icon beside the address bar, allow Microphone, then reload this page and try again.";
+    case "audio-capture":
+      return "No microphone was found or it is being used by another app. Connect or free up a microphone, then try again.";
+    case "network":
+      return "Edge could not reach its speech-recognition service. Check your internet connection, then try again or type your question.";
+    case "aborted":
+      return "Voice input was stopped before a question was heard. Tap Speak your question and try again.";
+    default:
+      return "Voice input could not start. Check that Edge has microphone permission, then try again or type your question.";
+  }
+}
+
 function LikhaVoiceTutorPage({ user }) {
   const [loading, setLoading] = useState(true);
   const [syllabus, setSyllabus] = useState(null);
@@ -110,7 +127,7 @@ function LikhaVoiceTutorPage({ user }) {
     resetAnswer();
   }
 
-  function handleVoiceInput() {
+  async function handleVoiceInput() {
     if (recognitionState === "recording") {
       recognitionRef.current?.stop?.();
       return;
@@ -118,6 +135,26 @@ function LikhaVoiceTutorPage({ user }) {
 
     const Recognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     if (!Recognition) return;
+
+    // Edge can expose SpeechRecognition while microphone permission is still
+    // blocked. Request permission before starting recognition so the browser
+    // displays its native prompt and we can show a useful recovery message.
+    if (navigator.mediaDevices?.getUserMedia) {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        stream.getTracks().forEach((track) => track.stop());
+      } catch (error) {
+        setRecognitionState("error");
+        setRecognitionMessage(getVoiceInputErrorMessage(
+          error?.name === "NotAllowedError" || error?.name === "SecurityError"
+            ? "not-allowed"
+            : error?.name === "NotFoundError" || error?.name === "NotReadableError"
+              ? "audio-capture"
+              : "unknown"
+        ));
+        return;
+      }
+    }
 
     const recognition = new Recognition();
     const isFollowUp = followUpReady;
@@ -141,9 +178,7 @@ function LikhaVoiceTutorPage({ user }) {
     };
     recognition.onerror = (event) => {
       setRecognitionState("error");
-      setRecognitionMessage(event.error === "not-allowed"
-        ? "Microphone access was not allowed. You can type your question instead."
-        : "Voice input could not start. You can type your question instead.");
+      setRecognitionMessage(getVoiceInputErrorMessage(event.error));
     };
     recognition.onend = () => {
       recognitionRef.current = null;
@@ -167,7 +202,19 @@ function LikhaVoiceTutorPage({ user }) {
       setRecognitionMessage("Likha is preparing your answer…");
       askLikha(transcript, { followUp: isFollowUp });
     };
-    recognition.start();
+    try {
+      recognition.start();
+    } catch (error) {
+      recognitionRef.current = null;
+      setRecognitionState("error");
+      setRecognitionMessage(getVoiceInputErrorMessage(
+        error?.name === "NotAllowedError" || error?.name === "SecurityError"
+          ? "not-allowed"
+          : error?.name === "InvalidStateError"
+            ? "aborted"
+            : "unknown"
+      ));
+    }
   }
 
   async function askLikha(questionOverride, { followUp = false } = {}) {
