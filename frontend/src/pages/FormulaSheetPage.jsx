@@ -504,12 +504,21 @@ function getSubjectMistakes(name, subject, chapter) {
     ];
   }
 
-  // Chemistry
+  // Biology concepts are qualitative in most Formula & Concepts cards.
+  if (s.includes("biology")) {
+    return [
+      `Confusing ${name} with a related biological term — compare its definition, role, and location carefully.`,
+      "Learning a definition without linking it to the biological process or example where it is used.",
+      "Using an everyday meaning for a scientific term — use the precise NCERT meaning in answers.",
+    ];
+  }
+
+  // Chemistry includes both calculations and qualitative concepts.
   if (s.includes("chemistry") || c.includes("mole") || c.includes("reaction") || c.includes("atomic")) {
     return [
-      "Unbalanced chemical equations — always balance atoms on both sides before calculating moles.",
-      "Confusing atomic mass with mass number — use the correct value from the periodic table.",
-      "Forgetting to account for the molar ratio when converting between moles and grams.",
+      `Confusing ${name} with a related chemical term or particle — check the definition, composition, and role.`,
+      "Using an unbalanced equation or an incorrect chemical formula when referring to a reaction or substance.",
+      "Ignoring the stated conditions, physical state, charge, or catalyst that can change a chemical process.",
     ];
   }
 
@@ -521,8 +530,53 @@ function getSubjectMistakes(name, subject, chapter) {
   ];
 }
 
+// Generic calculation wording is inappropriate for definition-heavy Biology
+// cards and qualitative Chemistry concepts. Old/generated records can still
+// contain these templates, so do not render them merely because they arrive
+// from the API. Quantitative Chemistry cards retain their specific mistakes.
+function hasIrrelevantCalculationMistakes(mistakes) {
+  if (!Array.isArray(mistakes) || !mistakes.length) return true;
+
+  const text = mistakes.join(" ").toLowerCase();
+  return [
+    "sign error",
+    "squaring or taking roots",
+    "skipping intermediate steps",
+    "arithmetic mistakes",
+    "before substituting",
+    "substituting any values",
+    "identify exactly what",
+  ].some(phrase => text.includes(phrase));
+}
+
+function isQuantitativeChemistry(formula) {
+  const text = [
+    formula.name,
+    formula.expression,
+    formula.chapter,
+    formula.topic,
+    formula.tags?.join(" "),
+  ].filter(Boolean).join(" ").toLowerCase();
+
+  return [
+    "mole", "stoichiometr", "molar", "concentration", "molality",
+    "normality", "equilibrium constant", "ph", "buffer", "kinetics",
+    "rate law", "gas law", "thermochem", "enthalpy", "electrochem",
+    "faraday", "conductance", "colligative", "solution",
+  ].some(term => text.includes(term));
+}
+
+function shouldUseSubjectMistakes(formula, mistakes) {
+  const subject = (formula.subject || "").toLowerCase();
+  if (subject === "biology") return hasIrrelevantCalculationMistakes(mistakes);
+  if (subject === "chemistry" && !isQuantitativeChemistry(formula)) {
+    return hasIrrelevantCalculationMistakes(mistakes);
+  }
+  return false;
+}
+
 // ── buildRichContent — merges overrides + subject fallbacks ───────────────────
-// Priority: backend fields > FORMULA_OVERRIDES > subject-aware fallbacks.
+// Priority: validated backend fields > FORMULA_OVERRIDES > subject-aware fallbacks.
 function buildRichContent(formula) {
   const name    = (formula.name || "").trim();
   const nameKey = name.toLowerCase();
@@ -599,11 +653,16 @@ function buildRichContent(formula) {
   }
 
   // ── 5. Common mistakes ─────────────────────────────────────────────────────
-  const commonMistakes = Array.isArray(formula.common_mistakes)
-    ? formula.common_mistakes
-    : (override && Array.isArray(override.commonMistakes))
-      ? override.commonMistakes
-      : getSubjectMistakes(name, subject, chapter);
+  const apiMistakes = Array.isArray(formula.common_mistakes)
+    ? formula.common_mistakes.filter(m => typeof m === "string" && m.trim())
+    : [];
+  const commonMistakes = shouldUseSubjectMistakes(formula, apiMistakes)
+    ? getSubjectMistakes(name, subject, chapter)
+    : apiMistakes.length > 0
+      ? apiMistakes
+      : (override && Array.isArray(override.commonMistakes))
+        ? override.commonMistakes
+        : getSubjectMistakes(name, subject, chapter);
 
   // ── 6. Memory tip ──────────────────────────────────────────────────────────
   const memoryTip = formula.memory_tip
@@ -915,7 +974,7 @@ function FormulaCard({ formula, hasPremium, onUpgrade, studied, onStudied, onAsk
 
       {/* Expanded content — premium rich view */}
       {expanded && canExpand && (
-        <PremiumExpandedContent formula={formula} />
+        <PremiumExpandedContent formula={{ ...formula, subject: formula.subject || subject }} />
       )}
 
       {/* Locked upgrade inline prompt */}

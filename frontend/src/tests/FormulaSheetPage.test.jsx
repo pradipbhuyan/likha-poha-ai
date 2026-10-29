@@ -118,6 +118,37 @@ const PAID_RESPONSE = {
   ],
 };
 
+const GRADE_11_CONCEPT_RESPONSE = (subject, formula) => ({
+  success: true,
+  available: true,
+  grade: "Grade 11",
+  subject,
+  subjects: ["Biology", "Chemistry", "Mathematics", "Physics"],
+  has_premium: true,
+  premium_required: false,
+  unlocked_count: 1,
+  total_count: 1,
+  chapters: [{
+    chapter_id: "concept-chapter",
+    chapter_name: formula.chapter,
+    chapter_order: 1,
+    total_formulas: 1,
+    unlocked_count: 1,
+    locked: false,
+    topics: [{
+      topic_name: "General",
+      formulas: [{
+        id: `${subject}-concept`,
+        difficulty: "medium",
+        tags: [],
+        locked: false,
+        preview_allowed: true,
+        ...formula,
+      }],
+    }],
+  }],
+});
+
 const UNAVAILABLE_RESPONSE = {
   success: true,
   available: false,
@@ -268,5 +299,67 @@ describe("FormulaSheetPage — freemium chapter-wise", () => {
         expect(document.body.textContent).toContain("HERON");
       });
     }
+  });
+
+  test("replaces generic calculation mistakes on Grade 11 Biology concepts", async () => {
+    const biology = GRADE_11_CONCEPT_RESPONSE("Biology", {
+      name: "Living Organism Definition",
+      expression: "Living organisms show cellular organisation, metabolism and consciousness.",
+      description: "A key Biology concept.",
+      chapter: "The Living World",
+      common_mistakes: [
+        "Misreading the question — identify exactly what Living Organism Definition is being asked to find before substituting.",
+        "Sign error — check every negative value carefully, especially when squaring or taking roots.",
+        "Skipping intermediate steps — write each step clearly to avoid arithmetic mistakes under exam pressure.",
+      ],
+    });
+    authFetch.mockImplementation(url => Promise.resolve(
+      url.includes("subject=Biology")
+        ? biology
+        : { ...PAID_RESPONSE, subjects: biology.subjects }
+    ));
+
+    render(<FormulaSheetPage user={{ ...USER_PAID, grade: "Grade 11" }} setActivePage={vi.fn()} />);
+    await screen.findByTestId("formula-sheet-content");
+    fireEvent.click(screen.getByTestId("fs-subject-biology"));
+    await screen.findByText("Living Organism Definition");
+    fireEvent.click(screen.getByTestId("expand-btn"));
+
+    await waitFor(() => {
+      expect(document.body.textContent).toContain("related biological term");
+      expect(document.body.textContent).not.toContain("Sign error — check every negative value");
+      expect(document.body.textContent).not.toContain("squaring or taking roots");
+    });
+  });
+
+  test("replaces generic calculation mistakes on qualitative Chemistry concepts", async () => {
+    const chemistry = GRADE_11_CONCEPT_RESPONSE("Chemistry", {
+      name: "Energy of Orbital",
+      expression: "The energy associated with an electron in an atomic orbital.",
+      description: "A concept from atomic structure.",
+      chapter: "Structure of Atom",
+      common_mistakes: [
+        "Misreading the question — identify exactly what Energy of Orbital is being asked to find before substituting.",
+        "Sign error — check every negative value carefully, especially when squaring or taking roots.",
+        "Skipping intermediate steps — write each step clearly to avoid arithmetic mistakes under exam pressure.",
+      ],
+    });
+    authFetch.mockImplementation(url => Promise.resolve(
+      url.includes("subject=Chemistry")
+        ? chemistry
+        : { ...PAID_RESPONSE, subjects: chemistry.subjects }
+    ));
+
+    render(<FormulaSheetPage user={{ ...USER_PAID, grade: "Grade 11" }} setActivePage={vi.fn()} />);
+    await screen.findByTestId("formula-sheet-content");
+    fireEvent.click(screen.getByTestId("fs-subject-chemistry"));
+    await screen.findByText("Energy of Orbital");
+    fireEvent.click(screen.getByTestId("expand-btn"));
+
+    await waitFor(() => {
+      expect(document.body.textContent).toContain("related chemical term or particle");
+      expect(document.body.textContent).not.toContain("Sign error — check every negative value");
+      expect(document.body.textContent).not.toContain("squaring or taking roots");
+    });
   });
 });
